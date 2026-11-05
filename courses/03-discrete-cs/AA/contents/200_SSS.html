@@ -1,0 +1,1924 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Кратчайшая суперстрока – Курсы ФПМИ</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/favicon.ico" rel="icon">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-18b92d25f2a0372079463917332f47f0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-90af2ae3f5f11ccb077ed1c2d3900ada.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/quarto-contrib/mn-problems-1.0.0/mn-problems.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/mn-theorems-1.0.0/mn-theorems.css" rel="stylesheet">
+<script src="../../../../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Поиск не дал результатов",
+    "search-matching-documents-text": "Результаты поиска",
+    "search-copy-link-title": "Скопировать ссылку",
+    "search-hide-matches-text": "Скрыть дополнительные результаты",
+    "search-more-match-text": "дополнительный результат в этом документе",
+    "search-more-matches-text": "дополнительных результата(-ов) в этом документе",
+    "search-clear-button-title": "Очистить",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Отменить",
+    "search-submit-button-title": "Найти",
+    "search-label": "Поиск"
+  }
+}</script>
+<style>
+div.callout-thumbs-up.callout {
+  border-left-color: #008000;
+}
+div.callout-thumbs-up.callout-style-default .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-thumbs-up .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-thumbs-up.callout-style-default .callout-icon::before, div.callout-thumbs-up.callout-titled .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23008000" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/></svg>');
+}
+div.callout-enum-item.callout {
+  border-left-color: #008000;
+}
+div.callout-enum-item.callout-style-default .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-enum-item .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-enum-item.callout-style-default .callout-icon::before, div.callout-enum-item.callout-titled .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23008000" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/></svg>');
+}
+div.callout-todo.callout {
+  border-left-color: pink;
+}
+div.callout-todo.callout-style-default .callout-header {
+  background-color: rgb(from pink r g b / 13%);
+}
+div.callout-todo .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.callout-titled .callout-icon::before {
+  content: '📝';
+  background-image: none;
+}
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/logo.png" alt="" class="navbar-logo light-content">
+    <img src="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/logo.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../../../index.html">
+    <span class="navbar-title">Курсы ФПМИ</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Поиск"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Переключить навигацию" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> 
+<span class="menu-text">Главная</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Курсы</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../../courses/index.html">
+ <span class="dropdown-text">Все курсы (37)</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../../courses/04-probability/index.html">
+ <span class="dropdown-text">Вероятность (4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/01-analysis/index.html">
+ <span class="dropdown-text">Анализ (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/02-algebra/index.html">
+ <span class="dropdown-text">Алгебра (4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/03-discrete-cs/index.html">
+ <span class="dropdown-text">Дискретная математика и CS (9)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/05-programming-systems/index.html">
+ <span class="dropdown-text">Программирование и системы (7)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/06-data-computing/index.html">
+ <span class="dropdown-text">Данные и вычисления (5)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Учебный план</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">    
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/I.html">
+ <span class="dropdown-text">I семестр (7)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/II.html">
+ <span class="dropdown-text">II семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/III.html">
+ <span class="dropdown-text">III семестр (9)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/IV.html">
+ <span class="dropdown-text">IV семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/V.html">
+ <span class="dropdown-text">V семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/VI.html">
+ <span class="dropdown-text">VI семестр (4)</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--2" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">О проекте</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu--2">    
+        <li>
+    <a class="dropdown-item" href="../../../../about.html">
+ <span class="dropdown-text">О проекте</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../editorial-policy.html">
+ <span class="dropdown-text">Статус материалов и редакционная политика</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://mipt.ru/education/schools/fpmi"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:web" style="font-size: 1.25em;" aria-label="Icon web from mdi Iconify.design set." title="Сайт ФПМИ"></iconify-icon></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../courses/03-discrete-cs/AA/contents/200_SSS.html">6. Кратчайшая суперстрока</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
+<div style="font-weight: bold; font-size: 1.1em;">
+<p>Приближённые алгоритмы</p>
+</div>
+</div></div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Обзор курса</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/contents/010_Preface_NP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Предисловие. Классы сложности. NP-сложные задачи</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/contents/020_Intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Комбинаторная оптимизация: введение</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/contents/030_Set_Cover.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Задача о покрытии множествами</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/contents/040_Metric_Problems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Задачи с метрикой</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/contents/050_k_Center.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Задача о k-центрах</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/contents/200_SSS.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">6. Кратчайшая суперстрока</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Содержание</h2>
+   
+  <ul>
+  <li><a href="#жадный-алгоритм" id="toc-жадный-алгоритм" class="nav-link active" data-scroll-target="#жадный-алгоритм"><span class="header-section-number">1</span> Жадный алгоритм</a></li>
+  <li><a href="#алгоритм-через-покрытия-множествами" id="toc-алгоритм-через-покрытия-множествами" class="nav-link" data-scroll-target="#алгоритм-через-покрытия-множествами"><span class="header-section-number">2</span> Алгоритм через покрытия множествами</a>
+  <ul class="collapse">
+  <li><a href="#сведение-к-задаче-о-покрытии-множествами" id="toc-сведение-к-задаче-о-покрытии-множествами" class="nav-link" data-scroll-target="#сведение-к-задаче-о-покрытии-множествами"><span class="header-section-number">2.1</span> Сведение к задаче о покрытии множествами</a>
+  <ul class="collapse">
+  <li><a href="#построение-экземпляра" id="toc-построение-экземпляра" class="nav-link" data-scroll-target="#построение-экземпляра"><span class="header-section-number">2.1.1</span> Построение экземпляра</a></li>
+  <li><a href="#точность-сведения" id="toc-точность-сведения" class="nav-link" data-scroll-target="#точность-сведения"><span class="header-section-number">2.1.2</span> Точность сведения</a></li>
+  </ul></li>
+  <li><a href="#применение-алгоритмов-для-задачи-о-покрытии-множествами" id="toc-применение-алгоритмов-для-задачи-о-покрытии-множествами" class="nav-link" data-scroll-target="#применение-алгоритмов-для-задачи-о-покрытии-множествами"><span class="header-section-number">2.2</span> Применение алгоритмов для задачи о покрытии множествами</a></li>
+  </ul></li>
+  <li><a href="#алгоритмы-на-основе-графов-префиксов-и-перекрытий" id="toc-алгоритмы-на-основе-графов-префиксов-и-перекрытий" class="nav-link" data-scroll-target="#алгоритмы-на-основе-графов-префиксов-и-перекрытий"><span class="header-section-number">3</span> Алгоритмы на основе графов префиксов и перекрытий</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<!--
+  Explicit RequireJS path mapping for "plotly", used by every hand-built
+  interactive widget on this site via require(["plotly"], function(Plotly){...}).
+
+  There was never a require.config() call anywhere setting this up -- it
+  only ever worked because Plotly's own UMD bundle, loaded elsewhere on the
+  same page via a plain <script src> for a simple (non-widget) fig.show()
+  figure, self-registers as an anonymous AMD module when window.define
+  exists (Quarto's RequireJS loader, used for MathJax), and RequireJS
+  happens to attribute that anonymous module to the "plotly" name if the
+  timing/script-load-order lines up. That's pure luck, not a real mapping --
+  a page with only widget figures (no plain fig.show() figure to "donate"
+  its Plotly load) had nothing to claim from, and any change to script load
+  order/timing (e.g. removing an unrelated script elsewhere on the page)
+  can flip which pending require() call an anonymous define() gets
+  attributed to, breaking it silently. Explicit config removes the guesswork.
+
+  Two separate failure modes found in practice, both fixed here:
+
+  (A) A page with ONLY hand-built widgets (no {python} cell at all -- e.g.
+  specials/030/020_quantile_function_fig.qmd) never gets Quarto's own
+  <script src=".../requirejs@.../require.min.js"> in <head> in the first
+  place: that tag is only emitted when the page has a Jupyter code cell.
+  window.require is simply undefined there, so the widget's own
+  require(["plotly"], ...) throws "require is not defined" unconditionally
+  -- not a network flake, 100% of the time regardless of connection quality.
+  Fixed below by synchronously document.write-ing a local copy of
+  require.min.js when window.require isn't already present -- document.write
+  from an inline <script> during initial HTML parsing inserts into the parse
+  stream immediately, so by the next statement window.require is guaranteed
+  defined, still fully synchronously (no defer/async race).
+
+  (B) A page with BOTH a plain fig.show() figure AND a hand-built widget:
+  RequireJS *is* already in <head> here, so this file's require.config()
+  below does run against a real window.require. But the Jupyter-generated
+  embed script for the fig.show() figure -- which appears later in <body>,
+  wherever that Python cell sits -- unconditionally calls
+  require.undef("plotly") followed by its OWN require.config() pointing at
+  a *different* version on the *same* external CDN (observed:
+  cdn.plot.ly/plotly-2.35.2.min vs. the 3.4.0 configured here), clobbering
+  this file's mapping before the widget's own require(["plotly"], ...) ever
+  runs. Both that Jupyter-set path and this file's own local path hit the
+  same real-world failure: cdn.plot.ly answers anywhere from ~1.5s to a full
+  10s+ timeout under real network conditions (measured directly). A
+  requirejs.onError handler below catches exactly the resulting timeout on
+  the "plotly" module -- regardless of which of the two require.config()
+  calls most recently set its path -- and retries once against the local
+  bundle.
+-->
+<script>
+if (typeof window.require === "undefined") {
+  document.write('<script src="/site_libs/quarto-contrib/mn-plotly-1.0.0/require.min.js"><\/script>');
+}
+</script>
+<script>
+if (window.require && window.require.config) {
+  window.require.config({
+    paths: { plotly: "/site_libs/quarto-contrib/mn-plotly-1.0.0/plotly.min" },
+    // shim.exports: after the script loads, hand require(["plotly"],...)
+    // callers the *global* window.Plotly instead of trusting whatever (if
+    // anything) the script itself passed to define() -- Plotly's own UMD
+    // wrapper reliably sets window.Plotly regardless of AMD context (also
+    // used directly by every plain fig.show() figure on this site, whose
+    // own generated embed script never goes through RequireJS at all), but
+    // its anonymous define() call is not reliably attributed to the
+    // "plotly" request specifically when this same URL is also loaded via
+    // a separate plain <script src> elsewhere on the page (a simple,
+    // non-widget figure) -- shim sidesteps that ambiguity entirely.
+    shim: { plotly: { exports: "Plotly" } }
+  });
+  // See failure mode (B) above: a later Jupyter-generated fig.show() embed
+  // script can still call its own require.undef("plotly") +
+  // require.config({paths: {plotly: <external CDN>}}) after this runs,
+  // pointing "plotly" back at an unreliable external host. This handler
+  // fires on ANY module load timeout; when it's specifically "plotly", drop
+  // whatever path is currently registered (however it got there) and retry
+  // once against the local bundle instead of the external CDN.
+  //
+  // Deliberately never re-throws: once the retry above is issued, the
+  // ORIGINAL failed network request for the external CDN copy can still
+  // land afterwards and fire a second, by-then-harmless onError (verified:
+  // requireType "scripterror", after the retry has already resolved the
+  // widget's real require(["plotly"], callback) via RequireJS's own
+  // pending-callback bookkeeping) -- throwing there would surface a
+  // spurious uncaught exception for something already fixed. console.warn
+  // keeps that visible in devtools without it looking like a live failure.
+  window.require.onError = function (err) {
+    if (err.requireModules && err.requireModules.indexOf("plotly") !== -1) {
+      if (err.requireType === "timeout") {
+        window.require.undef("plotly");
+        window.require.config({ paths: { plotly: "/site_libs/quarto-contrib/mn-plotly-1.0.0/plotly.min" } });
+        window.require(["plotly"]);
+      } else {
+        console.warn("plotly require() error after fallback (likely a stale network request):", err);
+      }
+    } else {
+      throw err;
+    }
+  };
+}
+</script>
+
+<!--
+  window.fpmiWithMathJax(cb): same rationale as the FPMI homepage loader (_home_widgets/loader.qmd)'s
+  copy of this helper (see there for the original), extended to course
+  pages. Quarto only emits a <script defer src=".../mathjax@3/.../tex-*.js">
+  tag in <head> at all when it sees real markdown math OUTSIDE any
+  ```{=html}``` block on the page -- a hand-built widget's math lives
+  entirely inside \(...\)/\[...\] strings in JS-generated DOM content
+  (e.g. a dynamically updated status line), which Quarto's static math
+  scanner never looks inside, so a page whose ONLY math is like that (no
+  prose math of its own) gets no MathJax script at all. Confirmed on an
+  already-shipped widget (030/020_quantile_function_fig.qmd's #qf-status)
+  that had silently never rendered its \(...\) as real math since it was
+  written -- not a new bug, just never noticed because the broken math was
+  inside dynamically-generated text rather than the static page body.
+
+  Three cases this handles, in order:
+  1. window.MathJax already fully started (page had prose math elsewhere,
+     Quarto's own <script defer> already ran) -- just wait on the
+     documented startup.promise signal and fire cb.
+  2. Quarto's own MathJax <script defer> tag IS present in <head> but
+     hasn't executed/initialized yet (defer runs after DOM parsing, and
+     this include-before-body block runs earlier, during parsing) -- poll
+     briefly for window.MathJax to appear rather than racing to load a
+     SECOND copy, which would either double-load or (depending on load
+     order) silently no-op.
+  3. No MathJax script present at all (case A above) -- fetch it ourselves,
+     same URL/approach as loader.qmd.
+-->
+<script>
+window.fpmiWithMathJax = window.fpmiWithMathJax || function (cb) {
+  if (window.MathJax && window.MathJax.startup) { window.MathJax.startup.promise.then(cb); return; }
+  if (window.__fpmiMathJaxQueue) { window.__fpmiMathJaxQueue.push(cb); return; }
+  window.__fpmiMathJaxQueue = [cb];
+  function flushQueue() {
+    var q = window.__fpmiMathJaxQueue;
+    window.__fpmiMathJaxQueue = null;
+    q.forEach(function (f) { f(); });
+  }
+  var hasMathJaxTag = !!document.querySelector('script[src*="mathjax"]');
+  if (hasMathJaxTag) {
+    // Case 2: Quarto's own deferred MathJax script is already in <head> --
+    // poll for it to finish initializing instead of loading a duplicate.
+    var waited = 0;
+    var poll = setInterval(function () {
+      waited += 50;
+      if (window.MathJax && window.MathJax.startup) {
+        clearInterval(poll);
+        window.MathJax.startup.promise.then(flushQueue);
+      } else if (waited > 10000) {
+        // Should never happen (the tag is already there, defer always runs
+        // before window.onload) -- bail rather than poll forever.
+        clearInterval(poll);
+        console.warn("fpmiWithMathJax: gave up waiting for Quarto's own MathJax script to initialize");
+      }
+    }, 50);
+    return;
+  }
+  // Case 3: no MathJax anywhere on the page -- fetch it ourselves. SVG
+  // output specifically (not CHTML, despite Quarto's own injected tag
+  // using CHTML): confirmed Plotly's own $...$ annotation/tick-label math
+  // rendering hard-requires the SVG output jax and throws
+  // 'Output Jax "svg" is not defined' if only CHTML is loaded (its
+  // internal math path calls MathJax.tex2svg specifically, independent of
+  // whatever jax Quarto's page-level script configured) -- same reason
+  // the FPMI homepage loader (_home_widgets/loader.qmd)'s original copy of this helper uses tex-svg.js.
+  var s = document.createElement("script");
+  s.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js";
+  s.onload = function () {
+    window.MathJax.startup.promise.then(flushQueue);
+  };
+  document.head.appendChild(s);
+};
+</script>
+<!--
+  window.fpmiGraph: shared toolkit for the hand-built Plotly *graph diagrams*
+  (vertices + edges) used by the algorithms courses (courses/11-DM-CS/AA/...
+  specials). Plotly has no native graph/network primitives, so every widget
+  used to re-implement the same edge-polyline/marker/annotation plumbing by
+  hand -- and, since a plain `mode:"lines"` polyline can't carry an arrowhead
+  or per-edge hover, all of them ended up as staticPlot line drawings with
+  no direction on directed graphs and no hover at all. This helper gives
+  every widget, from one `spec`:
+
+    * one scatter trace PER EDGE (so an individual edge can be restyled --
+      hover-highlight, per-step emphasis, transitions -- and can have its own
+      hover text via an invisible midpoint marker), optionally curved
+      (`bend`) so a pair of opposite arcs u->v / v->u stays readable;
+    * arrowheads for `directed` edges via layout.annotations in data
+      coordinates, shortened so the head lands on the vertex rim, not under
+      the marker;
+    * a soft halo under each vertex, $...$ MathJax labels via annotations
+      (never mode:"markers+text" -- see project memory: Plotly's marker text
+      is raw SVG <text>, which can't hold MathJax output), and hover labels;
+    * hover-highlight: hovering a vertex lifts its incident edges and dims
+      the rest (plotly_hover/unhover + Plotly.restyle on the edge traces);
+    * animated transitions between algorithm steps (Plotly.animate on a
+      trace layout that stays structurally identical across steps -- the
+      trace count must not change, so per-step differences are expressed
+      purely as style: color/width/opacity/dash);
+    * a step player (prev / next / autoplay, keyboard arrows) that builds its
+      own controls, and a path tracer that grows a highlighted polyline along
+      a vertex sequence over time (Hamiltonian paths, tours, Euler walks).
+
+  Draw order inside `data`: edges (one trace each) -> edge midpoints (hover
+  only) -> halo -> vertices -> optional path trace. Trace indices are
+  returned in `built.meta` so callers never hard-code them.
+-->
+<script>
+(function () {
+  if (window.fpmiGraph) return;
+  var G = {};
+
+  // Every UI string this helper generates itself (default edge-weight hover
+  // text, the step-player's button labels) is project-agnostic: it reads
+  // `document.documentElement.lang` (set by each project's own `_quarto.yml`
+  // `lang:` field) and falls back to Russian, the language every existing
+  // call site (mnedoshivin, math-notes_CU_2, math-notes_FPMI_2) was written
+  // for -- so this stays a silent no-op everywhere except an `lang="en"`
+  // project such as mnedoshivin_en.
+  var IS_EN = (document.documentElement.lang || "").toLowerCase().indexOf("en") === 0;
+  var WEIGHT_WORD = IS_EN ? "weight" : "вес";
+
+  G.colors = {
+    vert: "#eaf2fb", vertLine: "#1e3a8a", vertText: "#0b0b0b",
+    sel: "#2a78d6", selText: "#ffffff",
+    accent: "#f5a623", accentLine: "#8a5a00",
+    done: "#a8a29e", edge: "#78716c", edgeFaded: "#d6d3d1",
+    red: "#b91c1c", redSoft: "#fca5a5", green: "#556B2F", greenSoft: "#bbf7d0",
+    bg: "#fcfcfb"
+  };
+
+  // Plotly may arrive through RequireJS (course pages, see
+  // plotly-require-config.html), through the homepage's own
+  // fpmiWithPlotly loader, or already be a global -- accept all three.
+  G.withPlotly = function (cb) {
+    if (window.Plotly && window.Plotly.newPlot) { cb(window.Plotly); return; }
+    if (window.fpmiWithPlotly) { window.fpmiWithPlotly(cb); return; }
+    if (window.require) { window.require(["plotly"], cb); return; }
+    console.warn("fpmiGraph: no Plotly loader available on this page");
+  };
+  // MathJax must exist BEFORE Plotly builds any $...$ annotation (Plotly
+  // stamps data-math="N" at build time and never retries), hence the order.
+  G.ready = function (cb) {
+    var run = function () { G.withPlotly(cb); };
+    if (window.fpmiWithMathJax) { window.fpmiWithMathJax(run); } else { run(); }
+  };
+
+  // ── geometry ───────────────────────────────────────────────────────────────
+  // Quadratic curve from p0 to p1 bulging `bend` data units to the left of
+  // the p0->p1 direction (negative bends right). n+1 points.
+  G.curve = function (p0, p1, bend, n) {
+    n = n || 16;
+    var dx = p1[0] - p0[0], dy = p1[1] - p0[1];
+    var len = Math.sqrt(dx * dx + dy * dy) || 1;
+    var nx = -dy / len, ny = dx / len;
+    var cx = (p0[0] + p1[0]) / 2 + nx * bend, cy = (p0[1] + p1[1]) / 2 + ny * bend;
+    var pts = [];
+    for (var i = 0; i <= n; i++) {
+      var t = i / n, a = (1 - t) * (1 - t), b = 2 * (1 - t) * t, c = t * t;
+      pts.push([a * p0[0] + b * cx + c * p1[0], a * p0[1] + b * cy + c * p1[1]]);
+    }
+    return pts;
+  };
+  G.circle = function (cx, cy, r, n) {
+    n = n || 64;
+    var x = [], y = [];
+    for (var i = 0; i <= n; i++) { var a = 2 * Math.PI * i / n; x.push(cx + r * Math.cos(a)); y.push(cy + r * Math.sin(a)); }
+    return { x: x, y: y };
+  };
+  // "$v_{1}$" from "v1", "$s'$" from "s'", plain "s" from "s".
+  G.texLabel = function (id) {
+    var m = /^([A-Za-z]+)(\d+)('*)$/.exec(id);
+    if (m) return "$" + m[1] + "_{" + m[2] + "}" + m[3] + "$";
+    return /^[A-Za-z]'*$/.test(id) ? "$" + id + "$" : id;
+  };
+  // Unicode subscript fallback for hover text (Plotly hover can't do MathJax).
+  var SUB = { "0": "₀", "1": "₁", "2": "₂", "3": "₃", "4": "₄", "5": "₅", "6": "₆", "7": "₇", "8": "₈", "9": "₉" };
+  G.plainLabel = function (id) {
+    var m = /^([A-Za-z]+)(\d+)('*)$/.exec(id);
+    if (!m) return id;
+    return m[1] + m[2].split("").map(function (c) { return SUB[c] || c; }).join("") + m[3];
+  };
+
+  function assign(dst) {
+    for (var i = 1; i < arguments.length; i++) { var s = arguments[i]; if (s) for (var k in s) if (Object.prototype.hasOwnProperty.call(s, k)) dst[k] = s[k]; }
+    return dst;
+  }
+  function normEdge(e) {
+    if (Array.isArray(e)) { var o = { u: e[0], v: e[1] }; if (e[2] && typeof e[2] === "object") assign(o, e[2]); else if (e[2] !== undefined) o.weight = e[2]; return o; }
+    return assign({}, e);
+  }
+
+  // ── build ──────────────────────────────────────────────────────────────────
+  // spec = {
+  //   verts: {id: [x, y]},            order: [ids] (optional, defaults to key order)
+  //   edges: [[u, v] | [u, v, weight] | {u, v, color, width, dash, opacity, bend, hover, arrow, weight}]
+  //   directed: bool,                 edge: fn(edgeObj) -> style overrides (per step)
+  //   vert: fn(id) -> {color, line, lineWidth, size, opacity, label, hover, symbol}
+  //   labels: bool|{id: text}         (default: true -> G.texLabel(id))
+  //   size: 24, halo: true, weights: bool (annotate edge weights at midpoints)
+  //   range: {x: [..], y: [..]}       (default: bbox + padding), pad: 0.8
+  //   annotations: [], shapes: []     (extra), pathTrace: bool (reserve a trace for tracePath)
+  //   height/width: layout size override
+  // }
+  G.build = function (spec) {
+    var C = G.colors;
+    var ids = spec.order || Object.keys(spec.verts);
+    var size = spec.size || 24;
+    var edges = (spec.edges || []).map(normEdge);
+    var data = [], annotations = [], meta = { edgeIdx: [], edgeStyles: [], edges: edges, ids: ids, size: size };
+
+    // range
+    var xs = ids.map(function (i) { return spec.verts[i][0]; }), ys = ids.map(function (i) { return spec.verts[i][1]; });
+    var pad = spec.pad !== undefined ? spec.pad : 0.8;
+    var xr = spec.range && spec.range.x || [Math.min.apply(null, xs) - pad, Math.max.apply(null, xs) + pad];
+    var yr = spec.range && spec.range.y || [Math.min.apply(null, ys) - pad, Math.max.apply(null, ys) + pad];
+    // Vertex radius in data units, for arrowhead shortening: estimate from
+    // the plot's pixel width (marker size is in px, the axis range in data).
+    var plotPx = spec.plotWidthPx || 460;
+    var rData = spec.vertRadius !== undefined ? spec.vertRadius : (size / 2) * (xr[1] - xr[0]) / plotPx * 1.15;
+
+    // edges
+    var midX = [], midY = [], midText = [];
+    edges.forEach(function (e, k) {
+      var st = assign({ color: C.edge, width: 1.6, dash: "solid", opacity: 1, bend: 0 }, e, spec.edge ? spec.edge(e, k) : null);
+      var p0 = spec.verts[e.u], p1 = spec.verts[e.v];
+      var pts = st.bend ? G.curve(p0, p1, st.bend) : [p0, p1];
+      var directed = st.arrow !== undefined ? st.arrow : !!spec.directed;
+      if (directed) {
+        // trim the last segment so the arrowhead (drawn separately) ends on
+        // the target vertex rim; the line itself stops there too.
+        var a = pts[pts.length - 2], b = pts[pts.length - 1];
+        var dx = b[0] - a[0], dy = b[1] - a[1], L = Math.sqrt(dx * dx + dy * dy) || 1;
+        var head = [b[0] - dx / L * rData, b[1] - dy / L * rData];
+        var tail = [head[0] - dx / L * Math.min(L, rData * 1.6), head[1] - dy / L * Math.min(L, rData * 1.6)];
+        pts = pts.slice(0, -1).concat([head]);
+        annotations.push({
+          x: head[0], y: head[1], ax: tail[0], ay: tail[1], xref: "x", yref: "y", axref: "x", ayref: "y",
+          showarrow: true, arrowhead: 2, arrowsize: 1.15, arrowwidth: st.width, arrowcolor: st.color,
+          opacity: st.opacity, text: "", standoff: 0
+        });
+      }
+      data.push({
+        x: pts.map(function (p) { return p[0]; }), y: pts.map(function (p) { return p[1]; }),
+        mode: "lines", line: { color: st.color, width: st.width, dash: st.dash }, opacity: st.opacity,
+        hoverinfo: "skip", showlegend: false, name: e.u + "-" + e.v
+      });
+      meta.edgeIdx.push(data.length - 1);
+      meta.edgeStyles.push({ color: st.color, width: st.width, dash: st.dash, opacity: st.opacity });
+      var mid = pts[Math.floor(pts.length / 2)];
+      if (pts.length === 2) mid = [(p0[0] + p1[0]) / 2, (p0[1] + p1[1]) / 2];
+      midX.push(mid[0]); midY.push(mid[1]);
+      var hover = st.hover !== undefined ? st.hover : (G.plainLabel(e.u) + (directed ? " → " : " — ") + G.plainLabel(e.v) + (st.weight !== undefined ? "<br>" + (WEIGHT_WORD) + " " + st.weight : ""));
+      midText.push(hover);
+      // st.weight (not e.weight): a per-step override may hide a faded edge's
+      // label by returning {weight: undefined}
+      if (spec.weights && st.weight !== undefined && st.opacity > 0.05) {
+        annotations.push({ x: mid[0], y: mid[1], text: String(st.weight), showarrow: false,
+          font: { size: 11, color: st.color === C.edgeFaded ? "#a8a29e" : "#44403c" }, bgcolor: "rgba(252,252,251,0.9)", borderpad: 1 });
+      }
+    });
+    // invisible edge midpoints: hover only (per-point hoverinfo so a hidden
+    // edge -- opacity 0, e.g. "not added yet" in a step player -- shows no
+    // empty tooltip)
+    data.push({ x: midX, y: midY, mode: "markers", marker: { size: 14, opacity: 0 }, hovertext: midText,
+      hoverinfo: meta.edgeStyles.map(function (s) { return s.opacity > 0 ? "text" : "skip"; }), showlegend: false, name: "edges" });
+    meta.midIdx = data.length - 1;
+
+    // vertices
+    var vx = [], vy = [], vColor = [], vLine = [], vLineW = [], vSize = [], vOp = [], vHover = [], vSym = [], haloColor = [];
+    ids.forEach(function (id) {
+      var st = assign({ color: C.vert, line: C.vertLine, lineWidth: 1.8, size: size, opacity: 1, symbol: "circle" }, spec.vert ? spec.vert(id) : null);
+      vx.push(spec.verts[id][0]); vy.push(spec.verts[id][1]);
+      vColor.push(st.color); vLine.push(st.line); vLineW.push(st.lineWidth); vSize.push(st.size); vOp.push(st.opacity); vSym.push(st.symbol);
+      vHover.push(st.hover !== undefined ? st.hover : G.plainLabel(id));
+      haloColor.push(st.opacity === 0 ? "rgba(0,0,0,0)" : (st.halo || (st.color === C.vert ? "rgba(42,120,214,0.10)" : G.rgba(st.color, 0.22))));
+      var lbl = st.label !== undefined ? st.label
+        : (spec.labels === false ? null : (spec.labels && typeof spec.labels === "object" ? spec.labels[id] : G.texLabel(id)));
+      if (lbl) {
+        annotations.push({ x: spec.verts[id][0], y: spec.verts[id][1], text: lbl, showarrow: false,
+          font: { size: st.labelSize || 13, color: st.labelColor || (st.color === C.vert || st.color === C.accent ? C.vertText : C.selText) }, opacity: st.opacity });
+      }
+    });
+    if (spec.halo !== false) {
+      data.push({ x: vx, y: vy, mode: "markers", marker: { size: vSize.map(function (s) { return s + 14; }), color: haloColor, line: { width: 0 } },
+        opacity: 1, hoverinfo: "skip", showlegend: false, name: "halo" });
+      meta.haloIdx = data.length - 1;
+    }
+    data.push({ x: vx, y: vy, mode: "markers", marker: { size: vSize, color: vColor, symbol: vSym, opacity: vOp, line: { color: vLine, width: vLineW } },
+      hovertext: vHover, hoverinfo: vOp.map(function (o) { return o > 0 ? "text" : "skip"; }), showlegend: false, name: "vertices",
+      hoverlabel: { bgcolor: "#1c1917", bordercolor: "#1c1917", font: { color: "#fff", size: 12 } } });
+    meta.vertIdx = data.length - 1;
+    if (spec.pathTrace) {
+      data.push({ x: [], y: [], mode: "lines", line: { color: C.red, width: 3.2, shape: "linear" }, hoverinfo: "skip", showlegend: false, name: "path" });
+      meta.pathIdx = data.length - 1;
+    }
+
+    var layout = {
+      xaxis: { visible: false, range: xr, fixedrange: true },
+      yaxis: { visible: false, range: yr, fixedrange: true, scaleanchor: "x" },
+      margin: { t: 8, b: 8, l: 8, r: 8 },
+      plot_bgcolor: C.bg, paper_bgcolor: C.bg, showlegend: false, hovermode: "closest",
+      annotations: annotations.concat(spec.annotations || []), shapes: spec.shapes || [],
+      transition: { duration: 420, easing: "cubic-in-out" }
+    };
+    if (spec.height) layout.height = spec.height;
+    return { data: data, layout: layout, meta: meta };
+  };
+
+  G.rgba = function (hex, a) {
+    var m = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(hex);
+    if (!m) return hex;
+    return "rgba(" + parseInt(m[1], 16) + "," + parseInt(m[2], 16) + "," + parseInt(m[3], 16) + "," + a + ")";
+  };
+
+  // ── draw (with transitions) ────────────────────────────────────────────────
+  G.config = { displayModeBar: false, displaylogo: false, scrollZoom: false, responsive: true };
+  G.draw = function (el, built, opts) {
+    if (typeof el === "string") el = document.getElementById(el);
+    opts = opts || {};
+    G.ready(function (Plotly) {
+      var canAnimate = el.data && el.data.length === built.data.length && !opts.noAnimate;
+      if (canAnimate) {
+        // Same trace structure as the previous step -> tween colors/widths/
+        // positions instead of snapping. Layout (annotations, shapes) is
+        // applied at the start of the frame.
+        Plotly.animate(el, { data: built.data, layout: built.layout },
+          { transition: { duration: opts.duration || 420, easing: "cubic-in-out" },
+            frame: { duration: opts.duration || 420, redraw: false } });
+      } else if (el.data) {
+        Plotly.react(el, built.data, built.layout, G.config);
+      } else {
+        Plotly.newPlot(el, built.data, built.layout, G.config);
+      }
+      el.__fpmiGraph = built;
+      if (!el.__fpmiHoverBound && opts.hover !== false) { G.attachHover(el); el.__fpmiHoverBound = true; }
+      if (opts.then) opts.then(Plotly);
+    });
+  };
+
+  // ── hover-highlight: lift a vertex's incident edges, dim the rest ──────────
+  G.attachHover = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    var restore = function () {
+      var b = el.__fpmiGraph; if (!b || !window.Plotly) return;
+      var s = b.meta.edgeStyles;
+      window.Plotly.restyle(el, {
+        "line.width": s.map(function (x) { return x.width; }),
+        "line.color": s.map(function (x) { return x.color; }),
+        "opacity": s.map(function (x) { return x.opacity; })
+      }, b.meta.edgeIdx);
+    };
+    el.on("plotly_hover", function (ev) {
+      var b = el.__fpmiGraph; if (!b || !ev.points || !ev.points.length) return;
+      var p = ev.points[0];
+      if (p.curveNumber !== b.meta.vertIdx) return;
+      var id = b.meta.ids[p.pointNumber];
+      var widths = [], colors = [], ops = [];
+      b.meta.edges.forEach(function (e, k) {
+        var st = b.meta.edgeStyles[k], inc = (e.u === id || e.v === id);
+        widths.push(inc ? Math.max(st.width * 1.9, 3) : st.width);
+        colors.push(inc ? (st.color === G.colors.edge || st.color === G.colors.edgeFaded ? G.colors.sel : st.color) : st.color);
+        ops.push(inc ? 1 : Math.min(st.opacity, 0.28));
+      });
+      window.Plotly.restyle(el, { "line.width": widths, "line.color": colors, "opacity": ops }, b.meta.edgeIdx);
+    });
+    el.on("plotly_unhover", restore);
+  };
+
+  // ── step player ────────────────────────────────────────────────────────────
+  // G.player({ container, count, render(i), autoplayMs, loop, start })
+  // Builds: [← Back] [Step i / N] [Next →] [▶ Auto]; arrow keys work while
+  // the controls have focus. render(i) is called for every step change.
+  // UI strings use the same IS_EN language switch declared at the top of
+  // this file. `o.label` still overrides the step word directly, same as
+  // before this change, for any call site that wants a custom label.
+  var PLAYER_STR = IS_EN
+    ? { back: "← Back", next: "Next →", auto: "▶ Auto", autoTitle: "Autoplay", pause: "⏸ Pause", step: "Step" }
+    : { back: "← Назад", next: "Вперёд →", auto: "▶ Авто", autoTitle: "Автовоспроизведение", pause: "⏸ Пауза", step: "Шаг" };
+  G.player = function (o) {
+    var box = typeof o.container === "string" ? document.getElementById(o.container) : o.container;
+    box.classList.add("fpmi-graph-controls");
+    box.setAttribute("tabindex", "0");
+    box.innerHTML =
+      '<button type="button" class="fg-prev">' + PLAYER_STR.back + '</button>' +
+      '<span class="fg-step"></span>' +
+      '<button type="button" class="fg-next">' + PLAYER_STR.next + '</button>' +
+      '<button type="button" class="fg-play" title="' + PLAYER_STR.autoTitle + '">' + PLAYER_STR.auto + '</button>';
+    var prev = box.querySelector(".fg-prev"), next = box.querySelector(".fg-next"), play = box.querySelector(".fg-play"), lbl = box.querySelector(".fg-step");
+    var cur = o.start || 0, timer = null, N = o.count;
+    function stop() { if (timer) { clearInterval(timer); timer = null; } play.textContent = PLAYER_STR.auto; play.classList.remove("active"); }
+    function go(i, fromAuto) {
+      if (!fromAuto) stop();
+      cur = Math.max(0, Math.min(N - 1, i));
+      lbl.textContent = (o.label || PLAYER_STR.step) + " " + (cur + 1) + " / " + N;
+      prev.disabled = cur === 0; next.disabled = cur === N - 1;
+      o.render(cur);
+    }
+    prev.addEventListener("click", function () { go(cur - 1); });
+    next.addEventListener("click", function () { go(cur + 1); });
+    play.addEventListener("click", function () {
+      if (timer) { stop(); return; }
+      play.textContent = PLAYER_STR.pause; play.classList.add("active");
+      if (cur === N - 1) go(0, true);
+      timer = setInterval(function () {
+        if (cur < N - 1) go(cur + 1, true);
+        else if (o.loop) go(0, true);
+        else stop();
+      }, o.autoplayMs || 1600);
+    });
+    box.addEventListener("keydown", function (ev) {
+      if (ev.key === "ArrowRight") { go(cur + 1); ev.preventDefault(); }
+      else if (ev.key === "ArrowLeft") { go(cur - 1); ev.preventDefault(); }
+    });
+    go(cur);
+    return { go: go, next: function () { go(cur + 1); }, prev: function () { go(cur - 1); }, current: function () { return cur; }, stop: stop };
+  };
+
+  // ── path tracer ────────────────────────────────────────────────────────────
+  // Grows the reserved path trace (spec.pathTrace) along `ids` over
+  // `duration` ms, with a moving tip. Returns a cancel function.
+  G.tracePath = function (el, verts, ids, opts) {
+    if (typeof el === "string") el = document.getElementById(el);
+    opts = opts || {};
+    var b = el.__fpmiGraph; if (!b || b.meta.pathIdx === undefined || !window.Plotly) return function () {};
+    var pts = ids.map(function (id) { return verts[id]; });
+    var segs = pts.length - 1, dur = opts.duration || 500 * segs, t0 = null, cancelled = false;
+    var style = { "line.color": opts.color || G.colors.red, "line.width": opts.width || 3.2 };
+    window.Plotly.restyle(el, style, [b.meta.pathIdx]);
+    function frame(ts) {
+      if (cancelled) return;
+      if (t0 === null) t0 = ts;
+      var f = Math.min(1, (ts - t0) / dur), pos = f * segs, k = Math.floor(pos), r = pos - k;
+      var x = [], y = [];
+      for (var i = 0; i <= Math.min(k, segs); i++) { x.push(pts[i][0]); y.push(pts[i][1]); }
+      if (k < segs) { x.push(pts[k][0] + (pts[k + 1][0] - pts[k][0]) * r); y.push(pts[k][1] + (pts[k + 1][1] - pts[k][1]) * r); }
+      window.Plotly.restyle(el, { x: [x], y: [y] }, [b.meta.pathIdx]);
+      if (f < 1) requestAnimationFrame(frame); else if (opts.done) opts.done();
+    }
+    requestAnimationFrame(frame);
+    return function () { cancelled = true; };
+  };
+  G.clearPath = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    var b = el.__fpmiGraph; if (!b || b.meta.pathIdx === undefined || !window.Plotly) return;
+    window.Plotly.restyle(el, { x: [[]], y: [[]] }, [b.meta.pathIdx]);
+  };
+
+  // Typeset \(...\) math in a caption/status element (after innerHTML update).
+  G.typeset = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    if (window.fpmiWithMathJax) window.fpmiWithMathJax(function () { if (window.MathJax && window.MathJax.typesetPromise) window.MathJax.typesetPromise([el]); else if (window.MathJax) window.MathJax.typeset([el]); });
+  };
+  G.setCaption = function (id, html) { var el = document.getElementById(id); if (!el) return; el.innerHTML = html; G.typeset(el); };
+
+  window.fpmiGraph = G;
+})();
+</script>
+<style>
+  /* Shared look for every fpmiGraph widget (see graph-helper.html). */
+  .fpmi-graph { padding: 1rem 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .fpmi-graph h2.fg-title { font-size: 16px; font-weight: 500; margin: 0 0 4px; }
+  .fpmi-graph p.fg-sub { font-size: 13px; color: #78716c; margin: 0 0 0.75rem; }
+  .fpmi-graph .fg-plot { width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 6px 18px rgba(0,58,65,0.06); }
+  .fpmi-graph .fg-caption { font-size: 13px; color: #44403c; margin-top: 0.6rem; min-height: 1.4em; line-height: 1.5; }
+  .fpmi-graph .fg-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .fpmi-graph .fg-arrow { font-size: 26px; color: #78716c; }
+  .fpmi-graph-controls, .fpmi-graph .fg-controls { display: flex; align-items: center; gap: 10px; margin: 0.5rem 0 0.9rem; flex-wrap: wrap; outline: none; }
+  .fpmi-graph-controls button, .fpmi-graph button {
+    font-size: 13px; padding: 6px 12px; cursor: pointer; border-radius: 8px;
+    border: 1px solid #d6d3d1; background: #fff; color: #292524; transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  }
+  .fpmi-graph-controls button:hover:not(:disabled), .fpmi-graph button:hover:not(:disabled) { background: #f5f5f4; border-color: #a8a29e; }
+  .fpmi-graph-controls button:disabled, .fpmi-graph button:disabled { opacity: 0.4; cursor: default; }
+  .fpmi-graph-controls button.active, .fpmi-graph button.active { background: #eaf2fb; border-color: #2a78d6; color: #1c4a7a; font-weight: 600; box-shadow: 0 0 0 3px rgba(42,120,214,0.12); }
+  .fpmi-graph-controls .fg-step { font-size: 13px; font-weight: 600; color: #44403c; min-width: 6.5em; text-align: center; }
+  .fpmi-graph-controls:focus-within .fg-step { color: #1c4a7a; }
+  .fpmi-graph label { font-size: 13px; color: #57534e; }
+  .fpmi-graph input[type="range"] { accent-color: #2a78d6; }
+  .fpmi-graph .fg-val { font-size: 13px; font-weight: 600; min-width: 2em; display: inline-block; color: #1c4a7a; }
+  .fpmi-graph .fg-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: #57534e; margin-top: 0.4rem; }
+  .fpmi-graph .fg-legend span::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; background: var(--c, #eaf2fb); border: 1.5px solid var(--b, #1e3a8a); }
+  .fpmi-graph .fg-legend span.line::before { border-radius: 0; height: 3px; width: 18px; border: none; vertical-align: 2px; background: var(--c, #78716c); }
+</style>
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Кратчайшая суперстрока</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Дата публикации</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">18 октября 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Пусть <span class="math inline">\(\Sigma\)</span> – произвольное множество, которое мы будем называть <em>алфавитом</em>. Через <span class="math inline">\(\Sigma^{*}\)</span> обозначим множество всевозможных конечных кортежей из элементов из алфавита <span class="math inline">\(\Sigma\)</span>. Мы их будем называть <em>строками</em> или <em>словами</em>. Через <span class="math inline">\(\Sigma^{+}\)</span> обозначим множество всевозможных строк из алфавита <span class="math inline">\(\Sigma\)</span>, не содержащее пустое слово <span class="math inline">\(\varepsilon\)</span>.</p>
+<div class="algproblem">
+<div class="algproblem-title">
+<p>Задача о кратчайшей суперстроке</p>
+</div>
+<div class="algproblem-given">
+<p>Конечный алфавит <span class="math inline">\(\Sigma\)</span> и множество строк <span class="math inline">\(U=\left\{ s_{1}, \ldots , s_{n}\right\}  \subseteq \Sigma^{+}\)</span>.</p>
+</div>
+<div class="algproblem-find">
+<p>Кратчайшую суперстроку <span class="math inline">\(s\)</span>, т.е. строку, которая содержит каждую строку <span class="math inline">\(s_{i}\)</span> как подстроку.</p>
+</div>
+</div>
+<div id="expl-1" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(U = \left\{ cbaa, abc, bcb\right\}\)</span>. Найдите кратчайшую суперстроку.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Допустимое решение: <span class="math inline">\(cbaabcb\)</span></p></li>
+<li><p>Оптимальное решение: <span class="math inline">\(abcbaa\)</span>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Ответ
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(abcbaa\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Если какая-то строка <span class="math inline">\(s\)</span> в <span class="math inline">\(U\)</span> есть подстрока другой строки <span class="math inline">\(t\)</span>, то вместо <span class="math inline">\(U\)</span> можно решать задачу для <span class="math inline">\(U' = U \setminus \left\{ s\right\}\)</span>. Ясно, что оптимальное решение у этих задач одинаковое. Поэтому, без ограничения общности, мы будем в дальнейшем считать, что каждая строка в <span class="math inline">\(U\)</span> “уникальна”, т.е. никакая строка <span class="math inline">\(t\)</span> не содержит другую строку <span class="math inline">\(s\)</span> как подстроку.</p>
+<p>Задача о кратчайшей суперстроке является <span class="math inline">\(NP\)</span>-трудной. Рассмотрим несколько приближенных алгоритмов.</p>
+<section id="жадный-алгоритм" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Жадный алгоритм</h1>
+<p><em>Перекрытием</em> <span class="math inline">\(\operatorname {ov}(s, t)\)</span> двух строк <span class="math inline">\(s, t\)</span> назовем самую длинную строку <span class="math inline">\(y\)</span>, такую что <span class="math inline">\(s=x y\)</span> и <span class="math inline">\(t=y z\)</span> для некоторых непустых <span class="math inline">\(x, z\)</span>. Также пусть <em>префикс</em> <span class="math inline">\(\operatorname {pr}(s, t)\)</span> строки <span class="math inline">\(s\)</span> относительно <span class="math inline">\(t\)</span> будет строкой <span class="math inline">\(x\)</span> из приведённого выше определения. Таким образом, <span class="math inline">\(s=\operatorname {pr}(s, t) \operatorname {ov}(s, t)\)</span>. Обратите внимание, что <span class="math inline">\(\operatorname {pr}(s, t) t\)</span> — самая короткая строка, содержащая <span class="math inline">\(s\)</span> и <span class="math inline">\(t\)</span> в указанном порядке. Мы называем эту строку <em>слиянием</em> <span class="math inline">\(s\)</span> и <span class="math inline">\(t\)</span>.</p>
+<p>Следующий естественный подход к задаче, называемый жадным алгоритмом, работает на удивление хорошо. Мы выбираем две строки <span class="math inline">\(s, t\)</span> с наибольшим перекрытием из <span class="math inline">\(U\)</span> и заменяем их слиянием. Алгоритм останавливается, когда остаётся только одна строка, и, очевидно, эта строка является суперстрокой всех <span class="math inline">\(s_{i}\)</span>.</p>
+<div class="callout callout-style-simple callout-mn-alg no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="alg-1" class="algorithm-box theorem algorithm">
+<p><span class="theorem-title"><strong>Algorithm 1</strong></span> <strong>Жадный алгоритм для задачи о кратчайшей суперстроке</strong></p>
+<ul>
+<li> множество строк <span class="math inline">\(U = \{s_1, s_2, \ldots, s_n\}\)</span>.</li>
+<li> суперстрока <span class="math inline">\(s\)</span>, содержащая все строки из <span class="math inline">\(U\)</span> в качестве подстрок. </li>
+<li><strong>пока</strong> <span class="math inline">\(|U| &gt; 1\)</span> <strong>выполнять</strong>
+<ul>
+<li>Найти две различные строки <span class="math inline">\(s,t \in U\)</span>, для которых длина перекрытия <span class="math inline">\(\operatorname{ov}(s,t)\)</span> максимальна среди всех пар строк из <span class="math inline">\(U\)</span>.</li>
+<li>Объединить строки <span class="math inline">\(s\)</span> и <span class="math inline">\(t\)</span> в новую строку <span class="math display">\[
+          r = \operatorname{pr}(s,t)t
+      \]</span></li>
+<li>Удалить из <span class="math inline">\(U\)</span> строки <span class="math inline">\(s\)</span> и <span class="math inline">\(t\)</span>.</li>
+<li>Удалить из <span class="math inline">\(U\)</span> все строки, которые являются подстроками <span class="math inline">\(r\)</span>.</li>
+<li>Добавить <span class="math inline">\(r\)</span> в <span class="math inline">\(U\)</span>.</li>
+</ul></li>
+<li>Пусть <span class="math inline">\(s'\)</span> — единственная оставшаяся строка в <span class="math inline">\(U\)</span>.</li>
+<li><strong>возврат</strong> <span class="math inline">\(s'\)</span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-2" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть</p>
+<ol type="1">
+<li><p><span class="math inline">\(U = \left\{ cbaa, abc, bcb\right\}\)</span>.</p></li>
+<li><p><span class="math inline">\(U = \left\{ a b^{k}, b^{k} c, b^{k+1}\right\}\)</span>, <span class="math inline">\(k \in \mathbb {N}\)</span> Найдите суперстроку жадным алгоритмом. Найдите кратчайшую суперстроку. Сравните их.</p></li>
+</ol>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>(1)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Попарные перекрытия: <span class="math inline">\(\left|\operatorname {ov}(abc, bcb)\right| = 2\)</span> (строка <span class="math inline">\(bc\)</span>), <span class="math inline">\(\left|\operatorname {ov}(bcb, cbaa)\right| = 2\)</span> (строка <span class="math inline">\(cb\)</span>), остальные перекрытия имеют длину <span class="math inline">\(0\)</span> или <span class="math inline">\(1\)</span>. Жадный алгоритм сольет одну из этих пар, например <span class="math inline">\(abc\)</span> и <span class="math inline">\(bcb\)</span> в <span class="math inline">\(abcb\)</span>; затем <span class="math inline">\(\left|\operatorname {ov}(abcb, cbaa)\right| = 2\)</span>, и слияние дает <span class="math inline">\(abcbaa\)</span> длины <span class="math inline">\(6\)</span>. При другом разрешении ничьей (<span class="math inline">\(bcb\)</span> и <span class="math inline">\(cbaa \to bcbaa\)</span>, затем слияние с <span class="math inline">\(abc\)</span>) получается та же строка <span class="math inline">\(abcbaa\)</span>. Здесь жадный алгоритм нашел кратчайшую суперстроку из примера выше.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>(2)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Все три максимальных перекрытия имеют длину <span class="math inline">\(k\)</span>: <span class="math inline">\(\operatorname {ov}(a b^{k}, b^{k} c) = \operatorname {ov}(a b^{k}, b^{k+1}) = \operatorname {ov}(b^{k+1}, b^{k} c) = b^{k}\)</span>. Если сначала выбрать две первые строки, то их слияние <span class="math inline">\(a b^{k} c\)</span> уже не перекрывается с <span class="math inline">\(b^{k+1}\)</span>, и жадный алгоритм получит строку <span class="math inline">\(a b^{k} c b^{k+1}\)</span> длины <span class="math inline">\(2k+3\)</span>, тогда как кратчайшая суперстрока <span class="math inline">\(a b^{k+1} c\)</span> имеет длину <span class="math inline">\(k + 3\)</span>. При <span class="math inline">\(k \to \infty\)</span> отношение стремится к <span class="math inline">\(2\)</span>.</p>
+</div>
+</div>
+<style>
+  #gbc .gbc-row { position: relative; height: 130px; margin: 0.4rem 0 1rem; }
+  #gbc .gbc-label { position: absolute; left: 0; top: 6px; font-size: 13px; color: #44403c; width: 150px; font-weight: 600; }
+  #gbc .gbc-track { position: absolute; left: 160px; right: 0; top: 0; height: 100px; }
+  #gbc .gbc-ch { position: absolute; top: 30px; width: 22px; height: 22px; line-height: 22px; text-align: center; font-family: ui-monospace, monospace; font-size: 14px; font-weight: 600; color: #1c1917; transition: color 0.2s; }
+  #gbc .gbc-bar { position: absolute; height: 14px; border-radius: 5px; opacity: 0.55; cursor: pointer; transition: opacity 0.15s, transform 0.15s; }
+  #gbc .gbc-bar:hover { opacity: 0.95; transform: scaleY(1.25); }
+  #gbc .gbc-bar-label { position: absolute; font-size: 12px; color: #57534e; white-space: nowrap; pointer-events: none; }
+  #gbc .gbc-summary b { color: #b91c1c; }
+</style>
+<div id="gbc" class="fpmi-graph">
+  <h2 class="fg-title anchored" data-anchor-id="жадный-алгоритм">Плохой пример для жадного алгоритма склейки строк</h2>
+  <p class="fg-sub">Три строки \(ab^{k}\), \(b^{k+1}\), \(b^{k}c\). Сверху — оптимальная суперстрока \(ab^{k+1}c\) длины \(k+3\), где все три строки уложены «внахлёст». Снизу — результат жадного алгоритма: первым максимальным перекрытием (\(b^k\)) склеиваются \(ab^k\) и \(b^kc\), после чего результат уже не перекрывается с \(b^{k+1}\) — итоговая длина \(2k+3\). Наведите курсор на полоску, чтобы увидеть, какая строка где уложена.</p>
+  <div class="fg-controls">
+    <label>\(k=\)</label><input type="range" id="gbc-k" min="1" max="8" step="1" value="4" style="width:200px;"><span class="fg-val" id="gbc-kval">4</span>
+  </div>
+  <div class="gbc-row"><div class="gbc-label">Оптимум:</div><div class="gbc-track" id="gbc-opt-track"></div></div>
+  <div class="gbc-row"><div class="gbc-label">Жадный алгоритм:</div><div class="gbc-track" id="gbc-greedy-track"></div></div>
+  <div id="gbc-summary" class="fg-caption gbc-summary"></div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, CW = 24, COLORS = { a: "#3b82f6", b1: "#f59e0b", b2: "#22c55e" };
+  function charNode(ch, i){ var el = document.createElement("div"); el.className = "gbc-ch"; el.style.left = (i * CW) + "px"; el.textContent = ch; return el; }
+  function barNode(start, len, top, color, title){ var el = document.createElement("div"); el.className = "gbc-bar"; el.style.left = (start * CW) + "px"; el.style.width = (len * CW) + "px"; el.style.top = top + "px"; el.style.background = color; el.title = title; return el; }
+  function barLabel(text, start, len, top){ var el = document.createElement("div"); el.className = "gbc-bar-label"; el.style.left = (start * CW) + "px"; el.style.width = (len * CW) + "px"; el.style.textAlign = "center"; el.style.top = top + "px"; el.innerHTML = text; return el; }
+  function render(k){
+    var opt = document.getElementById("gbc-opt-track"), gr = document.getElementById("gbc-greedy-track");
+    opt.innerHTML = ""; gr.innerHTML = "";
+    ["a"].concat(Array(k + 1).fill("b")).concat(["c"]).forEach(function(c, i){ opt.appendChild(charNode(c, i)); });
+    opt.appendChild(barNode(0, k + 1, 30, COLORS.a, "ab^k: позиции 1…" + (k + 1)));   opt.appendChild(barLabel("\\(ab^{k}\\)", 0, k + 1, 8));
+    opt.appendChild(barNode(1, k + 1, 48, COLORS.b1, "b^(k+1): позиции 2…" + (k + 2))); opt.appendChild(barLabel("\\(b^{k+1}\\)", 1, k + 1, 66));
+    opt.appendChild(barNode(2, k + 1, 66, COLORS.b2, "b^k c: позиции 3…" + (k + 3)));  opt.appendChild(barLabel("\\(b^{k}c\\)", 2, k + 1, 84));
+    var merged = k + 2;
+    ["a"].concat(Array(k).fill("b")).concat(["c"]).concat(Array(k + 1).fill("b")).forEach(function(c, i){ gr.appendChild(charNode(c, i)); });
+    gr.appendChild(barNode(0, k + 1, 30, COLORS.a, "ab^k — первая строка склейки")); gr.appendChild(barLabel("\\(ab^{k}\\)", 0, k + 1, 8));
+    gr.appendChild(barNode(1, k + 1, 48, COLORS.b2, "b^k c — приклеена с перекрытием b^k (максимальным)")); gr.appendChild(barLabel("\\(b^{k}c\\)", 1, k + 1, 66));
+    gr.appendChild(barNode(merged, k + 1, 30, COLORS.b1, "b^(k+1) — с ab^k c не перекрывается: приписана целиком")); gr.appendChild(barLabel("\\(b^{k+1}\\)", merged, k + 1, 8));
+    G.setCaption("gbc-summary", "Длина оптимума: <b>" + (k + 3) + "</b> \\((k+3)\\) &nbsp;·&nbsp; длина жадного решения: <b>" + (2 * k + 3) + "</b> \\((2k+3)\\) &nbsp;·&nbsp; отношение \\(\\to 2\\) при \\(k\\to\\infty\\).");
+    G.typeset(opt); G.typeset(gr);
+  }
+  document.getElementById("gbc-k").addEventListener("input", function(){ document.getElementById("gbc-kval").textContent = this.value; render(+this.value); });
+  render(4);
+})();
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Как видно из примера, коэффициент аппроксимации жадного алгоритма не меньше <span class="math inline">\(2\)</span>. Существует недоказанная гипотеза:</p>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-1" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 1 (Гипотеза о жадном алгоритме)</strong></span> Жадный алгоритм имеет коэффициент аппроксимации <span class="math inline">\(2\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<p>Пример выше показывает, что лучше, чем <span class="math inline">\(2\)</span>, коэффициент жадного алгоритма быть не может. Сверху же строго доказано, что он не превышает <span class="math inline">\(4\)</span> (Блум и др., 1991); Каплан и Шафрир улучшили эту границу до <span class="math inline">\(3.5\)</span>, а сейчас лучшая известная оценка – <span class="math inline">\(\approx 3.425\)</span> (Энглерт и др., 2022).</p>
+</section>
+<section id="алгоритм-через-покрытия-множествами" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Алгоритм через покрытия множествами</h1>
+<section id="сведение-к-задаче-о-покрытии-множествами" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="сведение-к-задаче-о-покрытии-множествами"><span class="header-section-number">2.1</span> Сведение к задаче о покрытии множествами</h2>
+<section id="построение-экземпляра" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored"><span class="header-section-number">2.1.1</span> Построение экземпляра</h3>
+<p>Используя исходное множество строк <span class="math inline">\(U\)</span> задачи о кратчайшей суперстроке, построим соответствующий экземпляр задачи о покрытии множествами, который обозначим как <span class="math inline">\(\mathcal{S}\)</span>. Для каждой пары строк <span class="math inline">\(s_{i}, s_{j} \in U\)</span> и для некоторого <span class="math inline">\(k \geq 1\)</span>, если последние <span class="math inline">\(k\)</span> символов строки <span class="math inline">\(s_{i}\)</span> совпадают с первыми <span class="math inline">\(k\)</span> символами строки <span class="math inline">\(s_{j}\)</span>, можно построить новую строку <span class="math inline">\(\sigma_{ijk}\)</span> как <em>совмещение</em> <span class="math inline">\(s_{i}\)</span> и <span class="math inline">\(s_{j}\)</span> по <span class="math inline">\(k\)</span> позициям. Формально:</p>
+<p><span class="math display">\[
+  \sigma _{ijk} = s_i[:-k] \;  s_j  
+\]</span></p>
+<p>(первые <span class="math inline">\(\left|s_i\right| - k\)</span> символов строки <span class="math inline">\(s_i\)</span>, за которыми записана строка <span class="math inline">\(s_j\)</span> целиком).</p>
+<p>Например, если <span class="math inline">\(s_i = \text{cabab}\)</span> и <span class="math inline">\(s_j = \text{ababc}\)</span>, то получаем:</p>
+<p><span class="math display">\[
+  \sigma _{ij2} = \text{cabababc}, \qquad \sigma _{ij4} = \text{cababc}.  
+\]</span></p>
+<p>При этом <span class="math inline">\(\sigma_{ij1}, \sigma_{ij3}, \ldots\)</span> не существует.</p>
+<p>Каждая строка <span class="math inline">\(\sigma_{ijk}\)</span> соответствует множеству исходных строк из <span class="math inline">\(U\)</span>, которые она покрывает (т.е. которые являются её подстроками). Таким образом, получаем экземпляр задачи о покрытии множествами: множество всех таких <span class="math inline">\(\sigma_{ijk}\)</span> покрывает исходное множество <span class="math inline">\(U\)</span>. Дальнейшее построение приближённого решения суперстроки сводится к поиску небольшого подмножества строк <span class="math inline">\(\sigma_{ijk}\)</span>, которое покрывает все строки <span class="math inline">\(U\)</span>.</p>
+<style>
+  #ovc .ovc-fo-label { font-size: 14px; white-space: nowrap; }
+  #ovc svg line { transition: x1 0.25s, x2 0.25s; }
+  #ovc .ovc-seg { cursor: pointer; }
+  #ovc .ovc-seg:hover { stroke-width: 5; }
+</style>
+<div id="ovc" class="fpmi-graph">
+  <h2 class="fg-title anchored" data-anchor-id="построение-экземпляра">Построение строки склейки \(\sigma_{ijk}\)</h2>
+  <p class="fg-sub">Последние \(k\) символов строки \(s_i\) совпадают с первыми \(k\) символами строки \(s_j\); результат склейки \(\sigma_{ijk}=s_i[:-k]\,s_j\) — вся строка снизу. Двигайте ползунок: чем больше перекрытие, тем короче склейка.</p>
+  <div class="fg-controls">
+    <label>\(k=\)</label><input type="range" id="ovc-k" min="0" max="8" step="1" value="3" style="width:220px;"><span class="fg-val" id="ovc-kval">3</span>
+    <span id="ovc-len" style="font-size:13px;color:#57534e;"></span>
+  </div>
+  <div class="fg-plot" style="max-width:640px;padding:12px 8px 4px;background:#fcfcfb;">
+  <svg id="ovc-svg" width="100%" height="220" viewbox="0 0 620 220" style="max-width:620px; overflow: visible;">
+    <line id="ovc-si" class="ovc-seg" x1="30" y1="60" x2="330" y2="60" stroke="#1e3a8a" stroke-width="3"><title>sᵢ: 10 символов</title></line>
+    <line id="ovc-si-cap1" x1="30" y1="52" x2="30" y2="68" stroke="#1e3a8a" stroke-width="3"></line>
+    <line id="ovc-si-cap2" x1="330" y1="52" x2="330" y2="68" stroke="#1e3a8a" stroke-width="3"></line>
+    <foreignobject x="10" y="32" width="60" height="22"><div xmlns="http://www.w3.org/1999/xhtml" class="ovc-fo-label" style="color:#1e3a8a;">\(s_i\)</div></foreignobject>
+    <line id="ovc-sj" class="ovc-seg" x1="210" y1="120" x2="590" y2="120" stroke="#991b1b" stroke-width="3"><title>sⱼ: 10 символов</title></line>
+    <line id="ovc-sj-cap1" x1="210" y1="112" x2="210" y2="128" stroke="#991b1b" stroke-width="3"></line>
+    <line id="ovc-sj-cap2" x1="590" y1="112" x2="590" y2="128" stroke="#991b1b" stroke-width="3"></line>
+    <foreignobject id="ovc-sj-fo" x="540" y="92" width="60" height="22"><div xmlns="http://www.w3.org/1999/xhtml" class="ovc-fo-label" style="color:#991b1b; text-align:right;">\(s_j\)</div></foreignobject>
+    <line id="ovc-guide1" x1="210" y1="30" x2="210" y2="150" stroke="#a8a29e" stroke-dasharray="4 3"></line>
+    <line id="ovc-guide2" x1="330" y1="30" x2="330" y2="150" stroke="#a8a29e" stroke-dasharray="4 3"></line>
+    <line id="ovc-overlap" class="ovc-seg" x1="210" y1="30" x2="330" y2="30" stroke="#15803d" stroke-width="3"><title>перекрытие: суффикс sᵢ = префикс sⱼ длины k</title></line>
+    <line id="ovc-ov-cap1" x1="210" y1="24" x2="210" y2="36" stroke="#15803d" stroke-width="3"></line>
+    <line id="ovc-ov-cap2" x1="330" y1="24" x2="330" y2="36" stroke="#15803d" stroke-width="3"></line>
+    <foreignobject id="ovc-klabel-fo" x="255" y="2" width="30" height="20"><div xmlns="http://www.w3.org/1999/xhtml" class="ovc-fo-label" style="color:#15803d; text-align:center;">\(k\)</div></foreignobject>
+    <path id="ovc-brace" d="" stroke="#57534e" stroke-width="1.5" fill="none"></path>
+    <foreignobject id="ovc-sigma-fo" x="280" y="182" width="60" height="22"><div xmlns="http://www.w3.org/1999/xhtml" class="ovc-fo-label" style="color:#292524; text-align:center;">\(\sigma_{ijk}\)</div></foreignobject>
+  </svg>
+  </div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, SI_START = 30, UNIT = 30, LEN = 10;
+  function setLine(id, x1, x2, y){ var el = document.getElementById(id); el.setAttribute("x1", x1); el.setAttribute("x2", x2); el.setAttribute("y1", y); el.setAttribute("y2", y); }
+  function setCap(id, x, y){ var el = document.getElementById(id); el.setAttribute("x1", x); el.setAttribute("x2", x); el.setAttribute("y1", y - 8); el.setAttribute("y2", y + 8); }
+  function moveFO(id, cx, y){ var el = document.getElementById(id), w = parseFloat(el.getAttribute("width")); el.setAttribute("x", cx - w / 2); el.setAttribute("y", y); }
+  function bracePath(x1, x2, y){ var mid = (x1 + x2) / 2; return "M" + x1 + "," + (y - 8) + " Q" + x1 + "," + y + " " + (mid - 10) + "," + y + " Q" + mid + "," + (y + 8) + " " + (mid + 10) + "," + y + " Q" + x2 + "," + y + " " + x2 + "," + (y - 8); }
+  function render(k){
+    var siStart = SI_START, siEnd = siStart + LEN * UNIT, sjStart = siEnd - k * UNIT, sjEnd = sjStart + LEN * UNIT;
+    setLine("ovc-si", siStart, siEnd, 60); setCap("ovc-si-cap1", siStart, 60); setCap("ovc-si-cap2", siEnd, 60);
+    setLine("ovc-sj", sjStart, sjEnd, 120); setCap("ovc-sj-cap1", sjStart, 120); setCap("ovc-sj-cap2", sjEnd, 120);
+    document.getElementById("ovc-sj-fo").setAttribute("x", sjEnd - 58);
+    var ov = ["ovc-overlap", "ovc-ov-cap1", "ovc-ov-cap2", "ovc-klabel-fo", "ovc-guide1", "ovc-guide2"];
+    if (k > 0) {
+      ["ovc-guide1"].forEach(function(id){ var g = document.getElementById(id); g.setAttribute("x1", sjStart); g.setAttribute("x2", sjStart); });
+      ["ovc-guide2"].forEach(function(id){ var g = document.getElementById(id); g.setAttribute("x1", siEnd); g.setAttribute("x2", siEnd); });
+      setLine("ovc-overlap", sjStart, siEnd, 30); setCap("ovc-ov-cap1", sjStart, 30); setCap("ovc-ov-cap2", siEnd, 30);
+      moveFO("ovc-klabel-fo", (sjStart + siEnd) / 2, 2);
+      document.getElementById("ovc-overlap").querySelector("title").textContent = "перекрытие длины k = " + k;
+    }
+    ov.forEach(function(id){ document.getElementById(id).style.display = k > 0 ? "" : "none"; });
+    document.getElementById("ovc-brace").setAttribute("d", bracePath(siStart, sjEnd, 150));
+    moveFO("ovc-sigma-fo", (siStart + sjEnd) / 2, 182);
+    document.getElementById("ovc-len").innerHTML = "\\(|\\sigma_{ijk}| = |s_i| + |s_j| - k = " + LEN + " + " + LEN + " - " + k + " = " + (2 * LEN - k) + "\\)";
+    G.typeset(document.getElementById("ovc"));
+  }
+  document.getElementById("ovc-k").addEventListener("input", function(){ document.getElementById("ovc-kval").textContent = this.value; render(+this.value); });
+  render(3);
+})();
+</script>
+<p>Пусть множество <span class="math inline">\(\mathcal{F}\)</span> состоит из всех возможных допустимых строк <span class="math inline">\(\sigma_{i j k}\)</span>. Для каждой строки <span class="math inline">\(\pi \in \Sigma^{+}\)</span> определим множество <span class="math inline">\(\operatorname {set}(\pi )=\{ s \in U \mid s\)</span> является подстрокой <span class="math inline">\(\pi \}\)</span>. Множество элементов <span class="math inline">\(U\)</span> требуется покрыть подмножествами <span class="math inline">\(\operatorname {set}(\pi )\)</span>, где <span class="math inline">\(\pi \in U \cup \mathcal{F}\)</span>. Вес множества <span class="math inline">\(\operatorname {set}(\pi )\)</span> положим равным <span class="math inline">\(|\pi |\)</span>, т. е. длине строки <span class="math inline">\(\pi\)</span>.</p>
+</section>
+<section id="точность-сведения" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored"><span class="header-section-number">2.1.2</span> Точность сведения</h3>
+<p>Пусть <span class="math inline">\(\operatorname {OPT}_{\mathcal{S}}\)</span> и <span class="math inline">\(\operatorname {OPT}\)</span> означают стоимость оптимального решения примера <span class="math inline">\(\mathcal{S}\)</span> задачи о покрытии и длину кратчайшей суперстроки соответственно. Покажем, что эти величины могут отличаться друг от друга не более, чем в 2 раза.</p>
+<div class="callout callout-style-simple callout-mn-lem no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="lem-2" class="lemma theorem">
+<p><span class="theorem-title"><strong>Лемма 1</strong></span> <span class="math inline">\(\operatorname {OPT} \leq \operatorname {OPT}_{\mathcal{S}} \leq 2 \cdot \operatorname {OPT}\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-proof no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Mn-proof</span>Доказательство
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="mn-proof-body">
+<ul>
+<li><p><span class="math inline">\(\operatorname {OPT} \stackrel{?}{\leq } \operatorname {OPT}_{\mathcal{S}}\)</span>.</p>
+<p>Рассмотрим оптимальное покрытие <span class="math inline">\(\left\{ \operatorname {set}\left(\pi_{i}\right) \mid 1 \leq i \leq l\right\}\)</span> и получим строку <span class="math inline">\(s\)</span> соединением строк <span class="math inline">\(\pi_{i}, 1 \leq i \leq l\)</span> в произвольном порядке. Очевидно, что <span class="math inline">\(|s|=\operatorname {OPT}_{\mathcal{S}}\)</span>. Так как каждая строка из <span class="math inline">\(U\)</span> является подстрокой некоторой строки <span class="math inline">\(\pi_{i}\)</span>, то она также является подстрокой <span class="math inline">\(s\)</span>. Поэтому полученная строка является суперстрокой, и <span class="math inline">\(\operatorname {OPT}_{\mathcal{S}}=|s| \geq \operatorname {OPT}\)</span>.</p></li>
+<li><p><span class="math inline">\(\operatorname {OPT}_{\mathcal{S}} \stackrel{?}{\leq } 2 \cdot \operatorname {OPT}\)</span>.</p>
+<p>Для доказательства второго неравенства рассмотрим кратчайшую суперстроку <span class="math inline">\(s^{*}\)</span> для строк <span class="math inline">\(s_{1}, \ldots , s_{n},\left|s^{*}\right|=\operatorname {OPT}\)</span>. Покажем, что для примера <span class="math inline">\(\mathcal{S}\)</span> задачи о покрытии существует некоторое покрытие веса не более <span class="math inline">\(2 \cdot \operatorname {OPT}\)</span>.</p>
+<p>Рассмотрим самое левое появление строк <span class="math inline">\(s_{1}, \ldots , s_{n}\)</span> в строке <span class="math inline">\(s^{*}\)</span>. Так как никакие из строк <span class="math inline">\(s_{1}, \ldots , s_{n}\)</span> не являются подстроками друг друга, то крайние левые <span class="math inline">\(n\)</span> строк начинаются с различных позиций. По той же самой причине они заканчиваются в различных позициях. Перенумеруем строки в порядке их появления. Так как никакая из строк не является подстрокой другой, то они будут заканчиваться в том же порядке.</p>
+<p>Разобьем упорядоченный список строк <span class="math inline">\(s_{1}, \ldots , s_{n}\)</span> на группы, как показано на рис. ниже. Каждая группа будет состоять из множества попарно пересекающихся строк. Обозначим через <span class="math inline">\(b_{i}\)</span> и <span class="math inline">\(e_{i}\)</span> индексы первой и последней строки в <span class="math inline">\(i\)</span>-ой группе. Если группа <span class="math inline">\(i\)</span> состоит только из одной строки, то <span class="math inline">\(b_{i}=e_{i}\)</span>. Положим <span class="math inline">\(b_{1}=1\)</span>. Пусть <span class="math inline">\(e_{1}\)</span>- это наибольший индекс строки, которая перекрывается со строкой <span class="math inline">\(s_{1}\)</span> (существует как минимум одна такая строка – сама <span class="math inline">\(s_{1}\)</span>). В общем случае: если <span class="math inline">\(e_{i}&lt;n\)</span>, то положим <span class="math inline">\(b_{i+1}=e_{i}+1\)</span> и определим <span class="math inline">\(e_{i+1}\)</span> как наибольший индекс строки, которая перекрывается со строкой <span class="math inline">\(s_{b_{i+1}}\)</span>. В конце процедуры получим <span class="math inline">\(e_{t}=n\)</span> для некоторого <span class="math inline">\(t \leq n\)</span>.</p></li>
+</ul>
+<style>
+  #sg .sg-group-rect { cursor: pointer; fill: transparent; transition: fill 0.15s; }
+  #sg .sg-group-rect:hover { fill-opacity: 0.08; }
+  #sg .sg-pi { transition: stroke-width 0.15s, opacity 0.15s; }
+  #sg .sg-dim { opacity: 0.3; }
+  /* Group content sits under the hover rects in the SVG but is drawn after
+     them in DOM order; pointer-events:none keeps mouse events reaching the rect. */
+  #sg-g1, #sg-g2, #sg-g3 { pointer-events: none; }
+  #sg .sg-fo-label { font-size: 13px; white-space: nowrap; }
+</style>
+<div id="sg" class="fpmi-graph">
+  <h2 class="fg-title anchored" data-anchor-id="точность-сведения">Разбиение строк на группы</h2>
+  <p class="fg-sub">Крайние левые вхождения строк \(s_1,\dots,s_n\) в суперстроку \(s^{*}\), разбитые на группы попарно пересекающихся строк. \(s_{b_i}\) — первая (жирная) строка группы \(i\), \(s_{e_i}\) — последняя; отрезок \(\pi_i\) внизу — это склейка \(\sigma_{b_ie_ik_i}\), начинающаяся в позиции \(b_i\) и заканчивающаяся в позиции \(e_i\). Наведите курсор на группу, чтобы подсветить её и соответствующий \(\pi_i\).</p>
+  <div class="fg-plot" style="max-width:640px;padding:12px 8px 4px;background:#fcfcfb;">
+  <svg width="100%" height="320" viewbox="0 0 640 320" style="max-width:640px; overflow: visible;">
+    <line x1="10" y1="20" x2="600" y2="20" stroke="#1c1917" stroke-width="2.5"></line>
+    <line x1="10" y1="13" x2="10" y2="27" stroke="#1c1917" stroke-width="2.5"></line>
+    <line x1="600" y1="13" x2="600" y2="27" stroke="#1c1917" stroke-width="2.5"></line>
+    <foreignobject x="10" y="-6" width="30" height="20"><div xmlns="http://www.w3.org/1999/xhtml" class="sg-fo-label" style="color:#1c1917;">\(s^{*}\)</div></foreignobject>
+    <foreignobject x="606" y="10" width="30" height="20"><div xmlns="http://www.w3.org/1999/xhtml" class="sg-fo-label" style="color:#1c1917;">…</div></foreignobject>
+    <rect id="sg-box-1" class="sg-group-rect" x="8" y="45" width="245" height="80" rx="6" stroke="#1e3a8a" stroke-width="1.5"><title>группа 1: строки s_{b₁}…s_{e₁} попарно пересекаются</title></rect>
+    <rect id="sg-box-2" class="sg-group-rect" x="140" y="95" width="245" height="80" rx="6" stroke="#991b1b" stroke-width="1.5"><title>группа 2</title></rect>
+    <rect id="sg-box-3" class="sg-group-rect" x="285" y="145" width="290" height="80" rx="6" stroke="#166534" stroke-width="1.5"><title>группа 3</title></rect>
+    <g id="sg-g1">
+      <line x1="10" y1="65" x2="120" y2="65" stroke="#1e3a8a" stroke-width="3"></line>
+      <foreignobject x="10" y="42" width="50" height="18"><div xmlns="http://www.w3.org/1999/xhtml" class="sg-fo-label" style="color:#1e3a8a;">\(s_{b_1}\)</div></foreignobject>
+      <line x1="45" y1="85" x2="145" y2="85" stroke="#1e3a8a" stroke-width="1.6"></line>
+      <line x1="90" y1="105" x2="215" y2="105" stroke="#1e3a8a" stroke-width="3"></line>
+      <foreignobject x="175" y="107" width="50" height="18"><div xmlns="http://www.w3.org/1999/xhtml" class="sg-fo-label" style="color:#1e3a8a; text-align:right;">\(s_{e_1}\)</div></foreignobject>
+    </g>
+    <g id="sg-g2">
+      <line x1="145" y1="115" x2="260" y2="115" stroke="#991b1b" stroke-width="3"></line>
+      <foreignobject x="145" y="92" width="50" height="18"><div xmlns="http://www.w3.org/1999/xhtml" class="sg-fo-label" style="color:#991b1b;">\(s_{b_2}\)</div></foreignobject>
+      <line x1="190" y1="135" x2="290" y2="135" stroke="#991b1b" stroke-width="1.6"></line>
+      <line x1="235" y1="155" x2="360" y2="155" stroke="#991b1b" stroke-width="3"></line>
+      <foreignobject x="320" y="157" width="50" height="18"><div xmlns="http://www.w3.org/1999/xhtml" class="sg-fo-label" style="color:#991b1b; text-align:right;">\(s_{e_2}\)</div></foreignobject>
+    </g>
+    <g id="sg-g3">
+      <line x1="290" y1="165" x2="405" y2="165" stroke="#166534" stroke-width="3"></line>
+      <foreignobject x="290" y="142" width="50" height="18"><div xmlns="http://www.w3.org/1999/xhtml" class="sg-fo-label" style="color:#166534;">\(s_{b_3}\)</div></foreignobject>
+      <line x1="335" y1="185" x2="435" y2="185" stroke="#166534" stroke-width="1.6"></line>
+      <line x1="380" y1="205" x2="530" y2="205" stroke="#166534" stroke-width="3"></line>
+      <foreignobject x="480" y="207" width="50" height="18"><div xmlns="http://www.w3.org/1999/xhtml" class="sg-fo-label" style="color:#166534; text-align:right;">\(s_{e_3}\)</div></foreignobject>
+      <foreignobject x="536" y="188" width="20" height="20"><div xmlns="http://www.w3.org/1999/xhtml" class="sg-fo-label">⋱</div></foreignobject>
+    </g>
+    <line x1="10" y1="15" x2="10" y2="260" stroke="#a8a29e" stroke-dasharray="4 3"></line>
+    <line x1="215" y1="15" x2="215" y2="240" stroke="#a8a29e" stroke-dasharray="4 3"></line>
+    <line x1="360" y1="15" x2="360" y2="220" stroke="#a8a29e" stroke-dasharray="4 3"></line>
+    <line id="sg-pi1" class="sg-pi" x1="10" y1="240" x2="215" y2="240" stroke="#1e3a8a" stroke-width="3"></line>
+    <foreignobject x="10" y="245" width="40" height="18"><div xmlns="http://www.w3.org/1999/xhtml" class="sg-fo-label" style="color:#1e3a8a;">\(\pi_1\)</div></foreignobject>
+    <line id="sg-pi2" class="sg-pi" x1="215" y1="255" x2="360" y2="255" stroke="#991b1b" stroke-width="3"></line>
+    <foreignobject x="325" y="260" width="40" height="18"><div xmlns="http://www.w3.org/1999/xhtml" class="sg-fo-label" style="color:#991b1b; text-align:right;">\(\pi_2\)</div></foreignobject>
+    <line id="sg-pi3" class="sg-pi" x1="360" y1="270" x2="530" y2="270" stroke="#166534" stroke-width="3"></line>
+    <foreignobject x="495" y="275" width="40" height="18"><div xmlns="http://www.w3.org/1999/xhtml" class="sg-fo-label" style="color:#166534; text-align:right;">\(\pi_3\)</div></foreignobject>
+    <foreignobject x="536" y="272" width="20" height="20"><div xmlns="http://www.w3.org/1999/xhtml" class="sg-fo-label">⋱</div></foreignobject>
+  </svg>
+  </div>
+  <div id="sg-cap" class="fg-caption"></div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph;
+  var groups = [
+    { box: "sg-box-1", g: "sg-g1", pi: "sg-pi1", cap: "Группа 1: строки \\(s_{b_1},\\ldots,s_{e_1}\\) попарно пересекаются, поэтому \\(\\pi_1=\\sigma_{b_1e_1k_1}\\) покрывает их все и стоит не дороже суммы их вхождений." },
+    { box: "sg-box-2", g: "sg-g2", pi: "sg-pi2", cap: "Группа 2 начинается там, где первая строка уже не пересекается с \\(s_{b_1}\\); \\(\\pi_2\\) идёт от позиции \\(b_2\\) до \\(e_2\\)." },
+    { box: "sg-box-3", g: "sg-g3", pi: "sg-pi3", cap: "Группа 3 — аналогично; \\(\\pi_1\\pi_2\\pi_3\\cdots\\) вместе дают строку не длиннее \\(2|s^*|\\), откуда и берётся оценка." }
+  ];
+  function setActive(idx){
+    groups.forEach(function(gr, i){
+      var pi = document.getElementById(gr.pi), g = document.getElementById(gr.g);
+      pi.style.strokeWidth = idx === i ? "5" : "3";
+      pi.classList.toggle("sg-dim", idx !== null && idx !== i);
+      g.classList.toggle("sg-dim", idx !== null && idx !== i);
+    });
+    G.setCaption("sg-cap", idx === null ? "" : groups[idx].cap);
+  }
+  groups.forEach(function(gr, i){
+    var box = document.getElementById(gr.box);
+    box.addEventListener("mouseenter", function(){ setActive(i); });
+    box.addEventListener("mouseleave", function(){ setActive(null); });
+  });
+  G.typeset(document.getElementById("sg"));
+})();
+</script>
+<p>Для каждой пары строк <span class="math inline">\(\left(s_{b_{i}}, s_{e_{i}}\right)\)</span> существует <span class="math inline">\(k_{i}&gt;0\)</span>, определяющее длину перекрытия этих строк в строке <span class="math inline">\(s\)</span> (оно может отличаться от их максимального перекрытия). Пусть <span class="math inline">\(\pi_{i}=\sigma_{b_{i} e_{i} k_{i}}\)</span>. Тогда набор подмножеств <span class="math inline">\(\left\{ \operatorname {set}\left(\pi_{i}\right) \mid 1 \leq i \leq t\right\}\)</span> является допустимым решением примера <span class="math inline">\(\mathcal{S}\)</span>, и его стоимость равна <span class="math inline">\(\sum_{i}\left|\pi_{i}\right|\)</span>.</p>
+<p>Теперь заметим, что <span class="math inline">\(\pi_{i}\)</span> не пересекается с <span class="math inline">\(\pi_{i+2}\)</span>. Докажем это утверждение для <span class="math inline">\(i=1\)</span>. Предположим, что строки <span class="math inline">\(\pi_{1}\)</span> и <span class="math inline">\(\pi_{3}\)</span> перекрываются. Тогда получается, что <span class="math inline">\(s_{b_{3}}\)</span> перекрывается с <span class="math inline">\(s_{e_{1}}\)</span> в строке <span class="math inline">\(s^{*}\)</span>. Однако по построению <span class="math inline">\(s_{b_{3}}\)</span> не перекрывается с <span class="math inline">\(s_{b_{2}}\)</span> (поскольку <span class="math inline">\(s_{b_{3}}\)</span> относится к следующей группе). Следовательно, <span class="math inline">\(s_{e_{1}}\)</span> заканчивается позже, чем <span class="math inline">\(s_{b_{2}}\)</span>. Получаем противоречие с тем, что строки должны заканчиваться в том же порядке, как и начинаются. Доказательство для других <span class="math inline">\(i\)</span> строится аналогично.</p>
+<p>В итоге получим, что каждый символ строки <span class="math inline">\(s^{*}\)</span> входит не более чем в две строки <span class="math inline">\(\pi_{i}\)</span>. Отсюда получаем, что <span class="math inline">\(\operatorname {OPT}_{\mathcal{S}} \leq \sum_{i}\left|\pi_{i}\right| \leq 2 \cdot \operatorname {OPT}\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="применение-алгоритмов-для-задачи-о-покрытии-множествами" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="применение-алгоритмов-для-задачи-о-покрытии-множествами"><span class="header-section-number">2.2</span> Применение алгоритмов для задачи о покрытии множествами</h2>
+<p>После сведения можно использовать какой-то алгоритм для задачи о покрытии множествами. Рассмотрим, например, применение жадного алгоритма.</p>
+<div class="callout callout-style-simple callout-mn-alg no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="alg-SSP:SetCov:GrAlg" class="algorithm-box theorem algorithm">
+<p><span class="theorem-title"><strong>Algorithm 2</strong></span> <strong>Построение суперстроки через жадный алгоритм покрытия множествами</strong></p>
+<ul>
+<li> множество строк <span class="math inline">\(U = \{s_1, s_2, \ldots, s_n\}\)</span>.</li>
+<li> приближённая суперстрока <span class="math inline">\(s\)</span>, содержащая все строки из <span class="math inline">\(U\)</span> в качестве подстрок. </li>
+<li>По всем парам строк из <span class="math inline">\(U\)</span> и всем допустимым перекрытиям построить строки <span class="math inline">\(\sigma_{ijk}\)</span> и семейство множеств <span class="math inline">\(\left\{\operatorname{set}(\pi) \mid \pi \in U \cup \mathcal{F}\right\}\)</span> с весами <span class="math inline">\(\left|\pi\right|\)</span>.</li>
+<li>Получить индивидуальную задачу о покрытии множествами: покрыть <span class="math inline">\(U\)</span> множествами <span class="math inline">\(\operatorname{set}(\pi)\)</span> минимального суммарного веса.</li>
+<li>С помощью жадного алгоритма Хватала найти приближённое покрытие <span class="math inline">\(C = \{\operatorname{set}(\pi_{1}), \ldots, \operatorname{set}(\pi_{l})\}\)</span>.</li>
+<li>Соединить строки <span class="math inline">\(\pi_{1}, \ldots, \pi_{l}\)</span> в произвольном порядке, формируя суперстроку <span class="math inline">\(s = \pi_{1} \pi_{2} \ldots \pi_{l}\)</span>.</li>
+<li><strong>возврат</strong> <span class="math inline">\(s\)</span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p>Мощность множества элементов <span class="math inline">\(U\)</span> в примере <span class="math inline">\(\mathcal{S}\)</span> равна <span class="math inline">\(n\)</span>, то есть числу строк в задаче о суперстроке.</p>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-3" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 2</strong></span> Алгоритм @SSP:SetCov:GrAlg является <span class="math inline">\(2 H_{n}\)</span>-приближенным алгоритмом для задачи о суперстроке, где <span class="math inline">\(n\)</span> равно числу строк в заданном примере.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-proof no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Mn-proof</span>Доказательство
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="mn-proof-body">
+<p>Длина построенной суперстроки равна <span class="math inline">\(\sum_{i=1}^{l} \left|\pi_i\right|\)</span>, т.е. весу найденного покрытия. Жадный алгоритм Хватала на универсуме из <span class="math inline">\(n\)</span> элементов выдает покрытие веса не более <span class="math inline">\(H_n \cdot \operatorname {OPT}_{\mathcal{S}}\)</span>, а по лемме о точности сведения <span class="math inline">\(\operatorname {OPT}_{\mathcal{S}} \leq 2 \cdot \operatorname {OPT}\)</span>. Итого длина суперстроки не превосходит <span class="math inline">\(2 H_n \cdot \operatorname {OPT}\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="алгоритмы-на-основе-графов-префиксов-и-перекрытий" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Алгоритмы на основе графов префиксов и перекрытий</h1>
+<p>TODO</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Скопировано");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Скопировано");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<!--
+  Hover preview for @expl-... (example) cross-references.
+
+  Quarto's own html format already ships a native crossref-hover-preview
+  script (bundled tippy, no CDN, wired up for every a.quarto-xref link --
+  see site_libs/quarto-html/tippy.umd.min.js and the inline tippyHover/
+  processXRef script Quarto emits near the end of <body>). That native
+  script now covers theorem-family types too, since
+  _extensions/mn-theorems wraps them into real Quarto callouts.
+
+  Examples are the one remaining gap: mn-problems.lua's Pandoc filter
+  intercepts @expl-... citations and emits a raw `<a class="xref-callout"
+  data-tippy-ref="...">` directly, bypassing Quarto's own crossref
+  resolution entirely (needed because examples use the filter's own custom
+  numbering, not Quarto's native one) -- so they never get the
+  a.quarto-xref class Quarto's native script looks for. This file only
+  fills that one gap, reusing the SAME window.tippy Quarto's native script
+  already set up (no separate Popper/Tippy load of our own -- an earlier
+  version of this file loaded Popper+Tippy from unpkg.com via plain
+  <script src>, which registered as an anonymous AMD module on pages with
+  Quarto's RequireJS loader and broke both the popup AND, as collateral
+  damage, quarto's own native tippy setup).
+-->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (!window.tippy) return; // native script didn't run (shouldn't happen on an html-format page)
+
+  document.querySelectorAll("a.xref-callout").forEach(function (anchor) {
+    var targetId = anchor.getAttribute("data-tippy-ref");
+    var inner = targetId && document.getElementById(targetId);
+    if (!inner) return;
+
+    var outer = inner.closest(".callout-style-default") || inner;
+
+    tippy(anchor, {
+      content: function () {
+        var clone = outer.cloneNode(true);
+        var uid = "mn-xref-" + targetId;
+        clone.querySelectorAll("[id]").forEach(function (el) {
+          el.id = uid + "-" + el.id;
+        });
+        clone.querySelectorAll("[data-bs-target]").forEach(function (el) {
+          var orig = el.getAttribute("data-bs-target");
+          el.setAttribute("data-bs-target", "." + uid + "-" + orig.replace(/^\./, ""));
+        });
+        clone.querySelectorAll("[aria-controls]").forEach(function (el) {
+          el.setAttribute("aria-controls", uid + "-" + el.getAttribute("aria-controls"));
+        });
+        if (window.Quarto && window.Quarto.typesetMath) {
+          window.Quarto.typesetMath(clone);
+        }
+        return clone;
+      },
+      allowHTML: true,
+      interactive: true,
+      maxWidth: 500,
+      theme: "quarto",
+      placement: "bottom-start",
+      appendTo: function (el) { return el.parentElement; },
+    });
+  });
+});
+</script>
+
+
+
+
+</body></html>

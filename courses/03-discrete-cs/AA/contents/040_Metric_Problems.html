@@ -1,0 +1,2156 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Задачи с метрикой – Курсы ФПМИ</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/favicon.ico" rel="icon">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-18b92d25f2a0372079463917332f47f0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-90af2ae3f5f11ccb077ed1c2d3900ada.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/quarto-contrib/mn-problems-1.0.0/mn-problems.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/mn-theorems-1.0.0/mn-theorems.css" rel="stylesheet">
+<script src="../../../../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Поиск не дал результатов",
+    "search-matching-documents-text": "Результаты поиска",
+    "search-copy-link-title": "Скопировать ссылку",
+    "search-hide-matches-text": "Скрыть дополнительные результаты",
+    "search-more-match-text": "дополнительный результат в этом документе",
+    "search-more-matches-text": "дополнительных результата(-ов) в этом документе",
+    "search-clear-button-title": "Очистить",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Отменить",
+    "search-submit-button-title": "Найти",
+    "search-label": "Поиск"
+  }
+}</script>
+<style>
+div.callout-thumbs-up.callout {
+  border-left-color: #008000;
+}
+div.callout-thumbs-up.callout-style-default .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-thumbs-up .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-thumbs-up.callout-style-default .callout-icon::before, div.callout-thumbs-up.callout-titled .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23008000" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/></svg>');
+}
+div.callout-todo.callout {
+  border-left-color: pink;
+}
+div.callout-todo.callout-style-default .callout-header {
+  background-color: rgb(from pink r g b / 13%);
+}
+div.callout-todo .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.callout-titled .callout-icon::before {
+  content: '📝';
+  background-image: none;
+}
+div.callout-enum-item.callout {
+  border-left-color: #008000;
+}
+div.callout-enum-item.callout-style-default .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-enum-item .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-enum-item.callout-style-default .callout-icon::before, div.callout-enum-item.callout-titled .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23008000" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/></svg>');
+}
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/logo.png" alt="" class="navbar-logo light-content">
+    <img src="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/logo.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../../../index.html">
+    <span class="navbar-title">Курсы ФПМИ</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Поиск"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Переключить навигацию" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> 
+<span class="menu-text">Главная</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Курсы</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../../courses/index.html">
+ <span class="dropdown-text">Все курсы (37)</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../../courses/04-probability/index.html">
+ <span class="dropdown-text">Вероятность (4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/01-analysis/index.html">
+ <span class="dropdown-text">Анализ (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/02-algebra/index.html">
+ <span class="dropdown-text">Алгебра (4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/03-discrete-cs/index.html">
+ <span class="dropdown-text">Дискретная математика и CS (9)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/05-programming-systems/index.html">
+ <span class="dropdown-text">Программирование и системы (7)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/06-data-computing/index.html">
+ <span class="dropdown-text">Данные и вычисления (5)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Учебный план</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">    
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/I.html">
+ <span class="dropdown-text">I семестр (7)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/II.html">
+ <span class="dropdown-text">II семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/III.html">
+ <span class="dropdown-text">III семестр (9)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/IV.html">
+ <span class="dropdown-text">IV семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/V.html">
+ <span class="dropdown-text">V семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/VI.html">
+ <span class="dropdown-text">VI семестр (4)</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--2" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">О проекте</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu--2">    
+        <li>
+    <a class="dropdown-item" href="../../../../about.html">
+ <span class="dropdown-text">О проекте</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../editorial-policy.html">
+ <span class="dropdown-text">Статус материалов и редакционная политика</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://mipt.ru/education/schools/fpmi"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:web" style="font-size: 1.25em;" aria-label="Icon web from mdi Iconify.design set." title="Сайт ФПМИ"></iconify-icon></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../courses/03-discrete-cs/AA/contents/040_Metric_Problems.html">4. Задачи с метрикой</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
+<div style="font-weight: bold; font-size: 1.1em;">
+<p>Приближённые алгоритмы</p>
+</div>
+</div></div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Обзор курса</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/contents/010_Preface_NP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Предисловие. Классы сложности. NP-сложные задачи</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/contents/020_Intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Комбинаторная оптимизация: введение</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/contents/030_Set_Cover.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Задача о покрытии множествами</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/contents/040_Metric_Problems.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">4. Задачи с метрикой</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/contents/050_k_Center.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Задача о k-центрах</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/contents/200_SSS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Кратчайшая суперстрока</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Содержание</h2>
+   
+  <ul>
+  <li><a href="#метрическая-задача-штейнера" id="toc-метрическая-задача-штейнера" class="nav-link active" data-scroll-target="#метрическая-задача-штейнера"><span class="header-section-number">1</span> Метрическая задача Штейнера</a></li>
+  <li><a href="#метрическая-задача-коммивояжера" id="toc-метрическая-задача-коммивояжера" class="nav-link" data-scroll-target="#метрическая-задача-коммивояжера"><span class="header-section-number">2</span> Метрическая задача коммивояжера</a>
+  <ul class="collapse">
+  <li><a href="#в-общем-виде-задача-коммивояжера-неаппроксимируема" id="toc-в-общем-виде-задача-коммивояжера-неаппроксимируема" class="nav-link" data-scroll-target="#в-общем-виде-задача-коммивояжера-неаппроксимируема"><span class="header-section-number">2.1</span> В общем виде задача коммивояжера неаппроксимируема</a></li>
+  <li><a href="#приближенный-алгоритм" id="toc-приближенный-алгоритм" class="nav-link" data-scroll-target="#приближенный-алгоритм"><span class="header-section-number">2.2</span> <span class="math inline">\(2\)</span>-приближенный алгоритм</a></li>
+  <li><a href="#приближенный-алгоритм-1" id="toc-приближенный-алгоритм-1" class="nav-link" data-scroll-target="#приближенный-алгоритм-1"><span class="header-section-number">2.3</span> <span class="math inline">\(1.5\)</span>-приближенный алгоритм</a></li>
+  </ul></li>
+  <li><a href="#задачи" id="toc-задачи" class="nav-link" data-scroll-target="#задачи"><span class="header-section-number">3</span> Задачи</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<!--
+  Explicit RequireJS path mapping for "plotly", used by every hand-built
+  interactive widget on this site via require(["plotly"], function(Plotly){...}).
+
+  There was never a require.config() call anywhere setting this up -- it
+  only ever worked because Plotly's own UMD bundle, loaded elsewhere on the
+  same page via a plain <script src> for a simple (non-widget) fig.show()
+  figure, self-registers as an anonymous AMD module when window.define
+  exists (Quarto's RequireJS loader, used for MathJax), and RequireJS
+  happens to attribute that anonymous module to the "plotly" name if the
+  timing/script-load-order lines up. That's pure luck, not a real mapping --
+  a page with only widget figures (no plain fig.show() figure to "donate"
+  its Plotly load) had nothing to claim from, and any change to script load
+  order/timing (e.g. removing an unrelated script elsewhere on the page)
+  can flip which pending require() call an anonymous define() gets
+  attributed to, breaking it silently. Explicit config removes the guesswork.
+
+  Two separate failure modes found in practice, both fixed here:
+
+  (A) A page with ONLY hand-built widgets (no {python} cell at all -- e.g.
+  specials/030/020_quantile_function_fig.qmd) never gets Quarto's own
+  <script src=".../requirejs@.../require.min.js"> in <head> in the first
+  place: that tag is only emitted when the page has a Jupyter code cell.
+  window.require is simply undefined there, so the widget's own
+  require(["plotly"], ...) throws "require is not defined" unconditionally
+  -- not a network flake, 100% of the time regardless of connection quality.
+  Fixed below by synchronously document.write-ing a local copy of
+  require.min.js when window.require isn't already present -- document.write
+  from an inline <script> during initial HTML parsing inserts into the parse
+  stream immediately, so by the next statement window.require is guaranteed
+  defined, still fully synchronously (no defer/async race).
+
+  (B) A page with BOTH a plain fig.show() figure AND a hand-built widget:
+  RequireJS *is* already in <head> here, so this file's require.config()
+  below does run against a real window.require. But the Jupyter-generated
+  embed script for the fig.show() figure -- which appears later in <body>,
+  wherever that Python cell sits -- unconditionally calls
+  require.undef("plotly") followed by its OWN require.config() pointing at
+  a *different* version on the *same* external CDN (observed:
+  cdn.plot.ly/plotly-2.35.2.min vs. the 3.4.0 configured here), clobbering
+  this file's mapping before the widget's own require(["plotly"], ...) ever
+  runs. Both that Jupyter-set path and this file's own local path hit the
+  same real-world failure: cdn.plot.ly answers anywhere from ~1.5s to a full
+  10s+ timeout under real network conditions (measured directly). A
+  requirejs.onError handler below catches exactly the resulting timeout on
+  the "plotly" module -- regardless of which of the two require.config()
+  calls most recently set its path -- and retries once against the local
+  bundle.
+-->
+<script>
+if (typeof window.require === "undefined") {
+  document.write('<script src="/site_libs/quarto-contrib/mn-plotly-1.0.0/require.min.js"><\/script>');
+}
+</script>
+<script>
+if (window.require && window.require.config) {
+  window.require.config({
+    paths: { plotly: "/site_libs/quarto-contrib/mn-plotly-1.0.0/plotly.min" },
+    // shim.exports: after the script loads, hand require(["plotly"],...)
+    // callers the *global* window.Plotly instead of trusting whatever (if
+    // anything) the script itself passed to define() -- Plotly's own UMD
+    // wrapper reliably sets window.Plotly regardless of AMD context (also
+    // used directly by every plain fig.show() figure on this site, whose
+    // own generated embed script never goes through RequireJS at all), but
+    // its anonymous define() call is not reliably attributed to the
+    // "plotly" request specifically when this same URL is also loaded via
+    // a separate plain <script src> elsewhere on the page (a simple,
+    // non-widget figure) -- shim sidesteps that ambiguity entirely.
+    shim: { plotly: { exports: "Plotly" } }
+  });
+  // See failure mode (B) above: a later Jupyter-generated fig.show() embed
+  // script can still call its own require.undef("plotly") +
+  // require.config({paths: {plotly: <external CDN>}}) after this runs,
+  // pointing "plotly" back at an unreliable external host. This handler
+  // fires on ANY module load timeout; when it's specifically "plotly", drop
+  // whatever path is currently registered (however it got there) and retry
+  // once against the local bundle instead of the external CDN.
+  //
+  // Deliberately never re-throws: once the retry above is issued, the
+  // ORIGINAL failed network request for the external CDN copy can still
+  // land afterwards and fire a second, by-then-harmless onError (verified:
+  // requireType "scripterror", after the retry has already resolved the
+  // widget's real require(["plotly"], callback) via RequireJS's own
+  // pending-callback bookkeeping) -- throwing there would surface a
+  // spurious uncaught exception for something already fixed. console.warn
+  // keeps that visible in devtools without it looking like a live failure.
+  window.require.onError = function (err) {
+    if (err.requireModules && err.requireModules.indexOf("plotly") !== -1) {
+      if (err.requireType === "timeout") {
+        window.require.undef("plotly");
+        window.require.config({ paths: { plotly: "/site_libs/quarto-contrib/mn-plotly-1.0.0/plotly.min" } });
+        window.require(["plotly"]);
+      } else {
+        console.warn("plotly require() error after fallback (likely a stale network request):", err);
+      }
+    } else {
+      throw err;
+    }
+  };
+}
+</script>
+
+<!--
+  window.fpmiWithMathJax(cb): same rationale as the FPMI homepage loader (_home_widgets/loader.qmd)'s
+  copy of this helper (see there for the original), extended to course
+  pages. Quarto only emits a <script defer src=".../mathjax@3/.../tex-*.js">
+  tag in <head> at all when it sees real markdown math OUTSIDE any
+  ```{=html}``` block on the page -- a hand-built widget's math lives
+  entirely inside \(...\)/\[...\] strings in JS-generated DOM content
+  (e.g. a dynamically updated status line), which Quarto's static math
+  scanner never looks inside, so a page whose ONLY math is like that (no
+  prose math of its own) gets no MathJax script at all. Confirmed on an
+  already-shipped widget (030/020_quantile_function_fig.qmd's #qf-status)
+  that had silently never rendered its \(...\) as real math since it was
+  written -- not a new bug, just never noticed because the broken math was
+  inside dynamically-generated text rather than the static page body.
+
+  Three cases this handles, in order:
+  1. window.MathJax already fully started (page had prose math elsewhere,
+     Quarto's own <script defer> already ran) -- just wait on the
+     documented startup.promise signal and fire cb.
+  2. Quarto's own MathJax <script defer> tag IS present in <head> but
+     hasn't executed/initialized yet (defer runs after DOM parsing, and
+     this include-before-body block runs earlier, during parsing) -- poll
+     briefly for window.MathJax to appear rather than racing to load a
+     SECOND copy, which would either double-load or (depending on load
+     order) silently no-op.
+  3. No MathJax script present at all (case A above) -- fetch it ourselves,
+     same URL/approach as loader.qmd.
+-->
+<script>
+window.fpmiWithMathJax = window.fpmiWithMathJax || function (cb) {
+  if (window.MathJax && window.MathJax.startup) { window.MathJax.startup.promise.then(cb); return; }
+  if (window.__fpmiMathJaxQueue) { window.__fpmiMathJaxQueue.push(cb); return; }
+  window.__fpmiMathJaxQueue = [cb];
+  function flushQueue() {
+    var q = window.__fpmiMathJaxQueue;
+    window.__fpmiMathJaxQueue = null;
+    q.forEach(function (f) { f(); });
+  }
+  var hasMathJaxTag = !!document.querySelector('script[src*="mathjax"]');
+  if (hasMathJaxTag) {
+    // Case 2: Quarto's own deferred MathJax script is already in <head> --
+    // poll for it to finish initializing instead of loading a duplicate.
+    var waited = 0;
+    var poll = setInterval(function () {
+      waited += 50;
+      if (window.MathJax && window.MathJax.startup) {
+        clearInterval(poll);
+        window.MathJax.startup.promise.then(flushQueue);
+      } else if (waited > 10000) {
+        // Should never happen (the tag is already there, defer always runs
+        // before window.onload) -- bail rather than poll forever.
+        clearInterval(poll);
+        console.warn("fpmiWithMathJax: gave up waiting for Quarto's own MathJax script to initialize");
+      }
+    }, 50);
+    return;
+  }
+  // Case 3: no MathJax anywhere on the page -- fetch it ourselves. SVG
+  // output specifically (not CHTML, despite Quarto's own injected tag
+  // using CHTML): confirmed Plotly's own $...$ annotation/tick-label math
+  // rendering hard-requires the SVG output jax and throws
+  // 'Output Jax "svg" is not defined' if only CHTML is loaded (its
+  // internal math path calls MathJax.tex2svg specifically, independent of
+  // whatever jax Quarto's page-level script configured) -- same reason
+  // the FPMI homepage loader (_home_widgets/loader.qmd)'s original copy of this helper uses tex-svg.js.
+  var s = document.createElement("script");
+  s.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js";
+  s.onload = function () {
+    window.MathJax.startup.promise.then(flushQueue);
+  };
+  document.head.appendChild(s);
+};
+</script>
+<!--
+  window.fpmiGraph: shared toolkit for the hand-built Plotly *graph diagrams*
+  (vertices + edges) used by the algorithms courses (courses/11-DM-CS/AA/...
+  specials). Plotly has no native graph/network primitives, so every widget
+  used to re-implement the same edge-polyline/marker/annotation plumbing by
+  hand -- and, since a plain `mode:"lines"` polyline can't carry an arrowhead
+  or per-edge hover, all of them ended up as staticPlot line drawings with
+  no direction on directed graphs and no hover at all. This helper gives
+  every widget, from one `spec`:
+
+    * one scatter trace PER EDGE (so an individual edge can be restyled --
+      hover-highlight, per-step emphasis, transitions -- and can have its own
+      hover text via an invisible midpoint marker), optionally curved
+      (`bend`) so a pair of opposite arcs u->v / v->u stays readable;
+    * arrowheads for `directed` edges via layout.annotations in data
+      coordinates, shortened so the head lands on the vertex rim, not under
+      the marker;
+    * a soft halo under each vertex, $...$ MathJax labels via annotations
+      (never mode:"markers+text" -- see project memory: Plotly's marker text
+      is raw SVG <text>, which can't hold MathJax output), and hover labels;
+    * hover-highlight: hovering a vertex lifts its incident edges and dims
+      the rest (plotly_hover/unhover + Plotly.restyle on the edge traces);
+    * animated transitions between algorithm steps (Plotly.animate on a
+      trace layout that stays structurally identical across steps -- the
+      trace count must not change, so per-step differences are expressed
+      purely as style: color/width/opacity/dash);
+    * a step player (prev / next / autoplay, keyboard arrows) that builds its
+      own controls, and a path tracer that grows a highlighted polyline along
+      a vertex sequence over time (Hamiltonian paths, tours, Euler walks).
+
+  Draw order inside `data`: edges (one trace each) -> edge midpoints (hover
+  only) -> halo -> vertices -> optional path trace. Trace indices are
+  returned in `built.meta` so callers never hard-code them.
+-->
+<script>
+(function () {
+  if (window.fpmiGraph) return;
+  var G = {};
+
+  // Every UI string this helper generates itself (default edge-weight hover
+  // text, the step-player's button labels) is project-agnostic: it reads
+  // `document.documentElement.lang` (set by each project's own `_quarto.yml`
+  // `lang:` field) and falls back to Russian, the language every existing
+  // call site (mnedoshivin, math-notes_CU_2, math-notes_FPMI_2) was written
+  // for -- so this stays a silent no-op everywhere except an `lang="en"`
+  // project such as mnedoshivin_en.
+  var IS_EN = (document.documentElement.lang || "").toLowerCase().indexOf("en") === 0;
+  var WEIGHT_WORD = IS_EN ? "weight" : "вес";
+
+  G.colors = {
+    vert: "#eaf2fb", vertLine: "#1e3a8a", vertText: "#0b0b0b",
+    sel: "#2a78d6", selText: "#ffffff",
+    accent: "#f5a623", accentLine: "#8a5a00",
+    done: "#a8a29e", edge: "#78716c", edgeFaded: "#d6d3d1",
+    red: "#b91c1c", redSoft: "#fca5a5", green: "#556B2F", greenSoft: "#bbf7d0",
+    bg: "#fcfcfb"
+  };
+
+  // Plotly may arrive through RequireJS (course pages, see
+  // plotly-require-config.html), through the homepage's own
+  // fpmiWithPlotly loader, or already be a global -- accept all three.
+  G.withPlotly = function (cb) {
+    if (window.Plotly && window.Plotly.newPlot) { cb(window.Plotly); return; }
+    if (window.fpmiWithPlotly) { window.fpmiWithPlotly(cb); return; }
+    if (window.require) { window.require(["plotly"], cb); return; }
+    console.warn("fpmiGraph: no Plotly loader available on this page");
+  };
+  // MathJax must exist BEFORE Plotly builds any $...$ annotation (Plotly
+  // stamps data-math="N" at build time and never retries), hence the order.
+  G.ready = function (cb) {
+    var run = function () { G.withPlotly(cb); };
+    if (window.fpmiWithMathJax) { window.fpmiWithMathJax(run); } else { run(); }
+  };
+
+  // ── geometry ───────────────────────────────────────────────────────────────
+  // Quadratic curve from p0 to p1 bulging `bend` data units to the left of
+  // the p0->p1 direction (negative bends right). n+1 points.
+  G.curve = function (p0, p1, bend, n) {
+    n = n || 16;
+    var dx = p1[0] - p0[0], dy = p1[1] - p0[1];
+    var len = Math.sqrt(dx * dx + dy * dy) || 1;
+    var nx = -dy / len, ny = dx / len;
+    var cx = (p0[0] + p1[0]) / 2 + nx * bend, cy = (p0[1] + p1[1]) / 2 + ny * bend;
+    var pts = [];
+    for (var i = 0; i <= n; i++) {
+      var t = i / n, a = (1 - t) * (1 - t), b = 2 * (1 - t) * t, c = t * t;
+      pts.push([a * p0[0] + b * cx + c * p1[0], a * p0[1] + b * cy + c * p1[1]]);
+    }
+    return pts;
+  };
+  G.circle = function (cx, cy, r, n) {
+    n = n || 64;
+    var x = [], y = [];
+    for (var i = 0; i <= n; i++) { var a = 2 * Math.PI * i / n; x.push(cx + r * Math.cos(a)); y.push(cy + r * Math.sin(a)); }
+    return { x: x, y: y };
+  };
+  // "$v_{1}$" from "v1", "$s'$" from "s'", plain "s" from "s".
+  G.texLabel = function (id) {
+    var m = /^([A-Za-z]+)(\d+)('*)$/.exec(id);
+    if (m) return "$" + m[1] + "_{" + m[2] + "}" + m[3] + "$";
+    return /^[A-Za-z]'*$/.test(id) ? "$" + id + "$" : id;
+  };
+  // Unicode subscript fallback for hover text (Plotly hover can't do MathJax).
+  var SUB = { "0": "₀", "1": "₁", "2": "₂", "3": "₃", "4": "₄", "5": "₅", "6": "₆", "7": "₇", "8": "₈", "9": "₉" };
+  G.plainLabel = function (id) {
+    var m = /^([A-Za-z]+)(\d+)('*)$/.exec(id);
+    if (!m) return id;
+    return m[1] + m[2].split("").map(function (c) { return SUB[c] || c; }).join("") + m[3];
+  };
+
+  function assign(dst) {
+    for (var i = 1; i < arguments.length; i++) { var s = arguments[i]; if (s) for (var k in s) if (Object.prototype.hasOwnProperty.call(s, k)) dst[k] = s[k]; }
+    return dst;
+  }
+  function normEdge(e) {
+    if (Array.isArray(e)) { var o = { u: e[0], v: e[1] }; if (e[2] && typeof e[2] === "object") assign(o, e[2]); else if (e[2] !== undefined) o.weight = e[2]; return o; }
+    return assign({}, e);
+  }
+
+  // ── build ──────────────────────────────────────────────────────────────────
+  // spec = {
+  //   verts: {id: [x, y]},            order: [ids] (optional, defaults to key order)
+  //   edges: [[u, v] | [u, v, weight] | {u, v, color, width, dash, opacity, bend, hover, arrow, weight}]
+  //   directed: bool,                 edge: fn(edgeObj) -> style overrides (per step)
+  //   vert: fn(id) -> {color, line, lineWidth, size, opacity, label, hover, symbol}
+  //   labels: bool|{id: text}         (default: true -> G.texLabel(id))
+  //   size: 24, halo: true, weights: bool (annotate edge weights at midpoints)
+  //   range: {x: [..], y: [..]}       (default: bbox + padding), pad: 0.8
+  //   annotations: [], shapes: []     (extra), pathTrace: bool (reserve a trace for tracePath)
+  //   height/width: layout size override
+  // }
+  G.build = function (spec) {
+    var C = G.colors;
+    var ids = spec.order || Object.keys(spec.verts);
+    var size = spec.size || 24;
+    var edges = (spec.edges || []).map(normEdge);
+    var data = [], annotations = [], meta = { edgeIdx: [], edgeStyles: [], edges: edges, ids: ids, size: size };
+
+    // range
+    var xs = ids.map(function (i) { return spec.verts[i][0]; }), ys = ids.map(function (i) { return spec.verts[i][1]; });
+    var pad = spec.pad !== undefined ? spec.pad : 0.8;
+    var xr = spec.range && spec.range.x || [Math.min.apply(null, xs) - pad, Math.max.apply(null, xs) + pad];
+    var yr = spec.range && spec.range.y || [Math.min.apply(null, ys) - pad, Math.max.apply(null, ys) + pad];
+    // Vertex radius in data units, for arrowhead shortening: estimate from
+    // the plot's pixel width (marker size is in px, the axis range in data).
+    var plotPx = spec.plotWidthPx || 460;
+    var rData = spec.vertRadius !== undefined ? spec.vertRadius : (size / 2) * (xr[1] - xr[0]) / plotPx * 1.15;
+
+    // edges
+    var midX = [], midY = [], midText = [];
+    edges.forEach(function (e, k) {
+      var st = assign({ color: C.edge, width: 1.6, dash: "solid", opacity: 1, bend: 0 }, e, spec.edge ? spec.edge(e, k) : null);
+      var p0 = spec.verts[e.u], p1 = spec.verts[e.v];
+      var pts = st.bend ? G.curve(p0, p1, st.bend) : [p0, p1];
+      var directed = st.arrow !== undefined ? st.arrow : !!spec.directed;
+      if (directed) {
+        // trim the last segment so the arrowhead (drawn separately) ends on
+        // the target vertex rim; the line itself stops there too.
+        var a = pts[pts.length - 2], b = pts[pts.length - 1];
+        var dx = b[0] - a[0], dy = b[1] - a[1], L = Math.sqrt(dx * dx + dy * dy) || 1;
+        var head = [b[0] - dx / L * rData, b[1] - dy / L * rData];
+        var tail = [head[0] - dx / L * Math.min(L, rData * 1.6), head[1] - dy / L * Math.min(L, rData * 1.6)];
+        pts = pts.slice(0, -1).concat([head]);
+        annotations.push({
+          x: head[0], y: head[1], ax: tail[0], ay: tail[1], xref: "x", yref: "y", axref: "x", ayref: "y",
+          showarrow: true, arrowhead: 2, arrowsize: 1.15, arrowwidth: st.width, arrowcolor: st.color,
+          opacity: st.opacity, text: "", standoff: 0
+        });
+      }
+      data.push({
+        x: pts.map(function (p) { return p[0]; }), y: pts.map(function (p) { return p[1]; }),
+        mode: "lines", line: { color: st.color, width: st.width, dash: st.dash }, opacity: st.opacity,
+        hoverinfo: "skip", showlegend: false, name: e.u + "-" + e.v
+      });
+      meta.edgeIdx.push(data.length - 1);
+      meta.edgeStyles.push({ color: st.color, width: st.width, dash: st.dash, opacity: st.opacity });
+      var mid = pts[Math.floor(pts.length / 2)];
+      if (pts.length === 2) mid = [(p0[0] + p1[0]) / 2, (p0[1] + p1[1]) / 2];
+      midX.push(mid[0]); midY.push(mid[1]);
+      var hover = st.hover !== undefined ? st.hover : (G.plainLabel(e.u) + (directed ? " → " : " — ") + G.plainLabel(e.v) + (st.weight !== undefined ? "<br>" + (WEIGHT_WORD) + " " + st.weight : ""));
+      midText.push(hover);
+      // st.weight (not e.weight): a per-step override may hide a faded edge's
+      // label by returning {weight: undefined}
+      if (spec.weights && st.weight !== undefined && st.opacity > 0.05) {
+        annotations.push({ x: mid[0], y: mid[1], text: String(st.weight), showarrow: false,
+          font: { size: 11, color: st.color === C.edgeFaded ? "#a8a29e" : "#44403c" }, bgcolor: "rgba(252,252,251,0.9)", borderpad: 1 });
+      }
+    });
+    // invisible edge midpoints: hover only (per-point hoverinfo so a hidden
+    // edge -- opacity 0, e.g. "not added yet" in a step player -- shows no
+    // empty tooltip)
+    data.push({ x: midX, y: midY, mode: "markers", marker: { size: 14, opacity: 0 }, hovertext: midText,
+      hoverinfo: meta.edgeStyles.map(function (s) { return s.opacity > 0 ? "text" : "skip"; }), showlegend: false, name: "edges" });
+    meta.midIdx = data.length - 1;
+
+    // vertices
+    var vx = [], vy = [], vColor = [], vLine = [], vLineW = [], vSize = [], vOp = [], vHover = [], vSym = [], haloColor = [];
+    ids.forEach(function (id) {
+      var st = assign({ color: C.vert, line: C.vertLine, lineWidth: 1.8, size: size, opacity: 1, symbol: "circle" }, spec.vert ? spec.vert(id) : null);
+      vx.push(spec.verts[id][0]); vy.push(spec.verts[id][1]);
+      vColor.push(st.color); vLine.push(st.line); vLineW.push(st.lineWidth); vSize.push(st.size); vOp.push(st.opacity); vSym.push(st.symbol);
+      vHover.push(st.hover !== undefined ? st.hover : G.plainLabel(id));
+      haloColor.push(st.opacity === 0 ? "rgba(0,0,0,0)" : (st.halo || (st.color === C.vert ? "rgba(42,120,214,0.10)" : G.rgba(st.color, 0.22))));
+      var lbl = st.label !== undefined ? st.label
+        : (spec.labels === false ? null : (spec.labels && typeof spec.labels === "object" ? spec.labels[id] : G.texLabel(id)));
+      if (lbl) {
+        annotations.push({ x: spec.verts[id][0], y: spec.verts[id][1], text: lbl, showarrow: false,
+          font: { size: st.labelSize || 13, color: st.labelColor || (st.color === C.vert || st.color === C.accent ? C.vertText : C.selText) }, opacity: st.opacity });
+      }
+    });
+    if (spec.halo !== false) {
+      data.push({ x: vx, y: vy, mode: "markers", marker: { size: vSize.map(function (s) { return s + 14; }), color: haloColor, line: { width: 0 } },
+        opacity: 1, hoverinfo: "skip", showlegend: false, name: "halo" });
+      meta.haloIdx = data.length - 1;
+    }
+    data.push({ x: vx, y: vy, mode: "markers", marker: { size: vSize, color: vColor, symbol: vSym, opacity: vOp, line: { color: vLine, width: vLineW } },
+      hovertext: vHover, hoverinfo: vOp.map(function (o) { return o > 0 ? "text" : "skip"; }), showlegend: false, name: "vertices",
+      hoverlabel: { bgcolor: "#1c1917", bordercolor: "#1c1917", font: { color: "#fff", size: 12 } } });
+    meta.vertIdx = data.length - 1;
+    if (spec.pathTrace) {
+      data.push({ x: [], y: [], mode: "lines", line: { color: C.red, width: 3.2, shape: "linear" }, hoverinfo: "skip", showlegend: false, name: "path" });
+      meta.pathIdx = data.length - 1;
+    }
+
+    var layout = {
+      xaxis: { visible: false, range: xr, fixedrange: true },
+      yaxis: { visible: false, range: yr, fixedrange: true, scaleanchor: "x" },
+      margin: { t: 8, b: 8, l: 8, r: 8 },
+      plot_bgcolor: C.bg, paper_bgcolor: C.bg, showlegend: false, hovermode: "closest",
+      annotations: annotations.concat(spec.annotations || []), shapes: spec.shapes || [],
+      transition: { duration: 420, easing: "cubic-in-out" }
+    };
+    if (spec.height) layout.height = spec.height;
+    return { data: data, layout: layout, meta: meta };
+  };
+
+  G.rgba = function (hex, a) {
+    var m = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(hex);
+    if (!m) return hex;
+    return "rgba(" + parseInt(m[1], 16) + "," + parseInt(m[2], 16) + "," + parseInt(m[3], 16) + "," + a + ")";
+  };
+
+  // ── draw (with transitions) ────────────────────────────────────────────────
+  G.config = { displayModeBar: false, displaylogo: false, scrollZoom: false, responsive: true };
+  G.draw = function (el, built, opts) {
+    if (typeof el === "string") el = document.getElementById(el);
+    opts = opts || {};
+    G.ready(function (Plotly) {
+      var canAnimate = el.data && el.data.length === built.data.length && !opts.noAnimate;
+      if (canAnimate) {
+        // Same trace structure as the previous step -> tween colors/widths/
+        // positions instead of snapping. Layout (annotations, shapes) is
+        // applied at the start of the frame.
+        Plotly.animate(el, { data: built.data, layout: built.layout },
+          { transition: { duration: opts.duration || 420, easing: "cubic-in-out" },
+            frame: { duration: opts.duration || 420, redraw: false } });
+      } else if (el.data) {
+        Plotly.react(el, built.data, built.layout, G.config);
+      } else {
+        Plotly.newPlot(el, built.data, built.layout, G.config);
+      }
+      el.__fpmiGraph = built;
+      if (!el.__fpmiHoverBound && opts.hover !== false) { G.attachHover(el); el.__fpmiHoverBound = true; }
+      if (opts.then) opts.then(Plotly);
+    });
+  };
+
+  // ── hover-highlight: lift a vertex's incident edges, dim the rest ──────────
+  G.attachHover = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    var restore = function () {
+      var b = el.__fpmiGraph; if (!b || !window.Plotly) return;
+      var s = b.meta.edgeStyles;
+      window.Plotly.restyle(el, {
+        "line.width": s.map(function (x) { return x.width; }),
+        "line.color": s.map(function (x) { return x.color; }),
+        "opacity": s.map(function (x) { return x.opacity; })
+      }, b.meta.edgeIdx);
+    };
+    el.on("plotly_hover", function (ev) {
+      var b = el.__fpmiGraph; if (!b || !ev.points || !ev.points.length) return;
+      var p = ev.points[0];
+      if (p.curveNumber !== b.meta.vertIdx) return;
+      var id = b.meta.ids[p.pointNumber];
+      var widths = [], colors = [], ops = [];
+      b.meta.edges.forEach(function (e, k) {
+        var st = b.meta.edgeStyles[k], inc = (e.u === id || e.v === id);
+        widths.push(inc ? Math.max(st.width * 1.9, 3) : st.width);
+        colors.push(inc ? (st.color === G.colors.edge || st.color === G.colors.edgeFaded ? G.colors.sel : st.color) : st.color);
+        ops.push(inc ? 1 : Math.min(st.opacity, 0.28));
+      });
+      window.Plotly.restyle(el, { "line.width": widths, "line.color": colors, "opacity": ops }, b.meta.edgeIdx);
+    });
+    el.on("plotly_unhover", restore);
+  };
+
+  // ── step player ────────────────────────────────────────────────────────────
+  // G.player({ container, count, render(i), autoplayMs, loop, start })
+  // Builds: [← Back] [Step i / N] [Next →] [▶ Auto]; arrow keys work while
+  // the controls have focus. render(i) is called for every step change.
+  // UI strings use the same IS_EN language switch declared at the top of
+  // this file. `o.label` still overrides the step word directly, same as
+  // before this change, for any call site that wants a custom label.
+  var PLAYER_STR = IS_EN
+    ? { back: "← Back", next: "Next →", auto: "▶ Auto", autoTitle: "Autoplay", pause: "⏸ Pause", step: "Step" }
+    : { back: "← Назад", next: "Вперёд →", auto: "▶ Авто", autoTitle: "Автовоспроизведение", pause: "⏸ Пауза", step: "Шаг" };
+  G.player = function (o) {
+    var box = typeof o.container === "string" ? document.getElementById(o.container) : o.container;
+    box.classList.add("fpmi-graph-controls");
+    box.setAttribute("tabindex", "0");
+    box.innerHTML =
+      '<button type="button" class="fg-prev">' + PLAYER_STR.back + '</button>' +
+      '<span class="fg-step"></span>' +
+      '<button type="button" class="fg-next">' + PLAYER_STR.next + '</button>' +
+      '<button type="button" class="fg-play" title="' + PLAYER_STR.autoTitle + '">' + PLAYER_STR.auto + '</button>';
+    var prev = box.querySelector(".fg-prev"), next = box.querySelector(".fg-next"), play = box.querySelector(".fg-play"), lbl = box.querySelector(".fg-step");
+    var cur = o.start || 0, timer = null, N = o.count;
+    function stop() { if (timer) { clearInterval(timer); timer = null; } play.textContent = PLAYER_STR.auto; play.classList.remove("active"); }
+    function go(i, fromAuto) {
+      if (!fromAuto) stop();
+      cur = Math.max(0, Math.min(N - 1, i));
+      lbl.textContent = (o.label || PLAYER_STR.step) + " " + (cur + 1) + " / " + N;
+      prev.disabled = cur === 0; next.disabled = cur === N - 1;
+      o.render(cur);
+    }
+    prev.addEventListener("click", function () { go(cur - 1); });
+    next.addEventListener("click", function () { go(cur + 1); });
+    play.addEventListener("click", function () {
+      if (timer) { stop(); return; }
+      play.textContent = PLAYER_STR.pause; play.classList.add("active");
+      if (cur === N - 1) go(0, true);
+      timer = setInterval(function () {
+        if (cur < N - 1) go(cur + 1, true);
+        else if (o.loop) go(0, true);
+        else stop();
+      }, o.autoplayMs || 1600);
+    });
+    box.addEventListener("keydown", function (ev) {
+      if (ev.key === "ArrowRight") { go(cur + 1); ev.preventDefault(); }
+      else if (ev.key === "ArrowLeft") { go(cur - 1); ev.preventDefault(); }
+    });
+    go(cur);
+    return { go: go, next: function () { go(cur + 1); }, prev: function () { go(cur - 1); }, current: function () { return cur; }, stop: stop };
+  };
+
+  // ── path tracer ────────────────────────────────────────────────────────────
+  // Grows the reserved path trace (spec.pathTrace) along `ids` over
+  // `duration` ms, with a moving tip. Returns a cancel function.
+  G.tracePath = function (el, verts, ids, opts) {
+    if (typeof el === "string") el = document.getElementById(el);
+    opts = opts || {};
+    var b = el.__fpmiGraph; if (!b || b.meta.pathIdx === undefined || !window.Plotly) return function () {};
+    var pts = ids.map(function (id) { return verts[id]; });
+    var segs = pts.length - 1, dur = opts.duration || 500 * segs, t0 = null, cancelled = false;
+    var style = { "line.color": opts.color || G.colors.red, "line.width": opts.width || 3.2 };
+    window.Plotly.restyle(el, style, [b.meta.pathIdx]);
+    function frame(ts) {
+      if (cancelled) return;
+      if (t0 === null) t0 = ts;
+      var f = Math.min(1, (ts - t0) / dur), pos = f * segs, k = Math.floor(pos), r = pos - k;
+      var x = [], y = [];
+      for (var i = 0; i <= Math.min(k, segs); i++) { x.push(pts[i][0]); y.push(pts[i][1]); }
+      if (k < segs) { x.push(pts[k][0] + (pts[k + 1][0] - pts[k][0]) * r); y.push(pts[k][1] + (pts[k + 1][1] - pts[k][1]) * r); }
+      window.Plotly.restyle(el, { x: [x], y: [y] }, [b.meta.pathIdx]);
+      if (f < 1) requestAnimationFrame(frame); else if (opts.done) opts.done();
+    }
+    requestAnimationFrame(frame);
+    return function () { cancelled = true; };
+  };
+  G.clearPath = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    var b = el.__fpmiGraph; if (!b || b.meta.pathIdx === undefined || !window.Plotly) return;
+    window.Plotly.restyle(el, { x: [[]], y: [[]] }, [b.meta.pathIdx]);
+  };
+
+  // Typeset \(...\) math in a caption/status element (after innerHTML update).
+  G.typeset = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    if (window.fpmiWithMathJax) window.fpmiWithMathJax(function () { if (window.MathJax && window.MathJax.typesetPromise) window.MathJax.typesetPromise([el]); else if (window.MathJax) window.MathJax.typeset([el]); });
+  };
+  G.setCaption = function (id, html) { var el = document.getElementById(id); if (!el) return; el.innerHTML = html; G.typeset(el); };
+
+  window.fpmiGraph = G;
+})();
+</script>
+<style>
+  /* Shared look for every fpmiGraph widget (see graph-helper.html). */
+  .fpmi-graph { padding: 1rem 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .fpmi-graph h2.fg-title { font-size: 16px; font-weight: 500; margin: 0 0 4px; }
+  .fpmi-graph p.fg-sub { font-size: 13px; color: #78716c; margin: 0 0 0.75rem; }
+  .fpmi-graph .fg-plot { width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 6px 18px rgba(0,58,65,0.06); }
+  .fpmi-graph .fg-caption { font-size: 13px; color: #44403c; margin-top: 0.6rem; min-height: 1.4em; line-height: 1.5; }
+  .fpmi-graph .fg-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .fpmi-graph .fg-arrow { font-size: 26px; color: #78716c; }
+  .fpmi-graph-controls, .fpmi-graph .fg-controls { display: flex; align-items: center; gap: 10px; margin: 0.5rem 0 0.9rem; flex-wrap: wrap; outline: none; }
+  .fpmi-graph-controls button, .fpmi-graph button {
+    font-size: 13px; padding: 6px 12px; cursor: pointer; border-radius: 8px;
+    border: 1px solid #d6d3d1; background: #fff; color: #292524; transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  }
+  .fpmi-graph-controls button:hover:not(:disabled), .fpmi-graph button:hover:not(:disabled) { background: #f5f5f4; border-color: #a8a29e; }
+  .fpmi-graph-controls button:disabled, .fpmi-graph button:disabled { opacity: 0.4; cursor: default; }
+  .fpmi-graph-controls button.active, .fpmi-graph button.active { background: #eaf2fb; border-color: #2a78d6; color: #1c4a7a; font-weight: 600; box-shadow: 0 0 0 3px rgba(42,120,214,0.12); }
+  .fpmi-graph-controls .fg-step { font-size: 13px; font-weight: 600; color: #44403c; min-width: 6.5em; text-align: center; }
+  .fpmi-graph-controls:focus-within .fg-step { color: #1c4a7a; }
+  .fpmi-graph label { font-size: 13px; color: #57534e; }
+  .fpmi-graph input[type="range"] { accent-color: #2a78d6; }
+  .fpmi-graph .fg-val { font-size: 13px; font-weight: 600; min-width: 2em; display: inline-block; color: #1c4a7a; }
+  .fpmi-graph .fg-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: #57534e; margin-top: 0.4rem; }
+  .fpmi-graph .fg-legend span::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; background: var(--c, #eaf2fb); border: 1.5px solid var(--b, #1e3a8a); }
+  .fpmi-graph .fg-legend span.line::before { border-radius: 0; height: 3px; width: 18px; border: none; vertical-align: 2px; background: var(--c, #78716c); }
+</style>
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Задачи с метрикой</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Дата публикации</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">18 октября 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>В этой главе представим приближенные алгоритмы для метрической задачи Штейнера и метрической задачи коммивояжера. Причины рассмотрения метрических вариантов этих задач разные. Для задачи Штейнера метрическая задача является ядром общей задачи, и общая задача может быть сведена к метрической. Для задачи коммивояжера без этого ограничения не существует «хороших» приближенных алгоритмов, в предположении, что <span class="math inline">\(P \neq N P\)</span>. Тем не менее, приближенные алгоритмы для этих задач используют общую идею, которая и будет рассмотрена в этой главе.</p>
+<p>Задача о кратчайшей суперстроке (глава &lt;&lt;Кратчайшая суперстрока&gt;&gt; в части &lt;&lt;Прочие темы&gt;&gt;) также может быть сведена к задаче коммивояжера со специальной метрикой, и для нее существует 4-приближенный алгоритм.</p>
+<section id="метрическая-задача-штейнера" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Метрическая задача Штейнера</h1>
+<p>Задача о дереве Штейнера была поставлена Гауссом в письме Шумахеру. На плоскости задано <span class="math inline">\(n\)</span> городов, необходимо соединить их ломаными линиями, чтобы каждый город был соединен с каждым и суммарная длина всех проведенных линий была минимальна. Заметим, что в оптимальное решение могут входить промежуточные точки, а все соединения должны быть отрезками, соединяющими точки (исходные или промежуточные). Далее рассмотрим задачу Штейнера на графах.</p>
+<div class="algproblem">
+<div class="algproblem-title">
+<p>Задача Штейнера</p>
+</div>
+<div class="algproblem-given">
+<p>Граф <span class="math inline">\(G=(V, E)\)</span>, стоимости ребер <span class="math inline">\(\operatorname {cost}: E \rightarrow \mathbf{Q}^{+}\)</span>, подмножество <span class="math inline">\(R \subseteq V\)</span>.</p>
+</div>
+<div class="algproblem-find">
+<p>дерево <span class="math inline">\(T\)</span> наименьшей стоимости, такое, что <span class="math inline">\(R \subseteq T\)</span>, т. е. содержит все вершины из <span class="math inline">\(R\)</span>.</p>
+</div>
+</div>
+<p>Множество <span class="math inline">\(R\)</span> называется <em>множеством требований</em>. Множество <span class="math inline">\(V \backslash R\)</span> называется <em>множеством Штейнера</em>.</p>
+<p>Частные случаи задачи Штейнера:</p>
+<ul>
+<li><p><span class="math inline">\(R = V\)</span>. В этом случае задача Штейнера – это задача о минимальном остовном дереве (MST);</p></li>
+<li><p><span class="math inline">\(R = \left\{ v_1, v_2\right\}\)</span>. В этом случае задача Штейнера – это задача поиска наименьшего по весу пути из <span class="math inline">\(v_1\)</span> в <span class="math inline">\(v_2\)</span>.</p></li>
+</ul>
+<div class="algproblem">
+<div class="algproblem-title">
+<p>Метрическая задача Штейнера</p>
+</div>
+<div class="algproblem-given">
+<ul>
+<li><p>Полный граф <span class="math inline">\(G=(V, E)\)</span>;</p></li>
+<li><p>стоимости ребер <span class="math inline">\(\operatorname {cost}: E \rightarrow \mathbf{Q}^{+}\)</span>, такие, что для любых трех вершин <span class="math inline">\(u, v\)</span> и <span class="math inline">\(w\)</span> выполнено неравенство: <span class="math inline">\(\operatorname {cost}(u, v) \leq \operatorname {cost}(u, w)+\operatorname {cost}(w, v)\)</span>;</p></li>
+<li><p>подмножество <span class="math inline">\(R \subseteq V\)</span>.</p></li>
+</ul>
+</div>
+<div class="algproblem-find">
+<p>дерево <span class="math inline">\(T\)</span> наименьшей стоимости, такое, что <span class="math inline">\(R \subseteq T\)</span>, т. е. содержит все вершины из <span class="math inline">\(R\)</span>.</p>
+</div>
+</div>
+<div id="svm" class="fpmi-graph">
+  <h2 class="fg-title anchored" data-anchor-id="метрическая-задача-штейнера">MST на требованиях хуже дерева Штейнера</h2>
+  <p class="fg-sub">Фиолетовые вершины \(v_1,v_2,v_3\) — требования; оранжевая \(v_4\) — вершина Штейнера. MST на одних требованиях (без \(v_4\)) — допустимое, но не всегда оптимальное решение задачи Штейнера. Наведите курсор на ребро, чтобы увидеть его стоимость.</p>
+  <div class="fg-controls">
+    <button type="button" id="svm-0" class="active">MST на требованиях</button>
+    <button type="button" id="svm-1">Дерево Штейнера (через \(v_4\))</button>
+  </div>
+  <div id="svm-plot" class="fg-plot" style="max-width:420px;height:400px;"></div>
+  <div id="svm-cap" class="fg-caption"></div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, C = G.colors;
+  var V = { v1:[0,3.0], v2:[-2.1,-0.6], v3:[2.1,-0.6], v4:[0,0.6] };
+  var E = [["v1","v2",5],["v1","v3",5],["v2","v3",5],["v1","v4",3],["v4","v2",3],["v4","v3",3]];
+  function draw(steiner){
+    G.draw("svm-plot", G.build({
+      verts: V, edges: E, size: 34, plotWidthPx: 400, weights: true, range: { x: [-3, 3], y: [-1.5, 3.8] },
+      edge: function(e){
+        var viaSteiner = e.u === "v4" || e.v === "v4";
+        var active = steiner ? viaSteiner : !viaSteiner;
+        return active ? { color: steiner ? C.green : "#1e3a8a", width: 2.6 }
+                      : { color: C.edgeFaded, width: 1.2, dash: "dot", opacity: 0.6, weight: undefined, hover: G.plainLabel(e.u) + " — " + G.plainLabel(e.v) + ": стоимость " + e.weight + " (не используется)" };
+      },
+      vert: function(id){
+        return id === "v4" ? { color: C.accent, line: C.accentLine, hover: "v₄: вершина Штейнера (не требование)" + (steiner ? " — используется" : " — не используется") }
+                           : { color: "#8b5cf6", line: "#4c1d95", labelColor: "#fff", hover: G.plainLabel(id) + ": требование" };
+      }
+    }));
+    G.setCaption("svm-cap", steiner
+      ? "Дерево Штейнера через \\(v_4\\): стоимость \\(3+3+3=9\\) — оптимальное решение."
+      : "MST на требованиях \\(v_1,v_2,v_3\\) (без \\(v_4\\)): два ребра из трёх, стоимость \\(5+5=10\\) — допустимо, но не оптимально.");
+    document.getElementById("svm-0").classList.toggle("active", !steiner);
+    document.getElementById("svm-1").classList.toggle("active", steiner);
+  }
+  document.getElementById("svm-0").addEventListener("click", function(){ draw(false); });
+  document.getElementById("svm-1").addEventListener("click", function(){ draw(true); });
+  draw(false);
+})();
+</script>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-1" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 1</strong></span> Существование <span class="math inline">\(\rho\)</span>-приближенного алгоритма для метрической задачи Штейнера влечет существование <span class="math inline">\(\rho\)</span>-приближенного алгоритма для задачи Штейнера.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-proof no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Mn-proof</span>Доказательство
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="mn-proof-body">
+<p>Пусть <span class="math inline">\(I\)</span>- пример задачи Штейнера с графом <span class="math inline">\(G=\)</span> <span class="math inline">\((V, E)\)</span>. По графу <span class="math inline">\(G\)</span> построим полный граф <span class="math inline">\(G^{\prime }\)</span> для примера <span class="math inline">\(I^{\prime }\)</span> метрической задачи Штейнера. Определим стоимость ребра <span class="math inline">\((u, v)\)</span> в <span class="math inline">\(G^{\prime }\)</span>, как стоимость кратчайшего <span class="math inline">\(u-v\)</span>-пути в <span class="math inline">\(G\)</span>. Граф <span class="math inline">\(G^{\prime }\)</span> называется метрическим замыканием графа <span class="math inline">\(G\)</span>. Множество требований и множество Штейнера в обоих примерах совпадают.</p>
+<p>Стоимость любого ребра <span class="math inline">\((u, v) \in E\)</span> в графе <span class="math inline">\(G^{\prime }\)</span> не превосходит стоимости этого ребра в графе <span class="math inline">\(G\)</span>. Поэтому стоимость оптимального решения примера <span class="math inline">\(I\)</span> не превосходит стоимости оптимального решения примера <span class="math inline">\(I^{\prime }\)</span>.</p>
+<p>Пусть задано дерево Штейнера <span class="math inline">\(T^{\prime }\)</span> в примере <span class="math inline">\(I^{\prime }\)</span>. Покажем, как за полиномиальное время построить в примере <span class="math inline">\(I\)</span> дерево Штейнера не большей стоимости. Стоимость ребра <span class="math inline">\((u, v)\)</span> в графе <span class="math inline">\(G^{\prime }\)</span> соответствует стоимости пути в графе <span class="math inline">\(G\)</span>. Заменим каждое ребро дерева <span class="math inline">\(T^{\prime }\)</span> на соответствующий путь для получения подграфа графа <span class="math inline">\(G\)</span>. Очевидно, что в этом подграфе все вершины множества требований соединены. Однако, этот подграф в общем случае может содержать цикл. Если это так, то удалим лишние ребра, чтобы получить дерево <span class="math inline">\(T\)</span>.</p>
+<p>Пусть <span class="math inline">\(C^{\prime }\)</span>- решение, найденное <span class="math inline">\(\rho\)</span>-приближенным алгоритмом для метрической задачи Штейнера. Способом, описанным выше, найдем решение стоимости <span class="math inline">\(C\)</span> в задаче Штейнера, такое, что</p>
+<p><span class="math display">\[
+  C \leq C^{\prime } \leq \rho \operatorname {OPT}^{\prime } \leq \rho \operatorname {OPT}  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p>Минимальное остовное дерево не всегда является оптимальным решением задачи Штейнера. Однако стоимость минимального остовного дерева является хорошей оценкой на стоимость оптимального дерева Штейнера.</p>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-2" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 2</strong></span> Пусть <span class="math inline">\(R \subseteq V\)</span> – множество требований в задаче Штейнера. Тогда стоимость минимального остовного дерева в <span class="math inline">\(R\)</span> не превосходит двух стоимостей оптимального дерева Штейнера в графе <span class="math inline">\(G\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="smb" class="fpmi-graph">
+  <h2 class="fg-title anchored">Доказательство оценки 2 для задачи Штейнера</h2>
+  <p class="fg-sub">Фиолетовые вершины — требования, оранжевые — вершины Штейнера. Кнопка запускает обход: слева — эйлеров обход удвоенного дерева Штейнера (стоимость \(2\cdot\mathrm{OPT}\)), справа — тот же обход со «срезанными углами», пропускающий вершины Штейнера и повторы.</p>
+  <div class="fg-controls"><button type="button" id="smb-go">Показать обход</button><button type="button" id="smb-clear">Скрыть</button></div>
+  <div class="fg-row">
+    <div id="smb-euler" class="fg-plot" style="max-width:290px;height:320px;"></div>
+    <span class="fg-arrow">⟶</span>
+    <div id="smb-ham" class="fg-plot" style="max-width:290px;height:320px;"></div>
+  </div>
+  <div id="smb-cap" class="fg-caption">(а) Удваиваем рёбра дерева Штейнера — получаем эйлеров граф стоимости \(2\cdot\mathrm{OPT}\). (б) «Срезаем углы», пропуская вершины Штейнера и повторные посещения — получаем гамильтонов цикл на требованиях; по неравенству треугольника его стоимость \(\le 2\cdot\mathrm{OPT}\), а MST на \(R\) не дороже этого цикла: \(\mathrm{cost}(\mathrm{MST}(R))\le 2\cdot\mathrm{OPT}\).</div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, C = G.colors;
+  var V = { s1:[0,3.2], l1:[-1.9,4.6], l2:[0.6,4.9], l3:[2.3,2.9], m:[-0.2,1.6], s2:[0.4,0], l4:[-1.6,-1.4], l5:[2.2,-1.6] };
+  var STEINER = ["s1","s2"];
+  var TREE = [["l1","s1"],["l2","s1"],["s1","l3"],["s1","m"],["m","s2"],["s2","l4"],["s2","l5"]];
+  var HAM = [["l1","l2"],["l2","l3"],["l3","m"],["m","l4"],["l4","l5"],["l5","l1"]];
+  var EULER = ["l1","s1","l2","s1","l3","s1","m","s2","l4","s2","l5","s2","m","s1","l1"];
+  var CYCLE = ["l1","l2","l3","m","l4","l5","l1"];
+  var LAB = { s1:"", s2:"", l1:"", l2:"", l3:"", m:"", l4:"", l5:"" };
+  function vert(id){
+    var st = STEINER.indexOf(id) >= 0;
+    return { color: st ? C.accent : "#8b5cf6", line: st ? C.accentLine : "#4c1d95", hover: st ? "вершина Штейнера" : "требование" };
+  }
+  var common = { verts: V, size: 22, plotWidthPx: 270, labels: false, range: { x: [-2.6, 3.1], y: [-2.4, 5.5] }, vert: vert, pathTrace: true };
+  G.draw("smb-euler", G.build(Object.assign({ edges: TREE.map(function(e){ return { u: e[0], v: e[1], color: "#57534e", width: 1.8, hover: "ребро дерева Штейнера (удвоено)" }; }) }, common)));
+  G.draw("smb-ham", G.build(Object.assign({ edges: TREE.map(function(e){ return { u: e[0], v: e[1], color: C.edgeFaded, width: 1.2, dash: "dot", hover: "ребро дерева Штейнера" }; })
+    .concat(HAM.map(function(e){ return { u: e[0], v: e[1], color: C.redSoft, width: 1.4, hover: "ребро гамильтонова цикла на требованиях" }; })) }, common)));
+  var cancel = [];
+  document.getElementById("smb-go").addEventListener("click", function(){
+    cancel.forEach(function(c){ c(); }); cancel = [];
+    G.clearPath("smb-euler"); G.clearPath("smb-ham");
+    cancel.push(G.tracePath("smb-euler", V, EULER, { duration: 4200, color: "#2a78d6", width: 3.4, done: function(){
+      cancel.push(G.tracePath("smb-ham", V, CYCLE, { duration: 2600, color: C.red, width: 3.4 }));
+    } }));
+  });
+  document.getElementById("smb-clear").addEventListener("click", function(){ cancel.forEach(function(c){ c(); }); cancel = []; G.clearPath("smb-euler"); G.clearPath("smb-ham"); });
+})();
+</script>
+<div class="callout callout-style-simple callout-mn-alg no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="alg-1" class="algorithm-box theorem algorithm">
+<p><span class="theorem-title"><strong>Algorithm 1</strong></span> <strong>Алгоритм Остовное дерево (<span class="math inline">\(G=(V, E), R, \operatorname {cost}: E \to \mathbb {Q}_+\)</span>)</strong></p>
+<ul>
+<li>Найти минимальное остовное дерево <span class="math inline">\(T\)</span> на множестве вершин <span class="math inline">\(R\)</span>.</li>
+<li><strong>возврат</strong> <span class="math inline">\(T\)</span>.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="stt" class="fpmi-graph">
+  <h2 class="fg-title anchored">Точный пример к оценке 2 для задачи Штейнера</h2>
+  <p class="fg-sub">\(n\) требований на окружности и одна вершина Штейнера в центре. Рёбра к центру стоят \(1\), рёбра между соседними требованиями — \(2\). MST на требованиях (цикл без одного ребра) стоит \(2(n-1)\), дерево Штейнера (звезда) — \(n\); отношение \(\to2\).</p>
+  <div class="fg-controls">
+    <label>\(n=\)</label><input type="range" id="stt-n" min="3" max="14" step="1" value="6" style="width:200px;"><span class="fg-val" id="stt-nval">6</span>
+    <button type="button" id="stt-mst" class="active">MST на требованиях</button><button type="button" id="stt-st">Дерево Штейнера</button>
+  </div>
+  <div id="stt-plot" class="fg-plot" style="max-width:460px;height:440px;"></div>
+  <div id="stt-cap" class="fg-caption"></div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, C = G.colors;
+  var n = 6, mode = "mst";
+  function draw(){
+    var V = { c: [0, 0] }, E = [], order = ["c"];
+    for (var i = 0; i < n; i++) { var a = Math.PI / 2 + 2 * Math.PI * i / n; V["r" + (i + 1)] = [2.1 * Math.cos(a), 2.1 * Math.sin(a)]; order.push("r" + (i + 1)); }
+    for (i = 1; i <= n; i++) {
+      E.push({ u: "r" + i, v: "r" + (i % n + 1), weight: 2, kind: "cyc", last: i === n });
+      E.push({ u: "c", v: "r" + i, weight: 1, kind: "star" });
+    }
+    G.draw("stt-plot", G.build({
+      verts: V, order: order, edges: E, size: n > 9 ? 18 : 22, plotWidthPx: 440, labels: false, weights: n <= 8, range: { x: [-3, 3], y: [-3, 3] },
+      edge: function(e){
+        var active = mode === "mst" ? (e.kind === "cyc" && !e.last) : e.kind === "star";
+        if (active) return { color: mode === "mst" ? "#1c1917" : C.green, width: 2.4 };
+        return { color: C.edgeFaded, width: 1, dash: "dot", weight: undefined, hover: G.plainLabel(e.u) + " — " + G.plainLabel(e.v) + ": стоимость " + e.weight + " (не используется)" };
+      },
+      vert: function(id){ return id === "c" ? { color: C.accent, line: C.accentLine, hover: "вершина Штейнера (центр)" } : { color: "#8b5cf6", line: "#4c1d95", hover: "требование " + G.plainLabel(id) }; }
+    }));
+    var mst = 2 * (n - 1);
+    G.setCaption("stt-cap", (mode === "mst"
+      ? "MST на требованиях: \\(n-1=" + (n - 1) + "\\) рёбер стоимости \\(2\\), итого \\(2(n-1)=" + mst + "\\)."
+      : "Дерево Штейнера: звезда из \\(n=" + n + "\\) рёбер стоимости \\(1\\), итого \\(" + n + "\\).")
+      + " Отношение \\(\\frac{2(n-1)}{n}=" + (mst / n).toFixed(3) + "\\to 2\\).");
+    document.getElementById("stt-mst").classList.toggle("active", mode === "mst");
+    document.getElementById("stt-st").classList.toggle("active", mode === "st");
+  }
+  document.getElementById("stt-n").addEventListener("input", function(){ n = +this.value; document.getElementById("stt-nval").textContent = n; draw(); });
+  document.getElementById("stt-mst").addEventListener("click", function(){ mode = "mst"; draw(); });
+  document.getElementById("stt-st").addEventListener("click", function(){ mode = "st"; draw(); });
+  draw();
+})();
+</script>
+<p>Можно ли лучше? Да! Самый лучший из известных алгоритмов: <span class="math inline">\(\rho = \ln (4) + \varepsilon \approx 1.39\)</span>.</p>
+<p>Также известно, что нельзя придумать алгоритм с <span class="math inline">\(\rho &lt; \frac{96}{95} \approx 1.0105\)</span> (в предположении <span class="math inline">\(\operatorname {P} \neq \operatorname {NP}\)</span>).</p>
+</section>
+<section id="метрическая-задача-коммивояжера" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Метрическая задача коммивояжера</h1>
+<section id="в-общем-виде-задача-коммивояжера-неаппроксимируема" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="в-общем-виде-задача-коммивояжера-неаппроксимируема"><span class="header-section-number">2.1</span> В общем виде задача коммивояжера неаппроксимируема</h2>
+<p>Задача коммивояжера - одна из самых известных задач комбинаторной оптимизации, заключающаяся в отыскании самого выгодного маршрута, проходящего через указанные города ровно по одному разу с последующим возвратом в исходный город.</p>
+<div class="algproblem">
+<div class="algproblem-title">
+<p>Задача коммивояжера</p>
+</div>
+<div class="algproblem-given">
+<p>Полный граф <span class="math inline">\(G=(V, E)\)</span>, стоимости ребер <span class="math inline">\(\operatorname {cost}: E \rightarrow \mathbf{Q}^{+}\)</span>.</p>
+</div>
+<div class="algproblem-find">
+<p>Гамильтонов цикл <span class="math inline">\(C\)</span> минимальной стоимости.</p>
+</div>
+</div>
+<p>Цикл, который содержит все вершины, называется <em>гамильтоновым</em>.</p>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-3" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 3</strong></span> Для любой полиномиально вычислимой функции <span class="math inline">\(\alpha (n)\)</span>, для задачи коммивояжера не существует <span class="math inline">\(\rho\)</span>-приближенного алгоритма с <span class="math inline">\(\rho =\alpha (n)\)</span>, если <span class="math inline">\(P \neq N P\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-proof no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Mn-proof</span>Доказательство
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="mn-proof-body">
+<p>Докажем от противного. Предположим, что существует <span class="math inline">\(\rho\)</span>-приближенный алгоритм <span class="math inline">\(\mathcal{A}\)</span> с <span class="math inline">\(\rho =\alpha (n)\)</span> для задачи коммивояжера. Покажем, что с помощью полиномиального алгоритма <span class="math inline">\(\mathcal{A}\)</span> можно решать NP-трудную задачу Гамильтонов цикл. Это будет означать, что <span class="math inline">\(P=N P\)</span>.</p>
+<p>Основная идея сведения - построить по графу <span class="math inline">\(G\)</span> полный взвешенный граф <span class="math inline">\(G^{\prime }\)</span>, такой, что:</p>
+<ul>
+<li><p>если в <span class="math inline">\(G\)</span> есть гамильтонов цикл, то стоимость оптимального решения задачи коммивояжера в графе <span class="math inline">\(G^{\prime }\)</span> равна <span class="math inline">\(n\)</span>, и</p></li>
+<li><p>если в <span class="math inline">\(G\)</span> нет гамильтонова цикла, то оптимальное решение задачи коммивояжера для графа <span class="math inline">\(G^{\prime }\)</span> имеет стоимость больше, чем <span class="math inline">\(\alpha (n) \cdot n\)</span>.</p></li>
+</ul>
+<p>Заметим, что алгоритм <span class="math inline">\(\mathcal{A}\)</span> для графа <span class="math inline">\(G^{\prime }\)</span> должен найти решение стоимости <span class="math inline">\(\operatorname {cost} \leq \alpha (n) \cdot n\)</span> в первом случае и стоимости <span class="math inline">\(\operatorname {cost} &gt; \alpha (n) \cdot n\)</span> во втором случае.</p>
+<p>По графу <span class="math inline">\(G\)</span> построим полный взвешенный граф <span class="math inline">\(G^{\prime }\)</span>. Назначим стоимости, равные 1, тем ребрам, которые есть в графе <span class="math inline">\(G\)</span>, и стоимости, равные <span class="math inline">\(\alpha (n) \cdot n\)</span>, тем ребрам, которых нет в графе <span class="math inline">\(G\)</span>. Если в графе <span class="math inline">\(G\)</span> есть гамильтонов цикл, то соответствующий ему обход в графе <span class="math inline">\(G^{\prime }\)</span> имеет стоимость <span class="math inline">\(n\)</span>. С другой стороны, если в <span class="math inline">\(G\)</span> нет гамильтонова цикла, то любой обход в графе <span class="math inline">\(G^{\prime }\)</span> должен использовать ребро стоимости <span class="math inline">\(\alpha (n) \cdot n\)</span>, а значит, стоимость обхода будет cost <span class="math inline">\(&gt;\alpha (n) \cdot n\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<p>Заметим, что в доказательстве такой сильной неаппроксимируемости используются стоимости ребер, которые нарушают неравенство треугольника. Если ограничиться только теми графами, на которых это неравенство выполняется, т. е. метрической задачей коммивояжера, то задача останется NP-трудной, но не будет столь трудна для аппроксимации.</p>
+<div class="algproblem">
+<div class="algproblem-title">
+<p>Метрическая задача коммивояжера</p>
+</div>
+<div class="algproblem-given">
+<p>Полный граф <span class="math inline">\(G=(V, E)\)</span>, стоимости ребер <span class="math inline">\(\operatorname {cost}: E \rightarrow \mathbf{Q}^{+}\)</span>, такие, что для любых трех вершин <span class="math inline">\(u, v\)</span> и <span class="math inline">\(w\)</span> выполняется <span class="math display">\[
+  \operatorname {cost}(u, v) \leq \operatorname {cost}(u, w)+\operatorname {cost}(w, v)  
+\]</span></p>
+</div>
+<div class="algproblem-find">
+<p>Гамильтонов цикл <span class="math inline">\(C\)</span> минимальной стоимости.</p>
+</div>
+</div>
+</section>
+<section id="приближенный-алгоритм" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="приближенный-алгоритм"><span class="header-section-number">2.2</span> <span class="math inline">\(2\)</span>-приближенный алгоритм</h2>
+<p>Представим простой 2-приближенный алгоритм для метрической задачи коммивояжера. В качестве нижней оценки используем оптимальное решение задачи о минимальном остовном дереве на графе <span class="math inline">\(G\)</span>. Это решение является нижней оценкой для оптимального решения задачи коммивояжера, поскольку при удалении любого ребра из гамильтонова цикла получается остовное дерево в графе <span class="math inline">\(G\)</span>.</p>
+<div class="callout callout-style-simple callout-mn-alg no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="alg-2" class="algorithm-box theorem algorithm">
+<p><span class="theorem-title"><strong>Algorithm 2</strong></span> <strong>Алгоритм Двойное остовное дерево (<span class="math inline">\(G=(V, E), \operatorname {cost} : E \rightarrow \mathbf{Q}^{+}\)</span>)</strong></p>
+<ul>
+<li>Найти минимальное остовное дерево <span class="math inline">\(T\)</span> в графе <span class="math inline">\(G\)</span>.</li>
+<li>Удвоить каждое ребро в дереве <span class="math inline">\(T\)</span> и получить Эйлеров граф <span class="math inline">\(H\)</span></li>
+<li>Найти Эйлеров обход <span class="math inline">\(R\)</span> в графе <span class="math inline">\(H\)</span>.</li>
+<li>Построить Гамильтонов цикл <span class="math inline">\(C\)</span>, посещая вершины графа <span class="math inline">\(G\)</span> в том порядке, в котором они встречаются в <span class="math inline">\(R\)</span>.</li>
+<li><strong>возврат</strong> <span class="math inline">\(C\)</span>.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p>Заметим, что выполнение шага 4 аналогично методу срезания углов из теоремы выше.</p>
+<div id="dta" class="fpmi-graph">
+  <h2 class="fg-title anchored">Алгоритм «Двойное остовное дерево» для метрической задачи коммивояжёра</h2>
+  <p class="fg-sub">1) строим MST; 2) удваиваем его рёбра — получаем эйлеров граф — и обходим его; 3) «срезаем углы», пропуская уже посещённые вершины, — получаем гамильтонов цикл стоимости \(\le 2\cdot\mathrm{MST}\le 2\cdot\mathrm{OPT}\). На шагах 3 и 4 обход прорисовывается анимацией.</p>
+  <div id="dta-ctl"></div>
+  <div id="dta-plot" class="fg-plot" style="max-width:520px;height:420px;"></div>
+  <div id="dta-cap" class="fg-caption"></div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, C = G.colors;
+  var V = { v1:[0.3,4.0], v2:[4.3,4.0], v3:[1.6,2.9], v4:[2.7,2.9], v5:[4.9,2.9], v6:[1.3,1.7], v7:[4.2,1.7], v8:[0.0,0.2], v9:[1.6,0.2] };
+  var OTHER = [["v1","v2"],["v2","v3"],["v2","v5"],["v3","v9"],["v3","v7"],["v5","v9"],["v5","v6"],["v6","v7"],["v8","v9"]];
+  var MST = [["v3","v1"],["v3","v4"],["v4","v2"],["v4","v7"],["v7","v5"],["v3","v6"],["v6","v8"],["v6","v9"]];
+  var EULER = ["v1","v3","v4","v2","v4","v7","v5","v7","v4","v3","v6","v8","v6","v9","v6","v3","v1"];
+  var CYCLE = ["v1","v3","v4","v2","v7","v5","v6","v8","v9","v1"];
+  var E = OTHER.map(function(e){ return { u: e[0], v: e[1], kind: "other" }; })
+    .concat(MST.map(function(e){ return { u: e[0], v: e[1], kind: "mst" }; }))
+    .concat(MST.map(function(e){ return { u: e[0], v: e[1], kind: "copy", bend: 0.16 }; }));
+  var CAPS = [
+    "Индивидуальная задача: полный взвешенный граф (часть рёбер и веса опущены для наглядности).",
+    "Шаг 1: находим минимальное остовное дерево \\(T\\) (зелёное).",
+    "Шаг 2: дублируем каждое ребро дерева — у всех вершин чётная степень, есть эйлеров обход стоимости \\(2\\cdot\\mathrm{cost}(T)\\). Синяя линия — обход.",
+    "Шаг 3: «срезаем углы» — идём по эйлерову обходу, но пропускаем уже посещённые вершины (переходим напрямую, что по неравенству треугольника не дороже). Получаем гамильтонов цикл (красный) стоимости \\(\\le 2\\cdot\\mathrm{cost}(T)\\le 2\\cdot\\mathrm{OPT}\\)."
+  ];
+  var cancel = null;
+  function render(step){
+    if (cancel) { cancel(); cancel = null; }
+    var el = document.getElementById("dta-plot");
+    if (el.__fpmiGraph) G.clearPath(el);
+    G.draw(el, G.build({
+      verts: V, edges: E, size: 22, plotWidthPx: 500, range: { x: [-0.8, 5.6], y: [-0.6, 4.6] }, pathTrace: true,
+      edge: function(e){
+        if (e.kind === "other") return { color: step === 0 ? C.edge : C.edgeFaded, width: step === 0 ? 1.2 : 0.8, opacity: step >= 2 ? 0.35 : 1, hover: "ребро полного графа " + G.plainLabel(e.u) + " — " + G.plainLabel(e.v) };
+        if (e.kind === "mst") return { color: step >= 1 ? C.green : C.edge, width: step >= 1 ? 2.4 : 1.2, hover: "ребро MST " + G.plainLabel(e.u) + " — " + G.plainLabel(e.v) };
+        return { color: C.green, width: 2.4, opacity: step >= 2 ? 1 : 0, hover: "второй экземпляр ребра " + G.plainLabel(e.u) + " — " + G.plainLabel(e.v) };
+      },
+      vert: function(id){
+        var deg = MST.filter(function(e){ return e[0] === id || e[1] === id; }).length;
+        return { hover: G.plainLabel(id) + (step >= 1 ? ": степень в T = " + deg + (step >= 2 ? " → в удвоенном дереве " + 2 * deg + " (чётная)" : "") : "") };
+      }
+    }), { then: function(){
+      if (step === 2) cancel = G.tracePath(el, V, EULER, { duration: 5200, color: "#2a78d6", width: 3.2 });
+      if (step === 3) cancel = G.tracePath(el, V, CYCLE, { duration: 3600, color: C.red, width: 3.4 });
+    } });
+    G.setCaption("dta-cap", CAPS[step]);
+  }
+  G.player({ container: "dta-ctl", count: 4, autoplayMs: 6000, render: render });
+})();
+</script>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-4" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 4</strong></span> Алгоритм Двойное остовное дерево является <span class="math inline">\(2\)</span>-приближенным алгоритмом для метрической задачи коммивояжера.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-proof no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Mn-proof</span>Доказательство
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="mn-proof-body">
+<p>Как было замечено выше, <span class="math inline">\(\operatorname {cost}(T) \leq \operatorname {OPT}\)</span>. Поскольку граф <span class="math inline">\(H\)</span> содержит каждое ребро из дерева <span class="math inline">\(T\)</span> дважды, то <span class="math inline">\(\operatorname {cost}(R)=2 \cdot \operatorname {cost}(T)\)</span>. Тогда из неравенства треугольника после процедуры срезания углов получим <span class="math inline">\(\operatorname {cost}(C) \leq \operatorname {cost}(R)\)</span> и <span class="math inline">\(\operatorname {cost}(C) \leq 2 \cdot \operatorname {OPT}\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="dtt" class="fpmi-graph">
+  <h2 class="fg-title anchored">Точность оценки 2 для алгоритма «Двойное остовное дерево»</h2>
+  <p class="fg-sub">Полный граф на \(n\) вершинах (здесь \(n=6\)) с рёбрами стоимости \(1\) и \(2\): толстые рёбра стоимости \(1\) образуют звезду \(K_{1,n-1}\) и цикл на остальных \(n-1\) вершинах. Наведите курсор на ребро, чтобы увидеть его стоимость; кнопка справа прокладывает неудачный обход.</p>
+  <div class="fg-controls"><button type="button" id="dtt-go">Показать неудачный обход</button><button type="button" id="dtt-clear">Скрыть</button></div>
+  <div class="fg-row">
+    <div id="dtt-opt" class="fg-plot" style="max-width:290px;height:300px;"></div>
+    <div id="dtt-bad" class="fg-plot" style="max-width:290px;height:300px;"></div>
+  </div>
+  <div id="dtt-cap" class="fg-caption">(а) Оптимальный обход коммивояжёра стоимости \(n=6\): цикл по дешёвым рёбрам (центр \(\to\) внешняя вершина \(\to\) по циклу \(\to\) центр). (б) Если алгоритм найдёт MST в виде звезды с центром в \(1\), а эйлеров обход посетит вершины в порядке \(5,3,2,1,4,6\), то после срезания углов цикл содержит \(n-2\) рёбер стоимости \(2\) — стоимость \(2n-2\), при \(n\to\infty\) вдвое больше оптимума.</div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, C = G.colors;
+  function polar(a, r){ var t = a * Math.PI / 180; return [r * Math.cos(t), r * Math.sin(t)]; }
+  var P = { c: [0, 0], p1: polar(90, 2.2), p2: polar(162, 2.2), p3: polar(234, 2.2), p4: polar(306, 2.2), p5: polar(18, 2.2) };
+  var CHEAP = [["c","p1"],["c","p2"],["c","p3"],["c","p4"],["c","p5"],["p1","p2"],["p2","p3"],["p3","p4"],["p4","p5"],["p5","p1"]];
+  var EXP = [["p1","p3"],["p1","p4"],["p2","p4"],["p2","p5"],["p3","p5"]];
+  var OPT_TOUR = ["c","p1","p2","p3","p4","p5","c"];
+  G.draw("dtt-opt", G.build({
+    verts: P, size: 20, plotWidthPx: 270, labels: false, range: { x: [-2.9, 2.9], y: [-2.9, 2.9] }, pathTrace: true,
+    edges: CHEAP.map(function(e){ return { u: e[0], v: e[1], color: "#1c1917", width: 2.2, weight: 1 }; }).concat(EXP.map(function(e){ return { u: e[0], v: e[1], color: "#b8b2ab", width: 1, weight: 2 }; })),
+    vert: function(id){ return { hover: id === "c" ? "центр звезды" : "внешняя вершина" }; }
+  }));
+  var V = { "1":[0,0], "5":[-2.4,0.9], "6":[2.4,0.9], "3":[0.4,2.3], "2":[-1.7,-2.1], "4":[1.7,-2.1] };
+  var STAR = ["5","6","3","2","4"].map(function(v){ return { u: "1", v: v, color: "#57534e", width: 2, weight: 1, hover: "ребро найденного MST (звезда), стоимость 1" }; });
+  var VISIT = ["5","3","2","1","4","6","5"];
+  G.draw("dtt-bad", G.build({
+    verts: V, edges: STAR, size: 24, plotWidthPx: 270, range: { x: [-3, 3], y: [-2.8, 2.8] }, pathTrace: true,
+    vert: function(id){ return { hover: id === "1" ? "1: центр звезды-MST" : "вершина " + id }; }
+  }));
+  var cancel = [];
+  document.getElementById("dtt-go").addEventListener("click", function(){
+    cancel.forEach(function(c){ c(); }); cancel = []; G.clearPath("dtt-opt"); G.clearPath("dtt-bad");
+    cancel.push(G.tracePath("dtt-opt", P, OPT_TOUR, { duration: 2400, color: C.green, width: 3.4, done: function(){
+      cancel.push(G.tracePath("dtt-bad", V, VISIT, { duration: 3000, color: C.red, width: 3.4 }));
+    } }));
+  });
+  document.getElementById("dtt-clear").addEventListener("click", function(){ cancel.forEach(function(c){ c(); }); cancel = []; G.clearPath("dtt-opt"); G.clearPath("dtt-bad"); });
+})();
+</script>
+</section>
+<section id="приближенный-алгоритм-1" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="приближенный-алгоритм-1"><span class="header-section-number">2.3</span> <span class="math inline">\(1.5\)</span>-приближенный алгоритм</h2>
+<p>Алгоритм Двойное остовное дерево сначала находит недорогой Эйлеров обход из остовного дерева графа <span class="math inline">\(G\)</span>, а затем из него делает обход коммивояжера методом срезания углов. Существует ли Эйлеров обход, отличный от найденного с помощью двойного остовного дерева? Напомним, что граф имеет Эйлеров обход тогда и только тогда, когда степень каждой его вершины четна. Пусть множество <span class="math inline">\(V^{\prime }\)</span> содержит все вершины, которые имеют нечетную степень в остовном дереве. Тогда количество таких вершин <span class="math inline">\(\left|V^{\prime }\right|\)</span> должно быть четно, поскольку сумма степеней всех вершин в любом графе четна. Если мы добавим к минимальному остовному дереву минимальное совершенное паросочетание для множества <span class="math inline">\(V^{\prime }\)</span>, то степень каждой вершины будет четна, и мы получим Эйлеров граф. Напомним, что задача нахождения совершенного паросочетания минимальной стоимости разрешима за полиномиальное время.</p>
+<div class="callout callout-style-simple callout-mn-alg no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="alg-3" class="algorithm-box theorem algorithm">
+<p><span class="theorem-title"><strong>Algorithm 3</strong></span> <strong>Алгоритм Кристофидеса-Сердюкова (<span class="math inline">\(G=(V, E), \operatorname {cost} : E \rightarrow \mathbf{Q}^{+}\)</span>)</strong></p>
+<ul>
+<li>Найти минимальное остовное дерево <span class="math inline">\(T\)</span> в графе <span class="math inline">\(G\)</span>.</li>
+<li>Найти паросочетание минимальной стоимости <span class="math inline">\(M\)</span> на множестве вершин в <span class="math inline">\(T\)</span> с нечетными степенями.</li>
+<li>Добавить ребра <span class="math inline">\(M\)</span> к <span class="math inline">\(T\)</span> и получить Эйлеров граф <span class="math inline">\(H\)</span>.</li>
+<li>Найти Эйлеров обход <span class="math inline">\(R\)</span> в графе <span class="math inline">\(H\)</span>.</li>
+<li>Построить Гамильтонов цикл <span class="math inline">\(C\)</span>, посещая вершины графа <span class="math inline">\(G\)</span> в том порядке, в котором они встречаются в <span class="math inline">\(R\)</span>.</li>
+<li><strong>возврат</strong> <span class="math inline">\(C\)</span>.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="cha" class="fpmi-graph">
+  <h2 class="fg-title anchored">Алгоритм Кристофидеса–Сердюкова</h2>
+  <p class="fg-sub">Тот же граф \(v_1,\ldots,v_9\), что и в алгоритме «Двойное остовное дерево». Вместо удвоения всего дерева добавляем лишь минимальное совершенное паросочетание на вершинах нечётной степени — обход дешевле: \(\le\frac32\cdot\mathrm{OPT}\). Наведите курсор на вершину, чтобы увидеть её степень.</p>
+  <div id="cha-ctl"></div>
+  <div id="cha-plot" class="fg-plot" style="max-width:520px;height:420px;"></div>
+  <div id="cha-cap" class="fg-caption"></div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, C = G.colors;
+  var V = { v1:[0.3,4.0], v2:[4.3,4.0], v3:[1.6,2.9], v4:[2.7,2.9], v5:[4.9,2.9], v6:[1.3,1.7], v7:[4.2,1.7], v8:[0.0,0.2], v9:[1.6,0.2] };
+  var OTHER = [["v1","v2"],["v2","v5"],["v3","v9"],["v3","v7"],["v5","v9"],["v5","v6"],["v6","v7"],["v8","v9"]];
+  var MST = [["v3","v1"],["v3","v4"],["v4","v2"],["v4","v7"],["v7","v5"],["v3","v6"],["v6","v8"],["v6","v9"]];
+  var MATCH = [["v1","v6"],["v2","v3"],["v4","v5"],["v8","v9"]];
+  var DEG = {}; Object.keys(V).forEach(function(v){ DEG[v] = 0; }); MST.forEach(function(e){ DEG[e[0]]++; DEG[e[1]]++; });
+  var EULER = ["v1","v3","v2","v4","v5","v7","v4","v3","v6","v8","v9","v6","v1"];
+  var CYCLE = ["v1","v3","v2","v4","v5","v7","v6","v8","v9","v1"];
+  var E = OTHER.map(function(e){ return { u: e[0], v: e[1], kind: "other" }; })
+    .concat(MST.map(function(e){ return { u: e[0], v: e[1], kind: "mst" }; }))
+    .concat(MATCH.map(function(e){ return { u: e[0], v: e[1], kind: "match", bend: (e[0] === "v1") ? 0.35 : 0 }; }));
+  var CAPS = [
+    "Шаг 1: находим минимальное остовное дерево \\(T\\) (зелёное).",
+    "Шаг 2: отмечаем степени вершин в \\(T\\). Вершины нечётной степени — \\(\\{v_1,v_2,v_3,v_4,v_5,v_6,v_8,v_9\\}\\) (розовые); их всегда чётное число. У \\(v_7\\) степень \\(2\\).",
+    "Шаг 3: на вершинах нечётной степени находим минимальное по стоимости совершенное паросочетание \\(M\\) (красное). В \\(T+M\\) все степени чётны.",
+    "Шаг 4: строим эйлеров обход графа \\(T+M\\) (синяя линия) — он проходит каждое ребро ровно один раз, стоимость \\(\\mathrm{cost}(T)+\\mathrm{cost}(M)\\).",
+    "Шаг 5: «срезаем углы» — получаем гамильтонов цикл (красный). Так как \\(\\mathrm{cost}(T)\\le\\mathrm{OPT}\\) и \\(\\mathrm{cost}(M)\\le\\frac12\\mathrm{OPT}\\), стоимость обхода \\(\\le\\frac32\\cdot\\mathrm{OPT}\\)."
+  ];
+  var cancel = null;
+  function render(step){
+    if (cancel) { cancel(); cancel = null; }
+    var el = document.getElementById("cha-plot");
+    if (el.__fpmiGraph) G.clearPath(el);
+    G.draw(el, G.build({
+      verts: V, edges: E, size: 22, plotWidthPx: 500, range: { x: [-0.8, 5.6], y: [-0.6, 4.6] }, pathTrace: true,
+      edge: function(e){
+        var n = G.plainLabel(e.u) + " — " + G.plainLabel(e.v);
+        if (e.kind === "other") return { color: C.edgeFaded, width: 0.8, opacity: step >= 3 ? 0.3 : 0.9, hover: "ребро полного графа " + n };
+        if (e.kind === "mst") return { color: C.green, width: 2.4, opacity: step >= 3 ? 0.55 : 1, hover: "ребро MST " + n };
+        return { color: C.red, width: 2.4, opacity: step >= 2 ? (step >= 3 ? 0.55 : 1) : 0, hover: "ребро паросочетания M: " + n };
+      },
+      vert: function(id){
+        var odd = DEG[id] % 2 === 1, n = G.plainLabel(id) + ": степень в T = " + DEG[id];
+        if (step === 1) return odd ? { color: C.redSoft, line: "#7f1d1d", hover: n + " (нечётная)" } : { color: C.sel, line: C.sel, hover: n + " (чётная)" };
+        if (step >= 2) return odd ? { color: C.redSoft, line: "#7f1d1d", hover: n + " → в T+M: " + (DEG[id] + 1) } : { hover: n + " → в T+M: " + DEG[id] };
+        return { hover: n };
+      }
+    }), { then: function(){
+      if (step === 3) cancel = G.tracePath(el, V, EULER, { duration: 4800, color: "#2a78d6", width: 3.2 });
+      if (step === 4) cancel = G.tracePath(el, V, CYCLE, { duration: 3600, color: C.red, width: 3.4 });
+    } });
+    G.setCaption("cha-cap", CAPS[step]);
+  }
+  G.player({ container: "cha-ctl", count: 5, autoplayMs: 5600, render: render });
+})();
+</script>
+<p>Для оценки точности этого алгоритма приведем новую нижнюю оценку на стоимость оптимального решения в задаче коммивояжера.</p>
+<div class="callout callout-style-simple callout-mn-lem no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="lem-5" class="lemma theorem">
+<p><span class="theorem-title"><strong>Лемма 1</strong></span> Пусть <span class="math inline">\(V^{\prime } \subseteq V\)</span>, такое, что <span class="math inline">\(\left|V^{\prime }\right|\)</span> четно, и пусть <span class="math inline">\(M-\)</span> минимальное по стоимости совершенное паросочетание для <span class="math inline">\(V^{\prime }\)</span>. Тогда <span class="math inline">\(\operatorname {cost}(M) \leq \operatorname {OPT} / 2\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-proof no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Mn-proof</span>Доказательство
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="mn-proof-body">
+<p>Рассмотрим оптимальный цикл <span class="math inline">\(\tau\)</span> в задаче коммивояжера на графе <span class="math inline">\(G\)</span>. Пусть цикл <span class="math inline">\(\tau^{\prime }\)</span> получается из <span class="math inline">\(\tau\)</span> на множестве вершин <span class="math inline">\(V^{\prime }\)</span> методом срезания углов. Из неравенства треугольника имеем, что <span class="math inline">\(\operatorname {cost}\left(\tau^{\prime }\right) \leq \operatorname {cost}(\tau )\)</span>. Но <span class="math inline">\(\tau^{\prime }\)</span> является объединением двух совершенных паросочетаний на <span class="math inline">\(V^{\prime }\)</span>, составленных из чередующихся ребер цикла <span class="math inline">\(\tau^{\prime }\)</span>. Таким образом, наименьшее из двух паросочетаний имеет стоимость не более <span class="math inline">\(\operatorname {cost}\left(\tau^{\prime }\right) / 2 \leq \operatorname {OPT} / 2\)</span>. Следовательно, оптимальное паросочетание также имеет стоимость не более <span class="math inline">\(\operatorname {OPT} / 2\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-6" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 5</strong></span> Алгоритм Кристофидеса-Сердюкова является <span class="math inline">\(\frac{3}{2}\)</span>-приближенным алгоритмом для метрической задачи коммивояжера.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-proof no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Mn-proof</span>Доказательство
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="mn-proof-body">
+<p>Оценим стоимость Эйлерова обхода <span class="math inline">\(R\)</span> <span class="math display">\[
+  \operatorname {cost}(R) \leq \operatorname {cost}(T)+\operatorname {cost}(M) \leq \operatorname {OPT}+\frac{1}{2} \operatorname {OPT}=\frac{3}{2} \operatorname {OPT}  
+\]</span> Используя неравенство треугольника, получим <span class="math inline">\(\operatorname {cost}(C) \leq \operatorname {cost}(R)\)</span>. Теорема доказана.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="cte" class="fpmi-graph">
+  <h2 class="fg-title anchored">Точность оценки \(3/2\) для алгоритма Кристофидеса–Сердюкова</h2>
+  <p class="fg-sub">Зигзагообразная цепочка из \(m=\lceil n/2\rceil\) треугольников, все показанные рёбра стоимости \(1\). Жирные рёбра — MST \(T\) (путь-зигзаг): у него ровно две вершины нечётной степени — концы, и паросочетание на них — одно ребро между концами, стоимость которого (по метрике кратчайших путей) равна \(\lceil n/2\rceil\). Кнопка прокладывает обход алгоритма.</p>
+  <div class="fg-controls">
+    <label>\(m=\lceil n/2\rceil=\)</label><input type="range" id="cte-m" min="2" max="8" step="1" value="4" style="width:180px;"><span class="fg-val" id="cte-mval">4</span>
+    <button type="button" id="cte-go">Показать обход алгоритма</button>
+  </div>
+  <div id="cte-plot" class="fg-plot" style="max-width:640px;height:250px;"></div>
+  <div id="cte-cap" class="fg-caption"></div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, C = G.colors;
+  var m = 4, cancel = null;
+  function draw(){
+    if (cancel) { cancel(); cancel = null; }
+    var V = {}, order = [], E = [], zig = [];
+    for (var i = 0; i <= m; i++) { V["t" + i] = [2 * i, 1]; order.push("t" + i); }
+    for (i = 0; i < m; i++) { V["b" + i] = [2 * i + 1, 0]; order.push("b" + i); }
+    for (i = 0; i < m; i++) { E.push({ u: "t" + i, v: "b" + i, weight: 1, kind: "mst" }, { u: "b" + i, v: "t" + (i + 1), weight: 1, kind: "mst" }); zig.push("t" + i, "b" + i); }
+    zig.push("t" + m);
+    for (i = 0; i + 1 <= m; i += 2) E.push({ u: "t" + i, v: "t" + (i + 1), weight: 1, kind: "bridge" });
+    for (i = 0; i + 1 < m; i += 2) E.push({ u: "b" + i, v: "b" + (i + 1), weight: 1, kind: "bridge" });
+    E.push({ u: "t0", v: "t" + m, kind: "close", bend: -0.9, weight: m });
+    var n = 2 * m + 1, alg = (n - 1) + m;
+    var el = document.getElementById("cte-plot");
+    if (el.__fpmiGraph) G.clearPath(el);
+    G.draw(el, G.build({
+      verts: V, order: order, edges: E, size: 14, halo: false, labels: false, plotWidthPx: 620, weights: m <= 5, pathTrace: true,
+      range: { x: [-0.6, 2 * m + 0.6], y: [-0.8, 2.6] },
+      edge: function(e){
+        if (e.kind === "mst") return { color: "#1c1917", width: 2.4, hover: "ребро MST, стоимость 1" };
+        if (e.kind === "bridge") return { color: "#a8a29e", width: 1.2, hover: "«перемычка», стоимость 1 — используется оптимальным обходом" };
+        return { color: C.red, width: 1.4, dash: "dot", hover: "паросочетание на двух нечётных вершинах: ребро между концами зигзага, стоимость ⌈n/2⌉ = " + m };
+      },
+      vert: function(id){ var end = id === "t0" || id === "t" + m; return { color: end ? C.redSoft : C.vert, line: end ? "#7f1d1d" : C.vertLine, hover: end ? "конец пути: нечётная степень в T" : "внутренняя вершина пути: степень 2" }; }
+    }));
+    G.setCaption("cte-cap", "\\(n=" + n + "\\): обход по \\(T\\) плюс ребро паросочетания: \\((n-1)+\\lceil n/2\\rceil=" + (n - 1) + "+" + m + "=" + alg + "\\); оптимум \\(n=" + n + "\\); отношение \\(" + (alg / n).toFixed(3) + "\\to\\frac32\\).");
+    document.getElementById("cte-go").onclick = function(){
+      if (cancel) cancel(); G.clearPath(el);
+      cancel = G.tracePath(el, V, zig.concat(["t0"]), { duration: 350 * (zig.length), color: C.red, width: 3.2 });
+    };
+  }
+  document.getElementById("cte-m").addEventListener("input", function(){ m = +this.value; document.getElementById("cte-mval").textContent = m; draw(); });
+  draw();
+})();
+</script>
+<p>Можно ли подобрать алгоритм с лучшей точностью? Да! В 2020 году был получен алгоритм с точностью <span class="math inline">\(\alpha &lt; 1.5 - 10^{-36}\)</span>. Улучшение, как видно, не очень существенно. Поиски лучших приближенных алгоритмов с гарантированной оценкой точности для метрической задачи коммивояжера продолжаются. Многие ученые считают, что должен существовать <span class="math inline">\(\frac{4}{3}\)</span>-приближенный алгоритм.</p>
+<p>Метрическая задача коммивояжера не может быть аппроксимирована с коэффициентом меньше <span class="math inline">\(\frac{123}{122} \approx 1.008\)</span> (в предположении <span class="math inline">\(\operatorname {P} \neq \operatorname {NP}\)</span>).</p>
+<p>Для евклидовой задачи коммивояжера (случай, когда вершины графа – это точки в <span class="math inline">\(\mathbb {R}^{n}\)</span>, а стоимость ребра равна евклидовой метрике) существует приближенный алгоритм с коэффициентом <span class="math inline">\((1+\varepsilon )\)</span> для любого <span class="math inline">\(\varepsilon &gt; 0\)</span>. Т.е. существует полиномиальная приближенная схема. Однако она не вполне полиномиальная, зависимость от <span class="math inline">\(\frac{1}{\varepsilon }\)</span> не полиномиальная.</p>
+</section>
+</section>
+<section id="задачи" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Задачи</h1>
+<div id="prob-1" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Трудность задачи Штейнера состоит в поиске оптимального подмножества вершин Штейнера, которые необходимо включить в дерево. Показать, что если это множество известно, то задача Штейнера решается за полиномиальное время.</p>
+</div>
+</div>
+</div>
+<div id="prob-2" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Найти в полном графе на рис. ниже приближенное решение задачи коммивояжера, используя Алгоритм Двойное остовное дерево и Алгоритм Кристофидеса-Сердюкова.</p>
+<div id="tei" class="fpmi-graph">
+  <h2 class="fg-title anchored" data-anchor-id="задачи">Задача коммивояжёра: индивидуальная задача</h2>
+  <p class="fg-sub">Полный граф на 7 вершинах \(A,\ldots,G\); стоимости рёбер \((A,E)\), \((B,F)\), \((C,G)\) равны \(19\). Наведите курсор на вершину, чтобы подсветить все её рёбра, или на середину ребра — чтобы увидеть его стоимость. Найти приближённые решения задачи коммивояжёра.</p>
+  <div id="tei-plot" class="fg-plot" style="max-width:480px;height:470px;"></div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, C = G.colors;
+  var V = { G:[-1.6,2.6], A:[0.6,3.0], B:[2.6,1.6], C:[2.2,-1.1], D:[0.3,-2.4], E:[-1.9,-2.1], F:[-2.7,0.5] };
+  var E = [["G","A",9],["A","B",8],["B","C",9],["C","D",8],["D","E",14],["E","F",8],["F","G",9],["G","B",16],["G","C",19],["G","D",16],["G","E",16],
+           ["A","C",12],["A","D",7],["A","E",19],["A","F",11],["B","D",13],["B","E",15],["B","F",19],["C","E",13],["C","F",15],["D","F",9]];
+  G.draw("tei-plot", G.build({
+    verts: V, edges: E, size: 28, plotWidthPx: 460, weights: true, range: { x: [-3.4, 3.4], y: [-3.1, 3.7] },
+    edge: function(e){ return { color: e.weight <= 9 ? "#78716c" : "#c4bfb8", width: e.weight <= 9 ? 1.4 : 0.9 }; },
+    vert: function(id){
+      var inc = E.filter(function(e){ return e[0] === id || e[1] === id; }).sort(function(a, b){ return a[2] - b[2]; });
+      return { hover: id + ": ближайшие — " + inc.slice(0, 2).map(function(e){ return (e[0] === id ? e[1] : e[0]) + " (" + e[2] + ")"; }).join(", ") };
+    }
+  }));
+})();
+</script>
+</div>
+</div>
+</div>
+<div id="prob-3" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Рассмотрим вариант метрической задачи коммивояжера, в котором необходимо найти простой путь, содержащий все вершины графа. В зависимости от числа заданных концов пути (0,1 или 2) возникает три задачи.</p>
+<ol type="1">
+<li><p>Построить <span class="math inline">\(3/2\)</span>-приближенный алгоритм для случая, если задана только одна конечная точка или ни одной.</p></li>
+<li><p>Построить <span class="math inline">\(5/3\)</span>-приближенный алгоритм для случая, если заданы обе конечные точки.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="prob-4" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Рассмотрим следующий алгоритм решения метрической задачи коммивояжера. Сначала найдем два самых близких города, обозначим их <span class="math inline">\(i\)</span> и <span class="math inline">\(j\)</span>. Построим цикл <span class="math inline">\(S\)</span>, проходящий через них: <span class="math inline">\(i \rightarrow j \rightarrow i\)</span>. На каждой следующей итерации найдем пару городов <span class="math inline">\(i \in S\)</span> и <span class="math inline">\(j \notin S\)</span> с минимальным расстоянием <span class="math inline">\(c_{i j}\)</span>. Добавим город <span class="math inline">\(j\)</span> в цикл <span class="math inline">\(S\)</span> сразу после города <span class="math inline">\(i\)</span>. Доказать, что этот алгоритм является <span class="math inline">\(2\)</span>-приближенным.</p>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Скопировано");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Скопировано");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<!--
+  Hover preview for @expl-... (example) cross-references.
+
+  Quarto's own html format already ships a native crossref-hover-preview
+  script (bundled tippy, no CDN, wired up for every a.quarto-xref link --
+  see site_libs/quarto-html/tippy.umd.min.js and the inline tippyHover/
+  processXRef script Quarto emits near the end of <body>). That native
+  script now covers theorem-family types too, since
+  _extensions/mn-theorems wraps them into real Quarto callouts.
+
+  Examples are the one remaining gap: mn-problems.lua's Pandoc filter
+  intercepts @expl-... citations and emits a raw `<a class="xref-callout"
+  data-tippy-ref="...">` directly, bypassing Quarto's own crossref
+  resolution entirely (needed because examples use the filter's own custom
+  numbering, not Quarto's native one) -- so they never get the
+  a.quarto-xref class Quarto's native script looks for. This file only
+  fills that one gap, reusing the SAME window.tippy Quarto's native script
+  already set up (no separate Popper/Tippy load of our own -- an earlier
+  version of this file loaded Popper+Tippy from unpkg.com via plain
+  <script src>, which registered as an anonymous AMD module on pages with
+  Quarto's RequireJS loader and broke both the popup AND, as collateral
+  damage, quarto's own native tippy setup).
+-->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (!window.tippy) return; // native script didn't run (shouldn't happen on an html-format page)
+
+  document.querySelectorAll("a.xref-callout").forEach(function (anchor) {
+    var targetId = anchor.getAttribute("data-tippy-ref");
+    var inner = targetId && document.getElementById(targetId);
+    if (!inner) return;
+
+    var outer = inner.closest(".callout-style-default") || inner;
+
+    tippy(anchor, {
+      content: function () {
+        var clone = outer.cloneNode(true);
+        var uid = "mn-xref-" + targetId;
+        clone.querySelectorAll("[id]").forEach(function (el) {
+          el.id = uid + "-" + el.id;
+        });
+        clone.querySelectorAll("[data-bs-target]").forEach(function (el) {
+          var orig = el.getAttribute("data-bs-target");
+          el.setAttribute("data-bs-target", "." + uid + "-" + orig.replace(/^\./, ""));
+        });
+        clone.querySelectorAll("[aria-controls]").forEach(function (el) {
+          el.setAttribute("aria-controls", uid + "-" + el.getAttribute("aria-controls"));
+        });
+        if (window.Quarto && window.Quarto.typesetMath) {
+          window.Quarto.typesetMath(clone);
+        }
+        return clone;
+      },
+      allowHTML: true,
+      interactive: true,
+      maxWidth: 500,
+      theme: "quarto",
+      placement: "bottom-start",
+      appendTo: function (el) { return el.parentElement; },
+    });
+  });
+});
+</script>
+
+
+
+
+</body></html>

@@ -1,0 +1,2818 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Гильбертовы пространства – Курсы ФПМИ</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/favicon.ico" rel="icon">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-18b92d25f2a0372079463917332f47f0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-90af2ae3f5f11ccb077ed1c2d3900ada.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/quarto-contrib/mn-problems-1.0.0/mn-problems.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/mn-theorems-1.0.0/mn-theorems.css" rel="stylesheet">
+<script src="../../../../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Поиск не дал результатов",
+    "search-matching-documents-text": "Результаты поиска",
+    "search-copy-link-title": "Скопировать ссылку",
+    "search-hide-matches-text": "Скрыть дополнительные результаты",
+    "search-more-match-text": "дополнительный результат в этом документе",
+    "search-more-matches-text": "дополнительных результата(-ов) в этом документе",
+    "search-clear-button-title": "Очистить",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Отменить",
+    "search-submit-button-title": "Найти",
+    "search-label": "Поиск"
+  }
+}</script>
+<style>
+div.callout-todo.callout {
+  border-left-color: pink;
+}
+div.callout-todo.callout-style-default .callout-header {
+  background-color: rgb(from pink r g b / 13%);
+}
+div.callout-todo .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.callout-titled .callout-icon::before {
+  content: '📝';
+  background-image: none;
+}
+div.callout-enum-item.callout {
+  border-left-color: #008000;
+}
+div.callout-enum-item.callout-style-default .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-enum-item .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-enum-item.callout-style-default .callout-icon::before, div.callout-enum-item.callout-titled .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23008000" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/></svg>');
+}
+div.callout-thumbs-up.callout {
+  border-left-color: #008000;
+}
+div.callout-thumbs-up.callout-style-default .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-thumbs-up .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-thumbs-up.callout-style-default .callout-icon::before, div.callout-thumbs-up.callout-titled .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23008000" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/></svg>');
+}
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/logo.png" alt="" class="navbar-logo light-content">
+    <img src="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/logo.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../../../index.html">
+    <span class="navbar-title">Курсы ФПМИ</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Поиск"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Переключить навигацию" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> 
+<span class="menu-text">Главная</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Курсы</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../../courses/index.html">
+ <span class="dropdown-text">Все курсы (37)</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../../courses/04-probability/index.html">
+ <span class="dropdown-text">Вероятность (4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/01-analysis/index.html">
+ <span class="dropdown-text">Анализ (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/02-algebra/index.html">
+ <span class="dropdown-text">Алгебра (4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/03-discrete-cs/index.html">
+ <span class="dropdown-text">Дискретная математика и CS (9)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/05-programming-systems/index.html">
+ <span class="dropdown-text">Программирование и системы (7)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/06-data-computing/index.html">
+ <span class="dropdown-text">Данные и вычисления (5)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Учебный план</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">    
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/I.html">
+ <span class="dropdown-text">I семестр (7)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/II.html">
+ <span class="dropdown-text">II семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/III.html">
+ <span class="dropdown-text">III семестр (9)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/IV.html">
+ <span class="dropdown-text">IV семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/V.html">
+ <span class="dropdown-text">V семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/VI.html">
+ <span class="dropdown-text">VI семестр (4)</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--2" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">О проекте</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu--2">    
+        <li>
+    <a class="dropdown-item" href="../../../../about.html">
+ <span class="dropdown-text">О проекте</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../editorial-policy.html">
+ <span class="dropdown-text">Статус материалов и редакционная политика</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://mipt.ru/education/schools/fpmi"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:web" style="font-size: 1.25em;" aria-label="Icon web from mdi Iconify.design set." title="Сайт ФПМИ"></iconify-icon></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../courses/01-analysis/FA/contents/050_HilbSp.html">5. Гильбертовы пространства</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
+<div style="font-weight: bold; font-size: 1.1em;">
+<p>Функциональный анализ</p>
+</div>
+</div></div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/01-analysis/FA/overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Обзор курса</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/01-analysis/FA/passport.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Паспорт курса</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/01-analysis/FA/contents/010_MeSp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Метрические пространства: введение</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/01-analysis/FA/contents/020_TopSp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Топологические пространства</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/01-analysis/FA/contents/030_BanSp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Банаховы пространства</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/01-analysis/FA/contents/040_LpSp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Лебеговы пространства</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/01-analysis/FA/contents/050_HilbSp.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">5. Гильбертовы пространства</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/01-analysis/FA/contents/060_GenFunc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Обобщенные функции</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/01-analysis/FA/contents/070_LinMapsOnHilbSp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Ограниченные операторы в гильбертовых пространствах</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/01-analysis/FA/contents/080_weak_conv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. Слабая сходимость в банаховом пространстве</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/01-analysis/FA/contents/090_fourier_transform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. Преобразование Фурье (ПФ)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/01-analysis/FA/contents/100_nonlin_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. Нелинейный анализ</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Содержание</h2>
+   
+  <ul>
+  <li><a href="#пространства-со-скалярным-произведением" id="toc-пространства-со-скалярным-произведением" class="nav-link active" data-scroll-target="#пространства-со-скалярным-произведением"><span class="header-section-number">1</span> Пространства со скалярным произведением</a>
+  <ul class="collapse">
+  <li><a href="#норма-и-неравенство-коши-буняковского" id="toc-норма-и-неравенство-коши-буняковского" class="nav-link" data-scroll-target="#норма-и-неравенство-коши-буняковского"><span class="header-section-number">1.1</span> Норма и неравенство Коши-Буняковского</a></li>
+  </ul></li>
+  <li><a href="#ортогональность" id="toc-ортогональность" class="nav-link" data-scroll-target="#ортогональность"><span class="header-section-number">2</span> Ортогональность</a>
+  <ul class="collapse">
+  <li><a href="#ортогональные-проекции" id="toc-ортогональные-проекции" class="nav-link" data-scroll-target="#ортогональные-проекции"><span class="header-section-number">2.1</span> Ортогональные проекции</a></li>
+  <li><a href="#ортогональные-дополнения" id="toc-ортогональные-дополнения" class="nav-link" data-scroll-target="#ортогональные-дополнения"><span class="header-section-number">2.2</span> Ортогональные дополнения</a></li>
+  <li><a href="#теорема-рисса-фреше-о-представлении-гп-сопряжено-самому-себе" id="toc-теорема-рисса-фреше-о-представлении-гп-сопряжено-самому-себе" class="nav-link" data-scroll-target="#теорема-рисса-фреше-о-представлении-гп-сопряжено-самому-себе"><span class="header-section-number">2.3</span> Теорема Рисса-Фреше о представлении: ГП сопряжено самому себе</a></li>
+  </ul></li>
+  <li><a href="#ортогональный-базис" id="toc-ортогональный-базис" class="nav-link" data-scroll-target="#ортогональный-базис"><span class="header-section-number">3</span> Ортогональный базис</a>
+  <ul class="collapse">
+  <li><a href="#неравенство-бесселя" id="toc-неравенство-бесселя" class="nav-link" data-scroll-target="#неравенство-бесселя"><span class="header-section-number">3.1</span> Неравенство Бесселя</a></li>
+  <li><a href="#тождество-парсеваля" id="toc-тождество-парсеваля" class="nav-link" data-scroll-target="#тождество-парсеваля"><span class="header-section-number">3.2</span> Тождество Парсеваля</a></li>
+  <li><a href="#существование-онб-в-сепарабельном-гп-конструктивное-доказательство-через-процесс-грама-шмидта" id="toc-существование-онб-в-сепарабельном-гп-конструктивное-доказательство-через-процесс-грама-шмидта" class="nav-link" data-scroll-target="#существование-онб-в-сепарабельном-гп-конструктивное-доказательство-через-процесс-грама-шмидта"><span class="header-section-number">3.3</span> Существование ОНБ в сепарабельном ГП: конструктивное доказательство через процесс Грама-Шмидта</a></li>
+  <li><a href="#лучшая-аппроксимация" id="toc-лучшая-аппроксимация" class="nav-link" data-scroll-target="#лучшая-аппроксимация"><span class="header-section-number">3.4</span> Лучшая аппроксимация</a></li>
+  <li><a href="#теорема-риссафреше-о-представлении-revisited" id="toc-теорема-риссафреше-о-представлении-revisited" class="nav-link" data-scroll-target="#теорема-риссафреше-о-представлении-revisited"><span class="header-section-number">3.5</span> Теорема Рисса–Фреше о представлении revisited</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<!--
+  Explicit RequireJS path mapping for "plotly", used by every hand-built
+  interactive widget on this site via require(["plotly"], function(Plotly){...}).
+
+  There was never a require.config() call anywhere setting this up -- it
+  only ever worked because Plotly's own UMD bundle, loaded elsewhere on the
+  same page via a plain <script src> for a simple (non-widget) fig.show()
+  figure, self-registers as an anonymous AMD module when window.define
+  exists (Quarto's RequireJS loader, used for MathJax), and RequireJS
+  happens to attribute that anonymous module to the "plotly" name if the
+  timing/script-load-order lines up. That's pure luck, not a real mapping --
+  a page with only widget figures (no plain fig.show() figure to "donate"
+  its Plotly load) had nothing to claim from, and any change to script load
+  order/timing (e.g. removing an unrelated script elsewhere on the page)
+  can flip which pending require() call an anonymous define() gets
+  attributed to, breaking it silently. Explicit config removes the guesswork.
+
+  Two separate failure modes found in practice, both fixed here:
+
+  (A) A page with ONLY hand-built widgets (no {python} cell at all -- e.g.
+  specials/030/020_quantile_function_fig.qmd) never gets Quarto's own
+  <script src=".../requirejs@.../require.min.js"> in <head> in the first
+  place: that tag is only emitted when the page has a Jupyter code cell.
+  window.require is simply undefined there, so the widget's own
+  require(["plotly"], ...) throws "require is not defined" unconditionally
+  -- not a network flake, 100% of the time regardless of connection quality.
+  Fixed below by synchronously document.write-ing a local copy of
+  require.min.js when window.require isn't already present -- document.write
+  from an inline <script> during initial HTML parsing inserts into the parse
+  stream immediately, so by the next statement window.require is guaranteed
+  defined, still fully synchronously (no defer/async race).
+
+  (B) A page with BOTH a plain fig.show() figure AND a hand-built widget:
+  RequireJS *is* already in <head> here, so this file's require.config()
+  below does run against a real window.require. But the Jupyter-generated
+  embed script for the fig.show() figure -- which appears later in <body>,
+  wherever that Python cell sits -- unconditionally calls
+  require.undef("plotly") followed by its OWN require.config() pointing at
+  a *different* version on the *same* external CDN (observed:
+  cdn.plot.ly/plotly-2.35.2.min vs. the 3.4.0 configured here), clobbering
+  this file's mapping before the widget's own require(["plotly"], ...) ever
+  runs. Both that Jupyter-set path and this file's own local path hit the
+  same real-world failure: cdn.plot.ly answers anywhere from ~1.5s to a full
+  10s+ timeout under real network conditions (measured directly). A
+  requirejs.onError handler below catches exactly the resulting timeout on
+  the "plotly" module -- regardless of which of the two require.config()
+  calls most recently set its path -- and retries once against the local
+  bundle.
+-->
+<script>
+if (typeof window.require === "undefined") {
+  document.write('<script src="/site_libs/quarto-contrib/mn-plotly-1.0.0/require.min.js"><\/script>');
+}
+</script>
+<script>
+if (window.require && window.require.config) {
+  window.require.config({
+    paths: { plotly: "/site_libs/quarto-contrib/mn-plotly-1.0.0/plotly.min" },
+    // shim.exports: after the script loads, hand require(["plotly"],...)
+    // callers the *global* window.Plotly instead of trusting whatever (if
+    // anything) the script itself passed to define() -- Plotly's own UMD
+    // wrapper reliably sets window.Plotly regardless of AMD context (also
+    // used directly by every plain fig.show() figure on this site, whose
+    // own generated embed script never goes through RequireJS at all), but
+    // its anonymous define() call is not reliably attributed to the
+    // "plotly" request specifically when this same URL is also loaded via
+    // a separate plain <script src> elsewhere on the page (a simple,
+    // non-widget figure) -- shim sidesteps that ambiguity entirely.
+    shim: { plotly: { exports: "Plotly" } }
+  });
+  // See failure mode (B) above: a later Jupyter-generated fig.show() embed
+  // script can still call its own require.undef("plotly") +
+  // require.config({paths: {plotly: <external CDN>}}) after this runs,
+  // pointing "plotly" back at an unreliable external host. This handler
+  // fires on ANY module load timeout; when it's specifically "plotly", drop
+  // whatever path is currently registered (however it got there) and retry
+  // once against the local bundle instead of the external CDN.
+  //
+  // Deliberately never re-throws: once the retry above is issued, the
+  // ORIGINAL failed network request for the external CDN copy can still
+  // land afterwards and fire a second, by-then-harmless onError (verified:
+  // requireType "scripterror", after the retry has already resolved the
+  // widget's real require(["plotly"], callback) via RequireJS's own
+  // pending-callback bookkeeping) -- throwing there would surface a
+  // spurious uncaught exception for something already fixed. console.warn
+  // keeps that visible in devtools without it looking like a live failure.
+  window.require.onError = function (err) {
+    if (err.requireModules && err.requireModules.indexOf("plotly") !== -1) {
+      if (err.requireType === "timeout") {
+        window.require.undef("plotly");
+        window.require.config({ paths: { plotly: "/site_libs/quarto-contrib/mn-plotly-1.0.0/plotly.min" } });
+        window.require(["plotly"]);
+      } else {
+        console.warn("plotly require() error after fallback (likely a stale network request):", err);
+      }
+    } else {
+      throw err;
+    }
+  };
+}
+</script>
+
+<!--
+  window.fpmiWithMathJax(cb): same rationale as the FPMI homepage loader (_home_widgets/loader.qmd)'s
+  copy of this helper (see there for the original), extended to course
+  pages. Quarto only emits a <script defer src=".../mathjax@3/.../tex-*.js">
+  tag in <head> at all when it sees real markdown math OUTSIDE any
+  ```{=html}``` block on the page -- a hand-built widget's math lives
+  entirely inside \(...\)/\[...\] strings in JS-generated DOM content
+  (e.g. a dynamically updated status line), which Quarto's static math
+  scanner never looks inside, so a page whose ONLY math is like that (no
+  prose math of its own) gets no MathJax script at all. Confirmed on an
+  already-shipped widget (030/020_quantile_function_fig.qmd's #qf-status)
+  that had silently never rendered its \(...\) as real math since it was
+  written -- not a new bug, just never noticed because the broken math was
+  inside dynamically-generated text rather than the static page body.
+
+  Three cases this handles, in order:
+  1. window.MathJax already fully started (page had prose math elsewhere,
+     Quarto's own <script defer> already ran) -- just wait on the
+     documented startup.promise signal and fire cb.
+  2. Quarto's own MathJax <script defer> tag IS present in <head> but
+     hasn't executed/initialized yet (defer runs after DOM parsing, and
+     this include-before-body block runs earlier, during parsing) -- poll
+     briefly for window.MathJax to appear rather than racing to load a
+     SECOND copy, which would either double-load or (depending on load
+     order) silently no-op.
+  3. No MathJax script present at all (case A above) -- fetch it ourselves,
+     same URL/approach as loader.qmd.
+-->
+<script>
+window.fpmiWithMathJax = window.fpmiWithMathJax || function (cb) {
+  if (window.MathJax && window.MathJax.startup) { window.MathJax.startup.promise.then(cb); return; }
+  if (window.__fpmiMathJaxQueue) { window.__fpmiMathJaxQueue.push(cb); return; }
+  window.__fpmiMathJaxQueue = [cb];
+  function flushQueue() {
+    var q = window.__fpmiMathJaxQueue;
+    window.__fpmiMathJaxQueue = null;
+    q.forEach(function (f) { f(); });
+  }
+  var hasMathJaxTag = !!document.querySelector('script[src*="mathjax"]');
+  if (hasMathJaxTag) {
+    // Case 2: Quarto's own deferred MathJax script is already in <head> --
+    // poll for it to finish initializing instead of loading a duplicate.
+    var waited = 0;
+    var poll = setInterval(function () {
+      waited += 50;
+      if (window.MathJax && window.MathJax.startup) {
+        clearInterval(poll);
+        window.MathJax.startup.promise.then(flushQueue);
+      } else if (waited > 10000) {
+        // Should never happen (the tag is already there, defer always runs
+        // before window.onload) -- bail rather than poll forever.
+        clearInterval(poll);
+        console.warn("fpmiWithMathJax: gave up waiting for Quarto's own MathJax script to initialize");
+      }
+    }, 50);
+    return;
+  }
+  // Case 3: no MathJax anywhere on the page -- fetch it ourselves. SVG
+  // output specifically (not CHTML, despite Quarto's own injected tag
+  // using CHTML): confirmed Plotly's own $...$ annotation/tick-label math
+  // rendering hard-requires the SVG output jax and throws
+  // 'Output Jax "svg" is not defined' if only CHTML is loaded (its
+  // internal math path calls MathJax.tex2svg specifically, independent of
+  // whatever jax Quarto's page-level script configured) -- same reason
+  // the FPMI homepage loader (_home_widgets/loader.qmd)'s original copy of this helper uses tex-svg.js.
+  var s = document.createElement("script");
+  s.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js";
+  s.onload = function () {
+    window.MathJax.startup.promise.then(flushQueue);
+  };
+  document.head.appendChild(s);
+};
+</script>
+<!--
+  window.fpmiGraph: shared toolkit for the hand-built Plotly *graph diagrams*
+  (vertices + edges) used by the algorithms courses (courses/11-DM-CS/AA/...
+  specials). Plotly has no native graph/network primitives, so every widget
+  used to re-implement the same edge-polyline/marker/annotation plumbing by
+  hand -- and, since a plain `mode:"lines"` polyline can't carry an arrowhead
+  or per-edge hover, all of them ended up as staticPlot line drawings with
+  no direction on directed graphs and no hover at all. This helper gives
+  every widget, from one `spec`:
+
+    * one scatter trace PER EDGE (so an individual edge can be restyled --
+      hover-highlight, per-step emphasis, transitions -- and can have its own
+      hover text via an invisible midpoint marker), optionally curved
+      (`bend`) so a pair of opposite arcs u->v / v->u stays readable;
+    * arrowheads for `directed` edges via layout.annotations in data
+      coordinates, shortened so the head lands on the vertex rim, not under
+      the marker;
+    * a soft halo under each vertex, $...$ MathJax labels via annotations
+      (never mode:"markers+text" -- see project memory: Plotly's marker text
+      is raw SVG <text>, which can't hold MathJax output), and hover labels;
+    * hover-highlight: hovering a vertex lifts its incident edges and dims
+      the rest (plotly_hover/unhover + Plotly.restyle on the edge traces);
+    * animated transitions between algorithm steps (Plotly.animate on a
+      trace layout that stays structurally identical across steps -- the
+      trace count must not change, so per-step differences are expressed
+      purely as style: color/width/opacity/dash);
+    * a step player (prev / next / autoplay, keyboard arrows) that builds its
+      own controls, and a path tracer that grows a highlighted polyline along
+      a vertex sequence over time (Hamiltonian paths, tours, Euler walks).
+
+  Draw order inside `data`: edges (one trace each) -> edge midpoints (hover
+  only) -> halo -> vertices -> optional path trace. Trace indices are
+  returned in `built.meta` so callers never hard-code them.
+-->
+<script>
+(function () {
+  if (window.fpmiGraph) return;
+  var G = {};
+
+  // Every UI string this helper generates itself (default edge-weight hover
+  // text, the step-player's button labels) is project-agnostic: it reads
+  // `document.documentElement.lang` (set by each project's own `_quarto.yml`
+  // `lang:` field) and falls back to Russian, the language every existing
+  // call site (mnedoshivin, math-notes_CU_2, math-notes_FPMI_2) was written
+  // for -- so this stays a silent no-op everywhere except an `lang="en"`
+  // project such as mnedoshivin_en.
+  var IS_EN = (document.documentElement.lang || "").toLowerCase().indexOf("en") === 0;
+  var WEIGHT_WORD = IS_EN ? "weight" : "вес";
+
+  G.colors = {
+    vert: "#eaf2fb", vertLine: "#1e3a8a", vertText: "#0b0b0b",
+    sel: "#2a78d6", selText: "#ffffff",
+    accent: "#f5a623", accentLine: "#8a5a00",
+    done: "#a8a29e", edge: "#78716c", edgeFaded: "#d6d3d1",
+    red: "#b91c1c", redSoft: "#fca5a5", green: "#556B2F", greenSoft: "#bbf7d0",
+    bg: "#fcfcfb"
+  };
+
+  // Plotly may arrive through RequireJS (course pages, see
+  // plotly-require-config.html), through the homepage's own
+  // fpmiWithPlotly loader, or already be a global -- accept all three.
+  G.withPlotly = function (cb) {
+    if (window.Plotly && window.Plotly.newPlot) { cb(window.Plotly); return; }
+    if (window.fpmiWithPlotly) { window.fpmiWithPlotly(cb); return; }
+    if (window.require) { window.require(["plotly"], cb); return; }
+    console.warn("fpmiGraph: no Plotly loader available on this page");
+  };
+  // MathJax must exist BEFORE Plotly builds any $...$ annotation (Plotly
+  // stamps data-math="N" at build time and never retries), hence the order.
+  G.ready = function (cb) {
+    var run = function () { G.withPlotly(cb); };
+    if (window.fpmiWithMathJax) { window.fpmiWithMathJax(run); } else { run(); }
+  };
+
+  // ── geometry ───────────────────────────────────────────────────────────────
+  // Quadratic curve from p0 to p1 bulging `bend` data units to the left of
+  // the p0->p1 direction (negative bends right). n+1 points.
+  G.curve = function (p0, p1, bend, n) {
+    n = n || 16;
+    var dx = p1[0] - p0[0], dy = p1[1] - p0[1];
+    var len = Math.sqrt(dx * dx + dy * dy) || 1;
+    var nx = -dy / len, ny = dx / len;
+    var cx = (p0[0] + p1[0]) / 2 + nx * bend, cy = (p0[1] + p1[1]) / 2 + ny * bend;
+    var pts = [];
+    for (var i = 0; i <= n; i++) {
+      var t = i / n, a = (1 - t) * (1 - t), b = 2 * (1 - t) * t, c = t * t;
+      pts.push([a * p0[0] + b * cx + c * p1[0], a * p0[1] + b * cy + c * p1[1]]);
+    }
+    return pts;
+  };
+  G.circle = function (cx, cy, r, n) {
+    n = n || 64;
+    var x = [], y = [];
+    for (var i = 0; i <= n; i++) { var a = 2 * Math.PI * i / n; x.push(cx + r * Math.cos(a)); y.push(cy + r * Math.sin(a)); }
+    return { x: x, y: y };
+  };
+  // "$v_{1}$" from "v1", "$s'$" from "s'", plain "s" from "s".
+  G.texLabel = function (id) {
+    var m = /^([A-Za-z]+)(\d+)('*)$/.exec(id);
+    if (m) return "$" + m[1] + "_{" + m[2] + "}" + m[3] + "$";
+    return /^[A-Za-z]'*$/.test(id) ? "$" + id + "$" : id;
+  };
+  // Unicode subscript fallback for hover text (Plotly hover can't do MathJax).
+  var SUB = { "0": "₀", "1": "₁", "2": "₂", "3": "₃", "4": "₄", "5": "₅", "6": "₆", "7": "₇", "8": "₈", "9": "₉" };
+  G.plainLabel = function (id) {
+    var m = /^([A-Za-z]+)(\d+)('*)$/.exec(id);
+    if (!m) return id;
+    return m[1] + m[2].split("").map(function (c) { return SUB[c] || c; }).join("") + m[3];
+  };
+
+  function assign(dst) {
+    for (var i = 1; i < arguments.length; i++) { var s = arguments[i]; if (s) for (var k in s) if (Object.prototype.hasOwnProperty.call(s, k)) dst[k] = s[k]; }
+    return dst;
+  }
+  function normEdge(e) {
+    if (Array.isArray(e)) { var o = { u: e[0], v: e[1] }; if (e[2] && typeof e[2] === "object") assign(o, e[2]); else if (e[2] !== undefined) o.weight = e[2]; return o; }
+    return assign({}, e);
+  }
+
+  // ── build ──────────────────────────────────────────────────────────────────
+  // spec = {
+  //   verts: {id: [x, y]},            order: [ids] (optional, defaults to key order)
+  //   edges: [[u, v] | [u, v, weight] | {u, v, color, width, dash, opacity, bend, hover, arrow, weight}]
+  //   directed: bool,                 edge: fn(edgeObj) -> style overrides (per step)
+  //   vert: fn(id) -> {color, line, lineWidth, size, opacity, label, hover, symbol}
+  //   labels: bool|{id: text}         (default: true -> G.texLabel(id))
+  //   size: 24, halo: true, weights: bool (annotate edge weights at midpoints)
+  //   range: {x: [..], y: [..]}       (default: bbox + padding), pad: 0.8
+  //   annotations: [], shapes: []     (extra), pathTrace: bool (reserve a trace for tracePath)
+  //   height/width: layout size override
+  // }
+  G.build = function (spec) {
+    var C = G.colors;
+    var ids = spec.order || Object.keys(spec.verts);
+    var size = spec.size || 24;
+    var edges = (spec.edges || []).map(normEdge);
+    var data = [], annotations = [], meta = { edgeIdx: [], edgeStyles: [], edges: edges, ids: ids, size: size };
+
+    // range
+    var xs = ids.map(function (i) { return spec.verts[i][0]; }), ys = ids.map(function (i) { return spec.verts[i][1]; });
+    var pad = spec.pad !== undefined ? spec.pad : 0.8;
+    var xr = spec.range && spec.range.x || [Math.min.apply(null, xs) - pad, Math.max.apply(null, xs) + pad];
+    var yr = spec.range && spec.range.y || [Math.min.apply(null, ys) - pad, Math.max.apply(null, ys) + pad];
+    // Vertex radius in data units, for arrowhead shortening: estimate from
+    // the plot's pixel width (marker size is in px, the axis range in data).
+    var plotPx = spec.plotWidthPx || 460;
+    var rData = spec.vertRadius !== undefined ? spec.vertRadius : (size / 2) * (xr[1] - xr[0]) / plotPx * 1.15;
+
+    // edges
+    var midX = [], midY = [], midText = [];
+    edges.forEach(function (e, k) {
+      var st = assign({ color: C.edge, width: 1.6, dash: "solid", opacity: 1, bend: 0 }, e, spec.edge ? spec.edge(e, k) : null);
+      var p0 = spec.verts[e.u], p1 = spec.verts[e.v];
+      var pts = st.bend ? G.curve(p0, p1, st.bend) : [p0, p1];
+      var directed = st.arrow !== undefined ? st.arrow : !!spec.directed;
+      if (directed) {
+        // trim the last segment so the arrowhead (drawn separately) ends on
+        // the target vertex rim; the line itself stops there too.
+        var a = pts[pts.length - 2], b = pts[pts.length - 1];
+        var dx = b[0] - a[0], dy = b[1] - a[1], L = Math.sqrt(dx * dx + dy * dy) || 1;
+        var head = [b[0] - dx / L * rData, b[1] - dy / L * rData];
+        var tail = [head[0] - dx / L * Math.min(L, rData * 1.6), head[1] - dy / L * Math.min(L, rData * 1.6)];
+        pts = pts.slice(0, -1).concat([head]);
+        annotations.push({
+          x: head[0], y: head[1], ax: tail[0], ay: tail[1], xref: "x", yref: "y", axref: "x", ayref: "y",
+          showarrow: true, arrowhead: 2, arrowsize: 1.15, arrowwidth: st.width, arrowcolor: st.color,
+          opacity: st.opacity, text: "", standoff: 0
+        });
+      }
+      data.push({
+        x: pts.map(function (p) { return p[0]; }), y: pts.map(function (p) { return p[1]; }),
+        mode: "lines", line: { color: st.color, width: st.width, dash: st.dash }, opacity: st.opacity,
+        hoverinfo: "skip", showlegend: false, name: e.u + "-" + e.v
+      });
+      meta.edgeIdx.push(data.length - 1);
+      meta.edgeStyles.push({ color: st.color, width: st.width, dash: st.dash, opacity: st.opacity });
+      var mid = pts[Math.floor(pts.length / 2)];
+      if (pts.length === 2) mid = [(p0[0] + p1[0]) / 2, (p0[1] + p1[1]) / 2];
+      midX.push(mid[0]); midY.push(mid[1]);
+      var hover = st.hover !== undefined ? st.hover : (G.plainLabel(e.u) + (directed ? " → " : " — ") + G.plainLabel(e.v) + (st.weight !== undefined ? "<br>" + (WEIGHT_WORD) + " " + st.weight : ""));
+      midText.push(hover);
+      // st.weight (not e.weight): a per-step override may hide a faded edge's
+      // label by returning {weight: undefined}
+      if (spec.weights && st.weight !== undefined && st.opacity > 0.05) {
+        annotations.push({ x: mid[0], y: mid[1], text: String(st.weight), showarrow: false,
+          font: { size: 11, color: st.color === C.edgeFaded ? "#a8a29e" : "#44403c" }, bgcolor: "rgba(252,252,251,0.9)", borderpad: 1 });
+      }
+    });
+    // invisible edge midpoints: hover only (per-point hoverinfo so a hidden
+    // edge -- opacity 0, e.g. "not added yet" in a step player -- shows no
+    // empty tooltip)
+    data.push({ x: midX, y: midY, mode: "markers", marker: { size: 14, opacity: 0 }, hovertext: midText,
+      hoverinfo: meta.edgeStyles.map(function (s) { return s.opacity > 0 ? "text" : "skip"; }), showlegend: false, name: "edges" });
+    meta.midIdx = data.length - 1;
+
+    // vertices
+    var vx = [], vy = [], vColor = [], vLine = [], vLineW = [], vSize = [], vOp = [], vHover = [], vSym = [], haloColor = [];
+    ids.forEach(function (id) {
+      var st = assign({ color: C.vert, line: C.vertLine, lineWidth: 1.8, size: size, opacity: 1, symbol: "circle" }, spec.vert ? spec.vert(id) : null);
+      vx.push(spec.verts[id][0]); vy.push(spec.verts[id][1]);
+      vColor.push(st.color); vLine.push(st.line); vLineW.push(st.lineWidth); vSize.push(st.size); vOp.push(st.opacity); vSym.push(st.symbol);
+      vHover.push(st.hover !== undefined ? st.hover : G.plainLabel(id));
+      haloColor.push(st.opacity === 0 ? "rgba(0,0,0,0)" : (st.halo || (st.color === C.vert ? "rgba(42,120,214,0.10)" : G.rgba(st.color, 0.22))));
+      var lbl = st.label !== undefined ? st.label
+        : (spec.labels === false ? null : (spec.labels && typeof spec.labels === "object" ? spec.labels[id] : G.texLabel(id)));
+      if (lbl) {
+        annotations.push({ x: spec.verts[id][0], y: spec.verts[id][1], text: lbl, showarrow: false,
+          font: { size: st.labelSize || 13, color: st.labelColor || (st.color === C.vert || st.color === C.accent ? C.vertText : C.selText) }, opacity: st.opacity });
+      }
+    });
+    if (spec.halo !== false) {
+      data.push({ x: vx, y: vy, mode: "markers", marker: { size: vSize.map(function (s) { return s + 14; }), color: haloColor, line: { width: 0 } },
+        opacity: 1, hoverinfo: "skip", showlegend: false, name: "halo" });
+      meta.haloIdx = data.length - 1;
+    }
+    data.push({ x: vx, y: vy, mode: "markers", marker: { size: vSize, color: vColor, symbol: vSym, opacity: vOp, line: { color: vLine, width: vLineW } },
+      hovertext: vHover, hoverinfo: vOp.map(function (o) { return o > 0 ? "text" : "skip"; }), showlegend: false, name: "vertices",
+      hoverlabel: { bgcolor: "#1c1917", bordercolor: "#1c1917", font: { color: "#fff", size: 12 } } });
+    meta.vertIdx = data.length - 1;
+    if (spec.pathTrace) {
+      data.push({ x: [], y: [], mode: "lines", line: { color: C.red, width: 3.2, shape: "linear" }, hoverinfo: "skip", showlegend: false, name: "path" });
+      meta.pathIdx = data.length - 1;
+    }
+
+    var layout = {
+      xaxis: { visible: false, range: xr, fixedrange: true },
+      yaxis: { visible: false, range: yr, fixedrange: true, scaleanchor: "x" },
+      margin: { t: 8, b: 8, l: 8, r: 8 },
+      plot_bgcolor: C.bg, paper_bgcolor: C.bg, showlegend: false, hovermode: "closest",
+      annotations: annotations.concat(spec.annotations || []), shapes: spec.shapes || [],
+      transition: { duration: 420, easing: "cubic-in-out" }
+    };
+    if (spec.height) layout.height = spec.height;
+    return { data: data, layout: layout, meta: meta };
+  };
+
+  G.rgba = function (hex, a) {
+    var m = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(hex);
+    if (!m) return hex;
+    return "rgba(" + parseInt(m[1], 16) + "," + parseInt(m[2], 16) + "," + parseInt(m[3], 16) + "," + a + ")";
+  };
+
+  // ── draw (with transitions) ────────────────────────────────────────────────
+  G.config = { displayModeBar: false, displaylogo: false, scrollZoom: false, responsive: true };
+  G.draw = function (el, built, opts) {
+    if (typeof el === "string") el = document.getElementById(el);
+    opts = opts || {};
+    G.ready(function (Plotly) {
+      var canAnimate = el.data && el.data.length === built.data.length && !opts.noAnimate;
+      if (canAnimate) {
+        // Same trace structure as the previous step -> tween colors/widths/
+        // positions instead of snapping. Layout (annotations, shapes) is
+        // applied at the start of the frame.
+        Plotly.animate(el, { data: built.data, layout: built.layout },
+          { transition: { duration: opts.duration || 420, easing: "cubic-in-out" },
+            frame: { duration: opts.duration || 420, redraw: false } });
+      } else if (el.data) {
+        Plotly.react(el, built.data, built.layout, G.config);
+      } else {
+        Plotly.newPlot(el, built.data, built.layout, G.config);
+      }
+      el.__fpmiGraph = built;
+      if (!el.__fpmiHoverBound && opts.hover !== false) { G.attachHover(el); el.__fpmiHoverBound = true; }
+      if (opts.then) opts.then(Plotly);
+    });
+  };
+
+  // ── hover-highlight: lift a vertex's incident edges, dim the rest ──────────
+  G.attachHover = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    var restore = function () {
+      var b = el.__fpmiGraph; if (!b || !window.Plotly) return;
+      var s = b.meta.edgeStyles;
+      window.Plotly.restyle(el, {
+        "line.width": s.map(function (x) { return x.width; }),
+        "line.color": s.map(function (x) { return x.color; }),
+        "opacity": s.map(function (x) { return x.opacity; })
+      }, b.meta.edgeIdx);
+    };
+    el.on("plotly_hover", function (ev) {
+      var b = el.__fpmiGraph; if (!b || !ev.points || !ev.points.length) return;
+      var p = ev.points[0];
+      if (p.curveNumber !== b.meta.vertIdx) return;
+      var id = b.meta.ids[p.pointNumber];
+      var widths = [], colors = [], ops = [];
+      b.meta.edges.forEach(function (e, k) {
+        var st = b.meta.edgeStyles[k], inc = (e.u === id || e.v === id);
+        widths.push(inc ? Math.max(st.width * 1.9, 3) : st.width);
+        colors.push(inc ? (st.color === G.colors.edge || st.color === G.colors.edgeFaded ? G.colors.sel : st.color) : st.color);
+        ops.push(inc ? 1 : Math.min(st.opacity, 0.28));
+      });
+      window.Plotly.restyle(el, { "line.width": widths, "line.color": colors, "opacity": ops }, b.meta.edgeIdx);
+    });
+    el.on("plotly_unhover", restore);
+  };
+
+  // ── step player ────────────────────────────────────────────────────────────
+  // G.player({ container, count, render(i), autoplayMs, loop, start })
+  // Builds: [← Back] [Step i / N] [Next →] [▶ Auto]; arrow keys work while
+  // the controls have focus. render(i) is called for every step change.
+  // UI strings use the same IS_EN language switch declared at the top of
+  // this file. `o.label` still overrides the step word directly, same as
+  // before this change, for any call site that wants a custom label.
+  var PLAYER_STR = IS_EN
+    ? { back: "← Back", next: "Next →", auto: "▶ Auto", autoTitle: "Autoplay", pause: "⏸ Pause", step: "Step" }
+    : { back: "← Назад", next: "Вперёд →", auto: "▶ Авто", autoTitle: "Автовоспроизведение", pause: "⏸ Пауза", step: "Шаг" };
+  G.player = function (o) {
+    var box = typeof o.container === "string" ? document.getElementById(o.container) : o.container;
+    box.classList.add("fpmi-graph-controls");
+    box.setAttribute("tabindex", "0");
+    box.innerHTML =
+      '<button type="button" class="fg-prev">' + PLAYER_STR.back + '</button>' +
+      '<span class="fg-step"></span>' +
+      '<button type="button" class="fg-next">' + PLAYER_STR.next + '</button>' +
+      '<button type="button" class="fg-play" title="' + PLAYER_STR.autoTitle + '">' + PLAYER_STR.auto + '</button>';
+    var prev = box.querySelector(".fg-prev"), next = box.querySelector(".fg-next"), play = box.querySelector(".fg-play"), lbl = box.querySelector(".fg-step");
+    var cur = o.start || 0, timer = null, N = o.count;
+    function stop() { if (timer) { clearInterval(timer); timer = null; } play.textContent = PLAYER_STR.auto; play.classList.remove("active"); }
+    function go(i, fromAuto) {
+      if (!fromAuto) stop();
+      cur = Math.max(0, Math.min(N - 1, i));
+      lbl.textContent = (o.label || PLAYER_STR.step) + " " + (cur + 1) + " / " + N;
+      prev.disabled = cur === 0; next.disabled = cur === N - 1;
+      o.render(cur);
+    }
+    prev.addEventListener("click", function () { go(cur - 1); });
+    next.addEventListener("click", function () { go(cur + 1); });
+    play.addEventListener("click", function () {
+      if (timer) { stop(); return; }
+      play.textContent = PLAYER_STR.pause; play.classList.add("active");
+      if (cur === N - 1) go(0, true);
+      timer = setInterval(function () {
+        if (cur < N - 1) go(cur + 1, true);
+        else if (o.loop) go(0, true);
+        else stop();
+      }, o.autoplayMs || 1600);
+    });
+    box.addEventListener("keydown", function (ev) {
+      if (ev.key === "ArrowRight") { go(cur + 1); ev.preventDefault(); }
+      else if (ev.key === "ArrowLeft") { go(cur - 1); ev.preventDefault(); }
+    });
+    go(cur);
+    return { go: go, next: function () { go(cur + 1); }, prev: function () { go(cur - 1); }, current: function () { return cur; }, stop: stop };
+  };
+
+  // ── path tracer ────────────────────────────────────────────────────────────
+  // Grows the reserved path trace (spec.pathTrace) along `ids` over
+  // `duration` ms, with a moving tip. Returns a cancel function.
+  G.tracePath = function (el, verts, ids, opts) {
+    if (typeof el === "string") el = document.getElementById(el);
+    opts = opts || {};
+    var b = el.__fpmiGraph; if (!b || b.meta.pathIdx === undefined || !window.Plotly) return function () {};
+    var pts = ids.map(function (id) { return verts[id]; });
+    var segs = pts.length - 1, dur = opts.duration || 500 * segs, t0 = null, cancelled = false;
+    var style = { "line.color": opts.color || G.colors.red, "line.width": opts.width || 3.2 };
+    window.Plotly.restyle(el, style, [b.meta.pathIdx]);
+    function frame(ts) {
+      if (cancelled) return;
+      if (t0 === null) t0 = ts;
+      var f = Math.min(1, (ts - t0) / dur), pos = f * segs, k = Math.floor(pos), r = pos - k;
+      var x = [], y = [];
+      for (var i = 0; i <= Math.min(k, segs); i++) { x.push(pts[i][0]); y.push(pts[i][1]); }
+      if (k < segs) { x.push(pts[k][0] + (pts[k + 1][0] - pts[k][0]) * r); y.push(pts[k][1] + (pts[k + 1][1] - pts[k][1]) * r); }
+      window.Plotly.restyle(el, { x: [x], y: [y] }, [b.meta.pathIdx]);
+      if (f < 1) requestAnimationFrame(frame); else if (opts.done) opts.done();
+    }
+    requestAnimationFrame(frame);
+    return function () { cancelled = true; };
+  };
+  G.clearPath = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    var b = el.__fpmiGraph; if (!b || b.meta.pathIdx === undefined || !window.Plotly) return;
+    window.Plotly.restyle(el, { x: [[]], y: [[]] }, [b.meta.pathIdx]);
+  };
+
+  // Typeset \(...\) math in a caption/status element (after innerHTML update).
+  G.typeset = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    if (window.fpmiWithMathJax) window.fpmiWithMathJax(function () { if (window.MathJax && window.MathJax.typesetPromise) window.MathJax.typesetPromise([el]); else if (window.MathJax) window.MathJax.typeset([el]); });
+  };
+  G.setCaption = function (id, html) { var el = document.getElementById(id); if (!el) return; el.innerHTML = html; G.typeset(el); };
+
+  window.fpmiGraph = G;
+})();
+</script>
+<style>
+  /* Shared look for every fpmiGraph widget (see graph-helper.html). */
+  .fpmi-graph { padding: 1rem 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .fpmi-graph h2.fg-title { font-size: 16px; font-weight: 500; margin: 0 0 4px; }
+  .fpmi-graph p.fg-sub { font-size: 13px; color: #78716c; margin: 0 0 0.75rem; }
+  .fpmi-graph .fg-plot { width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 6px 18px rgba(0,58,65,0.06); }
+  .fpmi-graph .fg-caption { font-size: 13px; color: #44403c; margin-top: 0.6rem; min-height: 1.4em; line-height: 1.5; }
+  .fpmi-graph .fg-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .fpmi-graph .fg-arrow { font-size: 26px; color: #78716c; }
+  .fpmi-graph-controls, .fpmi-graph .fg-controls { display: flex; align-items: center; gap: 10px; margin: 0.5rem 0 0.9rem; flex-wrap: wrap; outline: none; }
+  .fpmi-graph-controls button, .fpmi-graph button {
+    font-size: 13px; padding: 6px 12px; cursor: pointer; border-radius: 8px;
+    border: 1px solid #d6d3d1; background: #fff; color: #292524; transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  }
+  .fpmi-graph-controls button:hover:not(:disabled), .fpmi-graph button:hover:not(:disabled) { background: #f5f5f4; border-color: #a8a29e; }
+  .fpmi-graph-controls button:disabled, .fpmi-graph button:disabled { opacity: 0.4; cursor: default; }
+  .fpmi-graph-controls button.active, .fpmi-graph button.active { background: #eaf2fb; border-color: #2a78d6; color: #1c4a7a; font-weight: 600; box-shadow: 0 0 0 3px rgba(42,120,214,0.12); }
+  .fpmi-graph-controls .fg-step { font-size: 13px; font-weight: 600; color: #44403c; min-width: 6.5em; text-align: center; }
+  .fpmi-graph-controls:focus-within .fg-step { color: #1c4a7a; }
+  .fpmi-graph label { font-size: 13px; color: #57534e; }
+  .fpmi-graph input[type="range"] { accent-color: #2a78d6; }
+  .fpmi-graph .fg-val { font-size: 13px; font-weight: 600; min-width: 2em; display: inline-block; color: #1c4a7a; }
+  .fpmi-graph .fg-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: #57534e; margin-top: 0.4rem; }
+  .fpmi-graph .fg-legend span::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; background: var(--c, #eaf2fb); border: 1.5px solid var(--b, #1e3a8a); }
+  .fpmi-graph .fg-legend span.line::before { border-radius: 0; height: 3px; width: 18px; border: none; vertical-align: 2px; background: var(--c, #78716c); }
+</style>
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Гильбертовы пространства</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Дата публикации</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">18 октября 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Предупреждение</span>Черновик
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Этот конспект ещё находится в процессе редактуры: в тексте могут встречаться опечатки, неточности и локально не проработанные места. Если что-то нашли — сообщите, пожалуйста, автору (контакты на <a href="../../../../courses/01-analysis/FA/overview.html#об-этом-пособии">странице курса</a>).</p>
+</div>
+</div>
+<section id="пространства-со-скалярным-произведением" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Пространства со скалярным произведением</h1>
+<p><em>Скалярным произведением</em> на векторном пространстве <span class="math inline">\(V\)</span> над полем <span class="math inline">\(\mathbb {F}\)</span> (<span class="math inline">\(\mathbb {R}\)</span> или <span class="math inline">\(\mathbb {C}\)</span>) называется функция <span class="math inline">\(\langle \cdot , \cdot \rangle : V \times V \to \mathbb {F}\)</span>, удовлетворяющая свойствам:</p>
+<ol type="1">
+<li><p><em>Положительная определённость:</em> <span class="math inline">\(\langle f, f \rangle \geq 0\)</span> для всех <span class="math inline">\(f \in V\)</span>, причём <span class="math inline">\(\langle f, f \rangle = 0\)</span> тогда и только тогда, когда <span class="math inline">\(f = 0\)</span>.</p></li>
+<li><p><em>Линейность по первому аргументу:</em> <span class="math inline">\(\langle f + g, h \rangle = \langle f, h \rangle + \langle g, h \rangle\)</span> и <span class="math inline">\(\langle \alpha f, g \rangle = \alpha \langle f, g \rangle\)</span> для всех <span class="math inline">\(f, g, h \in V\)</span> и <span class="math inline">\(\alpha \in \mathbb {F}\)</span>.</p></li>
+<li><p><em>Эрмитова симметрия (сопряжённая симметричность):</em> <span class="math inline">\(\langle f, g \rangle = \overline{\langle g, f \rangle }\)</span> для всех <span class="math inline">\(f, g \in V\)</span>.</p></li>
+</ol>
+<p>В случае <span class="math inline">\(\mathbb {F} = \mathbb {R}\)</span> свойство эрмитовой симметрии превращается в обычную симметричность: <span class="math inline">\(\langle f, g \rangle = \langle g, f \rangle\)</span>.</p>
+<div id="expl-1" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>На <span class="math inline">\(\mathbb {F}^n\)</span>: <span class="math inline">\(\langle (a_1,\ldots ,a_n), (b_1,\ldots ,b_n) \rangle = a_1\overline{b_1} + \cdots + a_n\overline{b_n}\)</span>.</p></li>
+<li><p>На <span class="math inline">\(\ell^2\)</span>: <span class="math inline">\(\langle (a_1,a_2,\ldots ), (b_1,b_2,\ldots ) \rangle = \sum_{k=1}^{\infty } a_k\overline{b_k}\)</span>.</p></li>
+<li><p>На <span class="math inline">\(C([0,1])\)</span>: <span class="math inline">\(\langle f, g \rangle = \int_0^1 f(t)\overline{g(t)} dt\)</span>.</p></li>
+<li><p>На <span class="math inline">\(L^2(\mu )\)</span>: <span class="math inline">\(\langle f, g \rangle = \int_X f\overline{g} d\mu\)</span>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-lem no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="lem-1" class="lemma theorem">
+<p><span class="theorem-title"><strong>Лемма 1</strong></span> Базовые свойства:</p>
+<ul>
+<li><p><span class="math inline">\(\langle 0, g \rangle = \langle g, 0 \rangle = 0\)</span></p></li>
+<li><p><span class="math inline">\(\langle f, g + h \rangle = \langle f, g \rangle + \langle f, h \rangle\)</span></p></li>
+<li><p><span class="math inline">\(\langle f, \alpha g \rangle = \overline{\alpha } \langle f, g \rangle\)</span></p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<section id="норма-и-неравенство-коши-буняковского" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="норма-и-неравенство-коши-буняковского"><span class="header-section-number">1.1</span> Норма и неравенство Коши-Буняковского</h2>
+<p><em>Нормой, порождённой скалярным произведением</em>, называется функция:</p>
+<p><span class="math display">\[
+  \| f\|  = \sqrt{\langle f, f \rangle }.  
+\]</span></p>
+<p>Векторы <span class="math inline">\(f\)</span> и <span class="math inline">\(g\)</span> называются <em>ортогональными</em>, если <span class="math inline">\(\langle f, g \rangle = 0\)</span>.</p>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-2" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 1 (Пифагор)</strong></span> Если <span class="math inline">\(f \perp g\)</span>, то <span class="math inline">\(\| f + g\|^2 = \| f\|^2 + \| g\|^2\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-lem no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="lem-3" class="lemma theorem">
+<p><span class="theorem-title"><strong>Лемма 2 (Ортогональное разложение)</strong></span> Если <span class="math inline">\(g \neq 0\)</span>, то любой вектор <span class="math inline">\(f\)</span> можно единственным образом представить в виде: <span class="math display">\[
+  f = \frac{\langle f, g \rangle }{\| g\| ^2}g + h,  
+\]</span> где <span class="math inline">\(h \perp g\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-4" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 2 (Неравенство Коши-Буняковского-Шварца)</strong></span> Для любых <span class="math inline">\(f, g \in V\)</span> выполняется: <span class="math display">\[
+  |\langle f, g \rangle | \leq \| f\|  \cdot \| g\| .  
+\]</span> Равенство достигается тогда и только тогда, когда <span class="math inline">\(f\)</span> и <span class="math inline">\(g\)</span> линейно зависимы.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-lem no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="lem-5" class="lemma theorem">
+<p><span class="theorem-title"><strong>Лемма 3 (Неравенство треугольника)</strong></span> Для любых <span class="math inline">\(f, g \in V\)</span> выполняется: <span class="math display">\[
+  \| f + g\|  \leq \| f\|  + \| g\| .  
+\]</span> Равенство достигается тогда и только тогда, когда один из векторов является неотрицательным кратным другого.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-6" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 3</strong></span> Функция <span class="math inline">\(\| f\|  = \sqrt{\langle f, f \rangle }\)</span> является нормой на <span class="math inline">\(V\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-lem no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="lem-7" class="lemma theorem">
+<p><span class="theorem-title"><strong>Лемма 4 (Тождество параллелограмма)</strong></span> Для любых <span class="math inline">\(f, g \in V\)</span> выполняется: <span class="math display">\[
+  \| f + g\| ^2 + \| f - g\| ^2 = 2\| f\| ^2 + 2\| g\| ^2.  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p>Геометрическая интерпретация: сумма квадратов длин диагоналей параллелограмма равна сумме квадратов длин всех его сторон.</p>
+<div id="expl-2" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Предположим, <span class="math inline">\(f\)</span> и <span class="math inline">\(g\)</span> — элементы пространства со скалярным произведением и <span class="math display">\[
+  \left\| f+g\right\| ^{2} = \left\| f\right\| ^{2}+\left\| g\right\| ^{2}  
+\]</span></p>
+<ol type="1">
+<li><p>Докажите, что если <span class="math inline">\(\mathbf{F} = \mathbb {R}\)</span>, то <span class="math inline">\(f\)</span> и <span class="math inline">\(g\)</span> ортогональны.</p></li>
+<li><p>Приведите пример, показывающий, что если <span class="math inline">\(\mathbf{F} = \mathbb {C}\)</span>, то <span class="math inline">\(f\)</span> и <span class="math inline">\(g\)</span> могут удовлетворять приведённому выше уравнению, не будучи ортогональными.</p></li>
+</ol>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+  \left\| f+g\right\| ^{2} = \left\langle f+g, f+g \right\rangle = \left\| f\right\| ^2 + \left\langle f, g \right\rangle + \left\langle g, f \right\rangle + \left\| g\right\| ^2 = \left\| f\right\| ^2 + \left\langle f, g \right\rangle + \overline{ \left\langle f, g \right\rangle } + \left\| g\right\| ^2  
+\]</span></p>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>1.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Из выкладки выше <span class="math inline">\(\left\langle f, g \right\rangle + \overline{ \left\langle f, g \right\rangle } = 0\)</span>, т.е. <span class="math inline">\(2\operatorname {Re} \left\langle f, g \right\rangle = 0\)</span>. Если <span class="math inline">\(\mathbb {F} = \mathbb {R}\)</span>, то <span class="math inline">\(\left\langle f, g \right\rangle \in \mathbb {R}\)</span>, значит, <span class="math inline">\(\left\langle f, g \right\rangle = \operatorname {Re} \left\langle f, g \right\rangle = 0\)</span>, т.е. <span class="math inline">\(f \perp g\)</span>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>2.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(V = \mathbb {C}^2\)</span>, <span class="math inline">\(f = (0,i)\)</span>, <span class="math inline">\(g = (0,1)\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="ортогональность" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Ортогональность</h1>
+<section id="ортогональные-проекции" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="ортогональные-проекции"><span class="header-section-number">2.1</span> Ортогональные проекции</h2>
+<p>Предыдущий раздел развивал теорию пространств со скалярным произведением, следуя стандартному подходу линейной алгебры. Линейная алгебра в основном сосредоточена на конечномерных векторных пространствах. Многие интересные результаты о бесконечномерных пространствах со скалярным произведением требуют дополнительного условия, которое мы теперь введем.</p>
+<p><em>Гильбертово пространство</em> — это пространство со скалярным произведением, которое является банаховым пространством с нормой, порождаемой этим скалярным произведением.</p>
+<div id="expl-3" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Гильбертовы пространства</p>
+<ul>
+<li><p>Пусть <span class="math inline">\(\mu\)</span> — мера. Тогда <span class="math inline">\(L^2(\mu )\)</span> со своим обычным скалярным произведением является гильбертовым пространством.</p></li>
+<li><p>Как частный случай первого пункта, если <span class="math inline">\(n \in \mathbb {Z}^+\)</span> и взять <span class="math inline">\(\mu\)</span> в качестве считающей меры на <span class="math inline">\(\{ 1, \ldots , n\}\)</span>, то <span class="math inline">\(F^n\)</span> со своим обычным скалярным произведением является гильбертовым пространством.</p></li>
+<li><p>Как другой частный случай первого пункта, взяв <span class="math inline">\(\mu\)</span> в качестве считающей меры на <span class="math inline">\(\mathbb {Z}^+\)</span>, получаем, что <span class="math inline">\(\ell^2\)</span> со своим обычным скалярным произведением является гильбертовым пространством.</p></li>
+<li><p>Каждое замкнутое подпространство гильбертова пространства является гильбертовым пространством.</p></li>
+</ul>
+<p>Не гильбертовы пространства</p>
+<ul>
+<li><p>Пространство со скалярным произведением <span class="math inline">\(\ell^1\)</span>, где <span class="math inline">\(\langle (a_1, a_2, \ldots ), (b_1, b_2, \ldots ) \rangle = \sum_{k=1}^{\infty } a_k \overline{b_k}\)</span>, не является гильбертовым, потому что соответствующая норма не является полной на <span class="math inline">\(\ell^1\)</span>.</p></li>
+<li><p>Пространство со скалярным произведением <span class="math inline">\(C([0, 1])\)</span> непрерывных <span class="math inline">\(\mathbb {F}\)</span>-значных функций на интервале <span class="math inline">\([0, 1]\)</span>, где <span class="math inline">\(\langle f, g \rangle = \int_0^1 f \,  \overline{g}\)</span>, не является гильбертовым, потому что соответствующая норма не является полной на <span class="math inline">\(C([0, 1])\)</span>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-4" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(V = C[0,1]\)</span> с супремум-нормой <span class="math inline">\(\left\| f\right\|  = \sup_{t \in [0,1]}\left|f(t)\right|\)</span>. Рассмотрим подмножество <span class="math display">\[
+  U = \left\{ g \in C[0,1] \;  :\;  g(0) = 0, \;  \int _0^1 g(t) dt = 0\right\}   
+\]</span></p>
+<ol type="1">
+<li><p>Докажите, что <span class="math inline">\(U\)</span> – замкнутое подпространство в <span class="math inline">\(V\)</span>;</p></li>
+<li><p>Пусть <span class="math inline">\(f(t) = t\)</span>. Найдите <span class="math inline">\(\operatorname {dist}_U(t)\)</span>.</p></li>
+<li><p>Докажите, что <span class="math inline">\(\operatorname {dist}_U(t)\)</span> не достигается, т.е. не существует такого <span class="math inline">\(g \in U\)</span>, что <span class="math inline">\(\left\| f-g\right\|  = \operatorname {dist}_U(f)\)</span>.</p></li>
+</ol>
+<p><em>Этот пример показывает, что в произвольном банаховом пространстве расстояние до замкнутого выпуклого множества может не достигаться.</em></p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>(1)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(U\)</span> замкнуто относительно суммирования и умножения на скаляр, значит это подпространство. Далее, нужно доказать, что <span class="math inline">\(U\)</span> замкнуто. Пусть <span class="math inline">\(g_1, g_2, \ldots \in U\)</span>, <span class="math inline">\(g_n \to h\)</span> в <span class="math inline">\(V\)</span>. <span class="math inline">\(g_n\)</span> равномерно сходятся к <span class="math inline">\(h\)</span>. Значит, интеграл предела <span class="math inline">\(\int_0^1 h\)</span> равен пределу интегралов <span class="math inline">\(\lim_{n \to \infty }\int_0^1 g_n = \lim_{n \to \infty } = 0\)</span>. Далее, из равномерной сходимости следует поточечная, т.е. <span class="math inline">\(h(0) = \lim_{n \to \infty }g_n(0) = 0\)</span>. Итого, <span class="math inline">\(g \in U\)</span>. Доказали замкнутость <span class="math inline">\(U\)</span>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>(2)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Пусть <span class="math inline">\(g \in U\)</span> – произвольное. Мы знаем, что <span class="math inline">\(\int_0^1 f - g = \int_{0}^{1}f(t)dt= \frac{1}{2}\)</span>. Тогда</p>
+<p><span class="math display">\[
+  \frac{1}{2} = \left|\int _0^1 f - g\right| \leq \int _{0}^{1}\left|f-g\right| \stackrel{*}{\leq } 1 \cdot \sup _{t \in [0,1]}\left|f(t) - g(t)\right| = \left\| f-g\right\|   
+\]</span></p>
+<p>Следовательно, <span class="math inline">\(\operatorname {dist}_U(f) \geq \frac{1}{2}\)</span>.</p></li>
+<li><p>Докажем, что <span class="math inline">\(\operatorname {dist}_U(f) \geq \frac{1}{2}\)</span>. Рассмотрим последовательность функций <span class="math inline">\(g_n\)</span> (<span class="math inline">\(n \geq 3\)</span>): <span class="math inline">\(g_n\)</span> линейно идет из <span class="math inline">\((0,0)\)</span> в <span class="math inline">\((\frac{1}{n}, -\frac{1}{2})\)</span>, далее линейно в точку <span class="math inline">\((\frac{1}{2}, 0)\)</span>, далее линейно в точку <span class="math inline">\((1, \frac{1}{2})\)</span>. Площадь нижнего треугольника (от <span class="math inline">\(0\)</span> до <span class="math inline">\(\frac{1}{2}\)</span>) равна <span class="math inline">\(\frac{1}{2}\)</span>, и равна площади треугольника от <span class="math inline">\(\frac{1}{2}\)</span> до <span class="math inline">\(1\)</span>. Значит, <span class="math inline">\(\int_0^1 g_n(t) dt = 0\)</span>. Итого, <span class="math inline">\(g_n \in U\)</span> для всех <span class="math inline">\(n \geq 3\)</span>. При этом <span class="math inline">\(\left\| f - g_n\right\|  \to \frac{1}{2}\)</span> при <span class="math inline">\(n \to +\infty\)</span> (по рисунку должно быть видно).</p></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Уведомление
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Рисунок в разработке.</strong> Будет пересоздан как интерактивная фигура (Plotly/Three.js).</p>
+<p>План: : TikZ, координаты ломаных g_3,g_4,g_5 заданы точно по формуле из решения (не подгонка). Иллюстрирует недостижимость dist_U(f)=1/2 в БАНАХОВОМ (C[0,1], sup-норма) пространстве – контраст с гильбертовым случаем, где расстояние до замкнутого выпуклого множества всегда достигается. Интерактив: слайдер n, перерисовывающий g_n и подписывающий текущее sup-расстояние 1/2+1/n -&gt; 1/2.</p>
+<p>Источник: <code>courses/nedosh_courses/courses/01-analysis/FA/contents/specials/050/010_dist_to_subspace_fig.tex</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>(3)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Рассмотрим уравнение выше. Мы знаем, что <span class="math inline">\(f -g\)</span> – это непрерывная функция. Значит, равенство в неравенстве <span class="math inline">\(*\)</span> может достигаться только тогда, когда <span class="math inline">\(\left|f - g\right| \equiv \left\| f -g\right\|\)</span> на всем отрезке <span class="math inline">\([0,1]\)</span>. Но <span class="math inline">\(f(0) - g(0) = 0\)</span>. Т.е. неравенство в <span class="math inline">\(*\)</span> на самом деле строгое (если бы там было равенство, то <span class="math inline">\(f - g \equiv 0\)</span> на всем <span class="math inline">\([0,1]\)</span>, т.е. <span class="math inline">\(f \equiv g\)</span>, но <span class="math inline">\(f \not\in U\)</span>).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-8" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 4 (Достижимость расстояния до замкнутого выпуклого подмножества в гильбертовом пространстве)</strong></span> Расстояние от элемента гильбертова пространства до непустого замкнутого выпуклого множества достигается на единственном элементе этого множества.</p>
+<p>Более конкретно, пусть <span class="math inline">\(V\)</span> — гильбертово пространство, <span class="math inline">\(f \in V\)</span>, и <span class="math inline">\(U\)</span> — непустое замкнутое выпуклое подмножество <span class="math inline">\(V\)</span>. Тогда существует единственный <span class="math inline">\(g \in U\)</span> такой, что</p>
+<p><span class="math display">\[
+  \| f - g\|  = \operatorname {dist}_{U}(f).  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p>Пусть <span class="math inline">\(U\)</span> — непустое замкнутое выпуклое подмножество гильбертова пространства <span class="math inline">\(V\)</span>. <em>Ортогональной проекцией</em> <span class="math inline">\(V\)</span> на <span class="math inline">\(U\)</span> называется функция <span class="math inline">\(P_U: V \to V\)</span>, определяемая равенством <span class="math inline">\(P_U(f) = g\)</span>, где <span class="math inline">\(g\)</span> — единственный элемент <span class="math inline">\(U\)</span>, ближайший к <span class="math inline">\(f\)</span>.</p>
+<p>Выполнены следующие свойства:</p>
+<ul>
+<li><p><span class="math inline">\(P_U f = f\)</span> тогда и только тогда, когда <span class="math inline">\(f \in U\)</span>;</p></li>
+<li><p><span class="math inline">\(P^2_U = P_U\)</span>.</p></li>
+</ul>
+<div id="expl-5" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 5
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Ортогональная проекция на замкнутый единичный шар</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(U\)</span> — замкнутый единичный шар <span class="math inline">\(\{ g \in V : \| g\|  \leq 1\}\)</span> в гильбертовом пространстве <span class="math inline">\(V\)</span>. Тогда <span class="math display">\[
+  P_U f = \begin{cases}  f &amp;  \text{если } \| f\|  \leq 1, \\ \dfrac {f}{\| f\| } &amp;  \text{если } \| f\|  &gt; 1. \end{cases}  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-6" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 6
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Ортогональная проекция на замкнутое подпространство</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(U\)</span> — замкнутое подпространство в <span class="math inline">\(\ell^2\)</span>, состоящее из элементов <span class="math inline">\(\ell^2\)</span>, у которых все четные координаты равны нулю:</p>
+<p><span class="math display">\[
+  U = \{ (a_1, 0, a_3, 0, a_5, 0, \ldots ) : \text{каждый } a_k \in \mathbb {F} \text{ и } \sum _{k=1}^{\infty } |a_{2k-1}|^2 &lt; \infty \} .  
+\]</span></p>
+<p>Тогда для <span class="math inline">\(b = (b_1, b_2, b_3, b_4, b_5, b_6, \ldots ) \in \ell^2\)</span> имеем</p>
+<p><span class="math display">\[
+  P_U b = (b_1, 0, b_3, 0, b_5, 0, \ldots ).  
+\]</span></p>
+<p>В этом примере функция <span class="math inline">\(P_U\)</span> является линейным отображением из <span class="math inline">\(\ell^2\)</span> в <span class="math inline">\(\ell^2\)</span>. Кроме того, <span class="math inline">\(b - P_U b\)</span> ортогонален каждому элементу из <span class="math inline">\(U\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-9" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 5 (Свойства ортогональной проекции на замкнутое подпространство)</strong></span> Пусть <span class="math inline">\(U\)</span> — замкнутое подпространство гильбертова пространства <span class="math inline">\(V\)</span> и <span class="math inline">\(f \in V\)</span>. Тогда</p>
+<ol type="1">
+<li><p><span class="math inline">\(f - P_U f\)</span> ортогонален <span class="math inline">\(g\)</span> для каждого <span class="math inline">\(g \in U\)</span>;</p></li>
+<li><p>если <span class="math inline">\(h \in U\)</span> и <span class="math inline">\(f - h\)</span> ортогонален <span class="math inline">\(g\)</span> для каждого <span class="math inline">\(g \in U\)</span>, то <span class="math inline">\(h = P_U f\)</span>;</p></li>
+<li><p><span class="math inline">\(P_U: V \to V\)</span> является линейным отображением;</p></li>
+<li><p><span class="math inline">\(\| P_U f\|  \leq \| f\|\)</span>, причем равенство достигается тогда и только тогда, когда <span class="math inline">\(f \in U\)</span>.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ортогональные-дополнения" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="ортогональные-дополнения"><span class="header-section-number">2.2</span> Ортогональные дополнения</h2>
+<p>Пусть <span class="math inline">\(U\)</span> — подмножество пространства со скалярным произведением <span class="math inline">\(V\)</span>. <em>Ортогональным дополнением</em> <span class="math inline">\(U\)</span> называется множество, обозначаемое <span class="math inline">\(U^\perp\)</span> и определяемое как</p>
+<p><span class="math display">\[
+  U^\perp = \{  h \in V : \langle g, h \rangle = 0 \text{ для всех } g \in U \} .  
+\]</span></p>
+<div id="expl-7" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 7
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-20" class="callout-20-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(U\)</span> — множество элементов <span class="math inline">\(\ell^2\)</span>, у которых все четные координаты равны нулю: <span class="math display">\[
+  U = \{ (a_1, 0, a_3, 0, a_5, 0, \ldots ) : \text{каждый } a_k \in \mathbb {F} \text{ и } \sum _{k=1}^{\infty } |a_{2k-1}|^2 &lt; \infty \} .  
+\]</span> Тогда <span class="math inline">\(U^\perp\)</span> — это множество элементов <span class="math inline">\(\ell^2\)</span>, у которых все нечетные координаты равны нулю: <span class="math display">\[
+  U^\perp = \{ (0, a_2, 0, a_4, 0, a_6, \ldots ) : \text{каждый } a_k \in \mathbb {F} \text{ и } \sum _{k=1}^{\infty } |a_{2k}|^2 &lt; \infty \} .  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-lem no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="lem-10" class="lemma theorem">
+<p><span class="theorem-title"><strong>Лемма 5 (Свойства)</strong></span> Пусть <span class="math inline">\(U\)</span> — <strong>произвольное подмножество</strong> (не обязательно подпространство) пространства со скалярным произведением <span class="math inline">\(V\)</span>. Тогда</p>
+<ol type="1">
+<li><p><span class="math inline">\(U^\perp\)</span> является замкнутым подпространством <span class="math inline">\(V\)</span>;</p></li>
+<li><p><span class="math inline">\(U\)</span> и <span class="math inline">\(U^{\perp }\)</span> не могут пересекаться по ненулевому вектору: либо <span class="math inline">\(U \cap U^\perp = \varnothing\)</span>, либо <span class="math inline">\(U \cap U^{\perp } = \left\{ 0_V\right\}\)</span>;</p></li>
+<li><p>если <span class="math inline">\(W \subseteq U\)</span>, то <span class="math inline">\(U^\perp \subseteq W^\perp\)</span>;</p></li>
+<li><p><span class="math inline">\(\left(\overline{U}\right)^{\perp } = U^\perp\)</span>;</p></li>
+<li><p><span class="math inline">\(U \subseteq (U^\perp )^\perp\)</span>.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<p>Результаты, представленные в оставшейся части этого подраздела, основаны на гипотезе, что V — гильбертово пространство. Эти результаты не всегда верны, если V — просто пространство со скалярным произведением.</p>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-11" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 6</strong></span> Пусть <span class="math inline">\(U\)</span> — подпространство гильбертова пространства <span class="math inline">\(V\)</span>. Тогда <span class="math display">\[
+  \overline{U} = \left(U^\perp \right)^\perp .  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p>В частности, если <span class="math inline">\(U\)</span> замкнуто, то <span class="math inline">\(U = (U^\perp )^\perp\)</span>.</p>
+<div class="callout callout-style-simple callout-mn-cor no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="cor-12" class="corollary theorem">
+<p><span class="theorem-title"><strong>Следствие 1 (Необходимое и достаточное условие плотности подпространства)</strong></span> Пусть <span class="math inline">\(U\)</span> — подпространство гильбертова пространства <span class="math inline">\(V\)</span>. Тогда <span class="math display">\[
+  \overline{U} = V \qquad \iff \qquad U^\perp = \{ 0\} .  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-13" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 7 (Ортогональное разложение)</strong></span> Пусть <span class="math inline">\(U\)</span> — замкнутое подпространство гильбертова пространства <span class="math inline">\(V\)</span>. Тогда каждый элемент <span class="math inline">\(f \in V\)</span> может быть единственным образом представлен в виде <span class="math display">\[
+  f = g + h,  
+\]</span> где <span class="math inline">\(g \in U\)</span> и <span class="math inline">\(h \in U^\perp\)</span>. Более того, <span class="math inline">\(g = P_U f\)</span> и <span class="math inline">\(h = f - P_U f = (I - P_{U})f\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-lem no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="lem-14" class="lemma theorem">
+<p><span class="theorem-title"><strong>Лемма 6 (Образ и ядро ортогональных проекций)</strong></span> Пусть <span class="math inline">\(U\)</span> — замкнутое подпространство гильбертова пространства <span class="math inline">\(V\)</span>. Тогда</p>
+<ol type="1">
+<li><p><span class="math inline">\(\operatorname {Im}P_U = U\)</span> и <span class="math inline">\(\operatorname {Ker}P_U = U^\perp\)</span>;</p></li>
+<li><p><span class="math inline">\(\operatorname {Im}P_{U^\perp } = U^\perp\)</span> и <span class="math inline">\(\operatorname {Ker}P_{U^\perp } = U\)</span>;</p></li>
+<li><p><span class="math inline">\(P_{U^\perp } = I - P_U\)</span>.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-8" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 8
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-22" class="callout-22-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(P_{U^\perp } = I - P_U\)</span></p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-21" class="callout-21-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(U\)</span> — замкнутое подпространство в <span class="math inline">\(L^2(\mathbb {R})\)</span>, определенное как <span class="math display">\[
+  U = \{  f \in L^2(\mathbb {R}) : f(x) = 0 \text{ для почти всех } x &lt; 0 \} .  
+\]</span> Тогда <span class="math display">\[
+  U^\perp = \{  g \in L^2(\mathbb {R}) : g(x) = 0 \text{ для почти всех } x \geq 0 \} .  
+\]</span> Для <span class="math inline">\(h \in L^2(\mathbb {R})\)</span> имеем <span class="math display">\[
+  P_U h = h \chi _{[0, \infty )} \quad \text{и} \quad P_{U^\perp } h = h \chi _{(-\infty , 0)}.  
+\]</span> Таким образом, <span class="math inline">\(P_{U^\perp } h = h(1 - \chi_{[0, \infty )}) = (I - P_U)h\)</span>, что согласуется с <span class="math inline">\(P_{U^\perp } = I - P_U\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="теорема-рисса-фреше-о-представлении-гп-сопряжено-самому-себе" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="теорема-рисса-фреше-о-представлении-гп-сопряжено-самому-себе"><span class="header-section-number">2.3</span> Теорема Рисса-Фреше о представлении: ГП сопряжено самому себе</h2>
+<p>Пусть <span class="math inline">\(h\)</span> — элемент гильбертова пространства <span class="math inline">\(V\)</span>. Определим <span class="math inline">\(\varphi_{h}: V \to \mathbb {F}\)</span> формулой <span class="math inline">\(\varphi_{h}(f) = \langle f, h \rangle\)</span> для <span class="math inline">\(f \in V\)</span>. Тогда <span class="math inline">\(\varphi_{h}\)</span> является ограниченным линейным функционалом на <span class="math inline">\(V\)</span>. Следующий результат утверждает, что каждый ограниченный линейный функционал на <span class="math inline">\(V\)</span> возникает таким образом.</p>
+<p>Теорема Рисса — Фреше о представлении линейного ограниченного функционала</p>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-15" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 8 (Рисс — Фреше)</strong></span> Пусть <span class="math inline">\(\varphi_{h}\)</span> — ограниченный линейный функционал на гильбертовом пространстве <span class="math inline">\(V\)</span>. Тогда существует единственный вектор <span class="math inline">\(h \in V\)</span> такой, что <span class="math display">\[
+  \varphi _{h}(f) = \langle f, h \rangle \quad \text{для всех } f \in V.  
+\]</span> Кроме того, <span class="math inline">\(\| \varphi_{h}\|  = \| h\|\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<p>В случае <span class="math inline">\(p=2\)</span> теорема Рисса показывает, что естественное отображение <span class="math inline">\(L^2(\mu )\)</span> в его двойственное пространство <span class="math inline">\((L^2(\mu ))'\)</span> является сюръективным. Таким образом, двойственное пространство к <span class="math inline">\(L^2(\mu )\)</span> может быть отождествлено с самим <span class="math inline">\(L^2(\mu )\)</span>.</p>
+</section>
+</section>
+<section id="ортогональный-базис" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Ортогональный базис</h1>
+<section id="неравенство-бесселя" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="неравенство-бесселя"><span class="header-section-number">3.1</span> Неравенство Бесселя</h2>
+<p>Напомним, что <em>семейство</em> <span class="math inline">\(\{ e_{k}\}_{k \in \mathbb {N}}\)</span> в множестве <span class="math inline">\(V\)</span> — это функция <span class="math inline">\(e\)</span> из произвольного множества индексов <span class="math inline">\(\mathbb {N}\)</span> в <span class="math inline">\(V\)</span>, со значением функции <span class="math inline">\(e\)</span> в точке <span class="math inline">\(k \in \mathbb {N}\)</span>, обозначаемым <span class="math inline">\(e_{k}\)</span>.</p>
+<p>Семейство векторов <span class="math inline">\(\{ e_{k}\}_{k \in \mathbb {N}}\)</span> в пространстве со скалярным произведением называется <em>ортонормированным семейством</em>, если</p>
+<p><span class="math display">\[
+  \left\langle e_j, e_k \right\rangle = \begin{cases}  0 &amp;  \text{если } j \neq k, \\ 1 &amp;  \text{если } j = k \end{cases} \quad \text{для всех } j, k \in \mathbb {N}.  
+\]</span></p>
+<div id="expl-9" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 9
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-24" class="callout-24-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Приведите примеры различных ортонормированных семейств векторов.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Для <span class="math inline">\(k \in \mathbb {Z}^{+}\)</span> пусть <span class="math inline">\(e_{k}\)</span> — элемент <span class="math inline">\(\ell^{2}\)</span>, все координаты которого равны 0, кроме <span class="math inline">\(k\)</span>-й, которая равна 1:</p>
+<p><span class="math display">\[
+  e_{k} = (0, \ldots , 0, 1, 0, \ldots ).  
+\]</span></p>
+<p>Тогда <span class="math inline">\(\{ e_{k}\}_{k \in \mathbb {Z}^{+}}\)</span> является ортонормированным семейством в <span class="math inline">\(\ell^{2}\)</span>. В этом случае наше семейство является последовательностью; таким образом, мы можем называть <span class="math inline">\(\{ e_{k}\}_{k \in \mathbb {Z}^{+}}\)</span> <em>ортонормированной последовательностью</em>.</p></li>
+<li><p>Более общо, пусть <span class="math inline">\(\mathbb {N}\)</span> — непустое множество. Гильбертово пространство <span class="math inline">\(L^{2}(\mu )\)</span>, где <span class="math inline">\(\mu\)</span> — считающая мера на <span class="math inline">\(\mathbb {N}\)</span>, часто обозначается <span class="math inline">\(\ell^{2}(\mathbb {N})\)</span>. Для <span class="math inline">\(k \in \mathbb {N}\)</span> определим функцию <span class="math inline">\(e_{k} \colon \mathbb {N} \to \mathbb {F}\)</span> формулой</p>
+<p><span class="math display">\[
+  e_{k}(j) = \begin{cases}  1 &amp;  \text{если } j = k, \\ 0 &amp;  \text{если } j \neq k. \end{cases}  
+\]</span></p>
+<p>Тогда <span class="math inline">\(\{ e_{k}\}_{k \in \mathbb {N}}\)</span> является ортонормированным семейством в <span class="math inline">\(\ell^{2}(\mathbb {N})\)</span>.</p></li>
+<li><p>Для <span class="math inline">\(k \in \mathbb {Z}\)</span> определим <span class="math inline">\(e_{k} \colon (-\pi , \pi ] \to \mathbb {R}\)</span> формулой</p>
+<p><span class="math display">\[
+  e_{k}(t) = \begin{cases}  \frac{1}{\sqrt{\pi }} \sin (kt) &amp;  \text{если } k &gt; 0, \\ \frac{1}{\sqrt{2\pi }} &amp;  \text{если } k = 0, \\ \frac{1}{\sqrt{\pi }} \cos (kt) &amp;  \text{если } k &lt; 0. \end{cases}  
+\]</span></p>
+<p>Тогда <span class="math inline">\(\{ e_{k}\}_{k \in \mathbb {Z}}\)</span> является ортонормированным семейством в <span class="math inline">\(L^{2}((-\pi , \pi ])\)</span>. Это ортонормированное семейство приводит к классической теории рядов Фурье.</p></li>
+<li><p>Для неотрицательного целого <span class="math inline">\(k\)</span> определим <span class="math inline">\(e_{k} \colon [0, 1) \to \mathbb {F}\)</span> как функцию Радемахера. Тогда <span class="math inline">\(\{ e_{k}\}_{k \in \{ 0,1,\ldots \} }\)</span> является ортонормированным семейством в <span class="math inline">\(L^{2}([0,1])\)</span>.</p></li>
+<li><p>Модифицируя предыдущий пример сдвигами на целые числа, можно построить ортонормированное семейство <span class="math inline">\(\{ e_{k,m}\}_{(k,m) \in \{ 0,1,\ldots \}  \times \mathbb {Z}}\)</span> в <span class="math inline">\(L^{2}(\mathbb {R})\)</span>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Говорят, что ряд из векторов <span class="math inline">\(\sum_{k=1}^{\infty }v_k\)</span> сходится к вектору <span class="math inline">\(v \in V\)</span> <em>безусловно</em>, если при любой перестановке слагаемых сумма не меняется. Для любой перестановки (т.е. биективного отображения) <span class="math inline">\(\sigma : \mathbb {N} \to \mathbb {N}\)</span> выполнено <span class="math inline">\(\sum_{k=1}^{\infty }v_{\sigma_k} = v\)</span>.</p>
+<p>Говорят, что ряд из векторов <span class="math inline">\(\sum_{k=1}^{\infty }v_k\)</span> сходится <em>абсолютно</em>, если <span class="math inline">\(\sum_{k=1}^{\infty } \left\| v_k\right\|  &lt; \infty\)</span>.</p>
+<p>Как вы должны помнить из курса анализа, согласно <a href="https://en.wikipedia.org/wiki/Riemann_series_theorem">теореме Римана</a> ряд из действительных чисел сходится абсолютно тогда и только тогда, когда он сходится безусловно. Как мы увидим, ситуация со сходимостью векторов в произвольном банаховом (в частности, гильбертовом) пространстве несколько отличается. В конечномерном нормированном пространстве (которое всегда будет банаховым, на контрольной была такая задача) эквивалентность между безусловной и абсолютной сходимостями все еще будет. Однако в бесконечномерном БП из абсолютной сходимости все еще будет следовать безусловная, но не наоборот.</p>
+<div id="expl-10" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 10
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-26" class="callout-26-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Приведите пример безусловно сходящегося ряда из векторов, который не сходится абсолютно.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-25" class="callout-25-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(\{ e_{k}\}_{k \in \mathbb {Z}^{+}}\)</span> — ортонормированное семейство в <span class="math inline">\(\ell^{2}\)</span>, где <span class="math inline">\(e_{k}\)</span> — последовательность с 1 на <span class="math inline">\(k\)</span>-м месте. Тогда сумма</p>
+<p><span class="math display">\[
+  \sum _{k \in 1}^{+\infty } \frac{1}{k} e_{k}  
+\]</span></p>
+<p>сходится в <span class="math inline">\(\ell^{2}\)</span> к <span class="math inline">\(\left(1, \frac{1}{2}, \frac{1}{3}, \ldots \right)\)</span>, причем безусловно: коэффициенты <span class="math inline">\(a_k=1/k\)</span> образуют последовательность из <span class="math inline">\(\ell^2\)</span> (так как <span class="math inline">\(\sum 1/k^2 &lt; \infty\)</span>), а для ортонормированного семейства это, по теореме <a href="#thm-HS:LinCombOrtFam" class="quarto-xref">Теорема&nbsp;9</a>, равносильно (безусловной) сходимости ряда.</p>
+<p>Однако при этом <span class="math inline">\(\sum_{k=1}^{\infty } \|  \frac{1}{k} e_{k} \|  = \sum_{k=1}^{\infty } \frac{1}{k} = +\infty\)</span>, т.е. абсолютной сходимости нет.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-HS:LinCombOrtFam" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 9 (Линейные комбинации ортонормированного семейства и их сходимости)</strong></span> Пусть <span class="math inline">\(\{ e_{k}\}_{k \in \mathbb {N}}\)</span> — ортонормированное семейство в ГП <span class="math inline">\(V\)</span> и <span class="math inline">\(\{ a_{k}\}_{k \in \mathbb {N}}\)</span> — семейство коэффициентов из <span class="math inline">\(\mathbb {F}\)</span>. Следующие условия эквивалентны:</p>
+<ol type="1">
+<li><p>Ряд <span class="math inline">\(\sum_{k =1}^{+\infty } a_{k} e_{k}\)</span> сходится;</p></li>
+<li><p>Ряд <span class="math inline">\(\sum_{k =1}^{+\infty } a_{k} e_{k}\)</span> сходится безусловно;</p></li>
+<li><p>Последовательность коэффициентов <span class="math inline">\(a = (a_1, a_2, \ldots )\)</span> из <span class="math inline">\(\ell^2\)</span>, т.е. <span class="math inline">\(\sum_{k =1}^{+\infty } \left|a_{k}\right|^2 &lt; +\infty\)</span>. Более того, если хотя бы одно из условий выполнено, то <span class="math display">\[
+  \left\| \sum _{k =1}^{+\infty } a_{k} e_{k}\right\|  = \sqrt{\sum _{k =1}^{+\infty } |a_{k}|^{2}}  
+\]</span></p></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-17" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 10 (Неравенство Бесселя)</strong></span> Пусть <span class="math inline">\(\{ e_{k}\}_{k \in \mathbb {N}}\)</span> — ортонормированное семейство в пространстве со скалярным произведением <span class="math inline">\(V\)</span> и <span class="math inline">\(f \in V\)</span>. Тогда <span class="math display">\[
+  \sum _{k =1}^{+\infty } |\langle f, e_{k} \rangle |^{2} \leq \|  f \| ^{2}.  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-HS:ClLinSpanOrtFam" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 11 (Замыкание линейной оболочки ортонормированного семейства)</strong></span> Пусть <span class="math inline">\(\{ e_{k}\}_{k \in \mathbb {N}}\)</span> — ортонормированное семейство в гильбертовом пространстве <span class="math inline">\(V\)</span>. Тогда</p>
+<p><span class="math display">\[
+  \overline{\operatorname {span} \{ e_{k}\} _{k \in \mathbb {N}}} = \left\{  \sum _{k =1}^{+\infty } \alpha _{k} e_{k} : \{ \alpha _{k}\} _{k \in \mathbb {N}} \text{ — семейство в } \mathbb {F} \text{ и } \sum _{k =1}^{+\infty } |\alpha _{k}|^{2} &lt; \infty \right\}   
+\]</span></p>
+<p>Более того,</p>
+<p><span class="math display">\[
+  f = \sum _{k =1}^{+\infty } \langle f, e_{k} \rangle e_{k}  
+\]</span></p>
+<p>для любого <span class="math inline">\(f \in \overline{\operatorname {span} \{ e_{k}\}_{k \in \mathbb {N}}}\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="тождество-парсеваля" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="тождество-парсеваля"><span class="header-section-number">3.2</span> Тождество Парсеваля</h2>
+<p>Ортонормированное семейство <span class="math inline">\(\{ e_{k}\}_{k \in \mathbb {N}}\)</span> в гильбертовом пространстве <span class="math inline">\(V\)</span> называется <em>ортонормированным базисом</em> (сокр. <em>ОНБ</em>) <span class="math inline">\(V\)</span>, если оно полно, т.е.</p>
+<p><span class="math display">\[
+  \overline{\operatorname {span}\left\{ e_k\right\} _{k \in \mathbb {N}}} = V  
+\]</span></p>
+<p>Будет ли ОНБ базисом Шаудера? Напомним, что базис Шаудера – это полная система векторов, такая что любой вектор можно <strong>единственным образом</strong> приблизить (конечными) линейными комбинациями из системы. Т.е. нужно проверить единственность. Пусть <span class="math inline">\(f \in \overline{\operatorname {span}\left\{ e_k\right\}_{k \in \mathbb {N}}}\)</span>, пусть</p>
+<p><span class="math display">\[
+  f = \sum _{k=1}^{+\infty }a_ke_k = \sum _{k=1}^{+\infty }b_ke_k  
+\]</span></p>
+<p>Обозначим <span class="math inline">\(a = (a_1, a_2, \ldots )\)</span>, <span class="math inline">\(b = (b_1, b_2, \ldots )\)</span>. По теореме <a href="#thm-HS:LinCombOrtFam" class="quarto-xref">Теорема&nbsp;9</a> <span class="math inline">\(a, b \in \ell^2\)</span>. Значит, <span class="math inline">\(a - b \in \ell^2\)</span>, значит, по той же теореме, ряд <span class="math inline">\(\sum_{k=1}^{+\infty }(a_k-b_k)e_k\)</span> сходится. Но к чему он сходится? Имеем</p>
+<p><span class="math display">\[
+  \sum _{k=1}^{+\infty }(a_k-b_k)e_k = \lim _{n \to +\infty }\left(\sum _{k=1}^{+\infty }(a_k-b_k)e_k\right) = \lim _{n \to +\infty }\left(\sum _{k=1}^{+\infty }a_ke_k\right) - \lim _{n \to +\infty }\left(\sum _{k=1}^{+\infty }b_ke_k\right) = f - f = 0_V  
+\]</span></p>
+<p>Значит, по той же теореме,</p>
+<p><span class="math display">\[
+  0 = \left\| 0_V\right\|  = \left\| \sum _{k=1}^{+\infty }(a_k-b_k)e_k\right\|  = \sqrt{\sum _{k=1}^{+\infty }\left|a_k - b_k\right|^2}  
+\]</span></p>
+<p>Следовательно, <span class="math inline">\(a_k = b_k\)</span> для всех <span class="math inline">\(k\)</span>. Доказали единственность коэффициентов (причем, как вы понимаете, <span class="math inline">\(a_k = b_k = \left\langle f, e_k \right\rangle\)</span>). Итого, ОНБ – это частный случай базиса Шаудера.</p>
+<div id="expl-11" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 11
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-28" class="callout-28-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Приведите примеры ОНБ.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-27" class="callout-27-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Стандартный базис <span class="math inline">\(\{ e_{1}, \ldots , e_{n}\}\)</span> в <span class="math inline">\(\mathbb {F}^{n}\)</span> является ортонормированным базисом.</p></li>
+<li><p>Примеры ортонормированных семейств, приведённые выше (стандартный базис в <span class="math inline">\(\ell^{2}\)</span>, тригонометрическая система в <span class="math inline">\(L^{2}((-\pi , \pi ])\)</span>), являются ортонормированными базисами.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-19" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 12 (Тождество Парсеваля)</strong></span> Пусть <span class="math inline">\(\{ e_{k}\}_{k \in \mathbb {N}}\)</span> — ортонормированный базис гильбертова пространства <span class="math inline">\(V\)</span> и <span class="math inline">\(f, g \in V\)</span>. Тогда</p>
+<ol type="1">
+<li><p><span class="math inline">\(f = \sum_{k =1}^{+\infty } \langle f, e_{k} \rangle e_{k}\)</span>;</p></li>
+<li><p><span class="math inline">\(\langle f, g \rangle = \sum_{k =1}^{+\infty } \langle f, e_{k} \rangle \overline{\langle g, e_{k} \rangle }\)</span>;</p></li>
+<li><p><span class="math inline">\(\|  f \|^{2} = \sum_{k =1}^{+\infty } |\langle f, e_{k} \rangle |^{2}\)</span>.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<p>Равенство Парсеваля, в сущности, говорит о том, что любое ГП со (счетным) ОНБ (могут быть и несчетные ОНБ, но их мы в курсе не рассматриваем) изоморфно пространству квадратично сходящихся последовательностей <span class="math inline">\(\ell^2 = \ell^2(\mathbb {N})\)</span> с сохранением скалярного произведения, т.е. с сохранением всей структуры гильбертова пространства. А именно, если <span class="math inline">\(\left\{ e_k\right\}_{k \in \mathbb {N}}\)</span> – это ОНБ, то</p>
+<p><span class="math display">\[
+  f \mapsto \left( \left\langle f, e_1 \right\rangle , \left\langle f, e_2 \right\rangle , \ldots \right)  
+\]</span></p>
+<p>– это указанный изоморфизм <span class="math inline">\(V \to \ell^2\)</span>.</p>
+</section>
+<section id="существование-онб-в-сепарабельном-гп-конструктивное-доказательство-через-процесс-грама-шмидта" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="существование-онб-в-сепарабельном-гп-конструктивное-доказательство-через-процесс-грама-шмидта"><span class="header-section-number">3.3</span> Существование ОНБ в сепарабельном ГП: конструктивное доказательство через процесс Грама-Шмидта</h2>
+<p>Нормированное векторное пространство называется <em>сепарабельным</em>, если в нём существует счётное подмножество, замыкание которого совпадает со всем пространством.</p>
+<div id="expl-12" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 12
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-33" class="callout-33-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Покажите, что следующие ГП сепарабельны:</p>
+<ol type="1">
+<li><p><span class="math inline">\(\mathbb {F}^{n}\)</span>;</p></li>
+<li><p><span class="math inline">\(\ell^2\)</span>;</p></li>
+<li><p><span class="math inline">\(L^2[0,1]\)</span>.</p></li>
+</ol>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-32" class="callout-32-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>(1)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\mathbb {F}^n\)</span> сепарабельно: счётное всюду плотное множество – кортежи с рациональными (или рациональными действ. и мнимыми частями, если <span class="math inline">\(\mathbb F = \mathbb {C}\)</span>) координатами.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>(2)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\ell^2\)</span> сепарабельно: счётное всюду плотное множество – последовательности с конечным числом ненулевых рациональных членов (плотность доказывается так же, как для <span class="math inline">\(\ell^p\)</span> в <a href="../../../../courses/01-analysis/FA/contents/040_LpSp.html#expl-LpSp:CountMeasExample">примере про <span class="math inline">\(\ell^p\)</span> как пространство Лебега со считающей мерой</a> ранее – приближаем хвост, затем округляем конечный “хвост” до рациональных).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>(3)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(L^2[0,1]\)</span> сепарабельно: по теореме Вейерштрасса многочлены плотны в <span class="math inline">\(C[0,1]\)</span> по <span class="math inline">\(\left\| \cdot \right\|_{\infty }\)</span>, а значит, и по <span class="math inline">\(\left\| \cdot \right\|_{2}\)</span> (так как <span class="math inline">\(\left\| \cdot \right\|_{2}\leq \left\| \cdot \right\|_{\infty }\)</span> на пространстве конечной меры); в свою очередь, <span class="math inline">\(C[0,1]\)</span> плотно в <span class="math inline">\(L^2[0,1]\)</span> (стандартный факт теории меры: непрерывные функции плотны в <span class="math inline">\(L^p\)</span> при <span class="math inline">\(p&lt;\infty\)</span>). Значит, многочлены с рациональными коэффициентами – счётное множество, плотное в <span class="math inline">\(L^2[0,1]\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-20" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 13 (Существование ортонормированных базисов в сепарабельных гильбертовых пространствах)</strong></span> Каждое сепарабельное гильбертово пространство имеет ОНБ.</p>
+</div>
+</div>
+</div>
+</div>
+<p>Доказательством по сути является алгоритм Грама–Шмидта, примененный к счетному всюду плотному семейству.</p>
+</section>
+<section id="лучшая-аппроксимация" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="лучшая-аппроксимация"><span class="header-section-number">3.4</span> Лучшая аппроксимация</h2>
+<p>Сделаем небольшое отступление, чтобы проиллюстрировать, как процесс Грама–Шмидта, использованный в предыдущем доказательстве, может быть использован для поиска ближайших элементов к подпространствам. Начнём с результата, связывающего ортогональную проекцию на замкнутое подпространство с ортонормированным базисом этого подпространства.</p>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-21" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 14 (Ортогональная проекция через ортонормированный базис)</strong></span> Пусть <span class="math inline">\(U\)</span> — замкнутое подпространство гильбертова пространства <span class="math inline">\(V\)</span> и <span class="math inline">\(\{ e_{k}\}_{k \in \mathbb {N}}\)</span> — ортонормированный базис <span class="math inline">\(U\)</span>. Тогда для любого <span class="math inline">\(f \in V\)</span> <span class="math display">\[
+  P_{U} f = \sum _{k =1}^{+\infty } \langle f, e_{k} \rangle e_{k}.  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p>Теорема 8.71: Ортогональная проекция через ортонормированный базис</p>
+<div id="expl-13" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-35-contents" aria-controls="callout-35" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 13
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-35" class="callout-35-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Найти многочлен <span class="math inline">\(g\)</span> степени не выше 10, минимизирующий <span class="math display">\[
+  \int _{-1}^{1} \left| \sqrt{|x|} - g(x) \right|^{2} dx.  
+\]</span></p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-34-contents" aria-controls="callout-34" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-34" class="callout-34-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Мы будем работать в вещественном гильбертовом пространстве <span class="math inline">\(L^2([-1,1])\)</span> с обычным скалярным произведением <span class="math inline">\(\langle g, h\rangle =\int_{-1}^1 g h\)</span>. Для <span class="math inline">\(k \in \{ 0,1, \ldots , 10\}\)</span> пусть <span class="math inline">\(f_k \in L^2([-1,1])\)</span> определяется формулой <span class="math inline">\(f_k(x)=x^k\)</span>. Пусть <span class="math inline">\(U\)</span> — подпространство <span class="math inline">\(L^2([-1,1])\)</span>, определяемое формулой</p>
+<p><span class="math display">\[
+  U=\operatorname {span}\left\{ f_k\right\} _{k \in \{ 0, \ldots , 10\} } .  
+\]</span></p>
+<p>Применим алгоритм Грама-Шмидта к <span class="math inline">\(\left\{ f_k\right\}_{k \in \{ 0, \ldots , 10\} }\)</span>, получим ОНБ <span class="math inline">\(\left\{ e_k\right\}_{k \in \{ 0, \ldots , 10\} }\)</span> пространства <span class="math inline">\(U\)</span>, который является замкнутым подпространством <span class="math inline">\(L^2([-1,1])\)</span> (легко показать, попробуйте сами). <span class="math inline">\(\left\{ e_k\right\}_{k \in \{ 0, \ldots , 10\} }\)</span> можно вычислить явно: <span class="math inline">\(e_0(x)=1 / \sqrt{2}\)</span>, <span class="math inline">\(e_1(x)=\sqrt{6} x / 2, \ldots\)</span> вплоть до</p>
+<p><span class="math display">\[
+  e_{10}(x)=\frac{\sqrt{42}}{512}\left(-63+3465 x^2-30030 x^4+90090 x^6-109395 x^8+46189 x^{10}\right).  
+\]</span></p>
+<p>Определим <span class="math inline">\(f \in L^2([-1,1])\)</span> как <span class="math inline">\(f(x)=\sqrt{|x|}\)</span>. Поскольку <span class="math inline">\(U\)</span> — это подпространство <span class="math inline">\(L^2([-1,1])\)</span>, состоящее из многочленов степени не выше 10, а <span class="math inline">\(P_U f\)</span> равен элементу <span class="math inline">\(U\)</span>, ближайшему к <span class="math inline">\(f\)</span>, решение <span class="math inline">\(g\)</span> нашей задачи минимизации задаётся формулой</p>
+<p><span class="math display">\[
+  g=\sum _{k=0}^{10}\left\langle f, e_k\right\rangle e_k  
+\]</span></p>
+<p>Используя явные выражения для <span class="math inline">\(e_0, \ldots , e_{10}\)</span> и снова вычисляя интегралы, получаем</p>
+<p><span class="math display">\[
+  g(x)=\frac{693+15015 x^2-64350 x^4+139230 x^6-138567 x^8+51051 x^{10}}{2944} .  
+\]</span></p>
+<style>
+  #apx-wrap { padding: 1rem 0; font-family: sans-serif; }
+  #apx-wrap p.sub { font-size: 13px; color: #888; margin: 0 0 0.75rem; }
+  .apx-controls { display: flex; align-items: center; gap: 12px; margin: 0.5rem 0 1rem; flex-wrap: wrap; }
+  .apx-controls label { font-size: 13px; color: #666; }
+  .apx-controls span.hv { font-size: 13px; font-weight: 500; min-width: 20px; display: inline-block; }
+</style>
+<div id="apx-wrap">
+  <h2 style="font-size:16px;font-weight:500;margin:0 0 4px;" class="anchored">Наилучшее приближение \(f(x)=\sqrt{|x|}\) многочленом в \(L^2([-1,1])\)</h2>
+  <p class="sub">Красная кривая — \(f(x)=\sqrt{|x|}\); синяя — её ближайший (в норме \(L^2([-1,1])\)) многочлен \(g\) степени не выше \(n\), построенный по коэффициентам разложения по многочленам Лежандра. Приближение довольно хорошее, несмотря на то, что \(f\) не дифференцируема в точке \(0\) (и разложение в ряд Тейлора не имеет смысла).</p>
+  <div class="apx-controls">
+    <label>степень \(n =\)</label>
+    <input type="range" id="apx-n" min="1" max="16" step="1" value="10" style="width:220px;">
+    <span class="hv" id="apx-nval">10</span>
+  </div>
+  <div id="apx-plot" style="width:100%;max-width:560px;height:420px;"></div>
+</div>
+<script>
+(function(){
+  function f(x) { return Math.sqrt(Math.abs(x)); }
+
+  // Legendre polynomials P_0..P_n via recurrence, orthonormalized on [-1,1]
+  // (standard P_k has ||P_k||^2 = 2/(2k+1)).
+  function legendreAt(k, x) {
+    if (k === 0) return 1;
+    if (k === 1) return x;
+    var p0 = 1, p1 = x;
+    for (var i = 2; i <= k; i++) {
+      var p2 = ((2*i - 1) * x * p1 - (i - 1) * p0) / i;
+      p0 = p1; p1 = p2;
+    }
+    return p1;
+  }
+
+  function simpsonIntegral(fn, a, b, n) {
+    if (n % 2 === 1) n++;
+    var h = (b - a) / n, sum = fn(a) + fn(b);
+    for (var i = 1; i < n; i++) {
+      sum += fn(a + i*h) * (i % 2 === 0 ? 2 : 4);
+    }
+    return sum * h / 3;
+  }
+
+  function computeCoeffs(n) {
+    var coeffs = [];
+    for (var k = 0; k <= n; k++) {
+      var normSq = 2 / (2*k + 1);
+      var inner = simpsonIntegral(function(x){ return f(x) * legendreAt(k, x); }, -1, 1, 400);
+      coeffs.push(inner / normSq);
+    }
+    return coeffs;
+  }
+
+  function g(x, coeffs) {
+    var s = 0;
+    for (var k = 0; k < coeffs.length; k++) s += coeffs[k] * legendreAt(k, x);
+    return s;
+  }
+
+  function draw(n) {
+    var coeffs = computeCoeffs(n);
+    var xs = [], fY = [], gY = [];
+    for (var i = 0; i <= 120; i++) {
+      var x = -1 + i * (2/120);
+      xs.push(x); fY.push(f(x)); gY.push(g(x, coeffs));
+    }
+    var data = [
+      { x: xs, y: fY, mode: "lines", line: { color: "#b91c1c", width: 2.2 }, name: "f(x)=√|x|", showlegend: false },
+      { x: xs, y: gY, mode: "lines", line: { color: "#2a78d6", width: 2.2 }, name: "g(x)", showlegend: false }
+    ];
+    var layout = {
+      xaxis: { range: [-1.1, 1.15], title: "x", zeroline: true },
+      yaxis: { range: [-0.05, 1.2], title: "y", zeroline: true },
+      margin: { t: 10, b: 40, l: 40, r: 10 },
+      plot_bgcolor: "#fcfcfb", paper_bgcolor: "#fcfcfb", showlegend: false
+    };
+    require(["plotly"], function(Plotly){
+      var el = document.getElementById("apx-plot");
+      var opts = { displayModeBar: false, displaylogo: false, scrollZoom: false };
+      if (el.data) { Plotly.react(el, data, layout, opts); } else { Plotly.newPlot(el, data, layout, opts); }
+    });
+  }
+
+  var slider = document.getElementById("apx-n");
+  slider.addEventListener("input", function(){
+    document.getElementById("apx-nval").textContent = slider.value;
+    draw(parseInt(slider.value, 10));
+  });
+  draw(10);
+})();
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="теорема-риссафреше-о-представлении-revisited" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="теорема-риссафреше-о-представлении-revisited"><span class="header-section-number">3.5</span> Теорема Рисса–Фреше о представлении revisited</h2>
+<p>Как мы поняли, в любом сепарабельном ГП есть (счетный) ОНБ. На самом деле это верно и в обратную сторону (подумайте, почему).</p>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-22" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 15 (Теорема Рисса–Фреше, альтернативная формулировка для ГП со счетным ОНБ)</strong></span> Пусть <span class="math inline">\(\varphi\)</span> — ограниченный линейный функционал на гильбертовом пространстве <span class="math inline">\(V\)</span> и <span class="math inline">\(\{ e_{k}\}_{k \in \mathbb {N}}\)</span> — (счетный) ОНБ в <span class="math inline">\(V\)</span>. Пусть <span class="math display">\[
+  h = \sum _{k =1}^{+\infty } \overline{\varphi (e_{k})} e_{k}.  
+\]</span> Тогда для всех <span class="math inline">\(f \in V\)</span> выполняется <span class="math display">\[
+  \varphi (f) = \langle f, h \rangle ,  
+\]</span> и <span class="math inline">\(\| \varphi \|  = \left( \sum_{k =1}^{+\infty } |\varphi (e_{k})|^{2} \right)^{1/2}\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-14" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-37-contents" aria-controls="callout-37" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 14
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-37" class="callout-37-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Найдите многочлен <span class="math inline">\(g\)</span> степени не выше 4, который минимизирует <span class="math inline">\(\int_{0}^{1}\left|x^{5}-g(x)\right|^{2} d x\)</span>.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-36-contents" aria-controls="callout-36" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-36" class="callout-36-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Мы будем работать в вещественном гильбертовом пространстве <span class="math inline">\(L^2([0,1])\)</span> с обычным скалярным произведением.</p>
+<ul>
+<li><p>Пусть <span class="math inline">\(f_k \in L^2[0,1]\)</span> таковы, что <span class="math inline">\(f_k(x) = x^k\)</span> (<span class="math inline">\(k \in \mathbb {Z}_+\)</span>). Пусть <span class="math inline">\(U = \operatorname {span}\left\{ f_k\right\}_{k \in \left\{ 0, \ldots , 4\right\} }\)</span>. Тогда искомый многочлен <span class="math inline">\(g\)</span> — это <span class="math inline">\(g = P_U(f_5)\)</span>.</p></li>
+<li><p>Применим процесс Грама–Шмидта, чтобы получить ортонормированный базис для <span class="math inline">\(U\)</span>.</p>
+<p><span class="math display">\[
+\begin{align}  e_0 &amp; = \frac{f_0}{\left\| f_0\right\| } = f_0 \\ e'_1 &amp; = f_1 - \left\langle f_1, e_0 \right\rangle e_0 = f_1 - \frac{1}{2}f_0, \quad e_1 = \frac{e'_1}{\left\| e'_1\right\| } = \cdots \end{align}
+\]</span></p>
+<p>Фактически нам нужно просто нормировать <a href="https://en.wikipedia.org/wiki/Legendre_polynomials">Сдвинутые многочлены Лежандра</a>:</p>
+<p><span class="math display">\[
+\begin{align}  \tilde{P}_0(x) &amp; = 1, \quad \tilde{P}_1(x) =2x-1, \quad \tilde{P}_2(x) = 6x^2 - 6x + 1, \\ \tilde{P}_3(x) &amp; = 20x^3-30x^2+12x-1, \quad \tilde{P}_4(x) = 70x^4-140x^3+90x^2-20x+1 \end{align}
+\]</span></p>
+<p>Итак, <span class="math inline">\(e_k = \frac{\tilde{P}_k}{\left\| P_k\right\| }\)</span>. Известно, что</p>
+<p><span class="math display">\[
+  \int _0^1 \widetilde{P}_m(x) \widetilde{P}_n(x)\, dx = \frac{1}{2n + 1} \delta _{mn}  
+\]</span></p>
+<p>так что <span class="math inline">\(\left\| \widetilde{P}_m\right\|  = \sqrt{\frac{1}{2m + 1}}\)</span> и</p>
+<p><span class="math display">\[
+  e_0 = \tilde{P}_0, \quad e_1 = \sqrt{3} \tilde{P}_1, \quad e_2 = \sqrt{5} \tilde{P}_2, \quad e_3 = \sqrt{7} \tilde{P}_3, \quad e_4 = 3 \tilde{P}_4  
+\]</span></p></li>
+<li><p><span class="math display">\[
+\begin{align}  \left\langle f_5, e_0 \right\rangle &amp; = \frac{1}{6}, \qquad \left\langle f_5, e_1 \right\rangle = \sqrt{3}\left(\frac{2}{7} - \frac{1}{6}\right) = \frac{5\sqrt3}{42}, \qquad \left\langle f_5, e_2 \right\rangle = \frac{5\sqrt5}{84}, \\ \left\langle f_5, e_3 \right\rangle &amp; = \frac{5\sqrt7}{252}, \qquad \left\langle f_5, e_4 \right\rangle = \frac{1}{84} \end{align}
+\]</span></p>
+<p>(последние три коэффициента считаются аналогично первым двум – через <span class="math inline">\(\int_0^1 x^5 e_k(x)\, dx\)</span>). Тогда</p>
+<p><span class="math display">\[
+  g = P_U(f_5) = \sum _{k=0}^4 \left\langle f_5, e_k \right\rangle e_k = \frac52 x^4 - \frac{20}{9}x^3 + \frac56 x^2 - \frac{5}{42}x + \frac1{252} = \frac{630x^4-560x^3+210x^2-30x+1}{252}  
+\]</span></p>
+<p>(коэффициенты при <span class="math inline">\(x^4,\ldots ,x^0\)</span> проверены символьно).</p></li>
+<li><p><a href="https://www.desmos.com/calculator/ctkwnukbfg">График</a>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-15" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-39-contents" aria-controls="callout-39" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 15
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-39" class="callout-39-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Найдите многочлен <span class="math inline">\(g\)</span> степени не выше 4 такой, что <span class="math display">\[
+  f\left(\frac{1}{2}\right) = \int _{0}^{1} f g  
+\]</span> для каждого многочлена <span class="math inline">\(f\)</span> степени не выше 4.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-38-contents" aria-controls="callout-38" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-38" class="callout-38-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Рассмотрим подпространство <span class="math inline">\(U = \operatorname {span}\left\{ e_k\right\}_{k \in \left\{ 0,\ldots ,4\right\} }\)</span> пространства <span class="math inline">\(L^2[0,1]\)</span>, где <span class="math inline">\(\left\{ e_k\right\}\)</span> — множество нормированных сдвинутых многочленов Лежандра (см. предыдущую задачу). Заметим, что <span class="math inline">\(U\)</span> — это пространство многочленов степени не выше <span class="math inline">\(4\)</span>, <span class="math inline">\(\left\{ e_k\right\}_{k \in \left\{ 0,\ldots ,4\right\} }\)</span> — ортонормированный базис этого пространства, и оно является гильбертовым пространством как замкнутое подпространство другого гильбертова пространства.</p>
+<p>Теперь рассмотрим на <span class="math inline">\(U\)</span> линейный функционал <span class="math inline">\(\varphi (f) = f(\frac{1}{2})\)</span>, <span class="math inline">\(f \in U\)</span>. Он ограничен на <span class="math inline">\(U\)</span>, потому что <span class="math inline">\(U\)</span> — конечномерное пространство. Таким образом, по теореме Рисса о представлении, <span class="math inline">\(\varphi (f) = \left\langle f, g \right\rangle = \int fg\)</span>, где (учитывая, что <span class="math inline">\(\varphi\)</span> вещественнозначен, а <span class="math inline">\(e_1\left(\frac12\right)=e_3\left(\frac12\right)=0\)</span> в силу нечётности <span class="math inline">\(\tilde P_1, \tilde P_3\)</span> относительно точки <span class="math inline">\(x=\frac12\)</span>)</p>
+<p><span class="math display">\[
+  g = \sum _{k \in \left\{ 0,\ldots ,4\right\} } \varphi (e_k) \cdot e_k = \sum _{k=0}^4 e_k\left(\frac{1}{2}\right) \cdot e_k = 1\cdot e_0 - \frac{\sqrt{5}}{2} \cdot e_2 + \frac{9}{8} e_4  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="prob-16" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-40-contents" aria-controls="callout-40" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-40" class="callout-40-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Доказать, что норма пространства <span class="math inline">\(C[a, b]\)</span> не может порождаться никаким скалярным произведением.</p>
+<p><span class="citation" data-cites="VKK">[@VKK, Задача &nbsp;5.1]</span></p>
+</div>
+</div>
+</div>
+<div id="prob-17" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-41-contents" aria-controls="callout-41" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-41" class="callout-41-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>Доказать, что любая последовательность вложенных непустых замкнутых выпуклых ограниченных множеств в гильбертовом пространстве имеет непустое пересечение.</p></li>
+<li><p>Показать, что последовательность вложенных непустых замкнутых выпуклых ограниченных множеств в банаховом пространстве может иметь пустое пересечение.</p></li>
+</ol>
+<p><span class="citation" data-cites="VKK">[@VKK, Задача &nbsp;5.2]</span></p>
+</div>
+</div>
+</div>
+<div id="prob-18" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-42-contents" aria-controls="callout-42" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-42" class="callout-42-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Привести пример последовательности вложенных ограниченных замкнутых множеств из <span class="math inline">\(l_{2}\)</span>, имеющих пустое пересечение.</p>
+<p><span class="citation" data-cites="VKK">[@VKK, Задача &nbsp;5.3]</span></p>
+</div>
+</div>
+</div>
+<div id="prob-19" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-43-contents" aria-controls="callout-43" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-43" class="callout-43-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(\left\{ x_{n}\right\} ,\left\{ y_{n}\right\}\)</span> — последовательности в гильбертовом пространстве, причем <span class="math inline">\(\left\| x_{n}\right\|  \leqslant 1,\left\| y_{n}\right\|  \leqslant 1,\left(x_{n}, y_{n}\right) \rightarrow 1\)</span>. Доказать, что <span class="math inline">\(\left\| x_{n}-y_{n}\right\|  \rightarrow 0\)</span>.</p>
+<p><span class="citation" data-cites="VKK">[@VKK, Задача &nbsp;5.5]</span></p>
+</div>
+</div>
+</div>
+<div id="prob-20" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-44-contents" aria-controls="callout-44" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 5
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-44" class="callout-44-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(L \subset H\)</span> — линейное подпространство в гильбертовом пространстве, <span class="math inline">\(f\)</span> — линейный непрерывный функционал на <span class="math inline">\(L\)</span>. Доказать, что <span class="math inline">\(\exists !\tilde{f} \in H^{'}:\left.\tilde{f}\right|_{L} = f,\| \tilde{f}\|  = \| f\|\)</span>.</p>
+<p><span class="citation" data-cites="VKK">[@VKK, Задача &nbsp;9.9]</span></p>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Скопировано");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Скопировано");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<!--
+  Hover preview for @expl-... (example) cross-references.
+
+  Quarto's own html format already ships a native crossref-hover-preview
+  script (bundled tippy, no CDN, wired up for every a.quarto-xref link --
+  see site_libs/quarto-html/tippy.umd.min.js and the inline tippyHover/
+  processXRef script Quarto emits near the end of <body>). That native
+  script now covers theorem-family types too, since
+  _extensions/mn-theorems wraps them into real Quarto callouts.
+
+  Examples are the one remaining gap: mn-problems.lua's Pandoc filter
+  intercepts @expl-... citations and emits a raw `<a class="xref-callout"
+  data-tippy-ref="...">` directly, bypassing Quarto's own crossref
+  resolution entirely (needed because examples use the filter's own custom
+  numbering, not Quarto's native one) -- so they never get the
+  a.quarto-xref class Quarto's native script looks for. This file only
+  fills that one gap, reusing the SAME window.tippy Quarto's native script
+  already set up (no separate Popper/Tippy load of our own -- an earlier
+  version of this file loaded Popper+Tippy from unpkg.com via plain
+  <script src>, which registered as an anonymous AMD module on pages with
+  Quarto's RequireJS loader and broke both the popup AND, as collateral
+  damage, quarto's own native tippy setup).
+-->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (!window.tippy) return; // native script didn't run (shouldn't happen on an html-format page)
+
+  document.querySelectorAll("a.xref-callout").forEach(function (anchor) {
+    var targetId = anchor.getAttribute("data-tippy-ref");
+    var inner = targetId && document.getElementById(targetId);
+    if (!inner) return;
+
+    var outer = inner.closest(".callout-style-default") || inner;
+
+    tippy(anchor, {
+      content: function () {
+        var clone = outer.cloneNode(true);
+        var uid = "mn-xref-" + targetId;
+        clone.querySelectorAll("[id]").forEach(function (el) {
+          el.id = uid + "-" + el.id;
+        });
+        clone.querySelectorAll("[data-bs-target]").forEach(function (el) {
+          var orig = el.getAttribute("data-bs-target");
+          el.setAttribute("data-bs-target", "." + uid + "-" + orig.replace(/^\./, ""));
+        });
+        clone.querySelectorAll("[aria-controls]").forEach(function (el) {
+          el.setAttribute("aria-controls", uid + "-" + el.getAttribute("aria-controls"));
+        });
+        if (window.Quarto && window.Quarto.typesetMath) {
+          window.Quarto.typesetMath(clone);
+        }
+        return clone;
+      },
+      allowHTML: true,
+      interactive: true,
+      maxWidth: 500,
+      theme: "quarto",
+      placement: "bottom-start",
+      appendTo: function (el) { return el.parentElement; },
+    });
+  });
+});
+</script>
+
+
+
+
+</body></html>

@@ -1,0 +1,2182 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Задача о k-центрах – Курсы ФПМИ</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/favicon.ico" rel="icon">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-18b92d25f2a0372079463917332f47f0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-90af2ae3f5f11ccb077ed1c2d3900ada.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/quarto-contrib/mn-problems-1.0.0/mn-problems.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/mn-theorems-1.0.0/mn-theorems.css" rel="stylesheet">
+<script src="../../../../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Поиск не дал результатов",
+    "search-matching-documents-text": "Результаты поиска",
+    "search-copy-link-title": "Скопировать ссылку",
+    "search-hide-matches-text": "Скрыть дополнительные результаты",
+    "search-more-match-text": "дополнительный результат в этом документе",
+    "search-more-matches-text": "дополнительных результата(-ов) в этом документе",
+    "search-clear-button-title": "Очистить",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Отменить",
+    "search-submit-button-title": "Найти",
+    "search-label": "Поиск"
+  }
+}</script>
+<style>
+div.callout-todo.callout {
+  border-left-color: pink;
+}
+div.callout-todo.callout-style-default .callout-header {
+  background-color: rgb(from pink r g b / 13%);
+}
+div.callout-todo .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.callout-titled .callout-icon::before {
+  content: '📝';
+  background-image: none;
+}
+div.callout-enum-item.callout {
+  border-left-color: #008000;
+}
+div.callout-enum-item.callout-style-default .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-enum-item .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-enum-item.callout-style-default .callout-icon::before, div.callout-enum-item.callout-titled .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23008000" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/></svg>');
+}
+div.callout-thumbs-up.callout {
+  border-left-color: #008000;
+}
+div.callout-thumbs-up.callout-style-default .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-thumbs-up .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-thumbs-up.callout-style-default .callout-icon::before, div.callout-thumbs-up.callout-titled .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23008000" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/></svg>');
+}
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/logo.png" alt="" class="navbar-logo light-content">
+    <img src="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/logo.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../../../index.html">
+    <span class="navbar-title">Курсы ФПМИ</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Поиск"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Переключить навигацию" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> 
+<span class="menu-text">Главная</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Курсы</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../../courses/index.html">
+ <span class="dropdown-text">Все курсы (37)</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../../courses/04-probability/index.html">
+ <span class="dropdown-text">Вероятность (4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/01-analysis/index.html">
+ <span class="dropdown-text">Анализ (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/02-algebra/index.html">
+ <span class="dropdown-text">Алгебра (4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/03-discrete-cs/index.html">
+ <span class="dropdown-text">Дискретная математика и CS (9)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/05-programming-systems/index.html">
+ <span class="dropdown-text">Программирование и системы (7)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/06-data-computing/index.html">
+ <span class="dropdown-text">Данные и вычисления (5)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Учебный план</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">    
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/I.html">
+ <span class="dropdown-text">I семестр (7)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/II.html">
+ <span class="dropdown-text">II семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/III.html">
+ <span class="dropdown-text">III семестр (9)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/IV.html">
+ <span class="dropdown-text">IV семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/V.html">
+ <span class="dropdown-text">V семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/VI.html">
+ <span class="dropdown-text">VI семестр (4)</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--2" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">О проекте</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu--2">    
+        <li>
+    <a class="dropdown-item" href="../../../../about.html">
+ <span class="dropdown-text">О проекте</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../editorial-policy.html">
+ <span class="dropdown-text">Статус материалов и редакционная политика</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://mipt.ru/education/schools/fpmi"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:web" style="font-size: 1.25em;" aria-label="Icon web from mdi Iconify.design set." title="Сайт ФПМИ"></iconify-icon></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../courses/03-discrete-cs/AA/contents/050_k_Center.html">5. Задача о k-центрах</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
+<div style="font-weight: bold; font-size: 1.1em;">
+<p>Приближённые алгоритмы</p>
+</div>
+</div></div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Обзор курса</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/contents/010_Preface_NP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Предисловие. Классы сложности. NP-сложные задачи</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/contents/020_Intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Комбинаторная оптимизация: введение</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/contents/030_Set_Cover.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Задача о покрытии множествами</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/contents/040_Metric_Problems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Задачи с метрикой</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/contents/050_k_Center.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">5. Задача о k-центрах</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/contents/200_SSS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Кратчайшая суперстрока</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Содержание</h2>
+   
+  <ul>
+  <li><a href="#параметрическое-сокращение-для-метрической-задачи-о-k-центрах" id="toc-параметрическое-сокращение-для-метрической-задачи-о-k-центрах" class="nav-link active" data-scroll-target="#параметрическое-сокращение-для-метрической-задачи-о-k-центрах"><span class="header-section-number">1</span> Параметрическое сокращение для метрической задачи о <span class="math inline">\(k\)</span>-центрах</a></li>
+  <li><a href="#задача-о-взвешенных-центрах" id="toc-задача-о-взвешенных-центрах" class="nav-link" data-scroll-target="#задача-о-взвешенных-центрах"><span class="header-section-number">2</span> Задача о взвешенных центрах</a></li>
+  <li><a href="#задачи" id="toc-задачи" class="nav-link" data-scroll-target="#задачи"><span class="header-section-number">3</span> Задачи</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<!--
+  Explicit RequireJS path mapping for "plotly", used by every hand-built
+  interactive widget on this site via require(["plotly"], function(Plotly){...}).
+
+  There was never a require.config() call anywhere setting this up -- it
+  only ever worked because Plotly's own UMD bundle, loaded elsewhere on the
+  same page via a plain <script src> for a simple (non-widget) fig.show()
+  figure, self-registers as an anonymous AMD module when window.define
+  exists (Quarto's RequireJS loader, used for MathJax), and RequireJS
+  happens to attribute that anonymous module to the "plotly" name if the
+  timing/script-load-order lines up. That's pure luck, not a real mapping --
+  a page with only widget figures (no plain fig.show() figure to "donate"
+  its Plotly load) had nothing to claim from, and any change to script load
+  order/timing (e.g. removing an unrelated script elsewhere on the page)
+  can flip which pending require() call an anonymous define() gets
+  attributed to, breaking it silently. Explicit config removes the guesswork.
+
+  Two separate failure modes found in practice, both fixed here:
+
+  (A) A page with ONLY hand-built widgets (no {python} cell at all -- e.g.
+  specials/030/020_quantile_function_fig.qmd) never gets Quarto's own
+  <script src=".../requirejs@.../require.min.js"> in <head> in the first
+  place: that tag is only emitted when the page has a Jupyter code cell.
+  window.require is simply undefined there, so the widget's own
+  require(["plotly"], ...) throws "require is not defined" unconditionally
+  -- not a network flake, 100% of the time regardless of connection quality.
+  Fixed below by synchronously document.write-ing a local copy of
+  require.min.js when window.require isn't already present -- document.write
+  from an inline <script> during initial HTML parsing inserts into the parse
+  stream immediately, so by the next statement window.require is guaranteed
+  defined, still fully synchronously (no defer/async race).
+
+  (B) A page with BOTH a plain fig.show() figure AND a hand-built widget:
+  RequireJS *is* already in <head> here, so this file's require.config()
+  below does run against a real window.require. But the Jupyter-generated
+  embed script for the fig.show() figure -- which appears later in <body>,
+  wherever that Python cell sits -- unconditionally calls
+  require.undef("plotly") followed by its OWN require.config() pointing at
+  a *different* version on the *same* external CDN (observed:
+  cdn.plot.ly/plotly-2.35.2.min vs. the 3.4.0 configured here), clobbering
+  this file's mapping before the widget's own require(["plotly"], ...) ever
+  runs. Both that Jupyter-set path and this file's own local path hit the
+  same real-world failure: cdn.plot.ly answers anywhere from ~1.5s to a full
+  10s+ timeout under real network conditions (measured directly). A
+  requirejs.onError handler below catches exactly the resulting timeout on
+  the "plotly" module -- regardless of which of the two require.config()
+  calls most recently set its path -- and retries once against the local
+  bundle.
+-->
+<script>
+if (typeof window.require === "undefined") {
+  document.write('<script src="/site_libs/quarto-contrib/mn-plotly-1.0.0/require.min.js"><\/script>');
+}
+</script>
+<script>
+if (window.require && window.require.config) {
+  window.require.config({
+    paths: { plotly: "/site_libs/quarto-contrib/mn-plotly-1.0.0/plotly.min" },
+    // shim.exports: after the script loads, hand require(["plotly"],...)
+    // callers the *global* window.Plotly instead of trusting whatever (if
+    // anything) the script itself passed to define() -- Plotly's own UMD
+    // wrapper reliably sets window.Plotly regardless of AMD context (also
+    // used directly by every plain fig.show() figure on this site, whose
+    // own generated embed script never goes through RequireJS at all), but
+    // its anonymous define() call is not reliably attributed to the
+    // "plotly" request specifically when this same URL is also loaded via
+    // a separate plain <script src> elsewhere on the page (a simple,
+    // non-widget figure) -- shim sidesteps that ambiguity entirely.
+    shim: { plotly: { exports: "Plotly" } }
+  });
+  // See failure mode (B) above: a later Jupyter-generated fig.show() embed
+  // script can still call its own require.undef("plotly") +
+  // require.config({paths: {plotly: <external CDN>}}) after this runs,
+  // pointing "plotly" back at an unreliable external host. This handler
+  // fires on ANY module load timeout; when it's specifically "plotly", drop
+  // whatever path is currently registered (however it got there) and retry
+  // once against the local bundle instead of the external CDN.
+  //
+  // Deliberately never re-throws: once the retry above is issued, the
+  // ORIGINAL failed network request for the external CDN copy can still
+  // land afterwards and fire a second, by-then-harmless onError (verified:
+  // requireType "scripterror", after the retry has already resolved the
+  // widget's real require(["plotly"], callback) via RequireJS's own
+  // pending-callback bookkeeping) -- throwing there would surface a
+  // spurious uncaught exception for something already fixed. console.warn
+  // keeps that visible in devtools without it looking like a live failure.
+  window.require.onError = function (err) {
+    if (err.requireModules && err.requireModules.indexOf("plotly") !== -1) {
+      if (err.requireType === "timeout") {
+        window.require.undef("plotly");
+        window.require.config({ paths: { plotly: "/site_libs/quarto-contrib/mn-plotly-1.0.0/plotly.min" } });
+        window.require(["plotly"]);
+      } else {
+        console.warn("plotly require() error after fallback (likely a stale network request):", err);
+      }
+    } else {
+      throw err;
+    }
+  };
+}
+</script>
+
+<!--
+  window.fpmiWithMathJax(cb): same rationale as the FPMI homepage loader (_home_widgets/loader.qmd)'s
+  copy of this helper (see there for the original), extended to course
+  pages. Quarto only emits a <script defer src=".../mathjax@3/.../tex-*.js">
+  tag in <head> at all when it sees real markdown math OUTSIDE any
+  ```{=html}``` block on the page -- a hand-built widget's math lives
+  entirely inside \(...\)/\[...\] strings in JS-generated DOM content
+  (e.g. a dynamically updated status line), which Quarto's static math
+  scanner never looks inside, so a page whose ONLY math is like that (no
+  prose math of its own) gets no MathJax script at all. Confirmed on an
+  already-shipped widget (030/020_quantile_function_fig.qmd's #qf-status)
+  that had silently never rendered its \(...\) as real math since it was
+  written -- not a new bug, just never noticed because the broken math was
+  inside dynamically-generated text rather than the static page body.
+
+  Three cases this handles, in order:
+  1. window.MathJax already fully started (page had prose math elsewhere,
+     Quarto's own <script defer> already ran) -- just wait on the
+     documented startup.promise signal and fire cb.
+  2. Quarto's own MathJax <script defer> tag IS present in <head> but
+     hasn't executed/initialized yet (defer runs after DOM parsing, and
+     this include-before-body block runs earlier, during parsing) -- poll
+     briefly for window.MathJax to appear rather than racing to load a
+     SECOND copy, which would either double-load or (depending on load
+     order) silently no-op.
+  3. No MathJax script present at all (case A above) -- fetch it ourselves,
+     same URL/approach as loader.qmd.
+-->
+<script>
+window.fpmiWithMathJax = window.fpmiWithMathJax || function (cb) {
+  if (window.MathJax && window.MathJax.startup) { window.MathJax.startup.promise.then(cb); return; }
+  if (window.__fpmiMathJaxQueue) { window.__fpmiMathJaxQueue.push(cb); return; }
+  window.__fpmiMathJaxQueue = [cb];
+  function flushQueue() {
+    var q = window.__fpmiMathJaxQueue;
+    window.__fpmiMathJaxQueue = null;
+    q.forEach(function (f) { f(); });
+  }
+  var hasMathJaxTag = !!document.querySelector('script[src*="mathjax"]');
+  if (hasMathJaxTag) {
+    // Case 2: Quarto's own deferred MathJax script is already in <head> --
+    // poll for it to finish initializing instead of loading a duplicate.
+    var waited = 0;
+    var poll = setInterval(function () {
+      waited += 50;
+      if (window.MathJax && window.MathJax.startup) {
+        clearInterval(poll);
+        window.MathJax.startup.promise.then(flushQueue);
+      } else if (waited > 10000) {
+        // Should never happen (the tag is already there, defer always runs
+        // before window.onload) -- bail rather than poll forever.
+        clearInterval(poll);
+        console.warn("fpmiWithMathJax: gave up waiting for Quarto's own MathJax script to initialize");
+      }
+    }, 50);
+    return;
+  }
+  // Case 3: no MathJax anywhere on the page -- fetch it ourselves. SVG
+  // output specifically (not CHTML, despite Quarto's own injected tag
+  // using CHTML): confirmed Plotly's own $...$ annotation/tick-label math
+  // rendering hard-requires the SVG output jax and throws
+  // 'Output Jax "svg" is not defined' if only CHTML is loaded (its
+  // internal math path calls MathJax.tex2svg specifically, independent of
+  // whatever jax Quarto's page-level script configured) -- same reason
+  // the FPMI homepage loader (_home_widgets/loader.qmd)'s original copy of this helper uses tex-svg.js.
+  var s = document.createElement("script");
+  s.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js";
+  s.onload = function () {
+    window.MathJax.startup.promise.then(flushQueue);
+  };
+  document.head.appendChild(s);
+};
+</script>
+<!--
+  window.fpmiGraph: shared toolkit for the hand-built Plotly *graph diagrams*
+  (vertices + edges) used by the algorithms courses (courses/11-DM-CS/AA/...
+  specials). Plotly has no native graph/network primitives, so every widget
+  used to re-implement the same edge-polyline/marker/annotation plumbing by
+  hand -- and, since a plain `mode:"lines"` polyline can't carry an arrowhead
+  or per-edge hover, all of them ended up as staticPlot line drawings with
+  no direction on directed graphs and no hover at all. This helper gives
+  every widget, from one `spec`:
+
+    * one scatter trace PER EDGE (so an individual edge can be restyled --
+      hover-highlight, per-step emphasis, transitions -- and can have its own
+      hover text via an invisible midpoint marker), optionally curved
+      (`bend`) so a pair of opposite arcs u->v / v->u stays readable;
+    * arrowheads for `directed` edges via layout.annotations in data
+      coordinates, shortened so the head lands on the vertex rim, not under
+      the marker;
+    * a soft halo under each vertex, $...$ MathJax labels via annotations
+      (never mode:"markers+text" -- see project memory: Plotly's marker text
+      is raw SVG <text>, which can't hold MathJax output), and hover labels;
+    * hover-highlight: hovering a vertex lifts its incident edges and dims
+      the rest (plotly_hover/unhover + Plotly.restyle on the edge traces);
+    * animated transitions between algorithm steps (Plotly.animate on a
+      trace layout that stays structurally identical across steps -- the
+      trace count must not change, so per-step differences are expressed
+      purely as style: color/width/opacity/dash);
+    * a step player (prev / next / autoplay, keyboard arrows) that builds its
+      own controls, and a path tracer that grows a highlighted polyline along
+      a vertex sequence over time (Hamiltonian paths, tours, Euler walks).
+
+  Draw order inside `data`: edges (one trace each) -> edge midpoints (hover
+  only) -> halo -> vertices -> optional path trace. Trace indices are
+  returned in `built.meta` so callers never hard-code them.
+-->
+<script>
+(function () {
+  if (window.fpmiGraph) return;
+  var G = {};
+
+  // Every UI string this helper generates itself (default edge-weight hover
+  // text, the step-player's button labels) is project-agnostic: it reads
+  // `document.documentElement.lang` (set by each project's own `_quarto.yml`
+  // `lang:` field) and falls back to Russian, the language every existing
+  // call site (mnedoshivin, math-notes_CU_2, math-notes_FPMI_2) was written
+  // for -- so this stays a silent no-op everywhere except an `lang="en"`
+  // project such as mnedoshivin_en.
+  var IS_EN = (document.documentElement.lang || "").toLowerCase().indexOf("en") === 0;
+  var WEIGHT_WORD = IS_EN ? "weight" : "вес";
+
+  G.colors = {
+    vert: "#eaf2fb", vertLine: "#1e3a8a", vertText: "#0b0b0b",
+    sel: "#2a78d6", selText: "#ffffff",
+    accent: "#f5a623", accentLine: "#8a5a00",
+    done: "#a8a29e", edge: "#78716c", edgeFaded: "#d6d3d1",
+    red: "#b91c1c", redSoft: "#fca5a5", green: "#556B2F", greenSoft: "#bbf7d0",
+    bg: "#fcfcfb"
+  };
+
+  // Plotly may arrive through RequireJS (course pages, see
+  // plotly-require-config.html), through the homepage's own
+  // fpmiWithPlotly loader, or already be a global -- accept all three.
+  G.withPlotly = function (cb) {
+    if (window.Plotly && window.Plotly.newPlot) { cb(window.Plotly); return; }
+    if (window.fpmiWithPlotly) { window.fpmiWithPlotly(cb); return; }
+    if (window.require) { window.require(["plotly"], cb); return; }
+    console.warn("fpmiGraph: no Plotly loader available on this page");
+  };
+  // MathJax must exist BEFORE Plotly builds any $...$ annotation (Plotly
+  // stamps data-math="N" at build time and never retries), hence the order.
+  G.ready = function (cb) {
+    var run = function () { G.withPlotly(cb); };
+    if (window.fpmiWithMathJax) { window.fpmiWithMathJax(run); } else { run(); }
+  };
+
+  // ── geometry ───────────────────────────────────────────────────────────────
+  // Quadratic curve from p0 to p1 bulging `bend` data units to the left of
+  // the p0->p1 direction (negative bends right). n+1 points.
+  G.curve = function (p0, p1, bend, n) {
+    n = n || 16;
+    var dx = p1[0] - p0[0], dy = p1[1] - p0[1];
+    var len = Math.sqrt(dx * dx + dy * dy) || 1;
+    var nx = -dy / len, ny = dx / len;
+    var cx = (p0[0] + p1[0]) / 2 + nx * bend, cy = (p0[1] + p1[1]) / 2 + ny * bend;
+    var pts = [];
+    for (var i = 0; i <= n; i++) {
+      var t = i / n, a = (1 - t) * (1 - t), b = 2 * (1 - t) * t, c = t * t;
+      pts.push([a * p0[0] + b * cx + c * p1[0], a * p0[1] + b * cy + c * p1[1]]);
+    }
+    return pts;
+  };
+  G.circle = function (cx, cy, r, n) {
+    n = n || 64;
+    var x = [], y = [];
+    for (var i = 0; i <= n; i++) { var a = 2 * Math.PI * i / n; x.push(cx + r * Math.cos(a)); y.push(cy + r * Math.sin(a)); }
+    return { x: x, y: y };
+  };
+  // "$v_{1}$" from "v1", "$s'$" from "s'", plain "s" from "s".
+  G.texLabel = function (id) {
+    var m = /^([A-Za-z]+)(\d+)('*)$/.exec(id);
+    if (m) return "$" + m[1] + "_{" + m[2] + "}" + m[3] + "$";
+    return /^[A-Za-z]'*$/.test(id) ? "$" + id + "$" : id;
+  };
+  // Unicode subscript fallback for hover text (Plotly hover can't do MathJax).
+  var SUB = { "0": "₀", "1": "₁", "2": "₂", "3": "₃", "4": "₄", "5": "₅", "6": "₆", "7": "₇", "8": "₈", "9": "₉" };
+  G.plainLabel = function (id) {
+    var m = /^([A-Za-z]+)(\d+)('*)$/.exec(id);
+    if (!m) return id;
+    return m[1] + m[2].split("").map(function (c) { return SUB[c] || c; }).join("") + m[3];
+  };
+
+  function assign(dst) {
+    for (var i = 1; i < arguments.length; i++) { var s = arguments[i]; if (s) for (var k in s) if (Object.prototype.hasOwnProperty.call(s, k)) dst[k] = s[k]; }
+    return dst;
+  }
+  function normEdge(e) {
+    if (Array.isArray(e)) { var o = { u: e[0], v: e[1] }; if (e[2] && typeof e[2] === "object") assign(o, e[2]); else if (e[2] !== undefined) o.weight = e[2]; return o; }
+    return assign({}, e);
+  }
+
+  // ── build ──────────────────────────────────────────────────────────────────
+  // spec = {
+  //   verts: {id: [x, y]},            order: [ids] (optional, defaults to key order)
+  //   edges: [[u, v] | [u, v, weight] | {u, v, color, width, dash, opacity, bend, hover, arrow, weight}]
+  //   directed: bool,                 edge: fn(edgeObj) -> style overrides (per step)
+  //   vert: fn(id) -> {color, line, lineWidth, size, opacity, label, hover, symbol}
+  //   labels: bool|{id: text}         (default: true -> G.texLabel(id))
+  //   size: 24, halo: true, weights: bool (annotate edge weights at midpoints)
+  //   range: {x: [..], y: [..]}       (default: bbox + padding), pad: 0.8
+  //   annotations: [], shapes: []     (extra), pathTrace: bool (reserve a trace for tracePath)
+  //   height/width: layout size override
+  // }
+  G.build = function (spec) {
+    var C = G.colors;
+    var ids = spec.order || Object.keys(spec.verts);
+    var size = spec.size || 24;
+    var edges = (spec.edges || []).map(normEdge);
+    var data = [], annotations = [], meta = { edgeIdx: [], edgeStyles: [], edges: edges, ids: ids, size: size };
+
+    // range
+    var xs = ids.map(function (i) { return spec.verts[i][0]; }), ys = ids.map(function (i) { return spec.verts[i][1]; });
+    var pad = spec.pad !== undefined ? spec.pad : 0.8;
+    var xr = spec.range && spec.range.x || [Math.min.apply(null, xs) - pad, Math.max.apply(null, xs) + pad];
+    var yr = spec.range && spec.range.y || [Math.min.apply(null, ys) - pad, Math.max.apply(null, ys) + pad];
+    // Vertex radius in data units, for arrowhead shortening: estimate from
+    // the plot's pixel width (marker size is in px, the axis range in data).
+    var plotPx = spec.plotWidthPx || 460;
+    var rData = spec.vertRadius !== undefined ? spec.vertRadius : (size / 2) * (xr[1] - xr[0]) / plotPx * 1.15;
+
+    // edges
+    var midX = [], midY = [], midText = [];
+    edges.forEach(function (e, k) {
+      var st = assign({ color: C.edge, width: 1.6, dash: "solid", opacity: 1, bend: 0 }, e, spec.edge ? spec.edge(e, k) : null);
+      var p0 = spec.verts[e.u], p1 = spec.verts[e.v];
+      var pts = st.bend ? G.curve(p0, p1, st.bend) : [p0, p1];
+      var directed = st.arrow !== undefined ? st.arrow : !!spec.directed;
+      if (directed) {
+        // trim the last segment so the arrowhead (drawn separately) ends on
+        // the target vertex rim; the line itself stops there too.
+        var a = pts[pts.length - 2], b = pts[pts.length - 1];
+        var dx = b[0] - a[0], dy = b[1] - a[1], L = Math.sqrt(dx * dx + dy * dy) || 1;
+        var head = [b[0] - dx / L * rData, b[1] - dy / L * rData];
+        var tail = [head[0] - dx / L * Math.min(L, rData * 1.6), head[1] - dy / L * Math.min(L, rData * 1.6)];
+        pts = pts.slice(0, -1).concat([head]);
+        annotations.push({
+          x: head[0], y: head[1], ax: tail[0], ay: tail[1], xref: "x", yref: "y", axref: "x", ayref: "y",
+          showarrow: true, arrowhead: 2, arrowsize: 1.15, arrowwidth: st.width, arrowcolor: st.color,
+          opacity: st.opacity, text: "", standoff: 0
+        });
+      }
+      data.push({
+        x: pts.map(function (p) { return p[0]; }), y: pts.map(function (p) { return p[1]; }),
+        mode: "lines", line: { color: st.color, width: st.width, dash: st.dash }, opacity: st.opacity,
+        hoverinfo: "skip", showlegend: false, name: e.u + "-" + e.v
+      });
+      meta.edgeIdx.push(data.length - 1);
+      meta.edgeStyles.push({ color: st.color, width: st.width, dash: st.dash, opacity: st.opacity });
+      var mid = pts[Math.floor(pts.length / 2)];
+      if (pts.length === 2) mid = [(p0[0] + p1[0]) / 2, (p0[1] + p1[1]) / 2];
+      midX.push(mid[0]); midY.push(mid[1]);
+      var hover = st.hover !== undefined ? st.hover : (G.plainLabel(e.u) + (directed ? " → " : " — ") + G.plainLabel(e.v) + (st.weight !== undefined ? "<br>" + (WEIGHT_WORD) + " " + st.weight : ""));
+      midText.push(hover);
+      // st.weight (not e.weight): a per-step override may hide a faded edge's
+      // label by returning {weight: undefined}
+      if (spec.weights && st.weight !== undefined && st.opacity > 0.05) {
+        annotations.push({ x: mid[0], y: mid[1], text: String(st.weight), showarrow: false,
+          font: { size: 11, color: st.color === C.edgeFaded ? "#a8a29e" : "#44403c" }, bgcolor: "rgba(252,252,251,0.9)", borderpad: 1 });
+      }
+    });
+    // invisible edge midpoints: hover only (per-point hoverinfo so a hidden
+    // edge -- opacity 0, e.g. "not added yet" in a step player -- shows no
+    // empty tooltip)
+    data.push({ x: midX, y: midY, mode: "markers", marker: { size: 14, opacity: 0 }, hovertext: midText,
+      hoverinfo: meta.edgeStyles.map(function (s) { return s.opacity > 0 ? "text" : "skip"; }), showlegend: false, name: "edges" });
+    meta.midIdx = data.length - 1;
+
+    // vertices
+    var vx = [], vy = [], vColor = [], vLine = [], vLineW = [], vSize = [], vOp = [], vHover = [], vSym = [], haloColor = [];
+    ids.forEach(function (id) {
+      var st = assign({ color: C.vert, line: C.vertLine, lineWidth: 1.8, size: size, opacity: 1, symbol: "circle" }, spec.vert ? spec.vert(id) : null);
+      vx.push(spec.verts[id][0]); vy.push(spec.verts[id][1]);
+      vColor.push(st.color); vLine.push(st.line); vLineW.push(st.lineWidth); vSize.push(st.size); vOp.push(st.opacity); vSym.push(st.symbol);
+      vHover.push(st.hover !== undefined ? st.hover : G.plainLabel(id));
+      haloColor.push(st.opacity === 0 ? "rgba(0,0,0,0)" : (st.halo || (st.color === C.vert ? "rgba(42,120,214,0.10)" : G.rgba(st.color, 0.22))));
+      var lbl = st.label !== undefined ? st.label
+        : (spec.labels === false ? null : (spec.labels && typeof spec.labels === "object" ? spec.labels[id] : G.texLabel(id)));
+      if (lbl) {
+        annotations.push({ x: spec.verts[id][0], y: spec.verts[id][1], text: lbl, showarrow: false,
+          font: { size: st.labelSize || 13, color: st.labelColor || (st.color === C.vert || st.color === C.accent ? C.vertText : C.selText) }, opacity: st.opacity });
+      }
+    });
+    if (spec.halo !== false) {
+      data.push({ x: vx, y: vy, mode: "markers", marker: { size: vSize.map(function (s) { return s + 14; }), color: haloColor, line: { width: 0 } },
+        opacity: 1, hoverinfo: "skip", showlegend: false, name: "halo" });
+      meta.haloIdx = data.length - 1;
+    }
+    data.push({ x: vx, y: vy, mode: "markers", marker: { size: vSize, color: vColor, symbol: vSym, opacity: vOp, line: { color: vLine, width: vLineW } },
+      hovertext: vHover, hoverinfo: vOp.map(function (o) { return o > 0 ? "text" : "skip"; }), showlegend: false, name: "vertices",
+      hoverlabel: { bgcolor: "#1c1917", bordercolor: "#1c1917", font: { color: "#fff", size: 12 } } });
+    meta.vertIdx = data.length - 1;
+    if (spec.pathTrace) {
+      data.push({ x: [], y: [], mode: "lines", line: { color: C.red, width: 3.2, shape: "linear" }, hoverinfo: "skip", showlegend: false, name: "path" });
+      meta.pathIdx = data.length - 1;
+    }
+
+    var layout = {
+      xaxis: { visible: false, range: xr, fixedrange: true },
+      yaxis: { visible: false, range: yr, fixedrange: true, scaleanchor: "x" },
+      margin: { t: 8, b: 8, l: 8, r: 8 },
+      plot_bgcolor: C.bg, paper_bgcolor: C.bg, showlegend: false, hovermode: "closest",
+      annotations: annotations.concat(spec.annotations || []), shapes: spec.shapes || [],
+      transition: { duration: 420, easing: "cubic-in-out" }
+    };
+    if (spec.height) layout.height = spec.height;
+    return { data: data, layout: layout, meta: meta };
+  };
+
+  G.rgba = function (hex, a) {
+    var m = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(hex);
+    if (!m) return hex;
+    return "rgba(" + parseInt(m[1], 16) + "," + parseInt(m[2], 16) + "," + parseInt(m[3], 16) + "," + a + ")";
+  };
+
+  // ── draw (with transitions) ────────────────────────────────────────────────
+  G.config = { displayModeBar: false, displaylogo: false, scrollZoom: false, responsive: true };
+  G.draw = function (el, built, opts) {
+    if (typeof el === "string") el = document.getElementById(el);
+    opts = opts || {};
+    G.ready(function (Plotly) {
+      var canAnimate = el.data && el.data.length === built.data.length && !opts.noAnimate;
+      if (canAnimate) {
+        // Same trace structure as the previous step -> tween colors/widths/
+        // positions instead of snapping. Layout (annotations, shapes) is
+        // applied at the start of the frame.
+        Plotly.animate(el, { data: built.data, layout: built.layout },
+          { transition: { duration: opts.duration || 420, easing: "cubic-in-out" },
+            frame: { duration: opts.duration || 420, redraw: false } });
+      } else if (el.data) {
+        Plotly.react(el, built.data, built.layout, G.config);
+      } else {
+        Plotly.newPlot(el, built.data, built.layout, G.config);
+      }
+      el.__fpmiGraph = built;
+      if (!el.__fpmiHoverBound && opts.hover !== false) { G.attachHover(el); el.__fpmiHoverBound = true; }
+      if (opts.then) opts.then(Plotly);
+    });
+  };
+
+  // ── hover-highlight: lift a vertex's incident edges, dim the rest ──────────
+  G.attachHover = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    var restore = function () {
+      var b = el.__fpmiGraph; if (!b || !window.Plotly) return;
+      var s = b.meta.edgeStyles;
+      window.Plotly.restyle(el, {
+        "line.width": s.map(function (x) { return x.width; }),
+        "line.color": s.map(function (x) { return x.color; }),
+        "opacity": s.map(function (x) { return x.opacity; })
+      }, b.meta.edgeIdx);
+    };
+    el.on("plotly_hover", function (ev) {
+      var b = el.__fpmiGraph; if (!b || !ev.points || !ev.points.length) return;
+      var p = ev.points[0];
+      if (p.curveNumber !== b.meta.vertIdx) return;
+      var id = b.meta.ids[p.pointNumber];
+      var widths = [], colors = [], ops = [];
+      b.meta.edges.forEach(function (e, k) {
+        var st = b.meta.edgeStyles[k], inc = (e.u === id || e.v === id);
+        widths.push(inc ? Math.max(st.width * 1.9, 3) : st.width);
+        colors.push(inc ? (st.color === G.colors.edge || st.color === G.colors.edgeFaded ? G.colors.sel : st.color) : st.color);
+        ops.push(inc ? 1 : Math.min(st.opacity, 0.28));
+      });
+      window.Plotly.restyle(el, { "line.width": widths, "line.color": colors, "opacity": ops }, b.meta.edgeIdx);
+    });
+    el.on("plotly_unhover", restore);
+  };
+
+  // ── step player ────────────────────────────────────────────────────────────
+  // G.player({ container, count, render(i), autoplayMs, loop, start })
+  // Builds: [← Back] [Step i / N] [Next →] [▶ Auto]; arrow keys work while
+  // the controls have focus. render(i) is called for every step change.
+  // UI strings use the same IS_EN language switch declared at the top of
+  // this file. `o.label` still overrides the step word directly, same as
+  // before this change, for any call site that wants a custom label.
+  var PLAYER_STR = IS_EN
+    ? { back: "← Back", next: "Next →", auto: "▶ Auto", autoTitle: "Autoplay", pause: "⏸ Pause", step: "Step" }
+    : { back: "← Назад", next: "Вперёд →", auto: "▶ Авто", autoTitle: "Автовоспроизведение", pause: "⏸ Пауза", step: "Шаг" };
+  G.player = function (o) {
+    var box = typeof o.container === "string" ? document.getElementById(o.container) : o.container;
+    box.classList.add("fpmi-graph-controls");
+    box.setAttribute("tabindex", "0");
+    box.innerHTML =
+      '<button type="button" class="fg-prev">' + PLAYER_STR.back + '</button>' +
+      '<span class="fg-step"></span>' +
+      '<button type="button" class="fg-next">' + PLAYER_STR.next + '</button>' +
+      '<button type="button" class="fg-play" title="' + PLAYER_STR.autoTitle + '">' + PLAYER_STR.auto + '</button>';
+    var prev = box.querySelector(".fg-prev"), next = box.querySelector(".fg-next"), play = box.querySelector(".fg-play"), lbl = box.querySelector(".fg-step");
+    var cur = o.start || 0, timer = null, N = o.count;
+    function stop() { if (timer) { clearInterval(timer); timer = null; } play.textContent = PLAYER_STR.auto; play.classList.remove("active"); }
+    function go(i, fromAuto) {
+      if (!fromAuto) stop();
+      cur = Math.max(0, Math.min(N - 1, i));
+      lbl.textContent = (o.label || PLAYER_STR.step) + " " + (cur + 1) + " / " + N;
+      prev.disabled = cur === 0; next.disabled = cur === N - 1;
+      o.render(cur);
+    }
+    prev.addEventListener("click", function () { go(cur - 1); });
+    next.addEventListener("click", function () { go(cur + 1); });
+    play.addEventListener("click", function () {
+      if (timer) { stop(); return; }
+      play.textContent = PLAYER_STR.pause; play.classList.add("active");
+      if (cur === N - 1) go(0, true);
+      timer = setInterval(function () {
+        if (cur < N - 1) go(cur + 1, true);
+        else if (o.loop) go(0, true);
+        else stop();
+      }, o.autoplayMs || 1600);
+    });
+    box.addEventListener("keydown", function (ev) {
+      if (ev.key === "ArrowRight") { go(cur + 1); ev.preventDefault(); }
+      else if (ev.key === "ArrowLeft") { go(cur - 1); ev.preventDefault(); }
+    });
+    go(cur);
+    return { go: go, next: function () { go(cur + 1); }, prev: function () { go(cur - 1); }, current: function () { return cur; }, stop: stop };
+  };
+
+  // ── path tracer ────────────────────────────────────────────────────────────
+  // Grows the reserved path trace (spec.pathTrace) along `ids` over
+  // `duration` ms, with a moving tip. Returns a cancel function.
+  G.tracePath = function (el, verts, ids, opts) {
+    if (typeof el === "string") el = document.getElementById(el);
+    opts = opts || {};
+    var b = el.__fpmiGraph; if (!b || b.meta.pathIdx === undefined || !window.Plotly) return function () {};
+    var pts = ids.map(function (id) { return verts[id]; });
+    var segs = pts.length - 1, dur = opts.duration || 500 * segs, t0 = null, cancelled = false;
+    var style = { "line.color": opts.color || G.colors.red, "line.width": opts.width || 3.2 };
+    window.Plotly.restyle(el, style, [b.meta.pathIdx]);
+    function frame(ts) {
+      if (cancelled) return;
+      if (t0 === null) t0 = ts;
+      var f = Math.min(1, (ts - t0) / dur), pos = f * segs, k = Math.floor(pos), r = pos - k;
+      var x = [], y = [];
+      for (var i = 0; i <= Math.min(k, segs); i++) { x.push(pts[i][0]); y.push(pts[i][1]); }
+      if (k < segs) { x.push(pts[k][0] + (pts[k + 1][0] - pts[k][0]) * r); y.push(pts[k][1] + (pts[k + 1][1] - pts[k][1]) * r); }
+      window.Plotly.restyle(el, { x: [x], y: [y] }, [b.meta.pathIdx]);
+      if (f < 1) requestAnimationFrame(frame); else if (opts.done) opts.done();
+    }
+    requestAnimationFrame(frame);
+    return function () { cancelled = true; };
+  };
+  G.clearPath = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    var b = el.__fpmiGraph; if (!b || b.meta.pathIdx === undefined || !window.Plotly) return;
+    window.Plotly.restyle(el, { x: [[]], y: [[]] }, [b.meta.pathIdx]);
+  };
+
+  // Typeset \(...\) math in a caption/status element (after innerHTML update).
+  G.typeset = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    if (window.fpmiWithMathJax) window.fpmiWithMathJax(function () { if (window.MathJax && window.MathJax.typesetPromise) window.MathJax.typesetPromise([el]); else if (window.MathJax) window.MathJax.typeset([el]); });
+  };
+  G.setCaption = function (id, html) { var el = document.getElementById(id); if (!el) return; el.innerHTML = html; G.typeset(el); };
+
+  window.fpmiGraph = G;
+})();
+</script>
+<style>
+  /* Shared look for every fpmiGraph widget (see graph-helper.html). */
+  .fpmi-graph { padding: 1rem 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .fpmi-graph h2.fg-title { font-size: 16px; font-weight: 500; margin: 0 0 4px; }
+  .fpmi-graph p.fg-sub { font-size: 13px; color: #78716c; margin: 0 0 0.75rem; }
+  .fpmi-graph .fg-plot { width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 6px 18px rgba(0,58,65,0.06); }
+  .fpmi-graph .fg-caption { font-size: 13px; color: #44403c; margin-top: 0.6rem; min-height: 1.4em; line-height: 1.5; }
+  .fpmi-graph .fg-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .fpmi-graph .fg-arrow { font-size: 26px; color: #78716c; }
+  .fpmi-graph-controls, .fpmi-graph .fg-controls { display: flex; align-items: center; gap: 10px; margin: 0.5rem 0 0.9rem; flex-wrap: wrap; outline: none; }
+  .fpmi-graph-controls button, .fpmi-graph button {
+    font-size: 13px; padding: 6px 12px; cursor: pointer; border-radius: 8px;
+    border: 1px solid #d6d3d1; background: #fff; color: #292524; transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  }
+  .fpmi-graph-controls button:hover:not(:disabled), .fpmi-graph button:hover:not(:disabled) { background: #f5f5f4; border-color: #a8a29e; }
+  .fpmi-graph-controls button:disabled, .fpmi-graph button:disabled { opacity: 0.4; cursor: default; }
+  .fpmi-graph-controls button.active, .fpmi-graph button.active { background: #eaf2fb; border-color: #2a78d6; color: #1c4a7a; font-weight: 600; box-shadow: 0 0 0 3px rgba(42,120,214,0.12); }
+  .fpmi-graph-controls .fg-step { font-size: 13px; font-weight: 600; color: #44403c; min-width: 6.5em; text-align: center; }
+  .fpmi-graph-controls:focus-within .fg-step { color: #1c4a7a; }
+  .fpmi-graph label { font-size: 13px; color: #57534e; }
+  .fpmi-graph input[type="range"] { accent-color: #2a78d6; }
+  .fpmi-graph .fg-val { font-size: 13px; font-weight: 600; min-width: 2em; display: inline-block; color: #1c4a7a; }
+  .fpmi-graph .fg-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: #57534e; margin-top: 0.4rem; }
+  .fpmi-graph .fg-legend span::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; background: var(--c, #eaf2fb); border: 1.5px solid var(--b, #1e3a8a); }
+  .fpmi-graph .fg-legend span.line::before { border-radius: 0; height: 3px; width: 18px; border: none; vertical-align: 2px; background: var(--c, #78716c); }
+</style>
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Задача о <span class="math inline">\(k\)</span>-центрах</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Дата публикации</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">18 октября 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Рассмотрим следующую задачу. В сельском районе расположено несколько небольших населенных пунктов, связанных дорогами. Необходимо построить <span class="math inline">\(k\)</span> больниц так, чтобы минимизировать максимальное расстояние от каждого населенного пункта до ближайшей больницы. Назовем эту задачу задачей о <span class="math inline">\(k\)</span>-центрах. Далее в главе рассматривается задача о <span class="math inline">\(k\)</span>-центрах и ее взвешенная версия при условии, что расстояния между городами удовлетворяют неравенству треугольника. Без такого ограничения для задачи о <span class="math inline">\(k\)</span>-центрах не существует <span class="math inline">\(\alpha (n)\)</span>-приближенных алгоритмов для любой полиномиально вычислимой функции <span class="math inline">\(\alpha (n)\)</span> при условии, что <span class="math inline">\(P \neq N P\)</span>.</p>
+<p>Пусть даны произвольное подмножество вершин <span class="math inline">\(S \subseteq V\)</span> и произвольная вершина <span class="math inline">\(v \in V\)</span>. Определим <em>расстояние от <span class="math inline">\(v\)</span> до <span class="math inline">\(S\)</span></em> как</p>
+<p><span class="math display">\[
+  \operatorname {connect}(v, S) := \min \{ \operatorname {cost}(u, v) \mid u \in S\}   
+\]</span></p>
+<div class="algproblem">
+<div class="algproblem-title">
+<p>Метрическая задача о <span class="math inline">\(k\)</span>-центрах</p>
+</div>
+<div class="algproblem-given">
+<p><span class="math inline">\(I = \left(G, \operatorname {cost}, k\right)\)</span>, где</p>
+<ul>
+<li><p>Полный граф <span class="math inline">\(G=(V, E)\)</span>;</p></li>
+<li><p>Стоимости ребер <span class="math inline">\(\operatorname {cost}: E \rightarrow \mathbf{Q}^{+}\)</span> такие, что для любых трех вершин <span class="math inline">\(u, v\)</span> и <span class="math inline">\(w\)</span> выполняется</p>
+<p><span class="math display">\[
+  \operatorname {cost}(u, v) \leq \operatorname {cost}(u, w)+\operatorname {cost}(w, v)  
+\]</span></p></li>
+<li><p>Натуральное число <span class="math inline">\(k \in \mathbb {N}\)</span> (<span class="math inline">\(k \leq \left|V\right|\)</span>), устанавливающее размер <span class="math inline">\(S\)</span>.</p></li>
+</ul>
+</div>
+<div class="algproblem-find">
+<p>Найти подмножество вершин <span class="math inline">\(S \subseteq V\)</span>, с <span class="math inline">\(|S|=k\)</span>, которое минимизирует величину <span class="math display">\[
+  \max _{v \in V} \left\{ \operatorname {connect}(v,S)\right\}   
+\]</span></p>
+</div>
+</div>
+<div id="kcm" class="fpmi-graph">
+  <h2 class="fg-title anchored">Метрическая задача о \(k\) центрах: пример</h2>
+  <p class="fg-sub">Полный граф на \(17\) вершинах, \(k=3\) (для наглядности показана часть рёбер). Наведите курсор на вершину — увидите, к какому центру она приписана.</p>
+  <div id="kcm-ctl"></div>
+  <div id="kcm-plot" class="fg-plot" style="max-width:560px;height:440px;"></div>
+  <div id="kcm-cap" class="fg-caption"></div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, C = G.colors;
+  var V = { 1:[0,6], 2:[2.3,6.3], 3:[4.6,6.1], 4:[6.6,6], 5:[-0.4,4.6], 6:[1.6,4.9], 7:[3.6,4.5], 8:[6.9,4.6], 9:[-0.6,2.9], 10:[1.3,3.1], 11:[2.6,2.4], 12:[3.5,2.9], 13:[4.6,2.7], 14:[6.9,3.1], 15:[2.2,1.1], 16:[-0.4,0.1], 17:[6.7,0] };
+  var ALL = [[1,2],[1,3],[1,4],[1,5],[1,9],[1,16],[2,3],[2,4],[2,6],[2,8],[2,10],[2,13],[2,14],[3,4],[3,6],[3,12],[3,13],[4,8],[4,14],[4,17],[5,9],[5,16],[6,9],[6,10],[6,11],[7,10],[7,12],[7,13],[8,14],[8,17],[9,16],[9,15],[10,11],[10,12],[11,15],[11,16],[12,13],[12,15],[12,17],[13,14],[13,17],[15,16],[15,17],[16,17]];
+  var S = ["1","4","16"], NEAR = { 2:"1",3:"1",5:"1",9:"1", 6:"2",10:"2",13:"2", 12:"3", 8:"4",14:"4",17:"4", 15:"16", 11:"16" };
+  var LONGEST = "4|17";
+  var SSTAR = ["2","12","13"], NEAR2 = { 1:"2",6:"2",10:"2", 7:"12",11:"12",15:"12", 3:"13",4:"13",8:"13",14:"13",17:"13",16:"13" };
+  var E = ALL.map(function(e){ return { u: String(e[0]), v: String(e[1]) }; });
+  function key(a, b){ return [String(a), String(b)].sort().join("|"); }
+  var CAPS = [
+    "Индивидуальная задача \\(I\\): полный граф на \\(17\\) вершинах, заданы стоимости рёбер и \\(k=3\\).",
+    "Допустимое решение \\(S=\\{s_1,s_2,s_3\\}\\) (вершины \\(1,4,16\\), зелёные) — произвольный набор из \\(3\\) вершин.",
+    "Стоимость решения: для каждой вершины вне \\(S\\) находим кратчайшее ребро до \\(S\\) (синие).",
+    "Стоимость \\(S\\) — самое длинное из этих рёбер (красное, \\(4\\)–\\(17\\)). Является ли \\(S\\) оптимальным? Нет!",
+    "Оптимальное решение \\(S^*=\\{s_1^*,s_2^*,s_3^*\\}\\) (вершины \\(2,12,13\\)): максимальное расстояние до ближайшего центра существенно меньше."
+  ];
+  function render(step){
+    var centers = step === 0 ? [] : step <= 3 ? S : SSTAR;
+    var near = step === 2 || step === 3 ? NEAR : step === 4 ? NEAR2 : null;
+    var nearKeys = {}; if (near) Object.keys(near).forEach(function(v){ nearKeys[key(v, near[v])] = true; });
+    G.draw("kcm-plot", G.build({
+      verts: V, edges: E, size: 12, halo: false, labels: false, plotWidthPx: 540, range: { x: [-1.4, 7.6], y: [-0.8, 7] },
+      edge: function(e){
+        var kk = key(e.u, e.v);
+        if (step === 3 && kk === LONGEST) return { color: C.red, width: 3.4, hover: "самое длинное из кратчайших рёбер до S — это и есть стоимость S" };
+        if (near && nearKeys[kk]) return { color: C.sel, width: 1.9, hover: "кратчайшее ребро до центра" };
+        return { color: "#dcd8d2", width: 0.7, hover: "ребро " + e.u + " — " + e.v };
+      },
+      vert: function(id){
+        var isC = centers.indexOf(id) >= 0;
+        if (isC) return { color: C.green, line: "#3f6212", size: 18, label: "$" + (step === 4 ? "s^*" : "s") + "_" + (centers.indexOf(id) + 1) + "$", labelSize: 9, labelColor: "#fff", hover: "центр " + (step === 4 ? "s*" : "s") + (centers.indexOf(id) + 1) + " (вершина " + id + ")" };
+        return { color: "#1c1917", line: "#1c1917", hover: "вершина " + id + (near && near[id] ? ": ближайший центр — вершина " + near[id] : "") };
+      }
+    }));
+    G.setCaption("kcm-cap", CAPS[step]);
+  }
+  G.player({ container: "kcm-ctl", count: CAPS.length, autoplayMs: 2600, render: render });
+})();
+</script>
+<section id="параметрическое-сокращение-для-метрической-задачи-о-k-центрах" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Параметрическое сокращение для метрической задачи о <span class="math inline">\(k\)</span>-центрах</h1>
+<p>Зачастую знание стоимости оптимального решения упрощает поиск хорошего приближенного решения. В частности, это позволяет отсечь заведомо неподходящие входные данные и сузить область поиска. К сожалению, вычисление стоимости оптимального решения имеет ту же сложность, что и нахождение самого решения NP-трудной оптимизационной задачи. Техника параметрического сокращения позволяет обходить эту трудность для некоторых задач. Выберем параметр <span class="math inline">\(t\)</span>, который является предположением о стоимости оптимального решения. Для выбранного значения <span class="math inline">\(t\)</span> из заданного примера <span class="math inline">\(I\)</span> удалим те данные, которые не будут использоваться в любом решении стоимостью не больше <span class="math inline">\(t\)</span>. Обозначим такой сокращенный пример как <span class="math inline">\(I(t)\)</span>.</p>
+<p>Алгоритм состоит из нескольких идей. Пусть дана индивидуальная задача <span class="math inline">\(I\)</span>.</p>
+<ul>
+<li><p><strong>Параметризация.</strong> Получить параметризованную задачу разрешимости (т.е. задачу с ответом “ДА”/“НЕТ”) <span class="math inline">\(\operatorname {decision}(I, t)\)</span> для исходной задачи оптимизации:</p>
+<ul>
+<li><p><span class="math inline">\(\operatorname {optimization}(I)\)</span>: минимизировать (максимизировать) стоимость решения;</p></li>
+<li><p><span class="math inline">\(\operatorname {decision}(I, t)\)</span>: понять, есть ли допустимое решение стоимости <span class="math inline">\(\operatorname {cost} \leq t\)</span> (<span class="math inline">\(\operatorname {cost} \geq t\)</span>).</p></li>
+</ul>
+<p>Свести оптимизационную задачу к задаче разрешимости <span class="math inline">\(\operatorname {decision}(t)\)</span>: решать <span class="math inline">\(\operatorname {decision}(t)\)</span> для возрастающих <span class="math inline">\(t\)</span> до тех пор, пока не получим ответ “ДА”.</p></li>
+<li><p><strong>Сокращение параметров.</strong> Рассматривая <span class="math inline">\(\operatorname {decision}(I, t)\)</span> для фиксированных <span class="math inline">\(I, t\)</span>, перейти от <span class="math inline">\(I\)</span> к индивидуальной задаче <span class="math inline">\(I' = I'(t)\)</span>, удаляя те части <span class="math inline">\(I\)</span>, которые заведомо не могут быть использованы в допустимом решении <span class="math inline">\(\sigma\)</span>, для которого <span class="math inline">\(\operatorname {cost}(\sigma ) \leq t\)</span>.</p></li>
+<li><p><strong>Нижняя оценка.</strong> <span class="math inline">\(\alpha\)</span>-приближенный алгоритм состоит из 2-х шагов:</p>
+<ol type="1">
+<li><p>семейство примеров <span class="math inline">\(I(t)\)</span> используется для подсчета нижней оценки на <span class="math inline">\(\operatorname {OPT}\)</span>, назовем ее <span class="math inline">\(t^{*}\)</span>;</p></li>
+<li><p>находится допустимое решение на примере <span class="math inline">\(I\left(\alpha \cdot t^{*}\right)\)</span>.</p></li>
+</ol></li>
+</ul>
+<p>Покажем, как технику параметрического сокращения применить к задаче о <span class="math inline">\(k\)</span>-центрах. Занумеруем ребра графа <span class="math inline">\(G\)</span> по неубыванию стоимостей, т.е.</p>
+<p><span class="math display">\[
+  \operatorname {cost}\left(e_{1}\right) \leq \operatorname {cost}\left(e_{2}\right) \leq \ldots \leq \operatorname {cost}\left(e_{m}\right),  
+\]</span></p>
+<p>и пусть <span class="math inline">\(G_{i}=\left(V, E_{i}\right)\)</span>, где <span class="math inline">\(E_{i}=\left\{ e_{1}, e_{2}, \ldots , e_{i}\right\}\)</span>.</p>
+<ul>
+<li><p><strong>Параметризация.</strong> Вместо исходной задачи рассматриваем следующую задачу разрешимости <span class="math inline">\(\operatorname {decision}(I,t)\)</span>: для данного <span class="math inline">\(I = (G, \operatorname {cost}, k)\)</span> и для данного <span class="math inline">\(t \in \mathbb {Q}_+\)</span> необходимо понять, существует ли в <span class="math inline">\(G\)</span> такое подмножество вершин <span class="math inline">\(S \subset V\)</span>, что</p>
+<p><span class="math display">\[
+  \max _{v \in V} \left\{ \operatorname {connect}(v,S)\right\}  \leq t  
+\]</span></p>
+<p>Заметим, что нам достаточно решать <span class="math inline">\(\operatorname {decision}(I, t)\)</span> для <span class="math inline">\(t \in \left\{ \operatorname {cost}(e) \mid e \in E\right\}\)</span>. Пусть <span class="math inline">\(t = \operatorname {cost}(e_j)\)</span> для некоторого <span class="math inline">\(j = 1, \ldots , m\)</span>.</p></li>
+<li><p><strong>Сокращение параметров.</strong> При рассмотрении указанной задачи <span class="math inline">\(\operatorname {decision}(I,t)\)</span> ребра, стоимость которых больше <span class="math inline">\(t = \operatorname {cost}(e_j)\)</span>, на ответ влиять не будут. Их можно удалить из индивидуальной задачи <span class="math inline">\(I\)</span>: перейти к <span class="math inline">\(I' = I_j = (G_j, \operatorname {cost}_j, k)\)</span>, где</p>
+<ul>
+<li><p><span class="math inline">\(G_j = (V, E_j)\)</span>;</p></li>
+<li><p><span class="math inline">\(\operatorname {cost}_j = \operatorname {cost}|_{E_j}\)</span>.</p></li>
+</ul>
+<p>Переходим от <span class="math inline">\(\operatorname {decision}(I,t)\)</span> к <span class="math inline">\(\operatorname {decision}(I_j,t)\)</span>.</p></li>
+</ul>
+<div id="kcp" class="fpmi-graph">
+  <h2 class="fg-title anchored" data-anchor-id="параметрическое-сокращение-для-метрической-задачи-о-k-центрах">Параметрическое сокращение для задачи о \(k\)-центрах</h2>
+  <p class="fg-sub">Решение \(\{s_1,s_2,s_3\}\) (зелёные); синие рёбра — звёзды с центрами в \(S\); красное ребро \(e_j\) — самое дорогое из них. Справа — сокращённый граф \(G_j=(V,\{e_1,\ldots,e_j\})\): убраны все рёбра дороже \(\mathrm{cost}(e_j)\). Наведите курсор на ребро, чтобы узнать, пережило ли оно сокращение.</p>
+  <div class="fg-row">
+    <div id="kcp-g" class="fg-plot" style="max-width:290px;height:300px;"></div>
+    <span class="fg-arrow">⇒</span>
+    <div id="kcp-gj" class="fg-plot" style="max-width:290px;height:300px;"></div>
+  </div>
+  <div class="fg-row" style="justify-content:space-around;font-size:13px;color:#57534e;max-width:640px;"><span>\(G\)</span><span>\(G_j:=(V,\{e_1,\ldots,e_j\})\)</span></div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, C = G.colors;
+  var V = { 1:[0,5], 2:[1.6,5.4], 3:[3.4,5.2], 4:[4.6,5.6], 5:[-0.8,3.6], 6:[1.2,3.4], 7:[2.8,3.8], 8:[4.6,3.6], 9:[5.6,3.2], 10:[0.4,2], 11:[1.8,1.4], 12:[3,2.2], 13:[-0.4,0.2], 14:[4.4,0] };
+  var S = ["2","7","6"];
+  var ALL = [[1,2],[1,5],[1,13],[2,3],[2,6],[3,4],[3,7],[3,8],[4,8],[4,9],[5,10],[5,13],[6,10],[6,11],[6,13],[7,8],[7,11],[7,12],[8,9],[8,14],[9,14],[10,11],[10,13],[11,12],[11,13],[11,14],[12,14],[7,9]];
+  var KEEP = {}; [[1,2],[3,4],[4,8],[4,9],[5,13],[6,13],[8,9],[10,13],[11,13],[11,14],[12,14],[2,1],[2,3],[6,10],[6,11],[7,3],[7,8],[7,11],[7,12],[7,9]].forEach(function(e){ KEEP[[String(e[0]), String(e[1])].sort().join("|")] = true; });
+  var STAR = {}; [[2,1],[2,3],[6,10],[6,11],[6,13],[7,3],[7,8],[7,11],[7,12]].forEach(function(e){ STAR[[String(e[0]), String(e[1])].sort().join("|")] = true; });
+  var EJ = "7|9";
+  var E = ALL.map(function(e){ return { u: String(e[0]), v: String(e[1]) }; });
+  function key(e){ return [e.u, e.v].sort().join("|"); }
+  function panel(id, pruned){
+    G.draw(id, G.build({
+      verts: V, edges: E, size: 11, halo: false, labels: false, plotWidthPx: 270, range: { x: [-1.4, 6.2], y: [-0.6, 6.2] },
+      edge: function(e){
+        var k = key(e), name = e.u + " — " + e.v;
+        if (k === EJ) return { color: C.red, width: 2.6, hover: "e_j = " + name + ": самое дорогое ребро звёзд; порог cost(e_j)" };
+        if (STAR[k]) return { color: C.sel, width: 1.8, hover: name + ": ребро звезды с центром в S (cost ≤ cost(e_j))" };
+        if (KEEP[k]) return { color: "#a8a29e", width: 0.9, hover: name + ": cost ≤ cost(e_j) — остаётся в G_j" };
+        return { color: "#a8a29e", width: 0.9, opacity: pruned ? 0 : 1, hover: name + ": cost > cost(e_j) — удаляется в G_j" };
+      },
+      vert: function(id){
+        var i = S.indexOf(id);
+        return i >= 0 ? { color: C.green, line: "#3f6212", size: 17, label: "$s_" + (i + 1) + "$", labelSize: 9, labelColor: "#fff", hover: "центр s" + (i + 1) } : { color: "#1c1917", line: "#1c1917", hover: "вершина " + id };
+      }
+    }));
+  }
+  panel("kcp-g", false);
+  panel("kcp-gj", true);
+})();
+</script>
+<p><em>Доминирующим множеством</em> в неориентированном графе <span class="math inline">\(H=(U, F)\)</span> называется подмножество <span class="math inline">\(S \subset U\)</span>, такое, что каждая вершина из множества <span class="math inline">\(U \setminus S\)</span> смежна с некоторой вершиной из множества <span class="math inline">\(S\)</span>. Обозначим через <span class="math inline">\(\operatorname {dom}(H)\)</span> мощность минимального (по мощности) доминирующего множества в <span class="math inline">\(H\)</span>. Заметим, что задача <span class="math inline">\(\operatorname {decision}(I_j, \operatorname {cost}(e_j))\)</span> является, по сути, задачей проверки неравенства <span class="math inline">\(\operatorname {dom}(G_j) \leq k\)</span>.</p>
+<p>Задача о <span class="math inline">\(k\)</span>-центрах эквивалентна поиску минимального индекса <span class="math inline">\(j\)</span>, такого, что <span class="math inline">\(G_{j}\)</span> содержит доминирующее множество мощности не более <span class="math inline">\(k\)</span>, т. е. <span class="math inline">\(G_{j}\)</span> содержит <span class="math inline">\(k\)</span> звезд, охватывающих все вершины, где звезда это граф <span class="math inline">\(K_{1, p}, p \geq 1\)</span>. Если <span class="math inline">\(j^{*}\)</span>- это минимальный такой индекс, тогда величина <span class="math inline">\(\operatorname {cost}\left(e_{j^{*}}\right)\)</span> является оптимальным значением решения задачи о <span class="math inline">\(k\)</span> центрах. Обозначим эту величину как <span class="math inline">\(\operatorname {OPT}\)</span>.</p>
+<p>Сведение исходной задачи к вычислению <span class="math inline">\(\operatorname {dom}(G_j)\)</span> не может напрямую нам помочь: вычисление мощности доминирующего множества для произвольного графа является NP-трудной задачей.</p>
+<p><em>Независимым множеством</em> в графе <span class="math inline">\(H=(U, F)\)</span> называется подмножество вершин <span class="math inline">\(I \subset U\)</span>, такое, что в нем нет смежных вершин.</p>
+<p>Назовем <em>квадратом графа <span class="math inline">\(H=(V, F)\)</span></em> граф <span class="math inline">\(H^{2}=(V, E)\)</span>, такой, что ребро <span class="math inline">\((u, v) \in E\)</span> тогда и только тогда, когда граф <span class="math inline">\(H\)</span> содержит путь между вершинами <span class="math inline">\(u\)</span> и <span class="math inline">\(v, u \neq v\)</span>, длины не более 2.</p>
+<div id="kcs" class="fpmi-graph">
+  <h2 class="fg-title anchored">Квадрат графа</h2>
+  <p class="fg-sub">В \(G_j^2\) вершина \(u\) соединена не только со своими соседями (толстые рёбра), но и с их соседями — со всеми, до кого есть путь длины \(\le2\) (светлые дуги). Например, \(u\) и \(u'\) в \(G_j\) не смежны, а в \(G_j^2\) соединены. Наведите курсор на вершину в правой панели.</p>
+  <div class="fg-row">
+    <div id="kcs-gj" class="fg-plot" style="max-width:290px;height:290px;"></div>
+    <div id="kcs-gj2" class="fg-plot" style="max-width:290px;height:290px;"></div>
+  </div>
+  <div class="fg-row" style="justify-content:space-around;font-size:13px;color:#57534e;max-width:600px;"><span>\(G_j\)</span><span>\(G_j^2\): звезда \(u\) и новые рёбра через \(u\)</span></div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, C = G.colors;
+  var V = { 1:[0,4], 2:[1.6,4.4], 3:[3.6,4.2], 4:[4.8,4.6], 5:[-0.6,2.4], 6:[1.4,2.2], 7:[3,2.6], 8:[4.8,2.4], 9:[0.2,0.6], 10:[1.8,0], 11:[3,0.8], 12:[4.4,0] };
+  var ALL = [[1,2],[1,5],[1,9],[2,3],[2,6],[3,4],[3,6],[3,7],[4,8],[5,6],[5,9],[6,7],[6,9],[6,10],[7,8],[7,11],[8,12],[9,10],[10,11],[11,12]];
+  var U = "6", NB = ["2","3","5","9","10"];
+  var E = ALL.map(function(e){ return { u: String(e[0]), v: String(e[1]), kind: "g" }; });
+  G.draw("kcs-gj", G.build({
+    verts: V, edges: E, size: 12, halo: false, labels: false, plotWidthPx: 270, range: { x: [-1.2, 5.4], y: [-0.6, 5] },
+    edge: function(e){ return { color: "#57534e", width: 1.1, hover: "ребро G_j: " + e.u + " — " + e.v }; },
+    vert: function(id){ return { color: "#1c1917", line: "#1c1917", hover: "вершина " + id }; }
+  }));
+  var E2 = E.slice();
+  NB.forEach(function(a, i){ NB.slice(i + 1).forEach(function(b){ E2.push({ u: a, v: b, kind: "sq", bend: -0.45 }); }); });
+  G.draw("kcs-gj2", G.build({
+    verts: V, edges: E2, size: 12, halo: false, labels: { "6": "$u$", "3": "$u'$" }, plotWidthPx: 270, range: { x: [-1.2, 5.4], y: [-0.6, 5] },
+    edge: function(e){
+      if (e.kind === "sq") return { color: "rgba(185,28,28,0.32)", width: 2.4, hover: "новое ребро G_j²: " + e.u + " — " + e.v + " (путь длины 2 через u)" };
+      if (e.u === U || e.v === U) return { color: C.red, width: 2.4, hover: "ребро звезды u: " + e.u + " — " + e.v };
+      return { color: "#57534e", width: 1, hover: "ребро G_j: " + e.u + " — " + e.v };
+    },
+    vert: function(id){
+      if (id === U) return { color: C.red, line: "#7f1d1d", size: 16, labelColor: "#fff", labelSize: 10, hover: "u: в G_j² смежна со всеми вершинами на расстоянии ≤ 2" };
+      if (id === "3") return { color: "#1c1917", line: "#1c1917", size: 14, labelColor: "#fff", labelSize: 9, hover: "u′: не смежна с u в G_j, но смежна в G_j² (через 2)" };
+      return { color: "#1c1917", line: "#1c1917", hover: "вершина " + id + (NB.indexOf(id) >= 0 ? ": сосед u" : "") };
+    }
+  }));
+})();
+</script>
+<div class="callout callout-style-simple callout-mn-lem no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="lem-1" class="lemma theorem">
+<p><span class="theorem-title"><strong>Лемма 1</strong></span> Пусть дан граф <span class="math inline">\(H\)</span>, и пусть <span class="math inline">\(I\)</span>- независимое множество в <span class="math inline">\(H^{2}\)</span>. Тогда <span class="math inline">\(|I| \leq \operatorname {dom}(H)\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-proof no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Mn-proof</span>Доказательство
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="mn-proof-body">
+<p>Пусть <span class="math inline">\(D\)</span> – минимальное доминирующее множество в <span class="math inline">\(H\)</span>, <span class="math inline">\(\left|D\right| = \operatorname {dom}(H)\)</span>. Тогда <span class="math inline">\(H\)</span> содержит <span class="math inline">\(|D|\)</span> звезд, охватывающих все вершины. Поскольку каждая из звезд будет кликой в <span class="math inline">\(H^{2}\)</span>, то <span class="math inline">\(H^{2}\)</span> содержит <span class="math inline">\(|D|\)</span> клик, содержащих все вершины. Так как в множестве <span class="math inline">\(I\)</span> может лежать не более одной вершины из каждой клики <span class="math inline">\(H^{2}\)</span>, то <span class="math inline">\(|I| \leq \operatorname {dom}(H)\)</span>.</p>
+<div id="sdc" class="fpmi-graph">
+  <h2 class="fg-title anchored">Доминирующее множество в \(H\) и независимое множество в \(H^2\)</h2>
+  <p class="fg-sub">Зелёные кресты — доминирующее множество из 2 вершин. Шаги показывают, почему любое независимое множество в \(H^2\) не больше размера доминирующего множества в \(H\).</p>
+  <div id="sdc-ctl"></div>
+  <div id="sdc-plot" class="fg-plot" style="max-width:340px;height:420px;"></div>
+  <div id="sdc-cap" class="fg-caption"></div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, C = G.colors;
+  var V = { a:[0,6], b:[3,6.3], c:[1.5,4], d:[3.2,3.2], e:[0.6,1.6], f:[1.7,0], g:[0,-1.4], h:[3,-1.5] };
+  var CENTERS = ["c","f"];
+  var E = [
+    { u:"a", v:"b", kind:"other" },
+    { u:"a", v:"c", kind:"s1" }, { u:"b", v:"c", kind:"s1" }, { u:"c", v:"d", kind:"s1" }, { u:"c", v:"e", kind:"s1" },
+    { u:"e", v:"f", kind:"s2" }, { u:"f", v:"g", kind:"s2" }, { u:"f", v:"h", kind:"s2" },
+    { u:"a", v:"d", kind:"c1", bend: 0.3 }, { u:"b", v:"d", kind:"c1" }, { u:"a", v:"e", kind:"c1" }, { u:"b", v:"e", kind:"c1", bend: 0.3 }, { u:"d", v:"e", kind:"c1" },
+    { u:"e", v:"g", kind:"c2" }, { u:"e", v:"h", kind:"c2" }, { u:"g", v:"h", kind:"c2" }
+  ];
+  var INDEP = ["a","g"];
+  var CAPS = [
+    "Доминирующее множество \\(\\{c,f\\}\\) (зелёные кресты) в графе \\(H\\): каждая вершина либо в нём, либо смежна с ним.",
+    "Каждой вершине доминирующего множества отвечает звезда в \\(H\\) (синяя и красная); звёзды покрывают все вершины.",
+    "В \\(H^2\\) каждая звезда превращается в клику — полный подграф (светлые рёбра добавились: любые два листа звезды на расстоянии \\(2\\)).",
+    "Независимое множество в \\(H^2\\) не может превосходить числа клик: из каждой клики можно взять максимум одну вершину (оранжевые)."
+  ];
+  function render(step){
+    G.draw("sdc-plot", G.build({
+      verts: V, edges: E, size: 12, halo: false, labels: false, plotWidthPx: 320, range: { x: [-0.8, 3.8], y: [-2.2, 6.9] },
+      edge: function(e){
+        var n = e.u + " — " + e.v;
+        if (e.kind === "other") return { color: step === 0 ? "#1c1917" : "#d6d3d1", width: step === 0 ? 1.4 : 0.7, hover: "ребро H: " + n };
+        if (e.kind === "s1" || e.kind === "s2") {
+          if (step === 0) return { color: "#1c1917", width: 1.4, hover: "ребро H: " + n };
+          var col = e.kind === "s1" ? C.sel : C.red;
+          return { color: col, width: step === 3 ? 1.2 : 2, opacity: step === 3 ? 0.55 : 1, hover: "ребро звезды с центром " + (e.kind === "s1" ? "c" : "f") + ": " + n };
+        }
+        var soft = e.kind === "c1" ? "#93c5fd" : "#fca5a5";
+        return { color: soft, width: 2.4, opacity: step >= 2 ? (step === 3 ? 0.5 : 1) : 0, hover: "новое ребро H²: " + n + " (расстояние 2 в H)" };
+      },
+      vert: function(id){
+        if (CENTERS.indexOf(id) >= 0) return { color: "#fff", line: C.green, lineWidth: 2.4, symbol: "x", size: 16, hover: id + ": вершина доминирующего множества (центр звезды)" };
+        if (step === 3 && INDEP.indexOf(id) >= 0) return { color: C.accent, line: C.accentLine, size: 16, hover: id + ": выбрана в независимое множество H² (одна на клику)" };
+        return { color: "#1c1917", line: "#1c1917", hover: id + (step >= 1 ? ": лист звезды " + (["a","b","d","e"].indexOf(id) >= 0 ? "c" : "f") : "") };
+      }
+    }));
+    G.setCaption("sdc-cap", CAPS[step]);
+  }
+  G.player({ container: "sdc-ctl", count: CAPS.length, autoplayMs: 2800, render: render });
+})();
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-alg no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="alg-1" class="algorithm-box theorem algorithm">
+<p><span class="theorem-title"><strong>Algorithm 1</strong></span> <strong>Алгоритм Хошбаума-Шмойса (<span class="math inline">\(G = (V,E), \;  \operatorname {cost}, \;  k\)</span>)</strong></p>
+<ul>
+<li>Построить семейство графов <span class="math inline">\(G_{1}^{2}, G_{2}^{2}, \ldots, G_{m}^{2}\)</span>.</li>
+<li>Найти максимальное по включению независимое множество <span class="math inline">\(I_{r}\)</span> в каждом графе <span class="math inline">\(G_{r}^{2}\)</span>.</li>
+<li>Вычислить наименьший индекс <span class="math inline">\(r\)</span>, такой, что <span class="math inline">\(\left|I_{r}\right| \leq k\)</span>. Пусть это будет <span class="math inline">\(j\)</span>.</li>
+<li><strong>возврат</strong> <span class="math inline">\(I_{j}\)</span>.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-lem no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="lem-2" class="lemma theorem">
+<p><span class="theorem-title"><strong>Лемма 2</strong></span> Для <span class="math inline">\(j\)</span>, полученного Алгоритмом Хошбаума-Шмойса, верно, что <span class="math inline">\(\operatorname {cost}\left(e_{j}\right) \leq \operatorname {OPT}\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-proof no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Mn-proof</span>Доказательство
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="mn-proof-body">
+<p>Для каждого <span class="math inline">\(i&lt;j\)</span> имеем, что <span class="math inline">\(\left|I_{i}\right|&gt;k\)</span>. По лемме выше получаем <span class="math inline">\(\operatorname {dom}\left(G_{i}\right) \geq \left|I_{i}\right|&gt;k\)</span>, поэтому <span class="math inline">\(j^{*}&gt;i\)</span>. Это верно для всех <span class="math inline">\(i &lt; j\)</span>, значит, <span class="math inline">\(j \leq j^{*}\)</span> и <span class="math inline">\(\operatorname {cost}\left(e_{j}\right) \leq \operatorname {cost}(e_{j^*}) = \operatorname {OPT}\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-3" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 1</strong></span> Алгоритм Хошбаума-Шмойса является 2-приближенным алгоритмом для метрической задачи о <span class="math inline">\(k\)</span>-центрах.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-proof no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Mn-proof</span>Доказательство
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="mn-proof-body">
+<p>Для начала заметим, что максимальное по включению независимое множество <span class="math inline">\(I\)</span> в произвольном графе является также и доминирующим (поскольку, если некоторая вершина <span class="math inline">\(v\)</span> не доминируется никакой из вершин из множества <span class="math inline">\(I\)</span>, то <span class="math inline">\(I \cup \{ v\}\)</span> является независимым множеством, а это противоречит максимальности <span class="math inline">\(I\)</span>). Поэтому в графе <span class="math inline">\(G_{j}^{2}\)</span> найдутся звезды с центрами в вершинах <span class="math inline">\(I_{j}\)</span>, которые охватывают все вершины <span class="math inline">\(G\)</span>. Из неравенства треугольника стоимость ребер в графе <span class="math inline">\(G_{j}^{2}\)</span> не превосходит <span class="math inline">\(2 \cdot \operatorname {cost}\left(e_{j}\right)\)</span>, так что стоимость решения <span class="math inline">\(I_j\)</span> не превосходит <span class="math inline">\(2 \cdot \operatorname {cost}(e_j)\)</span>. По лемме выше <span class="math inline">\(\operatorname {cost}(e_j) \leq \operatorname {OPT}\)</span>, откуда стоимость решения не превосходит <span class="math inline">\(2 \cdot \operatorname {OPT}\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<p>Приведем пример, который показывает, что эта оценка точна. Пусть задан граф на <span class="math inline">\(n+1\)</span> вершинах, с одной центральной вершиной. Ребра, смежные с центральной вершиной, имеют стоимость 1, все остальные ребра имеют стоимость 2. Пример графа изображен на рисунке ниже.</p>
+<div id="hst" class="fpmi-graph">
+  <h2 class="fg-title anchored">Точность оценки 2 алгоритма Хохбаума–Шмойса</h2>
+  <p class="fg-sub">Звезда \(K_{1,n}\): рёбра при центре \(c\) стоят \(1\), все остальные — \(2\) (пунктир, показана лишь часть). При \(k=1\) оптимум — центр, \(\mathrm{OPT}=1\). Алгоритм останавливается на \(j\), при котором \(G_j\) — звезда из единичных рёбер, а \(G_j^2\) — полный граф: любая вершина — максимальное независимое множество. Кликните по вершине, чтобы выбрать её центром.</p>
+  <div class="fg-controls">
+    <label>\(n=\)</label><input type="range" id="hst-n" min="4" max="14" step="1" value="8" style="width:180px;"><span class="fg-val" id="hst-nval">8</span>
+    <button type="button" id="hst-c" class="active">Центр (оптимум)</button><button type="button" id="hst-leaf">Лист (неудачный выбор)</button>
+  </div>
+  <div id="hst-plot" class="fg-plot" style="max-width:440px;height:420px;"></div>
+  <div id="hst-cap" class="fg-caption"></div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, C = G.colors;
+  var n = 8, chosen = "c", bound = false;
+  function draw(){
+    var V = { c: [0, 0] }, order = ["c"], E = [];
+    for (var i = 0; i < n; i++) { var a = Math.PI / 2 - 2 * Math.PI * i / n; V["v" + i] = [1.9 * Math.cos(a), 1.9 * Math.sin(a)]; order.push("v" + i); }
+    for (i = 0; i < n; i++) E.push({ u: "c", v: "v" + i, weight: 1, kind: "star" });
+    for (i = 0; i < Math.min(4, n - 1); i++) E.push({ u: "v" + (2 * i % n), v: "v" + ((2 * i + 1) % n), weight: 2, kind: "far" });
+    if (!V[chosen]) chosen = "c";
+    G.draw("hst-plot", G.build({
+      verts: V, order: order, edges: E, size: n > 10 ? 18 : 22, plotWidthPx: 420, labels: { c: "$c$" }, weights: n <= 8, range: { x: [-2.6, 2.6], y: [-2.6, 2.6] },
+      edge: function(e){
+        var far = e.kind === "far";
+        var toChosen = e.u === chosen || e.v === chosen;
+        return { color: far ? "#a8a29e" : "#1c1917", width: far ? 1 : 1.4, dash: far ? "dot" : "solid", opacity: toChosen ? 1 : 0.55,
+          hover: G.plainLabel(e.u) + " — " + G.plainLabel(e.v) + ": стоимость " + e.weight + (far ? " (в G_j нет; в G_j² есть)" : "") };
+      },
+      vert: function(id){
+        var isC = id === "c", pick = id === chosen;
+        var base = isC ? { color: C.accent, line: C.accentLine } : { color: C.vert, line: C.vertLine };
+        if (pick) base = Object.assign(base, { line: C.red, lineWidth: 3.4 });
+        var d = pick ? 0 : (isC || chosen === "c") ? 1 : 2;
+        base.hover = (isC ? "центр c" : G.plainLabel(id)) + (pick ? ": выбранный центр" : ": расстояние до выбранного центра " + d) + "<br>клик — выбрать центром";
+        return base;
+      }
+    }), { then: function(){
+      var el = document.getElementById("hst-plot");
+      if (!bound) { bound = true; el.on("plotly_click", function(ev){ var p = ev.points[0]; if (p.curveNumber === el.__fpmiGraph.meta.vertIdx) { chosen = el.__fpmiGraph.meta.ids[p.pointNumber]; draw(); } }); }
+    } });
+    G.setCaption("hst-cap", chosen === "c"
+      ? "Выбран центр \\(c\\): все вершины на расстоянии \\(1\\), стоимость решения \\(=1=\\mathrm{OPT}\\)."
+      : "Выбрана листовая вершина: до остальных листьев расстояние \\(2\\), стоимость решения \\(=2=2\\cdot\\mathrm{OPT}\\) — оценка алгоритма достигается.");
+    document.getElementById("hst-c").classList.toggle("active", chosen === "c");
+    document.getElementById("hst-leaf").classList.toggle("active", chosen !== "c");
+  }
+  document.getElementById("hst-n").addEventListener("input", function(){ n = +this.value; document.getElementById("hst-nval").textContent = n; draw(); });
+  document.getElementById("hst-c").addEventListener("click", function(){ chosen = "c"; draw(); });
+  document.getElementById("hst-leaf").addEventListener("click", function(){ chosen = "v0"; draw(); });
+  draw();
+})();
+</script>
+<p>Для <span class="math inline">\(k=1\)</span> оптимальное решение - это центральная вершина, и <span class="math inline">\(\operatorname {OPT}=1\)</span>. Алгоритм Хошбаума-Шмойса получит индекс <span class="math inline">\(j=n\)</span>. Граф <span class="math inline">\(G_{n}^{2}\)</span>- это полный граф, и если в качестве максимального независимого множества выбрана не центральная вершина, то стоимость решения, полученного алгоритмом, будет 2.</p>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-4" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 2</strong></span> Для любого <span class="math inline">\(\varepsilon &gt;0\)</span> не существует <span class="math inline">\((2-\varepsilon )\)</span>-приближенного алгоритма для метрической задачи о <span class="math inline">\(k\)</span>-центрах в предположении, что <span class="math inline">\(P \neq N P\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-proof no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Mn-proof</span>Доказательство
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="mn-proof-body">
+<p>Покажем, что если такой алгоритм существует, то он может решать задачу нахождения доминирующего множества за полиномиальное время. Пусть граф <span class="math inline">\(G=(V, E)\)</span> и число <span class="math inline">\(k\)</span> являются входными данными задачи доминирующее множество. Построим полный граф <span class="math inline">\(G^{\prime }=\left(V, E^{\prime }\right)\)</span> с функцией стоимостей</p>
+<p><span class="math display">\[
+  \operatorname {cost}(u, v)= \begin{cases} 1, &amp;  \text{ если }(u, v) \in E \\ 2, &amp;  \text{ если }(u, v) \notin E\end{cases}  
+\]</span></p>
+<p>Заметим, что граф <span class="math inline">\(G^{\prime }\)</span> удовлетворяет неравенству треугольника и следующим условиям:</p>
+<ul>
+<li><p>если <span class="math inline">\(\operatorname {dom}(G) \leq k\)</span>, то <span class="math inline">\(G^{\prime }\)</span> имеет решение задачи о <span class="math inline">\(k\)</span>-центрах стоимости 1;</p></li>
+<li><p>если <span class="math inline">\(\operatorname {dom}(G)&gt;k\)</span>, то стоимость оптимального решения задачи о <span class="math inline">\(k\)</span>-центрах в графе <span class="math inline">\(G^{\prime }\)</span> равна 2.</p></li>
+</ul>
+<p>В первом случае <span class="math inline">\((2-\varepsilon )\)</span>-приближенный алгоритм должен найти решение стоимости <span class="math inline">\(1\)</span>, поскольку в <span class="math inline">\((2-\varepsilon )\)</span>-приближенном решении не могут использоваться ребра стоимости 2. Следовательно, такой алгоритм будет решать NP-полную задачу о доминирующем множестве за полиномиальное время.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="задача-о-взвешенных-центрах" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Задача о взвешенных центрах</h1>
+<p>Технику параметрического сокращения можно использовать и для решения метрической задачи о взвешенных центрах.</p>
+<div class="algproblem">
+<div class="algproblem-title">
+<p>Метрическая задача о взвешенных центрах</p>
+</div>
+<div class="algproblem-given">
+<ul>
+<li><p>полный граф <span class="math inline">\(G=(V, E)\)</span>;</p></li>
+<li><p>стоимости ребер <span class="math inline">\(\operatorname {cost}: E \rightarrow \mathbf{Q}^{+}\)</span>, такие, что для любых трех вершин <span class="math inline">\(u, v\)</span> и <span class="math inline">\(w\)</span> выполняется <span class="math inline">\(\operatorname {cost}(u, v) \leq\)</span> <span class="math inline">\(\operatorname {cost}(u, w)+\operatorname {cost}(w, v)\)</span>;</p></li>
+<li><p>веса вершин <span class="math inline">\(w: V \rightarrow \mathbf{R}^{+}\)</span> и верхняя граница <span class="math inline">\(W \in \mathbf{R}^{+}\)</span>.</p></li>
+</ul>
+</div>
+<div class="algproblem-find">
+<p>Множество <span class="math inline">\(S \subseteq V\)</span> суммарного веса <span class="math inline">\(w(S) \leq W\)</span>, которое минимизирует величину <span class="math inline">\(\max_{v}\{ \operatorname {connect}(v, S)\}\)</span>.</p>
+</div>
+</div>
+<div id="wkc" class="fpmi-graph">
+  <h2 class="fg-title anchored" data-anchor-id="задача-о-взвешенных-центрах">Задача о взвешенных центрах</h2>
+  <p class="fg-sub">Веса вершин \(1\), \(2\), \(3\) подписаны на вершинах; верхняя граница суммарного веса центров \(W=4\). Зелёные вершины — выбранные центры, жёлтые рёбра — их звёзды. Наведите курсор на вершину, чтобы узнать её вес и центр.</p>
+  <div class="fg-controls">
+    <button type="button" id="wkc-bad" class="active">Недопустимое решение</button><button type="button" id="wkc-good">Допустимое и оптимальное</button>
+  </div>
+  <div id="wkc-plot" class="fg-plot" style="max-width:420px;height:380px;"></div>
+  <div id="wkc-cap" class="fg-caption"></div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, C = G.colors;
+  var V = { a:[0,4.4], b:[2.4,4.8], c:[4.6,4.6], t:[3.4,3.4], l:[1.2,2.6], r:[4,2.4], bl:[-0.6,1.2], bot:[1.6,0.2], br:[4.4,0.4] };
+  var W = { a:2, b:1, c:2, t:2, l:3, r:3, bl:1, bot:2, br:2 };
+  var E = [["a","b"],["b","c"],["a","l"],["a","bl"],["b","l"],["b","t"],["b","r"],["c","t"],["c","r"],["t","l"],["t","r"],["t","bot"],["l","bl"],["l","bot"],["bl","bot"],["bot","br"],["r","br"],["c","br"]];
+  var SOL = {
+    bad:  { centers: ["l","r"], star: { a:"l", bl:"l", bot:"l", t:"l", b:"r", c:"r", br:"r" }, cap: "Центры \\(l\\) и \\(r\\) (веса \\(3+3=6\\)): это даже не допустимое решение — \\(6>W=4\\)." },
+    good: { centers: ["b","r"], star: { a:"b", l:"b", t:"r", c:"r", br:"r", bot:"r", bl:"b" }, cap: "Центры \\(b\\) и \\(r\\) (веса \\(1+3=4\\le W\\)): допустимое решение, и оно оптимально — каждая вершина на расстоянии одного ребра от центра." }
+  };
+  function key(a, b){ return [a, b].sort().join("|"); }
+  function draw(m){
+    var s = SOL[m], starKeys = {};
+    Object.keys(s.star).forEach(function(v){ starKeys[key(v, s.star[v])] = true; });
+    G.draw("wkc-plot", G.build({
+      verts: V, edges: E, size: 26, plotWidthPx: 400, labels: false, range: { x: [-1.4, 5.3], y: [-0.6, 5.5] },
+      edge: function(e){ return starKeys[key(e.u, e.v)] ? { color: C.accent, width: 2.4, hover: "ребро звезды центра " + (s.star[e.u] === e.v ? e.v : e.u) } : { color: "#c4bfb8", width: 0.9 }; },
+      vert: function(id){
+        var isC = s.centers.indexOf(id) >= 0;
+        return { color: isC ? C.green : C.vert, line: isC ? "#3f6212" : C.vertLine, size: isC ? 30 : 26, label: "$" + W[id] + "$", labelColor: isC ? "#fff" : "#0b0b0b",
+          hover: id + ": вес " + W[id] + (isC ? " — центр" : " — приписана к центру " + s.star[id]) };
+      }
+    }));
+    G.setCaption("wkc-cap", s.cap);
+    document.getElementById("wkc-bad").classList.toggle("active", m === "bad");
+    document.getElementById("wkc-good").classList.toggle("active", m === "good");
+  }
+  document.getElementById("wkc-bad").addEventListener("click", function(){ draw("bad"); });
+  document.getElementById("wkc-good").addEventListener("click", function(){ draw("good"); });
+  draw("bad");
+})();
+</script>
+<p>Обозначим через <span class="math inline">\(w \operatorname {dom}(G)\)</span> вес доминирующего множества минимального веса в графе <span class="math inline">\(G\)</span>. Для решения метрической задачи о взвешенных центрах требуется найти наименьший индекс <span class="math inline">\(i\)</span>, такой, что <span class="math inline">\(w \operatorname {dom}\left(G_{i}\right) \leq\)</span> <span class="math inline">\(W\)</span>. Пусть это будет индекс <span class="math inline">\(i^{*}\)</span>, тогда стоимость оптимального решения <span class="math inline">\(\operatorname {OPT}=\operatorname {cost}\left(e_{i^{*}}\right)\)</span>.</p>
+<p>Рассмотрим вершинно-взвешенный граф <span class="math inline">\(H\)</span>, и пусть <span class="math inline">\(I\)</span>- независимое множество в графе <span class="math inline">\(H^{2}\)</span>. Для каждого <span class="math inline">\(u \in I\)</span> обозначим через <span class="math inline">\(s(u)\)</span> самого легкого соседа вершины <span class="math inline">\(u\)</span> в графе <span class="math inline">\(H\)</span> (вершина <span class="math inline">\(u\)</span> также считается сама для себя соседом). Пусть <span class="math inline">\(S=\{ s(u) \mid u \in I\}\)</span>.</p>
+<div class="callout callout-style-simple callout-mn-lem no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="lem-5" class="lemma theorem">
+<p><span class="theorem-title"><strong>Лемма 3</strong></span> Для любого вершинно-взвешенного графа <span class="math inline">\(H\)</span> верно неравенство <span class="math inline">\(w(S) \leq w \operatorname {dom}(H)\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-proof no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Mn-proof</span>Доказательство
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="mn-proof-body">
+<p>Пусть <span class="math inline">\(D\)</span>- минимальное по весу доминирующее множество в графе <span class="math inline">\(H\)</span>. Тогда в <span class="math inline">\(H\)</span> существует множество несвязных звезд с центрами в вершинах из <span class="math inline">\(D\)</span>, покрывающих все вершины. Поскольку каждая из звезд становится кликой в графе <span class="math inline">\(H^{2}\)</span>, то <span class="math inline">\(I\)</span> содержит не более одной вершины из каждой звезды. При этом каждая вершина из <span class="math inline">\(I\)</span> имеет центр соответствующей звезды как соседнюю вершину в графе <span class="math inline">\(H\)</span>. Для каждой вершины из <span class="math inline">\(I\)</span> множество <span class="math inline">\(S\)</span> содержит самого легкого соседа. Следовательно, <span class="math inline">\(w(S) \leq w(D)\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<p>В Алгоритме Хошбаума-Шмойса-2 вершина <span class="math inline">\(s_{i}(u)\)</span> обозначает самого легкого соседа вершины <span class="math inline">\(u\)</span> в графе <span class="math inline">\(G_{i}\)</span>.</p>
+<div class="callout callout-style-simple callout-mn-alg no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="alg-2" class="algorithm-box theorem algorithm">
+<p><span class="theorem-title"><strong>Algorithm 2</strong></span> <strong>Алгоритм Хошбаума-Шмойса-2 (<span class="math inline">\(G=(V, E), \operatorname {cost} : E \rightarrow \mathbf{Q}^{+}\)</span>)</strong></p>
+<ul>
+<li>Построить семейство графов <span class="math inline">\(G_{1}^{2}, G_{2}^{2}, \ldots, G_{m}^{2}\)</span>.</li>
+<li>Найти максимальное независимое множество <span class="math inline">\(I_{r}\)</span> в каждом графе <span class="math inline">\(G_{r}^{2}\)</span>.</li>
+<li>Построить <span class="math inline">\(S_{r}=\left\{s_{r}(u) \mid u \in I_{r}\right\}\)</span>.</li>
+<li>Вычислить наименьший индекс <span class="math inline">\(r\)</span>, такой, что <span class="math inline">\(w\left(S_{r}\right) \leq W\)</span>. Пусть это будет <span class="math inline">\(j\)</span>.</li>
+<li><strong>возврат</strong> <span class="math inline">\(S_j\)</span>.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-6" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 3</strong></span> Алгоритм Хошбаума-Шмойса-2 является 3-приближенным алгоритмом для метрической задачи о взвешенных центрах.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-proof no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Mn-proof</span>Доказательство
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="mn-proof-body">
+<p>Покажем, что <span class="math inline">\(\operatorname {cost}\left(e_{j}\right)\)</span> является нижней оценкой стоимости <span class="math inline">\(\operatorname {OPT}\)</span>. Действительно, для каждого <span class="math inline">\(i&lt;j\)</span>, согласно шагу 4 алгоритма, <span class="math inline">\(w\left(S_{i}\right)&gt;W\)</span>. По лемме выше <span class="math inline">\(w \operatorname {dom}\left(G_{i}\right) \geq w\left(S_{i}\right)&gt;W\)</span>. Следовательно, <span class="math inline">\(i^{*}&gt;i\)</span> и <span class="math inline">\(j \leq i^{*}\)</span>.</p>
+<p>Так как <span class="math inline">\(I_{j}\)</span> является доминирующим множеством в <span class="math inline">\(G_{j}^{2}\)</span>, то можно покрыть все вершины <span class="math inline">\(V\)</span> звездами в <span class="math inline">\(G_{j}^{2}\)</span> с центрами в вершинах <span class="math inline">\(I_{j}\)</span>. Из неравенства треугольника вес ребер в звездах не превосходит <span class="math inline">\(2 \cdot \operatorname {cost}\left(e_{j}\right)\)</span>.</p>
+<p>Каждый центр звезды связан с вершиной из <span class="math inline">\(S_{j}\)</span> ребром стоимости не более чем <span class="math inline">\(\operatorname {cost}\left(e_{j}\right)\)</span> (рис. ниже). Сдвинем каждый центр в вершину из множества <span class="math inline">\(S_{j}\)</span>, смежную с ним. Из неравенства треугольника получим, что <span class="math inline">\(\max_{v}\left\{ \operatorname {connect}\left(v, S_{j}\right)\right\}  \leq 3 \cdot \operatorname {cost}\left(e_{j}\right)\)</span>.</p>
+<div id="srd" class="fpmi-graph">
+  <h2 class="fg-title anchored">Перераспределение звёзд</h2>
+  <p class="fg-sub">Центр звезды \(u\) связан с листьями рёбрами стоимости \(\le\mathrm{cost}(e_i)\) (кроме самого дальнего листа — до него \(\le2\,\mathrm{cost}(e_i)\)); \(s_i(u)\) — самый лёгкий сосед \(u\), с ребром \(\le\mathrm{cost}(e_i)\) до \(u\), а значит, по неравенству треугольника, \(\le3\,\mathrm{cost}(e_i)\) до любого листа (пунктир). Наведите курсор на ребро, чтобы увидеть оценку его стоимости.</p>
+  <div id="srd-plot" class="fg-plot" style="max-width:520px;height:380px;"></div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, C = G.colors;
+  var V = { l1:[-3.4,1.1], l2:[-1.6,2.4], u:[0,1.4], l3:[-2.4,-0.4], s:[0,-1.8], l4:[3.6,2.2] };
+  var E = [
+    { u:"u", v:"l1", color:"#1c1917", width:1.8, hover:"u — лист: cost ≤ cost(eᵢ)" }, { u:"u", v:"l2", color:"#1c1917", width:1.8, hover:"u — лист: cost ≤ cost(eᵢ)" }, { u:"u", v:"l3", color:"#1c1917", width:1.8, hover:"u — лист: cost ≤ cost(eᵢ)" },
+    { u:"u", v:"l4", color:"#1c1917", width:1.8, hover:"u — самый дальний лист: cost ≤ 2·cost(eᵢ)" },
+    { u:"u", v:"s", color:"#1c1917", width:1.8, hover:"u — sᵢ(u): самый лёгкий сосед u, cost ≤ cost(eᵢ)" },
+    { u:"s", v:"l1", color:"#78716c", width:1.2, dash:"dash", hover:"sᵢ(u) — лист: ≤ cost(eᵢ) + cost(eᵢ) = 2·cost(eᵢ)" }, { u:"s", v:"l2", color:"#78716c", width:1.2, dash:"dash", hover:"sᵢ(u) — лист: ≤ 2·cost(eᵢ)" }, { u:"s", v:"l3", color:"#78716c", width:1.2, dash:"dash", hover:"sᵢ(u) — лист: ≤ 2·cost(eᵢ)" },
+    { u:"s", v:"l4", color:"#78716c", width:1.2, dash:"dash", hover:"sᵢ(u) — дальний лист: ≤ cost(eᵢ) + 2·cost(eᵢ) = 3·cost(eᵢ)" }
+  ];
+  G.draw("srd-plot", G.build({
+    verts: V, edges: E, size: 14, halo: false, labels: false, plotWidthPx: 500, range: { x: [-4, 4.4], y: [-2.6, 3] },
+    vert: function(id){
+      if (id === "u") return { color: C.red, line: "#7f1d1d", size: 18, hover: "u: центр звезды" };
+      if (id === "s") return { color: C.accent, line: C.accentLine, size: 18, hover: "sᵢ(u): самый лёгкий сосед u — новый центр" };
+      return { color: "#1c1917", line: "#1c1917", hover: "лист звезды u" };
+    },
+    annotations: [
+      { x: 0, y: 1.78, text: "$u$", showarrow: false, font: { size: 13 } },
+      { x: 0, y: -2.2, text: "$s_i(u)$", showarrow: false, font: { size: 13 } },
+      { x: 1.8, y: 2.1, text: "$\\le 2\\,\\mathrm{cost}(e_i)$", showarrow: false, font: { size: 11, color: "#57534e" } },
+      { x: 0.75, y: -0.2, text: "$\\le \\mathrm{cost}(e_i)$", showarrow: false, font: { size: 11, color: "#57534e" } },
+      { x: 2.1, y: -0.2, text: "$\\le 3\\,\\mathrm{cost}(e_i)$", showarrow: false, font: { size: 11, color: "#57534e" } }
+    ]
+  }));
+})();
+</script>
+</div>
+</div>
+</div>
+</div>
+<div id="h2t" class="fpmi-graph">
+  <h2 class="fg-title anchored">Точный пример на оценку 3 для алгоритма Хохбаума–Шмойса-2</h2>
+  <p class="fg-sub">Путь \(a\text{-}b\text{-}c\text{-}d\) с единичными рёбрами, веса вершин \(a{:}1,\ b{:}2,\ c{:}2,\ d{:}2\), и \(n\) вершин бесконечного веса, каждая соединена с \(a\) ребром стоимости \(1+\varepsilon\) (остальные расстояния — кратчайшие пути). При \(W=3\) сравните оптимум и то, что может выдать алгоритм.</p>
+  <div class="fg-controls">
+    <label>\(n=\)</label><input type="range" id="h2t-n" min="1" max="6" step="1" value="3" style="width:160px;"><span class="fg-val" id="h2t-nval">3</span>
+    <button type="button" id="h2t-opt" class="active">Оптимум: центры \(\{a,c\}\)</button><button type="button" id="h2t-alg">Алгоритм: центр \(\{a\}\)</button>
+  </div>
+  <div id="h2t-plot" class="fg-plot" style="max-width:560px;height:340px;"></div>
+  <div id="h2t-cap" class="fg-caption"></div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, C = G.colors;
+  var n = 3, mode = "opt";
+  function draw(){
+    var V = { a:[2,0], b:[4,0], c:[6,0], d:[8,0] }, order = ["a","b","c","d"], E = [
+      { u:"a", v:"b", weight: 1 }, { u:"b", v:"c", weight: 1 }, { u:"c", v:"d", weight: 1 }
+    ];
+    for (var i = 0; i < n; i++) { var y = n === 1 ? 0.6 : 2.2 - i * 4.4 / (n - 1); V["i" + i] = [-1.4, y]; order.push("i" + i); E.push({ u: "a", v: "i" + i, weight: "1+ε" }); }
+    var centers = mode === "opt" ? ["a","c"] : ["a"];
+    var W = { a:1, b:2, c:2, d:2 };
+    var dist = { a:0, b:1, c: mode === "opt" ? 0 : 2, d: mode === "opt" ? 1 : 3 };
+    G.draw("h2t-plot", G.build({
+      verts: V, order: order, edges: E, size: 20, halo: false, plotWidthPx: 540, weights: true, labels: { a:"$a$", b:"$b$", c:"$c$", d:"$d$" }, range: { x: [-3, 9.2], y: [-3, 3] },
+      edge: function(e){ return e.v === "d" && mode === "alg" ? { color: C.red, width: 2.2, hover: "путь d → a стоит 3: это и есть стоимость решения {a}" } : { color: "#57534e", width: 1.4 }; },
+      vert: function(id){
+        if (id[0] === "i") return { color: "#1c1917", line: "#1c1917", size: 14, hover: "вершина бесконечного веса: расстояние до a равно 1+ε" };
+        var isC = centers.indexOf(id) >= 0;
+        return { color: isC ? C.greenSoft : C.vert, line: isC ? "#166534" : C.vertLine, lineWidth: isC ? 2.6 : 1.6, labelColor: "#0b0b0b",
+          hover: id + ": вес " + W[id] + (isC ? " — центр" : " — расстояние до ближайшего центра " + dist[id]) };
+      },
+      annotations: order.map(function(id){ return id[0] === "i" ? { x: V[id][0] - 0.45, y: V[id][1], text: "$\\infty$", showarrow: false, font: { size: 12 } } : { x: V[id][0], y: -0.55, text: "$" + W[id] + "$", showarrow: false, font: { size: 11, color: "#57534e" } }; })
+    }));
+    G.setCaption("h2t-cap", mode === "opt"
+      ? "Оптимум при \\(W=3\\): центры \\(\\{a,c\\}\\) суммарного веса \\(1+2=3\\le W\\); максимальное расстояние \\(1+\\varepsilon\\) (вершины бесконечного веса до \\(a\\))."
+      : "Для \\(i<n+3\\) в \\(G_i^2\\) есть изолированная вершина бесконечного веса, так что \\(S_i\\) содержит вершины бесконечного веса. При \\(i=n+3\\) алгоритм может выбрать \\(I=\\{b\\}\\) и выдать \\(S=\\{a\\}\\): стоимость \\(3\\) (расстояние от \\(d\\)) против оптимума \\(1+\\varepsilon\\) — отношение \\(\\to3\\).");
+    document.getElementById("h2t-opt").classList.toggle("active", mode === "opt");
+    document.getElementById("h2t-alg").classList.toggle("active", mode === "alg");
+  }
+  document.getElementById("h2t-n").addEventListener("input", function(){ n = +this.value; document.getElementById("h2t-nval").textContent = n; draw(); });
+  document.getElementById("h2t-opt").addEventListener("click", function(){ mode = "opt"; draw(); });
+  document.getElementById("h2t-alg").addEventListener("click", function(){ mode = "alg"; draw(); });
+  draw();
+})();
+</script>
+</section>
+<section id="задачи" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Задачи</h1>
+<div id="prob-1" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Рассмотрим следующую задачу. Расположить на шахматной доске двух королей так, чтобы минимизировать число ходов от одного из королей до любой клеточки доски. Сформулировать эту задачу как задачу о <span class="math inline">\(k\)</span>-центрах и решить ее Алгоритмом Хошбаума-Шмойса.</p>
+</div>
+</div>
+</div>
+<div id="prob-2" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Показать, что если стоимости ребер в графе не удовлетворяют неравенству треугольника, то для задачи о <span class="math inline">\(k\)</span>-центрах не существует <span class="math inline">\(\alpha (n)\)</span>-приближенного алгоритма для любой полиномиально вычислимой функции <span class="math inline">\(\alpha (n)\)</span>.</p>
+</div>
+</div>
+</div>
+<div id="prob-3" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Рассмотрим шаг 2 Алгоритма Хошбаума-Шмойса, на котором требуется найти максимальное независимое множество в графе <span class="math inline">\(G_{i}^{2}\)</span>. Известны различные способы выбора минимального доминирующего множества. Изменим алгоритм так, чтобы <span class="math inline">\(I_{r}\)</span> содержало минимальное доминирующее множество в графе <span class="math inline">\(G_{i}^{2}\)</span>. Показать, что новый алгоритм не гарантирует оценку <span class="math inline">\(2\)</span> для задачи о <span class="math inline">\(k\)</span>-центрах. Какой гарантированной оценкой точности он обладает?</p>
+</div>
+</div>
+</div>
+<div id="prob-4" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Рассмотрим следующий жадный алгоритм для задачи о <span class="math inline">\(k\)</span>-центрах.</p>
+<div class="callout callout-style-simple callout-mn-alg no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="alg-3" class="algorithm-box theorem algorithm">
+<p><span class="theorem-title"><strong>Algorithm 3</strong></span> <strong>Алгоритм Гонзалеза (<span class="math inline">\(G=(V, E), \operatorname {cost} : E \rightarrow \mathbf{Q}^{+}\)</span>)</strong></p>
+<ul>
+<li>Выбрать произвольную вершину <span class="math inline">\(v\)</span> и положить <span class="math inline">\(S=\{v\}\)</span>.</li>
+<li><strong>пока</strong> <span class="math inline">\(\left|S\right| &lt; k\)</span> <strong>выполнять</strong>
+<ul>
+<li>найти вершину <span class="math inline">\(v\)</span>, максимально удаленную от множества <span class="math inline">\(S\)</span>, т.е. <span class="math inline">\(\operatorname{connect}(v, S)=\max _{u \in V} \operatorname{connect}(u, S)\)</span>.</li>
+<li>Добавить <span class="math inline">\(v\)</span> в <span class="math inline">\(S\)</span>.</li>
+</ul></li>
+<li><strong>возврат</strong> <span class="math inline">\(S\)</span>.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p>Докажите, что Алгоритм Гонзалеза также является <span class="math inline">\(2\)</span>-приближенным алгоритмом для задачи о <span class="math inline">\(k\)</span>-центрах.</p>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Скопировано");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Скопировано");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<!--
+  Hover preview for @expl-... (example) cross-references.
+
+  Quarto's own html format already ships a native crossref-hover-preview
+  script (bundled tippy, no CDN, wired up for every a.quarto-xref link --
+  see site_libs/quarto-html/tippy.umd.min.js and the inline tippyHover/
+  processXRef script Quarto emits near the end of <body>). That native
+  script now covers theorem-family types too, since
+  _extensions/mn-theorems wraps them into real Quarto callouts.
+
+  Examples are the one remaining gap: mn-problems.lua's Pandoc filter
+  intercepts @expl-... citations and emits a raw `<a class="xref-callout"
+  data-tippy-ref="...">` directly, bypassing Quarto's own crossref
+  resolution entirely (needed because examples use the filter's own custom
+  numbering, not Quarto's native one) -- so they never get the
+  a.quarto-xref class Quarto's native script looks for. This file only
+  fills that one gap, reusing the SAME window.tippy Quarto's native script
+  already set up (no separate Popper/Tippy load of our own -- an earlier
+  version of this file loaded Popper+Tippy from unpkg.com via plain
+  <script src>, which registered as an anonymous AMD module on pages with
+  Quarto's RequireJS loader and broke both the popup AND, as collateral
+  damage, quarto's own native tippy setup).
+-->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (!window.tippy) return; // native script didn't run (shouldn't happen on an html-format page)
+
+  document.querySelectorAll("a.xref-callout").forEach(function (anchor) {
+    var targetId = anchor.getAttribute("data-tippy-ref");
+    var inner = targetId && document.getElementById(targetId);
+    if (!inner) return;
+
+    var outer = inner.closest(".callout-style-default") || inner;
+
+    tippy(anchor, {
+      content: function () {
+        var clone = outer.cloneNode(true);
+        var uid = "mn-xref-" + targetId;
+        clone.querySelectorAll("[id]").forEach(function (el) {
+          el.id = uid + "-" + el.id;
+        });
+        clone.querySelectorAll("[data-bs-target]").forEach(function (el) {
+          var orig = el.getAttribute("data-bs-target");
+          el.setAttribute("data-bs-target", "." + uid + "-" + orig.replace(/^\./, ""));
+        });
+        clone.querySelectorAll("[aria-controls]").forEach(function (el) {
+          el.setAttribute("aria-controls", uid + "-" + el.getAttribute("aria-controls"));
+        });
+        if (window.Quarto && window.Quarto.typesetMath) {
+          window.Quarto.typesetMath(clone);
+        }
+        return clone;
+      },
+      allowHTML: true,
+      interactive: true,
+      maxWidth: 500,
+      theme: "quarto",
+      placement: "bottom-start",
+      appendTo: function (el) { return el.parentElement; },
+    });
+  });
+});
+</script>
+
+
+
+
+</body></html>

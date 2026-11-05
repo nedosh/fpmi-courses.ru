@@ -1,0 +1,50 @@
+/* mn-problems: styling for problem / example / hint / answer / solution
+ * callouts (Quarto's default callout appearance: a titled header bar with
+ * an accent stripe on the left). Colors come from the --mn-* custom
+ * properties each project's format theme declares; every one has a
+ * fallback. Icons are bootstrap-icons, which Quarto's bootstrap-based html
+ * themes always ship -- no external icon font needed.
+ *
+ *   --mn-color-problem   problem (default: warm grey)
+ *   --mn-color-exm       example (shared with the theorem-family example)
+ *   --mn-color-hint      hint
+ *   --mn-color-proof     answer / solution (shared with proof)
+ *   --mn-problem-icons   "inline-block" or "none" (independent of --mn-env-icons)
+ */
+
+div.callout-problem.callout  { --accent: var(--mn-color-problem, #C6C5B9); }
+div.callout-example.callout  { --accent: var(--mn-color-exm, #2A78D6); }
+div.callout-hint.callout     { --accent: var(--mn-color-hint, #6c757d); }
+div.callout-answer.callout   { --accent: var(--mn-color-proof, #28828A); }
+div.callout-solution.callout { --accent: var(--mn-color-proof, #28828A); }
+
+div.callout:is(.callout-problem, .callout-example, .callout-hint, .callout-answer, .callout-solution) {
+  border-left-color: var(--accent);
+}
+div.callout-style-default:is(.callout-problem, .callout-example, .callout-hint, .callout-answer, .callout-solution) > .callout-header {
+  background-color: color-mix(in srgb, var(--accent) 9%, white);
+}
+
+/* header icons */
+.callout:is(.callout-problem, .callout-example, .callout-hint, .callout-answer, .callout-solution) > .callout-header::before {
+  font-family: "bootstrap-icons";
+  display: var(--mn-problem-icons, inline-block);
+  margin-right: 10px;
+  opacity: 0.85;
+}
+.callout-problem  > .callout-header::before { content: "\f505"; } /* question-circle */
+.callout-example  > .callout-header::before { content: "\f46b"; } /* lightbulb */
+.callout-hint     > .callout-header::before { content: "\f46b"; } /* lightbulb */
+.callout-answer   > .callout-header::before { content: "\f26b"; } /* check-circle */
+.callout-solution > .callout-header::before { content: "\f44f"; } /* key */
+
+/* nested callouts (hint/answer/solution inside a problem): no doubled
+   bottom padding, a little breathing room under the outer body */
+.callout.callout-titled .callout-body > :last-child:not(.sourceCode),
+.callout.callout-titled .callout-body > div > :last-child:not(.sourceCode) {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.callout.callout-style-default .callout-body {
+  padding-bottom: 0.5rem;
+}

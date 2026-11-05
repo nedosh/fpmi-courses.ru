@@ -1,0 +1,2270 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Доверительные интервалы – Курсы ФПМИ</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/favicon.ico" rel="icon">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-18b92d25f2a0372079463917332f47f0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-90af2ae3f5f11ccb077ed1c2d3900ada.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/quarto-contrib/mn-problems-1.0.0/mn-problems.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/mn-theorems-1.0.0/mn-theorems.css" rel="stylesheet">
+<script src="../../../../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Поиск не дал результатов",
+    "search-matching-documents-text": "Результаты поиска",
+    "search-copy-link-title": "Скопировать ссылку",
+    "search-hide-matches-text": "Скрыть дополнительные результаты",
+    "search-more-match-text": "дополнительный результат в этом документе",
+    "search-more-matches-text": "дополнительных результата(-ов) в этом документе",
+    "search-clear-button-title": "Очистить",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Отменить",
+    "search-submit-button-title": "Найти",
+    "search-label": "Поиск"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<style>
+div.callout-todo.callout {
+  border-left-color: pink;
+}
+div.callout-todo.callout-style-default .callout-header {
+  background-color: rgb(from pink r g b / 13%);
+}
+div.callout-todo .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.callout-titled .callout-icon::before {
+  content: '📝';
+  background-image: none;
+}
+div.callout-thumbs-up.callout {
+  border-left-color: #008000;
+}
+div.callout-thumbs-up.callout-style-default .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-thumbs-up .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-thumbs-up.callout-style-default .callout-icon::before, div.callout-thumbs-up.callout-titled .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23008000" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/></svg>');
+}
+div.callout-enum-item.callout {
+  border-left-color: #008000;
+}
+div.callout-enum-item.callout-style-default .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-enum-item .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-enum-item.callout-style-default .callout-icon::before, div.callout-enum-item.callout-titled .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23008000" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/></svg>');
+}
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/logo.png" alt="" class="navbar-logo light-content">
+    <img src="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/logo.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../../../index.html">
+    <span class="navbar-title">Курсы ФПМИ</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Поиск"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Переключить навигацию" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> 
+<span class="menu-text">Главная</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Курсы</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../../courses/index.html">
+ <span class="dropdown-text">Все курсы (37)</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../../courses/04-probability/index.html">
+ <span class="dropdown-text">Вероятность (4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/01-analysis/index.html">
+ <span class="dropdown-text">Анализ (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/02-algebra/index.html">
+ <span class="dropdown-text">Алгебра (4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/03-discrete-cs/index.html">
+ <span class="dropdown-text">Дискретная математика и CS (9)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/05-programming-systems/index.html">
+ <span class="dropdown-text">Программирование и системы (7)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/06-data-computing/index.html">
+ <span class="dropdown-text">Данные и вычисления (5)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Учебный план</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">    
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/I.html">
+ <span class="dropdown-text">I семестр (7)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/II.html">
+ <span class="dropdown-text">II семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/III.html">
+ <span class="dropdown-text">III семестр (9)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/IV.html">
+ <span class="dropdown-text">IV семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/V.html">
+ <span class="dropdown-text">V семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/VI.html">
+ <span class="dropdown-text">VI семестр (4)</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--2" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">О проекте</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu--2">    
+        <li>
+    <a class="dropdown-item" href="../../../../about.html">
+ <span class="dropdown-text">О проекте</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../editorial-policy.html">
+ <span class="dropdown-text">Статус материалов и редакционная политика</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://mipt.ru/education/schools/fpmi"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:web" style="font-size: 1.25em;" aria-label="Icon web from mdi Iconify.design set." title="Сайт ФПМИ"></iconify-icon></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../courses/04-probability/03_MS/contents/010_Statistics_Estimates.html">Часть I</a></li><li class="breadcrumb-item"><a href="../../../../courses/04-probability/03_MS/contents/060_Confidence_Intervals.html">6. Доверительные интервалы</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
+<div style="font-weight: bold; font-size: 1.1em;">
+<p>Математическая статистика</p>
+</div>
+</div></div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/03_MS/overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Обзор курса</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../courses/04-probability/03_MS/contents/010_Statistics_Estimates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Часть I</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Переключить раздел">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/03_MS/contents/010_Statistics_Estimates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Введение. Статистики, оценки</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/03_MS/contents/020_Modes_of_Convergence_Delta_Method.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Сходимости векторов. Дельта-метод</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/03_MS/contents/030_Methods_for_Estimates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Методы построение оценок</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/03_MS/contents/040_Comparison_of_Estimates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Стравнение оценок</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/03_MS/contents/050_Sufficient_Statistic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Достаточные статистики. Оптимальные оценки</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/03_MS/contents/060_Confidence_Intervals.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">6. Доверительные интервалы</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../courses/04-probability/03_MS/contents/010_Statistics_Estimates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Часть II</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Переключить раздел">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/03_MS/contents/070_Bayesian_Estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Байесовские оценки</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/03_MS/contents/080_Linear_Regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. Линейная регрессия: введение</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/03_MS/contents/090_Hypothesis_Testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. Проверка гипотез: введение</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/03_MS/contents/100_Hypotheses_in_Linear_Models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. Проверка гипотез в линейных моделях</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/03_MS/contents/110_Goodness_of_Fit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11. Критерии согласия</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/03_MS/contents/120_Correlation_Coefficients.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12. Коэффициенты корреляции</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/03_MS/program.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Экзаменационные билеты</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Содержание</h2>
+   
+  <ul>
+  <li><a href="#определение-и-методы-построения-доверительных-интервалов" id="toc-определение-и-методы-построения-доверительных-интервалов" class="nav-link active" data-scroll-target="#определение-и-методы-построения-доверительных-интервалов"><span class="header-section-number">1</span> Определение и методы построения доверительных интервалов</a>
+  <ul class="collapse">
+  <li><a href="#построение-неточных-доверительных-интервалов-с-помощью-неравенства-чебышева" id="toc-построение-неточных-доверительных-интервалов-с-помощью-неравенства-чебышева" class="nav-link" data-scroll-target="#построение-неточных-доверительных-интервалов-с-помощью-неравенства-чебышева"><span class="header-section-number">1.1</span> Построение [неточных] доверительных интервалов с помощью неравенства Чебышева</a></li>
+  <li><a href="#построение-точных-доверительных-интервалов-метод-центральной-статистики" id="toc-построение-точных-доверительных-интервалов-метод-центральной-статистики" class="nav-link" data-scroll-target="#построение-точных-доверительных-интервалов-метод-центральной-статистики"><span class="header-section-number">1.2</span> Построение точных доверительных интервалов: метод центральной статистики</a></li>
+  </ul></li>
+  <li><a href="#асимптотические-доверительные-интервалы" id="toc-асимптотические-доверительные-интервалы" class="nav-link" data-scroll-target="#асимптотические-доверительные-интервалы"><span class="header-section-number">2</span> Асимптотические доверительные интервалы</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<!--
+  Explicit RequireJS path mapping for "plotly", used by every hand-built
+  interactive widget on this site via require(["plotly"], function(Plotly){...}).
+
+  There was never a require.config() call anywhere setting this up -- it
+  only ever worked because Plotly's own UMD bundle, loaded elsewhere on the
+  same page via a plain <script src> for a simple (non-widget) fig.show()
+  figure, self-registers as an anonymous AMD module when window.define
+  exists (Quarto's RequireJS loader, used for MathJax), and RequireJS
+  happens to attribute that anonymous module to the "plotly" name if the
+  timing/script-load-order lines up. That's pure luck, not a real mapping --
+  a page with only widget figures (no plain fig.show() figure to "donate"
+  its Plotly load) had nothing to claim from, and any change to script load
+  order/timing (e.g. removing an unrelated script elsewhere on the page)
+  can flip which pending require() call an anonymous define() gets
+  attributed to, breaking it silently. Explicit config removes the guesswork.
+
+  Two separate failure modes found in practice, both fixed here:
+
+  (A) A page with ONLY hand-built widgets (no {python} cell at all -- e.g.
+  specials/030/020_quantile_function_fig.qmd) never gets Quarto's own
+  <script src=".../requirejs@.../require.min.js"> in <head> in the first
+  place: that tag is only emitted when the page has a Jupyter code cell.
+  window.require is simply undefined there, so the widget's own
+  require(["plotly"], ...) throws "require is not defined" unconditionally
+  -- not a network flake, 100% of the time regardless of connection quality.
+  Fixed below by synchronously document.write-ing a local copy of
+  require.min.js when window.require isn't already present -- document.write
+  from an inline <script> during initial HTML parsing inserts into the parse
+  stream immediately, so by the next statement window.require is guaranteed
+  defined, still fully synchronously (no defer/async race).
+
+  (B) A page with BOTH a plain fig.show() figure AND a hand-built widget:
+  RequireJS *is* already in <head> here, so this file's require.config()
+  below does run against a real window.require. But the Jupyter-generated
+  embed script for the fig.show() figure -- which appears later in <body>,
+  wherever that Python cell sits -- unconditionally calls
+  require.undef("plotly") followed by its OWN require.config() pointing at
+  a *different* version on the *same* external CDN (observed:
+  cdn.plot.ly/plotly-2.35.2.min vs. the 3.4.0 configured here), clobbering
+  this file's mapping before the widget's own require(["plotly"], ...) ever
+  runs. Both that Jupyter-set path and this file's own local path hit the
+  same real-world failure: cdn.plot.ly answers anywhere from ~1.5s to a full
+  10s+ timeout under real network conditions (measured directly). A
+  requirejs.onError handler below catches exactly the resulting timeout on
+  the "plotly" module -- regardless of which of the two require.config()
+  calls most recently set its path -- and retries once against the local
+  bundle.
+-->
+<script>
+if (typeof window.require === "undefined") {
+  document.write('<script src="/site_libs/quarto-contrib/mn-plotly-1.0.0/require.min.js"><\/script>');
+}
+</script>
+<script>
+if (window.require && window.require.config) {
+  window.require.config({
+    paths: { plotly: "/site_libs/quarto-contrib/mn-plotly-1.0.0/plotly.min" },
+    // shim.exports: after the script loads, hand require(["plotly"],...)
+    // callers the *global* window.Plotly instead of trusting whatever (if
+    // anything) the script itself passed to define() -- Plotly's own UMD
+    // wrapper reliably sets window.Plotly regardless of AMD context (also
+    // used directly by every plain fig.show() figure on this site, whose
+    // own generated embed script never goes through RequireJS at all), but
+    // its anonymous define() call is not reliably attributed to the
+    // "plotly" request specifically when this same URL is also loaded via
+    // a separate plain <script src> elsewhere on the page (a simple,
+    // non-widget figure) -- shim sidesteps that ambiguity entirely.
+    shim: { plotly: { exports: "Plotly" } }
+  });
+  // See failure mode (B) above: a later Jupyter-generated fig.show() embed
+  // script can still call its own require.undef("plotly") +
+  // require.config({paths: {plotly: <external CDN>}}) after this runs,
+  // pointing "plotly" back at an unreliable external host. This handler
+  // fires on ANY module load timeout; when it's specifically "plotly", drop
+  // whatever path is currently registered (however it got there) and retry
+  // once against the local bundle instead of the external CDN.
+  //
+  // Deliberately never re-throws: once the retry above is issued, the
+  // ORIGINAL failed network request for the external CDN copy can still
+  // land afterwards and fire a second, by-then-harmless onError (verified:
+  // requireType "scripterror", after the retry has already resolved the
+  // widget's real require(["plotly"], callback) via RequireJS's own
+  // pending-callback bookkeeping) -- throwing there would surface a
+  // spurious uncaught exception for something already fixed. console.warn
+  // keeps that visible in devtools without it looking like a live failure.
+  window.require.onError = function (err) {
+    if (err.requireModules && err.requireModules.indexOf("plotly") !== -1) {
+      if (err.requireType === "timeout") {
+        window.require.undef("plotly");
+        window.require.config({ paths: { plotly: "/site_libs/quarto-contrib/mn-plotly-1.0.0/plotly.min" } });
+        window.require(["plotly"]);
+      } else {
+        console.warn("plotly require() error after fallback (likely a stale network request):", err);
+      }
+    } else {
+      throw err;
+    }
+  };
+}
+</script>
+
+<!--
+  window.fpmiWithMathJax(cb): same rationale as the FPMI homepage loader (_home_widgets/loader.qmd)'s
+  copy of this helper (see there for the original), extended to course
+  pages. Quarto only emits a <script defer src=".../mathjax@3/.../tex-*.js">
+  tag in <head> at all when it sees real markdown math OUTSIDE any
+  ```{=html}``` block on the page -- a hand-built widget's math lives
+  entirely inside \(...\)/\[...\] strings in JS-generated DOM content
+  (e.g. a dynamically updated status line), which Quarto's static math
+  scanner never looks inside, so a page whose ONLY math is like that (no
+  prose math of its own) gets no MathJax script at all. Confirmed on an
+  already-shipped widget (030/020_quantile_function_fig.qmd's #qf-status)
+  that had silently never rendered its \(...\) as real math since it was
+  written -- not a new bug, just never noticed because the broken math was
+  inside dynamically-generated text rather than the static page body.
+
+  Three cases this handles, in order:
+  1. window.MathJax already fully started (page had prose math elsewhere,
+     Quarto's own <script defer> already ran) -- just wait on the
+     documented startup.promise signal and fire cb.
+  2. Quarto's own MathJax <script defer> tag IS present in <head> but
+     hasn't executed/initialized yet (defer runs after DOM parsing, and
+     this include-before-body block runs earlier, during parsing) -- poll
+     briefly for window.MathJax to appear rather than racing to load a
+     SECOND copy, which would either double-load or (depending on load
+     order) silently no-op.
+  3. No MathJax script present at all (case A above) -- fetch it ourselves,
+     same URL/approach as loader.qmd.
+-->
+<script>
+window.fpmiWithMathJax = window.fpmiWithMathJax || function (cb) {
+  if (window.MathJax && window.MathJax.startup) { window.MathJax.startup.promise.then(cb); return; }
+  if (window.__fpmiMathJaxQueue) { window.__fpmiMathJaxQueue.push(cb); return; }
+  window.__fpmiMathJaxQueue = [cb];
+  function flushQueue() {
+    var q = window.__fpmiMathJaxQueue;
+    window.__fpmiMathJaxQueue = null;
+    q.forEach(function (f) { f(); });
+  }
+  var hasMathJaxTag = !!document.querySelector('script[src*="mathjax"]');
+  if (hasMathJaxTag) {
+    // Case 2: Quarto's own deferred MathJax script is already in <head> --
+    // poll for it to finish initializing instead of loading a duplicate.
+    var waited = 0;
+    var poll = setInterval(function () {
+      waited += 50;
+      if (window.MathJax && window.MathJax.startup) {
+        clearInterval(poll);
+        window.MathJax.startup.promise.then(flushQueue);
+      } else if (waited > 10000) {
+        // Should never happen (the tag is already there, defer always runs
+        // before window.onload) -- bail rather than poll forever.
+        clearInterval(poll);
+        console.warn("fpmiWithMathJax: gave up waiting for Quarto's own MathJax script to initialize");
+      }
+    }, 50);
+    return;
+  }
+  // Case 3: no MathJax anywhere on the page -- fetch it ourselves. SVG
+  // output specifically (not CHTML, despite Quarto's own injected tag
+  // using CHTML): confirmed Plotly's own $...$ annotation/tick-label math
+  // rendering hard-requires the SVG output jax and throws
+  // 'Output Jax "svg" is not defined' if only CHTML is loaded (its
+  // internal math path calls MathJax.tex2svg specifically, independent of
+  // whatever jax Quarto's page-level script configured) -- same reason
+  // the FPMI homepage loader (_home_widgets/loader.qmd)'s original copy of this helper uses tex-svg.js.
+  var s = document.createElement("script");
+  s.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js";
+  s.onload = function () {
+    window.MathJax.startup.promise.then(flushQueue);
+  };
+  document.head.appendChild(s);
+};
+</script>
+<!--
+  window.fpmiGraph: shared toolkit for the hand-built Plotly *graph diagrams*
+  (vertices + edges) used by the algorithms courses (courses/11-DM-CS/AA/...
+  specials). Plotly has no native graph/network primitives, so every widget
+  used to re-implement the same edge-polyline/marker/annotation plumbing by
+  hand -- and, since a plain `mode:"lines"` polyline can't carry an arrowhead
+  or per-edge hover, all of them ended up as staticPlot line drawings with
+  no direction on directed graphs and no hover at all. This helper gives
+  every widget, from one `spec`:
+
+    * one scatter trace PER EDGE (so an individual edge can be restyled --
+      hover-highlight, per-step emphasis, transitions -- and can have its own
+      hover text via an invisible midpoint marker), optionally curved
+      (`bend`) so a pair of opposite arcs u->v / v->u stays readable;
+    * arrowheads for `directed` edges via layout.annotations in data
+      coordinates, shortened so the head lands on the vertex rim, not under
+      the marker;
+    * a soft halo under each vertex, $...$ MathJax labels via annotations
+      (never mode:"markers+text" -- see project memory: Plotly's marker text
+      is raw SVG <text>, which can't hold MathJax output), and hover labels;
+    * hover-highlight: hovering a vertex lifts its incident edges and dims
+      the rest (plotly_hover/unhover + Plotly.restyle on the edge traces);
+    * animated transitions between algorithm steps (Plotly.animate on a
+      trace layout that stays structurally identical across steps -- the
+      trace count must not change, so per-step differences are expressed
+      purely as style: color/width/opacity/dash);
+    * a step player (prev / next / autoplay, keyboard arrows) that builds its
+      own controls, and a path tracer that grows a highlighted polyline along
+      a vertex sequence over time (Hamiltonian paths, tours, Euler walks).
+
+  Draw order inside `data`: edges (one trace each) -> edge midpoints (hover
+  only) -> halo -> vertices -> optional path trace. Trace indices are
+  returned in `built.meta` so callers never hard-code them.
+-->
+<script>
+(function () {
+  if (window.fpmiGraph) return;
+  var G = {};
+
+  // Every UI string this helper generates itself (default edge-weight hover
+  // text, the step-player's button labels) is project-agnostic: it reads
+  // `document.documentElement.lang` (set by each project's own `_quarto.yml`
+  // `lang:` field) and falls back to Russian, the language every existing
+  // call site (mnedoshivin, math-notes_CU_2, math-notes_FPMI_2) was written
+  // for -- so this stays a silent no-op everywhere except an `lang="en"`
+  // project such as mnedoshivin_en.
+  var IS_EN = (document.documentElement.lang || "").toLowerCase().indexOf("en") === 0;
+  var WEIGHT_WORD = IS_EN ? "weight" : "вес";
+
+  G.colors = {
+    vert: "#eaf2fb", vertLine: "#1e3a8a", vertText: "#0b0b0b",
+    sel: "#2a78d6", selText: "#ffffff",
+    accent: "#f5a623", accentLine: "#8a5a00",
+    done: "#a8a29e", edge: "#78716c", edgeFaded: "#d6d3d1",
+    red: "#b91c1c", redSoft: "#fca5a5", green: "#556B2F", greenSoft: "#bbf7d0",
+    bg: "#fcfcfb"
+  };
+
+  // Plotly may arrive through RequireJS (course pages, see
+  // plotly-require-config.html), through the homepage's own
+  // fpmiWithPlotly loader, or already be a global -- accept all three.
+  G.withPlotly = function (cb) {
+    if (window.Plotly && window.Plotly.newPlot) { cb(window.Plotly); return; }
+    if (window.fpmiWithPlotly) { window.fpmiWithPlotly(cb); return; }
+    if (window.require) { window.require(["plotly"], cb); return; }
+    console.warn("fpmiGraph: no Plotly loader available on this page");
+  };
+  // MathJax must exist BEFORE Plotly builds any $...$ annotation (Plotly
+  // stamps data-math="N" at build time and never retries), hence the order.
+  G.ready = function (cb) {
+    var run = function () { G.withPlotly(cb); };
+    if (window.fpmiWithMathJax) { window.fpmiWithMathJax(run); } else { run(); }
+  };
+
+  // ── geometry ───────────────────────────────────────────────────────────────
+  // Quadratic curve from p0 to p1 bulging `bend` data units to the left of
+  // the p0->p1 direction (negative bends right). n+1 points.
+  G.curve = function (p0, p1, bend, n) {
+    n = n || 16;
+    var dx = p1[0] - p0[0], dy = p1[1] - p0[1];
+    var len = Math.sqrt(dx * dx + dy * dy) || 1;
+    var nx = -dy / len, ny = dx / len;
+    var cx = (p0[0] + p1[0]) / 2 + nx * bend, cy = (p0[1] + p1[1]) / 2 + ny * bend;
+    var pts = [];
+    for (var i = 0; i <= n; i++) {
+      var t = i / n, a = (1 - t) * (1 - t), b = 2 * (1 - t) * t, c = t * t;
+      pts.push([a * p0[0] + b * cx + c * p1[0], a * p0[1] + b * cy + c * p1[1]]);
+    }
+    return pts;
+  };
+  G.circle = function (cx, cy, r, n) {
+    n = n || 64;
+    var x = [], y = [];
+    for (var i = 0; i <= n; i++) { var a = 2 * Math.PI * i / n; x.push(cx + r * Math.cos(a)); y.push(cy + r * Math.sin(a)); }
+    return { x: x, y: y };
+  };
+  // "$v_{1}$" from "v1", "$s'$" from "s'", plain "s" from "s".
+  G.texLabel = function (id) {
+    var m = /^([A-Za-z]+)(\d+)('*)$/.exec(id);
+    if (m) return "$" + m[1] + "_{" + m[2] + "}" + m[3] + "$";
+    return /^[A-Za-z]'*$/.test(id) ? "$" + id + "$" : id;
+  };
+  // Unicode subscript fallback for hover text (Plotly hover can't do MathJax).
+  var SUB = { "0": "₀", "1": "₁", "2": "₂", "3": "₃", "4": "₄", "5": "₅", "6": "₆", "7": "₇", "8": "₈", "9": "₉" };
+  G.plainLabel = function (id) {
+    var m = /^([A-Za-z]+)(\d+)('*)$/.exec(id);
+    if (!m) return id;
+    return m[1] + m[2].split("").map(function (c) { return SUB[c] || c; }).join("") + m[3];
+  };
+
+  function assign(dst) {
+    for (var i = 1; i < arguments.length; i++) { var s = arguments[i]; if (s) for (var k in s) if (Object.prototype.hasOwnProperty.call(s, k)) dst[k] = s[k]; }
+    return dst;
+  }
+  function normEdge(e) {
+    if (Array.isArray(e)) { var o = { u: e[0], v: e[1] }; if (e[2] && typeof e[2] === "object") assign(o, e[2]); else if (e[2] !== undefined) o.weight = e[2]; return o; }
+    return assign({}, e);
+  }
+
+  // ── build ──────────────────────────────────────────────────────────────────
+  // spec = {
+  //   verts: {id: [x, y]},            order: [ids] (optional, defaults to key order)
+  //   edges: [[u, v] | [u, v, weight] | {u, v, color, width, dash, opacity, bend, hover, arrow, weight}]
+  //   directed: bool,                 edge: fn(edgeObj) -> style overrides (per step)
+  //   vert: fn(id) -> {color, line, lineWidth, size, opacity, label, hover, symbol}
+  //   labels: bool|{id: text}         (default: true -> G.texLabel(id))
+  //   size: 24, halo: true, weights: bool (annotate edge weights at midpoints)
+  //   range: {x: [..], y: [..]}       (default: bbox + padding), pad: 0.8
+  //   annotations: [], shapes: []     (extra), pathTrace: bool (reserve a trace for tracePath)
+  //   height/width: layout size override
+  // }
+  G.build = function (spec) {
+    var C = G.colors;
+    var ids = spec.order || Object.keys(spec.verts);
+    var size = spec.size || 24;
+    var edges = (spec.edges || []).map(normEdge);
+    var data = [], annotations = [], meta = { edgeIdx: [], edgeStyles: [], edges: edges, ids: ids, size: size };
+
+    // range
+    var xs = ids.map(function (i) { return spec.verts[i][0]; }), ys = ids.map(function (i) { return spec.verts[i][1]; });
+    var pad = spec.pad !== undefined ? spec.pad : 0.8;
+    var xr = spec.range && spec.range.x || [Math.min.apply(null, xs) - pad, Math.max.apply(null, xs) + pad];
+    var yr = spec.range && spec.range.y || [Math.min.apply(null, ys) - pad, Math.max.apply(null, ys) + pad];
+    // Vertex radius in data units, for arrowhead shortening: estimate from
+    // the plot's pixel width (marker size is in px, the axis range in data).
+    var plotPx = spec.plotWidthPx || 460;
+    var rData = spec.vertRadius !== undefined ? spec.vertRadius : (size / 2) * (xr[1] - xr[0]) / plotPx * 1.15;
+
+    // edges
+    var midX = [], midY = [], midText = [];
+    edges.forEach(function (e, k) {
+      var st = assign({ color: C.edge, width: 1.6, dash: "solid", opacity: 1, bend: 0 }, e, spec.edge ? spec.edge(e, k) : null);
+      var p0 = spec.verts[e.u], p1 = spec.verts[e.v];
+      var pts = st.bend ? G.curve(p0, p1, st.bend) : [p0, p1];
+      var directed = st.arrow !== undefined ? st.arrow : !!spec.directed;
+      if (directed) {
+        // trim the last segment so the arrowhead (drawn separately) ends on
+        // the target vertex rim; the line itself stops there too.
+        var a = pts[pts.length - 2], b = pts[pts.length - 1];
+        var dx = b[0] - a[0], dy = b[1] - a[1], L = Math.sqrt(dx * dx + dy * dy) || 1;
+        var head = [b[0] - dx / L * rData, b[1] - dy / L * rData];
+        var tail = [head[0] - dx / L * Math.min(L, rData * 1.6), head[1] - dy / L * Math.min(L, rData * 1.6)];
+        pts = pts.slice(0, -1).concat([head]);
+        annotations.push({
+          x: head[0], y: head[1], ax: tail[0], ay: tail[1], xref: "x", yref: "y", axref: "x", ayref: "y",
+          showarrow: true, arrowhead: 2, arrowsize: 1.15, arrowwidth: st.width, arrowcolor: st.color,
+          opacity: st.opacity, text: "", standoff: 0
+        });
+      }
+      data.push({
+        x: pts.map(function (p) { return p[0]; }), y: pts.map(function (p) { return p[1]; }),
+        mode: "lines", line: { color: st.color, width: st.width, dash: st.dash }, opacity: st.opacity,
+        hoverinfo: "skip", showlegend: false, name: e.u + "-" + e.v
+      });
+      meta.edgeIdx.push(data.length - 1);
+      meta.edgeStyles.push({ color: st.color, width: st.width, dash: st.dash, opacity: st.opacity });
+      var mid = pts[Math.floor(pts.length / 2)];
+      if (pts.length === 2) mid = [(p0[0] + p1[0]) / 2, (p0[1] + p1[1]) / 2];
+      midX.push(mid[0]); midY.push(mid[1]);
+      var hover = st.hover !== undefined ? st.hover : (G.plainLabel(e.u) + (directed ? " → " : " — ") + G.plainLabel(e.v) + (st.weight !== undefined ? "<br>" + (WEIGHT_WORD) + " " + st.weight : ""));
+      midText.push(hover);
+      // st.weight (not e.weight): a per-step override may hide a faded edge's
+      // label by returning {weight: undefined}
+      if (spec.weights && st.weight !== undefined && st.opacity > 0.05) {
+        annotations.push({ x: mid[0], y: mid[1], text: String(st.weight), showarrow: false,
+          font: { size: 11, color: st.color === C.edgeFaded ? "#a8a29e" : "#44403c" }, bgcolor: "rgba(252,252,251,0.9)", borderpad: 1 });
+      }
+    });
+    // invisible edge midpoints: hover only (per-point hoverinfo so a hidden
+    // edge -- opacity 0, e.g. "not added yet" in a step player -- shows no
+    // empty tooltip)
+    data.push({ x: midX, y: midY, mode: "markers", marker: { size: 14, opacity: 0 }, hovertext: midText,
+      hoverinfo: meta.edgeStyles.map(function (s) { return s.opacity > 0 ? "text" : "skip"; }), showlegend: false, name: "edges" });
+    meta.midIdx = data.length - 1;
+
+    // vertices
+    var vx = [], vy = [], vColor = [], vLine = [], vLineW = [], vSize = [], vOp = [], vHover = [], vSym = [], haloColor = [];
+    ids.forEach(function (id) {
+      var st = assign({ color: C.vert, line: C.vertLine, lineWidth: 1.8, size: size, opacity: 1, symbol: "circle" }, spec.vert ? spec.vert(id) : null);
+      vx.push(spec.verts[id][0]); vy.push(spec.verts[id][1]);
+      vColor.push(st.color); vLine.push(st.line); vLineW.push(st.lineWidth); vSize.push(st.size); vOp.push(st.opacity); vSym.push(st.symbol);
+      vHover.push(st.hover !== undefined ? st.hover : G.plainLabel(id));
+      haloColor.push(st.opacity === 0 ? "rgba(0,0,0,0)" : (st.halo || (st.color === C.vert ? "rgba(42,120,214,0.10)" : G.rgba(st.color, 0.22))));
+      var lbl = st.label !== undefined ? st.label
+        : (spec.labels === false ? null : (spec.labels && typeof spec.labels === "object" ? spec.labels[id] : G.texLabel(id)));
+      if (lbl) {
+        annotations.push({ x: spec.verts[id][0], y: spec.verts[id][1], text: lbl, showarrow: false,
+          font: { size: st.labelSize || 13, color: st.labelColor || (st.color === C.vert || st.color === C.accent ? C.vertText : C.selText) }, opacity: st.opacity });
+      }
+    });
+    if (spec.halo !== false) {
+      data.push({ x: vx, y: vy, mode: "markers", marker: { size: vSize.map(function (s) { return s + 14; }), color: haloColor, line: { width: 0 } },
+        opacity: 1, hoverinfo: "skip", showlegend: false, name: "halo" });
+      meta.haloIdx = data.length - 1;
+    }
+    data.push({ x: vx, y: vy, mode: "markers", marker: { size: vSize, color: vColor, symbol: vSym, opacity: vOp, line: { color: vLine, width: vLineW } },
+      hovertext: vHover, hoverinfo: vOp.map(function (o) { return o > 0 ? "text" : "skip"; }), showlegend: false, name: "vertices",
+      hoverlabel: { bgcolor: "#1c1917", bordercolor: "#1c1917", font: { color: "#fff", size: 12 } } });
+    meta.vertIdx = data.length - 1;
+    if (spec.pathTrace) {
+      data.push({ x: [], y: [], mode: "lines", line: { color: C.red, width: 3.2, shape: "linear" }, hoverinfo: "skip", showlegend: false, name: "path" });
+      meta.pathIdx = data.length - 1;
+    }
+
+    var layout = {
+      xaxis: { visible: false, range: xr, fixedrange: true },
+      yaxis: { visible: false, range: yr, fixedrange: true, scaleanchor: "x" },
+      margin: { t: 8, b: 8, l: 8, r: 8 },
+      plot_bgcolor: C.bg, paper_bgcolor: C.bg, showlegend: false, hovermode: "closest",
+      annotations: annotations.concat(spec.annotations || []), shapes: spec.shapes || [],
+      transition: { duration: 420, easing: "cubic-in-out" }
+    };
+    if (spec.height) layout.height = spec.height;
+    return { data: data, layout: layout, meta: meta };
+  };
+
+  G.rgba = function (hex, a) {
+    var m = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(hex);
+    if (!m) return hex;
+    return "rgba(" + parseInt(m[1], 16) + "," + parseInt(m[2], 16) + "," + parseInt(m[3], 16) + "," + a + ")";
+  };
+
+  // ── draw (with transitions) ────────────────────────────────────────────────
+  G.config = { displayModeBar: false, displaylogo: false, scrollZoom: false, responsive: true };
+  G.draw = function (el, built, opts) {
+    if (typeof el === "string") el = document.getElementById(el);
+    opts = opts || {};
+    G.ready(function (Plotly) {
+      var canAnimate = el.data && el.data.length === built.data.length && !opts.noAnimate;
+      if (canAnimate) {
+        // Same trace structure as the previous step -> tween colors/widths/
+        // positions instead of snapping. Layout (annotations, shapes) is
+        // applied at the start of the frame.
+        Plotly.animate(el, { data: built.data, layout: built.layout },
+          { transition: { duration: opts.duration || 420, easing: "cubic-in-out" },
+            frame: { duration: opts.duration || 420, redraw: false } });
+      } else if (el.data) {
+        Plotly.react(el, built.data, built.layout, G.config);
+      } else {
+        Plotly.newPlot(el, built.data, built.layout, G.config);
+      }
+      el.__fpmiGraph = built;
+      if (!el.__fpmiHoverBound && opts.hover !== false) { G.attachHover(el); el.__fpmiHoverBound = true; }
+      if (opts.then) opts.then(Plotly);
+    });
+  };
+
+  // ── hover-highlight: lift a vertex's incident edges, dim the rest ──────────
+  G.attachHover = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    var restore = function () {
+      var b = el.__fpmiGraph; if (!b || !window.Plotly) return;
+      var s = b.meta.edgeStyles;
+      window.Plotly.restyle(el, {
+        "line.width": s.map(function (x) { return x.width; }),
+        "line.color": s.map(function (x) { return x.color; }),
+        "opacity": s.map(function (x) { return x.opacity; })
+      }, b.meta.edgeIdx);
+    };
+    el.on("plotly_hover", function (ev) {
+      var b = el.__fpmiGraph; if (!b || !ev.points || !ev.points.length) return;
+      var p = ev.points[0];
+      if (p.curveNumber !== b.meta.vertIdx) return;
+      var id = b.meta.ids[p.pointNumber];
+      var widths = [], colors = [], ops = [];
+      b.meta.edges.forEach(function (e, k) {
+        var st = b.meta.edgeStyles[k], inc = (e.u === id || e.v === id);
+        widths.push(inc ? Math.max(st.width * 1.9, 3) : st.width);
+        colors.push(inc ? (st.color === G.colors.edge || st.color === G.colors.edgeFaded ? G.colors.sel : st.color) : st.color);
+        ops.push(inc ? 1 : Math.min(st.opacity, 0.28));
+      });
+      window.Plotly.restyle(el, { "line.width": widths, "line.color": colors, "opacity": ops }, b.meta.edgeIdx);
+    });
+    el.on("plotly_unhover", restore);
+  };
+
+  // ── step player ────────────────────────────────────────────────────────────
+  // G.player({ container, count, render(i), autoplayMs, loop, start })
+  // Builds: [← Back] [Step i / N] [Next →] [▶ Auto]; arrow keys work while
+  // the controls have focus. render(i) is called for every step change.
+  // UI strings use the same IS_EN language switch declared at the top of
+  // this file. `o.label` still overrides the step word directly, same as
+  // before this change, for any call site that wants a custom label.
+  var PLAYER_STR = IS_EN
+    ? { back: "← Back", next: "Next →", auto: "▶ Auto", autoTitle: "Autoplay", pause: "⏸ Pause", step: "Step" }
+    : { back: "← Назад", next: "Вперёд →", auto: "▶ Авто", autoTitle: "Автовоспроизведение", pause: "⏸ Пауза", step: "Шаг" };
+  G.player = function (o) {
+    var box = typeof o.container === "string" ? document.getElementById(o.container) : o.container;
+    box.classList.add("fpmi-graph-controls");
+    box.setAttribute("tabindex", "0");
+    box.innerHTML =
+      '<button type="button" class="fg-prev">' + PLAYER_STR.back + '</button>' +
+      '<span class="fg-step"></span>' +
+      '<button type="button" class="fg-next">' + PLAYER_STR.next + '</button>' +
+      '<button type="button" class="fg-play" title="' + PLAYER_STR.autoTitle + '">' + PLAYER_STR.auto + '</button>';
+    var prev = box.querySelector(".fg-prev"), next = box.querySelector(".fg-next"), play = box.querySelector(".fg-play"), lbl = box.querySelector(".fg-step");
+    var cur = o.start || 0, timer = null, N = o.count;
+    function stop() { if (timer) { clearInterval(timer); timer = null; } play.textContent = PLAYER_STR.auto; play.classList.remove("active"); }
+    function go(i, fromAuto) {
+      if (!fromAuto) stop();
+      cur = Math.max(0, Math.min(N - 1, i));
+      lbl.textContent = (o.label || PLAYER_STR.step) + " " + (cur + 1) + " / " + N;
+      prev.disabled = cur === 0; next.disabled = cur === N - 1;
+      o.render(cur);
+    }
+    prev.addEventListener("click", function () { go(cur - 1); });
+    next.addEventListener("click", function () { go(cur + 1); });
+    play.addEventListener("click", function () {
+      if (timer) { stop(); return; }
+      play.textContent = PLAYER_STR.pause; play.classList.add("active");
+      if (cur === N - 1) go(0, true);
+      timer = setInterval(function () {
+        if (cur < N - 1) go(cur + 1, true);
+        else if (o.loop) go(0, true);
+        else stop();
+      }, o.autoplayMs || 1600);
+    });
+    box.addEventListener("keydown", function (ev) {
+      if (ev.key === "ArrowRight") { go(cur + 1); ev.preventDefault(); }
+      else if (ev.key === "ArrowLeft") { go(cur - 1); ev.preventDefault(); }
+    });
+    go(cur);
+    return { go: go, next: function () { go(cur + 1); }, prev: function () { go(cur - 1); }, current: function () { return cur; }, stop: stop };
+  };
+
+  // ── path tracer ────────────────────────────────────────────────────────────
+  // Grows the reserved path trace (spec.pathTrace) along `ids` over
+  // `duration` ms, with a moving tip. Returns a cancel function.
+  G.tracePath = function (el, verts, ids, opts) {
+    if (typeof el === "string") el = document.getElementById(el);
+    opts = opts || {};
+    var b = el.__fpmiGraph; if (!b || b.meta.pathIdx === undefined || !window.Plotly) return function () {};
+    var pts = ids.map(function (id) { return verts[id]; });
+    var segs = pts.length - 1, dur = opts.duration || 500 * segs, t0 = null, cancelled = false;
+    var style = { "line.color": opts.color || G.colors.red, "line.width": opts.width || 3.2 };
+    window.Plotly.restyle(el, style, [b.meta.pathIdx]);
+    function frame(ts) {
+      if (cancelled) return;
+      if (t0 === null) t0 = ts;
+      var f = Math.min(1, (ts - t0) / dur), pos = f * segs, k = Math.floor(pos), r = pos - k;
+      var x = [], y = [];
+      for (var i = 0; i <= Math.min(k, segs); i++) { x.push(pts[i][0]); y.push(pts[i][1]); }
+      if (k < segs) { x.push(pts[k][0] + (pts[k + 1][0] - pts[k][0]) * r); y.push(pts[k][1] + (pts[k + 1][1] - pts[k][1]) * r); }
+      window.Plotly.restyle(el, { x: [x], y: [y] }, [b.meta.pathIdx]);
+      if (f < 1) requestAnimationFrame(frame); else if (opts.done) opts.done();
+    }
+    requestAnimationFrame(frame);
+    return function () { cancelled = true; };
+  };
+  G.clearPath = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    var b = el.__fpmiGraph; if (!b || b.meta.pathIdx === undefined || !window.Plotly) return;
+    window.Plotly.restyle(el, { x: [[]], y: [[]] }, [b.meta.pathIdx]);
+  };
+
+  // Typeset \(...\) math in a caption/status element (after innerHTML update).
+  G.typeset = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    if (window.fpmiWithMathJax) window.fpmiWithMathJax(function () { if (window.MathJax && window.MathJax.typesetPromise) window.MathJax.typesetPromise([el]); else if (window.MathJax) window.MathJax.typeset([el]); });
+  };
+  G.setCaption = function (id, html) { var el = document.getElementById(id); if (!el) return; el.innerHTML = html; G.typeset(el); };
+
+  window.fpmiGraph = G;
+})();
+</script>
+<style>
+  /* Shared look for every fpmiGraph widget (see graph-helper.html). */
+  .fpmi-graph { padding: 1rem 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .fpmi-graph h2.fg-title { font-size: 16px; font-weight: 500; margin: 0 0 4px; }
+  .fpmi-graph p.fg-sub { font-size: 13px; color: #78716c; margin: 0 0 0.75rem; }
+  .fpmi-graph .fg-plot { width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 6px 18px rgba(0,58,65,0.06); }
+  .fpmi-graph .fg-caption { font-size: 13px; color: #44403c; margin-top: 0.6rem; min-height: 1.4em; line-height: 1.5; }
+  .fpmi-graph .fg-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .fpmi-graph .fg-arrow { font-size: 26px; color: #78716c; }
+  .fpmi-graph-controls, .fpmi-graph .fg-controls { display: flex; align-items: center; gap: 10px; margin: 0.5rem 0 0.9rem; flex-wrap: wrap; outline: none; }
+  .fpmi-graph-controls button, .fpmi-graph button {
+    font-size: 13px; padding: 6px 12px; cursor: pointer; border-radius: 8px;
+    border: 1px solid #d6d3d1; background: #fff; color: #292524; transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  }
+  .fpmi-graph-controls button:hover:not(:disabled), .fpmi-graph button:hover:not(:disabled) { background: #f5f5f4; border-color: #a8a29e; }
+  .fpmi-graph-controls button:disabled, .fpmi-graph button:disabled { opacity: 0.4; cursor: default; }
+  .fpmi-graph-controls button.active, .fpmi-graph button.active { background: #eaf2fb; border-color: #2a78d6; color: #1c4a7a; font-weight: 600; box-shadow: 0 0 0 3px rgba(42,120,214,0.12); }
+  .fpmi-graph-controls .fg-step { font-size: 13px; font-weight: 600; color: #44403c; min-width: 6.5em; text-align: center; }
+  .fpmi-graph-controls:focus-within .fg-step { color: #1c4a7a; }
+  .fpmi-graph label { font-size: 13px; color: #57534e; }
+  .fpmi-graph input[type="range"] { accent-color: #2a78d6; }
+  .fpmi-graph .fg-val { font-size: 13px; font-weight: 600; min-width: 2em; display: inline-block; color: #1c4a7a; }
+  .fpmi-graph .fg-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: #57534e; margin-top: 0.4rem; }
+  .fpmi-graph .fg-legend span::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; background: var(--c, #eaf2fb); border: 1.5px solid var(--b, #1e3a8a); }
+  .fpmi-graph .fg-legend span.line::before { border-radius: 0; height: 3px; width: 18px; border: none; vertical-align: 2px; background: var(--c, #78716c); }
+</style>
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../courses/04-probability/03_MS/contents/010_Statistics_Estimates.html">Часть I</a></li><li class="breadcrumb-item"><a href="../../../../courses/04-probability/03_MS/contents/060_Confidence_Intervals.html">6. Доверительные интервалы</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Доверительные интервалы</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Дата публикации</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">18 октября 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Предупреждение</span>Черновик
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Этот конспект ещё находится в процессе редактуры: в тексте могут встречаться опечатки, неточности и локально не проработанные места. Если что-то нашли — сообщите, пожалуйста, автору (контакты на <a href="../../../../courses/04-probability/03_MS/overview.html#об-этом-пособии">странице курса</a>).</p>
+</div>
+</div>
+<p>В предыдущих главах мы изучали точечные оценки параметров. Разумеется, в большинстве случаев вероятность того, что истинное значение параметра совпадает с его оценкой, равна нулю. В этой связи удобнее в качестве оценки рассматривать целый интервал значений неизвестного параметра. При этом размер этого интервала, разумеется, должен быть как можно меньше, а вот вероятность попадания в него истинного значения параметра - наоборот, как можно больше. В этой главе мы и поговорим о таких интервалах.</p>
+<section id="определение-и-методы-построения-доверительных-интервалов" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Определение и методы построения доверительных интервалов</h1>
+<p>Пусть <span class="math inline">\(X-\)</span> наблюдение с неизвестным распределением <span class="math inline">\(\mathbb {P} \in \mathcal{P}= \left\{ \mathbb {P}_\theta , \;  \theta \in \Theta \right\}\)</span>.</p>
+<div class="callout callout-style-simple callout-mn-def no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-1" class="definition theorem">
+<p><span class="theorem-title"><strong>Определение 1</strong></span> Пара статистик <span class="math inline">\(\left(T_{1}(X), T_{2}(X)\right)\)</span> (где <span class="math inline">\(X\)</span> – выборка) называется <em>доверительным интервалом уровня доверия <span class="math inline">\(\gamma\)</span></em> для параметра <span class="math inline">\(\theta\)</span>, если для любого <span class="math inline">\(\theta \in \Theta \subset \mathbb {R}\)</span> выполнено <span class="math display">\[
+  \mathbb {P}_{\theta }\left(T_{1}(X)&lt;\theta &lt;T_{2}(X)\right) \geq \gamma  
+\]</span> Доверительный интервал называется <em>точным</em>, если для любого <span class="math inline">\(\theta \in \Theta\)</span> вместо последнего неравенства выполнено равенство.</p>
+</div>
+</div>
+</div>
+</div>
+<section id="построение-неточных-доверительных-интервалов-с-помощью-неравенства-чебышева" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="построение-неточных-доверительных-интервалов-с-помощью-неравенства-чебышева"><span class="header-section-number">1.1</span> Построение [неточных] доверительных интервалов с помощью неравенства Чебышева</h2>
+<p>Для нахождения доверительного интервала можно, например, воспользоваться неравенством Маркова или неравенством Чебышева.</p>
+<div id="expl-1" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(X_{1}, \ldots X_{n}\)</span>- выборка из пуассоновского распределения с параметром <span class="math inline">\(\lambda &gt;0\)</span>. Постройте доверительный интервал для <span class="math inline">\(\lambda\)</span> уровня доверия <span class="math inline">\(\gamma\)</span>.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>В силу неравенства Чебышева,</p>
+<p><span class="math display">\[
+  \mathbb {P}_{\lambda }\left(\left|\sum X_{i}-\lambda n\right| \geq \varepsilon n\right) &lt; \frac{\lambda }{\varepsilon ^{2} n}  
+\]</span></p>
+<p>Следовательно,</p>
+<p><span class="math display">\[
+  \mathbb {P}_{\lambda }\left(\lambda -\varepsilon &lt; \overline{X} &lt; \lambda +\varepsilon \right) \geq 1 - \frac{\lambda }{\varepsilon ^2 n} = \gamma  
+\]</span></p>
+<p>Из последнего равенства находим <span class="math inline">\(\varepsilon =\sqrt{\lambda /((1-\gamma ) n)}\)</span>. Обозначим <span class="math inline">\(c := \frac{1}{(1-\gamma )n}\)</span>, тогда <span class="math inline">\(\varepsilon = \sqrt{c\lambda }\)</span>, и осталось разрешить относительно <span class="math inline">\(\lambda\)</span> неравенства <span class="math inline">\(\overline{X}&lt;\lambda +\sqrt{c\lambda }\)</span> и <span class="math inline">\(\lambda - \sqrt{c\lambda } &lt; \overline{X}\)</span>.</p>
+<p>Начнем с первого неравенства. Положим <span class="math inline">\(u := \sqrt{\lambda } \geq 0\)</span>; тогда оно переписывается как</p>
+<p><span class="math display">\[
+  u^2 + \sqrt{c}\, u - \overline{X} &gt; 0.  
+\]</span></p>
+<p>Выделим полный квадрат:</p>
+<p><span class="math display">\[
+  \left(u + \frac{\sqrt{c}}{2}\right)^2 - \frac{c}{4} - \overline{X}&gt; 0 \quad \iff \quad \left(u + \frac{\sqrt{c}}{2}\right)^2 &gt; \overline{X} + \frac{c}{4}.  
+\]</span></p>
+<p>Поскольку <span class="math inline">\(u + \frac{\sqrt c}{2} &gt; 0\)</span>, можно извлечь корень из обеих частей:</p>
+<p><span class="math display">\[
+  u &gt; \sqrt{\overline{X}+\frac{c}{4}} - \frac{\sqrt{c}}{2}, \qquad \text{т.е.} \qquad \lambda = u^2 &gt; \left(\sqrt{\overline{X}+\frac c4} - \frac{\sqrt c}{2}\right)^2.  
+\]</span></p>
+<p>Второе неравенство (<span class="math inline">\(\lambda - \sqrt{c\lambda } &lt; \overline{X}\)</span>) решается аналогично той же заменой <span class="math inline">\(u = \sqrt\lambda\)</span> (только полный квадрат теперь <span class="math inline">\(\left(u - \frac{\sqrt c}{2}\right)^2 &lt; \overline{X} + \frac c4\)</span>) и дает <span class="math inline">\(\lambda &lt; \left(\sqrt{\overline{X}+\frac c4} + \frac{\sqrt c}{2}\right)^2\)</span>. Окончательно, подставляя <span class="math inline">\(c = \frac{1}{(1-\gamma )n}\)</span> (так что <span class="math inline">\(\frac{\sqrt c}{2} = \sqrt{\frac{1}{4(1-\gamma )n}}\)</span>), получаем</p>
+<p><span class="math display">\[
+  \mathbb {P}_{\lambda }\left(\left(\sqrt{\overline{X}+\frac{1}{4(1-\gamma ) n}}-\sqrt{\frac{1}{4(1-\gamma ) n}}\right)^2&lt; \lambda &lt; \left(\sqrt{\overline{X}+\frac{1}{4(1-\gamma ) n}}+\sqrt{\frac{1}{4(1-\gamma ) n}}\right)^2\right) \geq \gamma  
+\]</span></p>
+<p>Более точный (но не являющийся точным в строгом смысле слова) интервал можно получить, воспользовавшись тем, что <span class="math inline">\(\sum_{i=1}^n X_i \sim \operatorname {Pois}\left(n\lambda \right)\)</span>, и взяв квантили этого распределения вместо неравенства Чебышева – см. асимптотический вариант этого примера в конце главы.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="построение-точных-доверительных-интервалов-метод-центральной-статистики" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="построение-точных-доверительных-интервалов-метод-центральной-статистики"><span class="header-section-number">1.2</span> Построение точных доверительных интервалов: метод центральной статистики</h2>
+<p>Неравенство Чебышева, как правило, предоставляет очень грубую оценку вероятности отклонения от среднего. Диаметр такого интервала обычно получается чрезмерно большим. Попробуем построить точный интервал.</p>
+<div id="expl-2" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(X_{1}, \ldots , X_{n}\)</span>- выборка из распределения <span class="math inline">\(\mathscr {N}\left(\theta , \sigma^2\right)\)</span> с известным <span class="math inline">\(\sigma^2\)</span>. Постройте точный доверительный интервал для <span class="math inline">\(\theta\)</span> уровня доверия <span class="math inline">\(\gamma\)</span>.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Заметим, что <span class="math inline">\(X_1 + \ldots + X_n \sim \mathscr {N}\left(n\theta , n\sigma^2\right)\)</span> и <span class="math inline">\(\overline{X} \sim \mathscr {N}\left(\theta , \frac{\sigma^2}{n}\right)\)</span>. Следовательно,</p>
+<p><span class="math display">\[
+  \overline{X} - \theta \sim \mathscr {N}\left(0, \frac{\sigma ^2}{n}\right), \qquad G(X, \theta ) := \frac{\overline{X} - \theta }{\sigma /\sqrt{n}} \sim \mathscr {N}\left(0, 1\right).  
+\]</span></p>
+<p>Обратите внимание, что распределение случайной величины <span class="math inline">\(G(X, \theta )\)</span> не зависит от неизвестного параметра <span class="math inline">\(\theta\)</span>. Такую случайную величину называют <em>центральной статистикой</em>. Пусть <span class="math inline">\(u_{\frac{1-\gamma }{2}}, u_{\frac{1 + \gamma }{2}}\)</span> – квантили уровней <span class="math inline">\(\frac{1-\gamma }{2}, \frac{1+\gamma }{2}\)</span> из распределения <span class="math inline">\(\mathscr {N}\left(0, 1\right)\)</span>. По определению квантилей,</p>
+<p><span class="math display">\[
+  \gamma = \frac{1 + \gamma }{2} - \frac{1 - \gamma }{2} = \mathbb {P}\left(u_{\frac{1-\gamma }{2}} &lt; \frac{\overline{X} - \theta }{\sigma /\sqrt{n}} &lt; u_{\frac{1+\gamma }{2}}\right).  
+\]</span></p>
+<p>Разрешим неравенство под вероятностью относительно <span class="math inline">\(\theta\)</span>: умножив на <span class="math inline">\(\sigma /\sqrt{n}\)</span>, получаем</p>
+<p><span class="math display">\[
+  \frac{\sigma }{\sqrt{n}}u_{\frac{1-\gamma }{2}} &lt; \overline{X} - \theta &lt; \frac{\sigma }{\sqrt{n}}u_{\frac{1+\gamma }{2}},  
+\]</span></p>
+<p>откуда (вычитая <span class="math inline">\(\overline{X}\)</span> и меняя знак, т.е. переворачивая неравенство)</p>
+<p><span class="math display">\[
+  \overline{X} - \frac{1}{\sqrt{n}}u_{\frac{1+\gamma }{2}}\sigma &lt; \theta &lt; \overline{X} - \frac{1}{\sqrt{n}}u_{\frac{1-\gamma }{2}}\sigma .  
+\]</span></p>
+<p>Следовательно,</p>
+<p><span class="math display">\[
+  \gamma = \mathbb {P}\left(\theta \in \left( \overline{X} - \frac{1}{\sqrt{n}}u_{\frac{1+\gamma }{2}}\sigma , \; \overline{X} - \frac{1}{\sqrt{n}}u_{\frac{1-\gamma }{2}}\sigma \right)\right).  
+\]</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Ответ
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\left( \overline{X} - \frac{1}{\sqrt{n}}u_{\frac{1+\gamma }{2}}\sigma , \; \overline{X} - \frac{1}{\sqrt{n}}u_{\frac{1-\gamma }{2}}\sigma \right)\)</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Обратите внимание на частотную интерпретацию уровня доверия: случаен именно интервал, а не параметр. При многократном повторении эксперимента интервал будет накрывать истинное <span class="math inline">\(\theta\)</span> примерно в доле <span class="math inline">\(\gamma\)</span> случаев:</p>
+<p>“Танец доверительных интервалов” (по терминологии Geoff Cumming): непрерывная симуляция для модели <span class="math inline">\(\mathscr N(\theta,1)\)</span> с известной дисперсией, <span class="math inline">\(\theta=0\)</span> – истинное (неизвестное статистику) значение. Каждые несколько мгновений строится новый точный доверительный интервал уровня <span class="math inline">\(\gamma\)</span> методом центральной статистики, <span class="math inline">\(\overline{X}\pm\frac{1}{\sqrt n}u_{\frac{1+\gamma}{2}}\)</span>, появляется снизу и весь стек сдвигается вверх, а самый старый интервал уходит с экрана. Случаен именно интервал, а не параметр <span class="math inline">\(\theta\)</span>: от эксперимента к эксперименту он смещается и либо накрывает <span class="math inline">\(\theta\)</span> (чёрным), либо нет (красным). Круговой индикатор справа показывает текущую эмпирическую долю накрытий – она колеблется, но в среднем держится около номинального уровня <span class="math inline">\(\gamma\)</span>. Двигайте ползунки <span class="math inline">\(\gamma\)</span> и <span class="math inline">\(n\)</span>, жмите паузу/возобновление, чтобы разглядеть детали.</p>
+<div id="13b97303" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+
+<div style="position:relative; width:100%;">
+<style>
+#ci-dance-wrap{font-family:sans-serif;}
+#ci-dance-wrap .cid-row{display:flex; flex-wrap:wrap; gap:18px; align-items:flex-start;}
+#ci-dance-wrap .cid-left{flex:1 1 420px; min-width:300px;}
+#ci-dance-wrap .cid-right{flex:1 1 340px; min-width:280px;}
+#ci-dance-wrap .cid-controls{display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin:10px 0; font-size:13px; color:#52514e;}
+#ci-dance-wrap .cid-controls label{display:flex; align-items:center; gap:8px;}
+#ci-dance-wrap input[type="range"]{accent-color:#28828A; width:130px;}
+#ci-dance-wrap .cid-val{font-variant-numeric:tabular-nums; min-width:2.6em; display:inline-block; font-weight:600; color:#0c5963;}
+#ci-dance-wrap button{font-size:13px; padding:6px 14px; cursor:pointer; border-radius:6px; border:1px solid #ff7500; background:#ff7500; color:#fff; font-weight:500;}
+#ci-dance-wrap button:hover{background:#e56800; border-color:#e56800;}
+#ci-dance-stats{margin-top:6px; font-size:13.5px; color:#333; text-align:center;}
+#ci-dance-stats b{color:#0c5963;}
+#ci-dance-gauge-wrap{text-align:center;}
+</style>
+<div id="ci-dance-wrap">
+<div class="cid-row">
+<div class="cid-left">
+<svg id="ci-dance-svg" width="100%" viewbox="0 0 560 480" style="max-width:100%;"></svg>
+<div class="cid-controls">
+<label>γ = <span class="cid-val" id="ci-dance-gval">95%</span><input type="range" id="ci-dance-gslider" min="50" max="99" step="1" value="95"></label>
+<label>n = <span class="cid-val" id="ci-dance-nval">20</span><input type="range" id="ci-dance-nslider" min="3" max="100" step="1" value="20"></label>
+<label>скорость = <span class="cid-val" id="ci-dance-sval">500мс</span><input type="range" id="ci-dance-sslider" min="50" max="1500" step="50" value="500"></label>
+<button id="ci-dance-pause" type="button">Пауза</button>
+</div>
+<div id="ci-dance-stats"></div>
+</div>
+<div class="cid-right">
+<div class="cid-gauge-wrap" id="ci-dance-gauge-wrap">
+<svg id="ci-dance-gauge" width="220" height="150" viewbox="0 0 220 150" style="max-width:100%;"></svg>
+</div>
+<div id="ci-dance-rw-plot" style="width:100%;height:220px;"></div>
+<div id="ci-dance-width-plot" style="width:100%;height:200px;"></div>
+</div>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var divId = "ci-dance";
+var gamma = 0.95;
+var n = 20;
+var speed = 500;
+var N_VISIBLE = 40;
+var paused = false;
+var BLUE = "#2a78d6", RED = "#e34948", INK = "#52514e", ORANGE = "#e67e22", GRAY = "#e1e0d9";
+var SVG_NS = "http://www.w3.org/2000/svg";
+
+// ── normal/gamma helpers (client-side, no backend) ──
+var zPool = [];
+function boxMuller(){ var u=0,v=0; while(u===0)u=Math.random(); while(v===0)v=Math.random(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }
+function normInv(p){
+var a=[-3.969683028665376e+01,2.209460984245205e+02,-2.759285104469687e+02,1.383577518672690e+02,-3.066479806614716e+01,2.506628277459239e+00];
+var b=[-5.447609879822406e+01,1.615858368580409e+02,-1.556989798598866e+02,6.680131188771972e+01,-1.328068155288572e+01];
+var c=[-7.784894002430293e-03,-3.223964580411365e-01,-2.400758277161838e+00,-2.549732539343734e+00,4.374664141464968e+00,2.938163982698783e+00];
+var d=[7.784695709041462e-03,3.224671290700398e-01,2.445134137142996e+00,3.754408661907416e+00];
+var plow=0.02425, phigh=1-plow, q, r;
+if(p<plow){q=Math.sqrt(-2*Math.log(p));return (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1);}
+if(p<=phigh){q=p-0.5;r=q*q;return (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q/(((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1);}
+q=Math.sqrt(-2*Math.log(1-p));return -(((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1);
+}
+
+// ── running state ──
+var rows = [];       // {lo, hi, cover}, oldest first, length up to N_VISIBLE
+var drawn = 0, covered = 0;
+var rwX = [], rwY = []; // running-coverage scrolling line
+var RW_WINDOW = 300;
+
+function halfwidth(){ return normInv((1+gamma)/2)/Math.sqrt(n); }
+
+function newCI(){
+var xbar = boxMuller()/Math.sqrt(n);
+var hw = halfwidth();
+var lo = xbar-hw, hi = xbar+hw;
+var cover = (lo<=0 && 0<=hi);
+return {lo:lo, hi:hi, cover:cover};
+}
+
+function svgEl(tag, attrs){
+var el = document.createElementNS(SVG_NS, tag);
+for (var k in attrs) el.setAttribute(k, attrs[k]);
+return el;
+}
+
+function drawDance(){
+var svg = document.getElementById(divId+"-svg");
+while (svg.firstChild) svg.removeChild(svg.firstChild);
+var W = 560, H = 480, padL=60, padR=20, padT=16, padB=16;
+var rowH = (H-padT-padB)/N_VISIBLE;
+// x-range: fixed and generous enough for the current n (halfwidth shrinks with n)
+var hw0 = normInv((1+gamma)/2)/Math.sqrt(Math.max(3,n));
+var xr = Math.max(0.5, hw0*1.6);
+function xPix(v){ return padL + (v+xr)/(2*xr)*(W-padL-padR); }
+// mu line
+svg.appendChild(svgEl("line", {x1:xPix(0), x2:xPix(0), y1:padT, y2:H-padB, stroke:ORANGE, "stroke-width":1.6, "stroke-dasharray":"5,4"}));
+svg.appendChild(svgEl("text", {x:xPix(0)+4, y:padT+10, "font-size":11, fill:ORANGE}).appendChild ? null : null);
+var muLabel = svgEl("text", {x:xPix(0)+4, y:padT-2, "font-size":11, fill:ORANGE});
+muLabel.textContent = "θ (истинное)";
+svg.appendChild(muLabel);
+for (var i=0;i<rows.length;i++){
+var r = rows[i];
+var y = padT + i*rowH + rowH/2;
+var color = r.cover ? INK : RED;
+svg.appendChild(svgEl("line", {x1:xPix(r.lo), x2:xPix(r.hi), y1:y, y2:y, stroke:color, "stroke-width": r.cover?1.6:2.4}));
+var midX = xPix((r.lo+r.hi)/2);
+var dot = svgEl("circle", {cx:midX, cy:y, r:2.6, fill:BLUE});
+svg.appendChild(dot);
+}
+}
+
+function updateStats(){
+var pct = drawn ? (100*covered/drawn).toFixed(1) : "0.0";
+document.getElementById(divId+"-stats").innerHTML =
+"Накрыли θ: <b>"+covered+"</b> из <b>"+drawn+"</b> (<b>"+pct+"%</b>), не накрыли: <b>"+(drawn-covered)+"</b>. Номинальный уровень: <b>"+Math.round(gamma*100)+"%</b>.";
+}
+
+// ── circular coverage gauge (SVG arc + needle, speedometer-style) ──
+function drawGauge(){
+var svg = document.getElementById(divId+"-gauge");
+while (svg.firstChild) svg.removeChild(svg.firstChild);
+var cx=110, cy=120, R=90;
+var startAngle = Math.PI, endAngle = 0; // semicircle, left to right (180 -> 0 deg)
+function angleFor(frac){ return startAngle - frac*(startAngle-endAngle); } // frac in [0,1]
+function arcPath(fracFrom, fracTo, r){
+var a0 = angleFor(fracFrom), a1 = angleFor(fracTo);
+var x0 = cx + r*Math.cos(a0), y0 = cy - r*Math.sin(a0);
+var x1 = cx + r*Math.cos(a1), y1 = cy - r*Math.sin(a1);
+var largeArc = (fracTo-fracFrom) > 0.5 ? 1 : 0;
+return "M "+x0+" "+y0+" A "+r+" "+r+" 0 "+largeArc+" 1 "+x1+" "+y1;
+}
+// background ring: light blue up to gamma, red beyond (reference, static)
+svg.appendChild(svgEl("path", {d:arcPath(0,1,R), stroke:"#dcdcdc", "stroke-width":16, fill:"none"}));
+svg.appendChild(svgEl("path", {d:arcPath(0,Math.min(1,gamma),R), stroke:"#b5ccd4", "stroke-width":16, fill:"none"}));
+if (gamma < 1) svg.appendChild(svgEl("path", {d:arcPath(gamma,1,R), stroke:"#f3c8c6", "stroke-width":16, fill:"none"}));
+// needle at current empirical coverage
+var frac = drawn ? covered/drawn : gamma;
+var a = angleFor(Math.max(0,Math.min(1,frac)));
+var nx = cx + (R-6)*Math.cos(a), ny = cy - (R-6)*Math.sin(a);
+svg.appendChild(svgEl("line", {x1:cx, y1:cy, x2:nx, y2:ny, stroke:"#333", "stroke-width":3}));
+svg.appendChild(svgEl("circle", {cx:cx, cy:cy, r:5, fill:"#333"}));
+var pct = drawn ? (100*frac).toFixed(1) : (100*gamma).toFixed(1);
+var label = svgEl("text", {x:cx, y:cy+34, "text-anchor":"middle", "font-size":19, "font-weight":700, fill:"#0c5963"});
+label.textContent = pct+"%";
+svg.appendChild(label);
+var sub = svgEl("text", {x:cx, y:cy+50, "text-anchor":"middle", "font-size":11, fill:"#52514e"});
+sub.textContent = "накрытие θ";
+svg.appendChild(sub);
+}
+
+function pushRunningCoverage(){
+rwX.push(drawn);
+rwY.push(drawn ? covered/drawn : gamma);
+if (rwX.length > RW_WINDOW){ rwX.shift(); rwY.shift(); }
+}
+
+function drawRunningCoverage(){
+require(["plotly"], function(Plotly){
+var data = [
+{ x: rwX, y: rwY, mode: "lines", line: { color: BLUE, width: 1.6 }, hoverinfo: "skip", showlegend:false }
+];
+var layout = {
+xaxis: { title: "число построенных интервалов", gridcolor: GRAY, zeroline:false, fixedrange:true },
+yaxis: { title: "доля накрывших θ", range: [Math.max(0,gamma-0.25), Math.min(1,gamma+0.25)], gridcolor: GRAY, zeroline:false, fixedrange:true },
+shapes: [ { type:"line", x0: rwX.length?rwX[0]:0, x1: rwX.length?rwX[rwX.length-1]:1, y0:gamma, y1:gamma, line:{color:ORANGE,width:1.4,dash:"dash"} } ],
+plot_bgcolor:"#fcfcfb", paper_bgcolor:"#fcfcfb",
+margin:{t:16,b:36,l:50,r:14}, height:220,
+title:{text:"Сходимость доли накрытий к γ", font:{size:12,color:INK}, x:0.5, xanchor:"center"}
+};
+var gd = document.getElementById(divId+"-rw-plot");
+var cfg = {displaylogo:false, displayModeBar:false, scrollZoom:false};
+if (gd.data){ Plotly.react(gd,data,layout,cfg); } else { Plotly.newPlot(gd,data,layout,cfg); }
+});
+}
+
+// ── CI-width sampling distribution: half-width = u * sigma/sqrt(n) is fixed
+// (known variance), so "width distribution" here collapses to a single
+// point -- instead show the *sampling distribution of Xbar* (unit-variance
+// case) that produces the interval's center, which is what actually varies
+// draw to draw and is the more honest "sampling distribution" panel for
+// this known-variance setup.
+function drawWidthPanel(){
+require(["plotly"], function(Plotly){
+var sd = 1/Math.sqrt(n);
+var N=200, xs=[], ys=[];
+for (var i=0;i<=N;i++){ var x=-4*sd+8*sd*i/N; xs.push(x); ys.push(Math.exp(-0.5*x*x/(sd*sd))/(sd*Math.sqrt(2*Math.PI))); }
+var hw = halfwidth();
+var data = [
+{ x: xs, y: ys, mode:"lines", line:{color:BLUE,width:2}, fill:"tozeroy", fillcolor:"rgba(42,120,214,0.12)", hoverinfo:"skip", showlegend:false }
+];
+var layout = {
+xaxis: { title: "x̄ (центр интервала)", gridcolor: GRAY, zeroline:false, fixedrange:true },
+yaxis: { title:"плотность", gridcolor: GRAY, zeroline:false, fixedrange:true },
+shapes: [
+{type:"line", x0:-hw,x1:-hw,y0:0,y1:Math.max.apply(null,ys)*1.05, line:{color:INK,width:1,dash:"dot"}},
+{type:"line", x0:hw,x1:hw,y0:0,y1:Math.max.apply(null,ys)*1.05, line:{color:INK,width:1,dash:"dot"}}
+],
+plot_bgcolor:"#fcfcfb", paper_bgcolor:"#fcfcfb",
+margin:{t:16,b:36,l:50,r:14}, height:200,
+title:{text:"Плотность x̄ (пунктир = полуширина ДИ = "+hw.toFixed(3)+")", font:{size:12,color:INK}, x:0.5, xanchor:"center"}
+};
+var gd = document.getElementById(divId+"-width-plot");
+var cfg = {displaylogo:false, displayModeBar:false, scrollZoom:false};
+if (gd.data){ Plotly.react(gd,data,layout,cfg); } else { Plotly.newPlot(gd,data,layout,cfg); }
+});
+}
+
+function resetSim(){
+rows = []; drawn = 0; covered = 0; rwX=[]; rwY=[];
+for (var i=0;i<N_VISIBLE;i++){
+var ci = newCI();
+rows.push(ci); drawn++; if (ci.cover) covered++;
+pushRunningCoverage();
+}
+drawDance(); drawGauge(); updateStats(); drawRunningCoverage(); drawWidthPanel();
+}
+
+var timer = null;
+function tick(){
+if (paused) return;
+var ci = newCI();
+rows.push(ci); rows.shift();
+drawn++; if (ci.cover) covered++;
+pushRunningCoverage();
+drawDance(); drawGauge(); updateStats(); drawRunningCoverage();
+}
+
+function restartTimer(){
+if (timer) clearInterval(timer);
+timer = setInterval(tick, speed);
+}
+
+document.getElementById(divId+"-gslider").addEventListener("input", function(e){
+gamma = parseInt(e.target.value,10)/100;
+document.getElementById(divId+"-gval").textContent = Math.round(gamma*100)+"%";
+resetSim();
+});
+document.getElementById(divId+"-nslider").addEventListener("input", function(e){
+n = parseInt(e.target.value,10);
+document.getElementById(divId+"-nval").textContent = String(n);
+resetSim();
+drawWidthPanel();
+});
+document.getElementById(divId+"-sslider").addEventListener("input", function(e){
+speed = parseInt(e.target.value,10);
+document.getElementById(divId+"-sval").textContent = speed+"мс";
+restartTimer();
+});
+document.getElementById(divId+"-pause").addEventListener("click", function(e){
+paused = !paused;
+e.target.textContent = paused ? "Продолжить" : "Пауза";
+});
+
+resetSim();
+restartTimer();
+})();
+</script>
+</div>
+</div>
+<p>Итак, для нахождения точных доверительных интервалов необходимо знание точного значения вероятности, а значит, необходимо воспользоваться некоторой функцией <span class="math inline">\(G(X, \theta )\)</span>, распределение которой не зависит от <span class="math inline">\(\theta\)</span>. Повторим, эта функция называется <em>центральной статистикой</em>, а метод построения точного доверительного интервала на основе такой случайной функции – <em>метод центральной статистики</em>. Опишем его в общем виде.</p>
+<p>Пусть случайная величина <span class="math inline">\(G(X, \theta )\)</span> такова, что её распределение известно и не зависит от <span class="math inline">\(\theta\)</span>. Пусть также <span class="math inline">\(G(X, \theta )\)</span> строго монотонна (например, возрастает) и непрерывна по <span class="math inline">\(\theta\)</span>. Пусть <span class="math inline">\(0 \leq p_{1}&lt;p_{2} \leq 1\)</span> таковы, что <span class="math inline">\(p_{2}-p_{1}=\gamma\)</span>. Для каждого <span class="math inline">\(i \in \{ 1,2\}\)</span> рассмотрим <span class="math inline">\(p_{i}\)</span>-квантили <span class="math inline">\(u_{p_{i}}\)</span> распределения <span class="math inline">\(G(X, \theta )\)</span>. Пусть <span class="math inline">\(T_{i}(X)\)</span> – решения уравнений <span class="math inline">\(G\left(X, T_{i}(X)\right)=u_{p_{i}}, i \in \{ 1,2\}\)</span>. Тогда</p>
+<p><span class="math display">\[
+  \mathbb {P}_{\theta }\left(T_{1}(X)&lt;\theta &lt;T_{2}(X)\right) = \mathbb {P}_{\theta }\left(u_{p_{1}}&lt;G(X, \theta ) &lt; u_{p_{2}}\right) =p_{2}-p_{1}=\gamma ,  
+\]</span></p>
+<p>т.е. <span class="math inline">\(\left(T_{1}(X), T_{2}(X)\right)\)</span> – доверительный интервал уровня доверия <span class="math inline">\(\gamma\)</span>.</p>
+<p>В общем случае для заданного уровня доверия <span class="math inline">\(\gamma \in (0,1)\)</span> при построении доверительного интервала можно брать квантили уровней <span class="math inline">\(p_1 = \frac{1}{2}-(1-\alpha ) \gamma\)</span>, <span class="math inline">\(p_2 = \frac{1}{2} + \alpha \gamma\)</span>, где <span class="math inline">\(\alpha \in \left(1 - \frac{1}{2\gamma }, \frac{1}{2\gamma }\right)\)</span> – произвольное (последнее условие наложено, чтобы <span class="math inline">\(0 &lt; \frac{1}{2}-(1-\alpha ) \gamma , \frac{1}{2}+\alpha \gamma &lt; 1\)</span>). Например, для <span class="math inline">\(\gamma = 95\%\)</span> можно взять квантили <span class="math inline">\((u_{1\% }, u_{96\% }), (u_{4.5\% }, u_{99.5\% })\)</span>, и т.д. Однако для минимизации длины доверительного интервала уровни <span class="math inline">\(p_{1}\)</span> и <span class="math inline">\(p_{2}\)</span> в методе центральной статистики выбираются часто симметричными относительно <span class="math inline">\(0.5\)</span>, так как у распределения <span class="math inline">\(G(X, \theta )\)</span> могут быть тяжелые хвосты. Для <span class="math inline">\(\gamma = 95\%\)</span> это будут <span class="math inline">\(u_{2.5\% }, u_{97.5\% }\)</span>.</p>
+<div id="expl-3" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(X_{1}, \ldots , X_{n}\)</span>- выборка из распределения с плотностью <span class="math display">\[
+  p_{\theta }(x)=e^{-(x-\theta )} \; \mathbb {1}_{x \geq \theta }  
+\]</span> (экспоненциальное распределение со сдвигом <span class="math inline">\(\theta\)</span>). Построить доверительный интервал уровня доверия <span class="math inline">\(\gamma\)</span> методом центральной статистики.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ul>
+<li><p><strong>1-й способ.</strong> Заметим, что <span class="math inline">\(X_{i}-\theta \sim \operatorname {Exp}(1) = \Gamma (1,1)\)</span> (распределение не зависит от <span class="math inline">\(\theta\)</span>). Далее</p>
+<p><span class="math display">\[
+  \sum _{i=1}^n \left(X_{i}-\theta \right) = n\overline{X} - n\theta \sim \Gamma (n, 1), \qquad \overline{X} - \theta \sim \Gamma (n, n)  
+\]</span></p>
+<p>Возьмем в качестве центральной статистики <span class="math inline">\(G(X, \theta )=\sum X_{i}-n \theta\)</span>. Эта статистика имеет распределение <span class="math inline">\(\Gamma (n, 1)\)</span>, так как сумма независимых, одинаково распределенных экспоненциальных случайных величин имеет гамма-распределение. Рассмотрим <span class="math inline">\(\frac{1-\gamma }{2}-\)</span> и <span class="math inline">\(\frac{1+\gamma }{2}\)</span>-квантили <span class="math inline">\(u_{\frac{1-\gamma }{2}}\)</span> и <span class="math inline">\(u_{\frac{1+\gamma }{2}}\)</span> распределения <span class="math inline">\(\Gamma (n, 1)\)</span>. По определению квантилей,</p>
+<p><span class="math display">\[
+  \gamma = \frac{1+\gamma }{2}-\frac{1-\gamma }{2}=\mathbb {P}_{\theta }\left(u_{\frac{1-\gamma }{2}}&lt;\sum X_{i}-n \theta &lt;u_{\frac{1+\gamma }{2}}\right).  
+\]</span></p>
+<p>Разделив неравенство под вероятностью на <span class="math inline">\(n\)</span> (тогда <span class="math inline">\(\sum X_i / n = \overline{X}\)</span>) и разрешив его относительно <span class="math inline">\(\theta\)</span> (вычитая <span class="math inline">\(\samplemean X\)</span> и меняя знак), получаем</p>
+<p><span class="math display">\[
+  \gamma =\mathbb {P}_{\theta }\left(\overline{X}-\frac{u_{\frac{1+\gamma }{2}}}{n}&lt;\theta &lt;\overline{X}-\frac{u_{\frac{1-\gamma }{2}}}{n}\right) .  
+\]</span></p></li>
+<li><p><strong>2-й способ.</strong> При помощи статистики <span class="math inline">\(X_{(1)}\)</span>. Заметим, что при <span class="math inline">\(x \geq \theta\)</span>:</p>
+<p><span class="math display">\[
+\begin{align}  \mathbb {P}\left(X_{1} &gt; x\right) &amp; = \int _x^{+\infty } e^{-(t-\theta )} dt = e^{-(x-\theta )} \\ \mathbb {P}\left(X_{(1)} &gt; x\right) &amp; = e^{-n(x-\theta )} \\ X_{(1)} - \theta &amp; \sim \operatorname {Exp}(n) = \Gamma (1, n) \end{align}
+\]</span></p>
+<p>Т.е. <span class="math inline">\(X_{(1)} - \theta\)</span> – центральная статистика. Ее квантиль уровня <span class="math inline">\(p\)</span> равна <span class="math inline">\(u_p = -\frac{1}{n}\ln (1-p)\)</span>, откуда</p>
+<p><span class="math display">\[
+  u_{\frac{1-\gamma }{2}} = -\frac{1}{n}\ln \frac{1+\gamma }{2}, \qquad u_{\frac{1+\gamma }{2}} = -\frac{1}{n}\ln \frac{1-\gamma }{2}.  
+\]</span></p>
+<p>Значит,</p>
+<p><span class="math display">\[
+  \gamma = \mathbb {P}\left(u_{\frac{1-\gamma }{2}} &lt; X_{(1)} - \theta &lt; u_{\frac{1+\gamma }{2}}\right) = \mathbb {P}\left(-\frac{1}{n}\ln \frac{1+\gamma }{2} &lt; X_{(1)} - \theta &lt; -\frac{1}{n}\ln \frac{1-\gamma }{2}\right).  
+\]</span></p>
+<p>Разрешая неравенство относительно <span class="math inline">\(\theta\)</span> (вычитая <span class="math inline">\(X_{(1)}\)</span> и меняя знак), получаем</p>
+<p><span class="math display">\[
+  \gamma = \mathbb {P}\left(X_{(1)} + \frac{1}{n}\ln \frac{1-\gamma }{2} &lt; \theta &lt; X_{(1)} + \frac{1}{n}\ln \frac{1+\gamma }{2}\right)  
+\]</span></p>
+<p>(оба конца лежат левее <span class="math inline">\(X_{(1)}\)</span>, что естественно: <span class="math inline">\(\theta \leq X_{(1)}\)</span> п.н.).</p></li>
+<li><p><strong>3-й способ.</strong> Через неравенство Чебышева</p>
+<p><span class="math display">\[
+\begin{align}  \mathbb {E}\left[X_1\right] = 1 + \theta , \quad \operatorname {Var}\left[X_1\right] = 1 \\ \mathbb {P}_{\theta }\left(\left|\overline{X} - (1 + \theta )\right| \geq \varepsilon \right) &lt; \frac{1}{\varepsilon ^2 n} \\ \mathbb {P}_{\theta }\left(\overline{X} - 1 - \varepsilon \leq \theta \leq \overline{X} - 1 + \varepsilon \right) \geq 1 - \frac{1}{\varepsilon ^2 n} = \gamma , \quad \varepsilon = \frac{1}{\sqrt{n(1-\gamma )}}\\ \end{align}
+\]</span></p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="prob-4" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(X_1, \dots , X_n\)</span> – выборка из <span class="math inline">\(U[0, \theta ], \;  \theta &gt; 0\)</span>. Постройте доверительный интервал для <span class="math inline">\(\theta\)</span> уровня доверия <span class="math inline">\(\gamma\)</span>, используя статистику</p>
+<ol type="1">
+<li><p><span class="math inline">\(\overline{X}\)</span>;</p></li>
+<li><p><span class="math inline">\(X_{(1)}\)</span>;</p></li>
+<li><p><span class="math inline">\(X_{(n)}\)</span>.</p></li>
+</ol>
+<p>*Примечание.** Каждый пункт оценивается в 0.5 балла.</p>
+</div>
+</div>
+</div>
+<div id="prob-5" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(X_1, \ldots , X_n\)</span> – выборка из распределения с плотностью <span class="math display">\[
+  p_{\theta }(x) = \frac{3}{8\theta ^3}x^2 \; \mathbb {1}_{x \in [0, 2\theta ]}  
+\]</span> С помощью статистики <span class="math inline">\(X_{(1)}\)</span> постройте точный доверительный интервал уровня доверия <span class="math inline">\(\gamma\)</span> для параметра <span class="math inline">\(\theta\)</span>.</p>
+</div>
+</div>
+</div>
+<div id="prob-6" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(X_1, \ldots , X_n\)</span> – выборка из распределения, имеющего плотность <span class="math display">\[
+  p_{\theta }(x) = \frac{1}{2}\exp \left(-\left|\left|x\right| - 6\theta \right|\right) \cdot \; \mathbb {1}_{\left|x\right| &gt; 6\theta }  
+\]</span> Постройте доверительный интервал для <span class="math inline">\(\theta &gt; 0\)</span> уровня доверия <span class="math inline">\(\gamma = 1 - \alpha\)</span>.</p>
+</div>
+</div>
+</div>
+<div id="prob-7" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(X_1, \dots , X_n\)</span> – выборка из распределения <span class="math inline">\(\xi + \eta\)</span>, где <span class="math inline">\(\xi , \eta\)</span> независимы и имеют распределение <span class="math inline">\(\sim U[0, \theta ]\)</span>, <span class="math inline">\(\theta \in \Theta = (0,1)\)</span>. Построить доверительный интервал для <span class="math inline">\(\theta\)</span> уровня доверия <span class="math inline">\(1 - \alpha\)</span> с помощью неравенства Чебышева.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="асимптотические-доверительные-интервалы" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Асимптотические доверительные интервалы</h1>
+<p>Доверительные интервалы малого размера построить удается далеко не всегда. В случае выборки большого размера от ограничения размера выборки можно отойти и рассматривать асимптотическую задачу. При такой постановке доверительный интервал малого размера найти, как правило, проще.</p>
+<p>Итак, пусть <span class="math inline">\(X_{1}, \ldots , X_{n}\)</span>- выборка из <span class="math inline">\(\mathbb {P} \in \mathcal{P}=\left\{ \mathbb {P}_{\theta }, \theta \in \Theta \right\}\)</span>.</p>
+<div class="callout callout-style-simple callout-mn-def no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-2" class="definition theorem">
+<p><span class="theorem-title"><strong>Определение 2</strong></span> Последовательность интервалов</p>
+<p><span class="math display">\[
+  \left(T_1^{(n)}, \;  T_2^{(n)}\right) = \left(T_1^{(n)}(X_1, \ldots , X_n), \;  T_2^{(n)}(X_1, \ldots , X_n)\right)  
+\]</span></p>
+<p>называется <em>асимптотическим доверительным интервалом уровня доверия <span class="math inline">\(\gamma\)</span></em> для <span class="math inline">\(\theta\)</span>, если для любого <span class="math inline">\(\theta \in \Theta\)</span> выполнено</p>
+<p><span class="math display">\[
+  \varliminf _{n \to \infty } \mathbb {P}\left(\theta \in \left(T_1^{(n)}, T_2^{(n)}\right)\right) = \varliminf _{n \to \infty } \mathbb {P}\left(T_1^{(n)}(X_1, \ldots , X_n) &lt; \theta &lt; T_2^{(n)}(X_1, \ldots , X_n)\right) \geq \gamma ,  
+\]</span></p>
+<p>Т.е. все предельные точки (их в общем случае может быть больше одной) последовательности <span class="math inline">\(\mathbb {P}\left(\theta \in \left(T_1^{(n)}, T_2^{(n)}\right)\right)\)</span> лежат в отрезке <span class="math inline">\([\gamma , 1]\)</span> для любого <span class="math inline">\(\theta \in \Theta\)</span>.</p>
+<p>Асимптотический доверительный интервал называется <em>точным</em>, если для любого <span class="math inline">\(\theta \in \Theta\)</span> существует предел</p>
+<p><span class="math display">\[
+  \lim _{n \to \infty } \mathbb {P}\left(T_1^{(n)}(X_1, \ldots , X_n) &lt; \theta &lt; T_2^{(n)}(X_1, \ldots , X_n)\right) = \gamma  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p>Как построить асимптотический доверительный интервал? Пусть <span class="math inline">\(\widehat{\theta }_{n}\left(X_{1}, \ldots , X_{n}\right)\)</span> – асимптотически нормальная оценка <span class="math inline">\(\theta\)</span> с асимптотической дисперсией <span class="math inline">\(\sigma^{2}(\theta )\)</span>, т.е.</p>
+<p><span class="math display">\[
+  \sqrt{n} \frac{\widehat{\theta }_{n}-\theta }{\sigma (\theta )} \xrightarrow [n \to \infty ]{d_\theta } \mathscr {N}\left(0, 1\right).  
+\]</span></p>
+<p>Рассмотрим квантили <span class="math inline">\(z_{\frac{1-\gamma }{2}}\)</span> и <span class="math inline">\(z_{\frac{1+\gamma }{2}}\)</span> из распределения <span class="math inline">\(\mathscr {N}\left(0, 1\right)\)</span> уровней <span class="math inline">\(\frac{1-\gamma }{2} = \frac{1}{2} - \frac{1}{2}\gamma\)</span> и <span class="math inline">\(\frac{1+\gamma }{2} = \frac{1}{2} + \frac{1}{2}\gamma\)</span> соответственно. Тогда имеем</p>
+<p><span class="math display">\[
+  \lim _{n \to \infty } \mathbb {P}\left(z_{\frac{1-\gamma }{2}}&lt;\sqrt{n} \frac{\widehat{\theta }_{n}-\theta }{\sigma (\theta )}&lt;z_{\frac{1+\gamma }{2}}\right) = \mathbb {P}\left(z_{\frac{1-\gamma }{2}} &lt; \xi &lt; z_{\frac{1+\gamma }{2}}\right), \qquad \xi \sim \mathscr {N}\left(0, 1\right),  
+\]</span></p>
+<p>а последняя вероятность равна <span class="math inline">\(\frac{1+\gamma }{2} - \frac{1-\gamma }{2} = \gamma\)</span>. Если нам повезло с функцией <span class="math inline">\(\sigma (\theta )\)</span>, то из последнего равенства можно извлечь точный асимптотический доверительный интервал. Если же нам повезло меньше – получить доверительный интервал не удается, но если функция <span class="math inline">\(\sigma (\theta )\)</span> является непрерывной, то, по теореме о наследовании сходимости по вероятности,</p>
+<p><span class="math display">\[
+  \frac{\sigma (\theta )}{\sigma \left(\widehat{\theta }_{n}\right)} \xrightarrow [n \to \infty ]{\mathbb {P}_\theta } 1.  
+\]</span></p>
+<p>Тогда из леммы Слуцкого,</p>
+<p><span class="math display">\[
+  \sqrt{n} \frac{\widehat{\theta }_{n}-\theta }{\sigma \left(\widehat{\theta }_n\right)} \xrightarrow [n \to \infty ]{d_\theta } \mathscr {N}\left(0, 1\right).  
+\]</span></p>
+<p>откуда уже несложно получить точный асимптотический доверительный интервал для <span class="math inline">\(\theta\)</span>.</p>
+<div id="expl-8" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(X_{1}, \ldots , X_{n}\)</span> – выборка из <span class="math inline">\(\operatorname {Bern}(\theta )\)</span>. Постройте асимптотический доверительный интервал уровня доверия <span class="math inline">\(\gamma\)</span> для параметра <span class="math inline">\(\theta\)</span>.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>По центральной предельной теореме,</p>
+<p><span class="math display">\[
+  \sqrt{n}\frac{\overline{X} - \theta }{\sqrt{\theta (1-\theta )}} \xrightarrow [n \to \infty ]{d_\theta } \mathscr {N}\left(0, 1\right)  
+\]</span></p></li>
+<li><p>Заметим, что <span class="math inline">\(\overline{X}\)</span> – состоятельная оценка <span class="math inline">\(\theta\)</span>, т.е. <span class="math inline">\(\overline{X} \xrightarrow [n \to \infty ]{\mathbb {P}_\theta } \theta , \;  \forall \theta \in (0,1)\)</span>. Так как функция <span class="math inline">\(\sqrt{\theta (1-\theta )}\)</span> непрерывна по <span class="math inline">\(\theta\)</span> на <span class="math inline">\((0,1)\)</span>, то <span class="math inline">\(\sqrt{\overline{X}(1 - \overline{X})} \xrightarrow [n\to \infty ]{\mathbb {P}_\theta } \sqrt{\theta (1 - \theta )}, \;  \forall \theta \in (0,1)\)</span>. Иначе</p>
+<p><span class="math display">\[
+  \frac{ \sqrt{\theta (1 - \theta )} }{\sqrt{\overline{X}(1 - \overline{X})}} \xrightarrow [n\to \infty ]{\mathbb {P}_\theta } 1 \quad \forall \theta \in (0,1).  
+\]</span></p></li>
+<li><p>Следовательно,</p>
+<p><span class="math display">\[
+  \xi \left(X,\theta \right) := \sqrt{n}\frac{\overline{X} - \theta }{\sqrt{\theta (1-\theta )}} \cdot \frac{ \sqrt{\theta (1 - \theta )} }{\sqrt{\overline{X}(1 - \overline{X})}} = \sqrt{n}\frac{\overline{X} - \theta }{\sqrt{\overline{X}\left(1-\overline{X}\right)}} \xrightarrow [n \to \infty ]{d_\theta } \mathscr {N}\left(0, 1\right)  
+\]</span></p></li>
+<li><p>Рассмотрим <span class="math inline">\(\frac{1-\gamma }{2}\)</span>- и <span class="math inline">\(\frac{1+\gamma }{2}\)</span>-квантили <span class="math inline">\(u_{\frac{1-\gamma }{2}}\)</span> и <span class="math inline">\(u_{\frac{1+\gamma }{2}}\)</span> распределения <span class="math inline">\(\mathcal{N}(0,1)\)</span>. Тогда</p>
+<p><span class="math display">\[
+  \mathbb {P}\left(u_{\frac{1-\gamma }{2}} &lt; \xi &lt; u_{\frac{1+\gamma }{2}}\right) \xrightarrow [n \to \infty ]{} \gamma .  
+\]</span></p>
+<p>Далее,</p>
+<p><span class="math display">\[
+  u_{\frac{1-\gamma }{2}} &lt; \sqrt{n}\frac{\overline{X} - \theta }{\sqrt{\overline{X}\left(1-\overline{X}\right)}} &lt; u_{\frac{1+\gamma }{2}}  
+\]</span></p>
+<p>равносильно</p>
+<p><span class="math display">\[
+  \overline{X}-\sqrt{\frac{\overline{X}\left(1-\overline{X}\right)}{n}} u_{\frac{1+\gamma }{2}} &lt; \theta &lt; \overline{X}-\sqrt{\frac{\overline{X}\left(1-\overline{X}\right)}{n}} u_{\frac{1-\gamma }{2}}  
+\]</span></p>
+<p>(обратите внимание, что больший квантиль оказался слева неравенства, а меньший справа). Положим</p>
+<p><span class="math display">\[
+  T_1^{(n)} := \overline{X}-\sqrt{\frac{\overline{X}\left(1-\overline{X}\right)}{n}} u_{\frac{1+\gamma }{2}}, \qquad T_2^{(n)} := \overline{X}-\sqrt{\frac{\overline{X}\left(1-\overline{X}\right)}{n}} u_{\frac{1-\gamma }{2}}  
+\]</span></p>
+<p>Тогда имеем <span class="math inline">\(\mathbb {P}\left( T_{1}^{(n)}&lt;\theta &lt;T_{2}^{(n)}\right) \xrightarrow [n \to \infty ]{} \gamma\)</span>. Следовательно, <span class="math inline">\(\left(T_{1}^{(n)}, T_{2}^{(n)}\right)\)</span> – асимптотический доверительный интервал уровня доверия <span class="math inline">\(\gamma\)</span>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Ответ
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\left(T^{(n)}_1, T^{(n)}_2\right)\)</span>, где <span class="math display">\[
+  T_1^{(n)} := \overline{X}-\sqrt{\frac{\overline{X}\left(1-\overline{X}\right)}{n}} u_{\frac{1+\gamma }{2}}, \qquad T_2^{(n)} := \overline{X}-\sqrt{\frac{\overline{X}\left(1-\overline{X}\right)}{n}} u_{\frac{1-\gamma }{2}}  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="prob-9" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 5
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(X_1, \dots , X_n\)</span> – выборка из распределения Коши со сдвигом, т.е. <span class="math display">\[
+\begin{align}  p_{\theta }(x) = \frac{1}{\pi (1+ (x - \theta )^2 )} \end{align}
+\]</span> Построить асимптотический доверительный интервал для <span class="math inline">\(\theta\)</span> уровня доверия <span class="math inline">\(\alpha\)</span>.</p>
+</div>
+</div>
+</div>
+<div id="prob-10" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 6
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(X_1, \dots , X_n\)</span> – выборка из <span class="math inline">\(\mathrm{Pois}(\theta )\)</span>. Построить ас. доверит. интервал для <span class="math inline">\(\theta\)</span> уровня доверия <span class="math inline">\(\alpha\)</span>.</p>
+</div>
+</div>
+</div>
+<div id="prob-11" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 7
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(X_1, \dots , X_n\)</span> – выборка из <span class="math inline">\(\Gamma (\theta , \lambda ), \;  \theta , \lambda &gt; 0\)</span>. Построить ас. доверит. интервал для <span class="math inline">\(\lambda\)</span> уровня доверия <span class="math inline">\(\alpha\)</span>, если</p>
+<ol type="1">
+<li><p><span class="math inline">\(\theta\)</span> известно (1 балл);</p></li>
+<li><p><span class="math inline">\(\theta\)</span> неизвестно (2 балла).</p></li>
+</ol>
+<div class="callout callout-style-default callout-hint no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hint</span>Подсказка
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Напомним, что если <span class="math inline">\(X_1 \sim \Gamma (\theta , \lambda )\)</span>, то <span class="math display">\[
+\begin{align}  p_{X_1}(x) &amp; = \frac{\lambda ^\theta }{\Gamma (\theta )} x^{\theta - 1}e^{-\lambda x} \; \mathbb {1}_{ x \geq 0}, \\ \mathbb {E}\left[X_1\right] &amp; = \frac{\theta }{\lambda }, \quad \operatorname {Var}\left[X_1\right] = \frac{\theta }{\lambda ^2}, \quad \mathbb {E}\left[X_1^k\right] = \frac{1}{\lambda ^k}\theta (\theta + 1)(\theta +2)\cdot \dots \cdot (\theta + k - 1), \;  k \in \mathbb {N} \end{align}
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Скопировано");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Скопировано");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<!--
+  Hover preview for @expl-... (example) cross-references.
+
+  Quarto's own html format already ships a native crossref-hover-preview
+  script (bundled tippy, no CDN, wired up for every a.quarto-xref link --
+  see site_libs/quarto-html/tippy.umd.min.js and the inline tippyHover/
+  processXRef script Quarto emits near the end of <body>). That native
+  script now covers theorem-family types too, since
+  _extensions/mn-theorems wraps them into real Quarto callouts.
+
+  Examples are the one remaining gap: mn-problems.lua's Pandoc filter
+  intercepts @expl-... citations and emits a raw `<a class="xref-callout"
+  data-tippy-ref="...">` directly, bypassing Quarto's own crossref
+  resolution entirely (needed because examples use the filter's own custom
+  numbering, not Quarto's native one) -- so they never get the
+  a.quarto-xref class Quarto's native script looks for. This file only
+  fills that one gap, reusing the SAME window.tippy Quarto's native script
+  already set up (no separate Popper/Tippy load of our own -- an earlier
+  version of this file loaded Popper+Tippy from unpkg.com via plain
+  <script src>, which registered as an anonymous AMD module on pages with
+  Quarto's RequireJS loader and broke both the popup AND, as collateral
+  damage, quarto's own native tippy setup).
+-->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (!window.tippy) return; // native script didn't run (shouldn't happen on an html-format page)
+
+  document.querySelectorAll("a.xref-callout").forEach(function (anchor) {
+    var targetId = anchor.getAttribute("data-tippy-ref");
+    var inner = targetId && document.getElementById(targetId);
+    if (!inner) return;
+
+    var outer = inner.closest(".callout-style-default") || inner;
+
+    tippy(anchor, {
+      content: function () {
+        var clone = outer.cloneNode(true);
+        var uid = "mn-xref-" + targetId;
+        clone.querySelectorAll("[id]").forEach(function (el) {
+          el.id = uid + "-" + el.id;
+        });
+        clone.querySelectorAll("[data-bs-target]").forEach(function (el) {
+          var orig = el.getAttribute("data-bs-target");
+          el.setAttribute("data-bs-target", "." + uid + "-" + orig.replace(/^\./, ""));
+        });
+        clone.querySelectorAll("[aria-controls]").forEach(function (el) {
+          el.setAttribute("aria-controls", uid + "-" + el.getAttribute("aria-controls"));
+        });
+        if (window.Quarto && window.Quarto.typesetMath) {
+          window.Quarto.typesetMath(clone);
+        }
+        return clone;
+      },
+      allowHTML: true,
+      interactive: true,
+      maxWidth: 500,
+      theme: "quarto",
+      placement: "bottom-start",
+      appendTo: function (el) { return el.parentElement; },
+    });
+  });
+});
+</script>
+
+
+
+
+</body></html>

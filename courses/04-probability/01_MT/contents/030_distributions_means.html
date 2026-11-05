@@ -1,0 +1,2789 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Ковариация, сходимости случайных величин, предельные теоремы – Курсы ФПМИ</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/favicon.ico" rel="icon">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-18b92d25f2a0372079463917332f47f0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-90af2ae3f5f11ccb077ed1c2d3900ada.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/quarto-contrib/mn-problems-1.0.0/mn-problems.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/mn-theorems-1.0.0/mn-theorems.css" rel="stylesheet">
+<script src="../../../../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script src="../../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Поиск не дал результатов",
+    "search-matching-documents-text": "Результаты поиска",
+    "search-copy-link-title": "Скопировать ссылку",
+    "search-hide-matches-text": "Скрыть дополнительные результаты",
+    "search-more-match-text": "дополнительный результат в этом документе",
+    "search-more-matches-text": "дополнительных результата(-ов) в этом документе",
+    "search-clear-button-title": "Очистить",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Отменить",
+    "search-submit-button-title": "Найти",
+    "search-label": "Поиск"
+  }
+}</script>
+<style>
+div.callout-todo.callout {
+  border-left-color: pink;
+}
+div.callout-todo.callout-style-default .callout-header {
+  background-color: rgb(from pink r g b / 13%);
+}
+div.callout-todo .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.callout-titled .callout-icon::before {
+  content: '📝';
+  background-image: none;
+}
+div.callout-thumbs-up.callout {
+  border-left-color: #008000;
+}
+div.callout-thumbs-up.callout-style-default .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-thumbs-up .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-thumbs-up.callout-style-default .callout-icon::before, div.callout-thumbs-up.callout-titled .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23008000" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/></svg>');
+}
+div.callout-enum-item.callout {
+  border-left-color: #008000;
+}
+div.callout-enum-item.callout-style-default .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-enum-item .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-enum-item.callout-style-default .callout-icon::before, div.callout-enum-item.callout-titled .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23008000" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/></svg>');
+}
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/logo.png" alt="" class="navbar-logo light-content">
+    <img src="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/logo.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../../../index.html">
+    <span class="navbar-title">Курсы ФПМИ</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Поиск"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Переключить навигацию" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> 
+<span class="menu-text">Главная</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Курсы</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../../courses/index.html">
+ <span class="dropdown-text">Все курсы (37)</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../../courses/04-probability/index.html">
+ <span class="dropdown-text">Вероятность (4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/01-analysis/index.html">
+ <span class="dropdown-text">Анализ (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/02-algebra/index.html">
+ <span class="dropdown-text">Алгебра (4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/03-discrete-cs/index.html">
+ <span class="dropdown-text">Дискретная математика и CS (9)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/05-programming-systems/index.html">
+ <span class="dropdown-text">Программирование и системы (7)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/06-data-computing/index.html">
+ <span class="dropdown-text">Данные и вычисления (5)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Учебный план</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">    
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/I.html">
+ <span class="dropdown-text">I семестр (7)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/II.html">
+ <span class="dropdown-text">II семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/III.html">
+ <span class="dropdown-text">III семестр (9)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/IV.html">
+ <span class="dropdown-text">IV семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/V.html">
+ <span class="dropdown-text">V семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/VI.html">
+ <span class="dropdown-text">VI семестр (4)</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--2" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">О проекте</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu--2">    
+        <li>
+    <a class="dropdown-item" href="../../../../about.html">
+ <span class="dropdown-text">О проекте</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../editorial-policy.html">
+ <span class="dropdown-text">Статус материалов и редакционная политика</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://mipt.ru/education/schools/fpmi"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:web" style="font-size: 1.25em;" aria-label="Icon web from mdi Iconify.design set." title="Сайт ФПМИ"></iconify-icon></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../courses/04-probability/01_MT/contents/010_classical_geom_models.html">I. Основы вероятности</a></li><li class="breadcrumb-item"><a href="../../../../courses/04-probability/01_MT/contents/030_distributions_means.html">3. Ковариация, сходимости случайных величин, предельные теоремы</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
+<div style="font-weight: bold; font-size: 1.1em;">
+<p>ОВиТМ</p>
+</div>
+</div></div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Обзор курса</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/program.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Программа курса</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../courses/04-probability/01_MT/contents/010_classical_geom_models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">I. Основы вероятности</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Переключить раздел">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/010_classical_geom_models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Вероятностное пространство. Классические модели. Независимость</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/020_cond_probability_indep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Распределения вероятностей. Случайные величины. Матожидание</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/030_distributions_means.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">3. Ковариация, сходимости случайных величин, предельные теоремы</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../courses/04-probability/01_MT/contents/040_systems_of_sets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">II. Теория меры</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Переключить раздел">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/040_systems_of_sets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Системы множеств. Борелевская сигма-алгебра</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/050_measure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Функции множеств на полукольцах и сигма-алгебрах. Мера</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/060_outer_measure_Lebesgue.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Внешняя мера, теорема Каратеодори о продолжении</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/070_complete_measure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Мера Лебега, мера Лебега-Стилтьеса</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/090_convergence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. Измеримые функции и их сходимости</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/100_Lebesgue_integral.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. Интеграл Лебега: интеграл по мере</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/120_product_of_measures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. Произведение мер</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/122_Banach_Lp_spaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11. Лебеговы пространства L^p(mu)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/130_signed_measures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12. Меры со знаком, плотности</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/135_differentiation_AC_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">13. Дифференцирование интеграла Лебега. Абсолютно непрерывные функции</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Содержание</h2>
+   
+  <ul>
+  <li><a href="#ковариация-корреляция" id="toc-ковариация-корреляция" class="nav-link active" data-scroll-target="#ковариация-корреляция"><span class="header-section-number">1</span> Ковариация, корреляция</a></li>
+  <li><a href="#индикаторный-метод" id="toc-индикаторный-метод" class="nav-link" data-scroll-target="#индикаторный-метод"><span class="header-section-number">2</span> Индикаторный метод</a></li>
+  <li><a href="#сходимости-случайных-величин" id="toc-сходимости-случайных-величин" class="nav-link" data-scroll-target="#сходимости-случайных-величин"><span class="header-section-number">3</span> Сходимости случайных величин</a>
+  <ul class="collapse">
+  <li><a href="#сходимость-по-вероятности" id="toc-сходимость-по-вероятности" class="nav-link" data-scroll-target="#сходимость-по-вероятности"><span class="header-section-number">3.1</span> Сходимость по вероятности</a></li>
+  <li><a href="#сходимость-по-распределению" id="toc-сходимость-по-распределению" class="nav-link" data-scroll-target="#сходимость-по-распределению"><span class="header-section-number">3.2</span> Сходимость по распределению</a></li>
+  <li><a href="#связь-двух-сходимостей" id="toc-связь-двух-сходимостей" class="nav-link" data-scroll-target="#связь-двух-сходимостей"><span class="header-section-number">3.3</span> Связь двух сходимостей</a></li>
+  <li><a href="#взгляд-вперёд-сходимость-на-языке-мер-необязательное" id="toc-взгляд-вперёд-сходимость-на-языке-мер-необязательное" class="nav-link" data-scroll-target="#взгляд-вперёд-сходимость-на-языке-мер-необязательное"><span class="header-section-number">3.4</span> Взгляд вперёд: сходимость на языке мер (необязательное)</a></li>
+  </ul></li>
+  <li><a href="#предельные-теоремы" id="toc-предельные-теоремы" class="nav-link" data-scroll-target="#предельные-теоремы"><span class="header-section-number">4</span> Предельные теоремы</a>
+  <ul class="collapse">
+  <li><a href="#закон-больших-чисел" id="toc-закон-больших-чисел" class="nav-link" data-scroll-target="#закон-больших-чисел"><span class="header-section-number">4.1</span> Закон больших чисел</a></li>
+  <li><a href="#центральная-предельная-теорема" id="toc-центральная-предельная-теорема" class="nav-link" data-scroll-target="#центральная-предельная-теорема"><span class="header-section-number">4.3</span> Центральная предельная теорема</a></li>
+  <li><a href="#закон-редких-событий" id="toc-закон-редких-событий" class="nav-link" data-scroll-target="#закон-редких-событий"><span class="header-section-number">4.4</span> Закон редких событий</a></li>
+  <li><a href="#цпт-vs-зрс" id="toc-цпт-vs-зрс" class="nav-link" data-scroll-target="#цпт-vs-зрс"><span class="header-section-number">4.5</span> ЦПТ VS ЗРС</a></li>
+  </ul></li>
+  <li><a href="#итог-трёх-недель-инвентаризация-долгов" id="toc-итог-трёх-недель-инвентаризация-долгов" class="nav-link" data-scroll-target="#итог-трёх-недель-инвентаризация-долгов"><span class="header-section-number">5</span> Итог трёх недель: инвентаризация долгов</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<!--
+  Explicit RequireJS path mapping for "plotly", used by every hand-built
+  interactive widget on this site via require(["plotly"], function(Plotly){...}).
+
+  There was never a require.config() call anywhere setting this up -- it
+  only ever worked because Plotly's own UMD bundle, loaded elsewhere on the
+  same page via a plain <script src> for a simple (non-widget) fig.show()
+  figure, self-registers as an anonymous AMD module when window.define
+  exists (Quarto's RequireJS loader, used for MathJax), and RequireJS
+  happens to attribute that anonymous module to the "plotly" name if the
+  timing/script-load-order lines up. That's pure luck, not a real mapping --
+  a page with only widget figures (no plain fig.show() figure to "donate"
+  its Plotly load) had nothing to claim from, and any change to script load
+  order/timing (e.g. removing an unrelated script elsewhere on the page)
+  can flip which pending require() call an anonymous define() gets
+  attributed to, breaking it silently. Explicit config removes the guesswork.
+
+  Two separate failure modes found in practice, both fixed here:
+
+  (A) A page with ONLY hand-built widgets (no {python} cell at all -- e.g.
+  specials/030/020_quantile_function_fig.qmd) never gets Quarto's own
+  <script src=".../requirejs@.../require.min.js"> in <head> in the first
+  place: that tag is only emitted when the page has a Jupyter code cell.
+  window.require is simply undefined there, so the widget's own
+  require(["plotly"], ...) throws "require is not defined" unconditionally
+  -- not a network flake, 100% of the time regardless of connection quality.
+  Fixed below by synchronously document.write-ing a local copy of
+  require.min.js when window.require isn't already present -- document.write
+  from an inline <script> during initial HTML parsing inserts into the parse
+  stream immediately, so by the next statement window.require is guaranteed
+  defined, still fully synchronously (no defer/async race).
+
+  (B) A page with BOTH a plain fig.show() figure AND a hand-built widget:
+  RequireJS *is* already in <head> here, so this file's require.config()
+  below does run against a real window.require. But the Jupyter-generated
+  embed script for the fig.show() figure -- which appears later in <body>,
+  wherever that Python cell sits -- unconditionally calls
+  require.undef("plotly") followed by its OWN require.config() pointing at
+  a *different* version on the *same* external CDN (observed:
+  cdn.plot.ly/plotly-2.35.2.min vs. the 3.4.0 configured here), clobbering
+  this file's mapping before the widget's own require(["plotly"], ...) ever
+  runs. Both that Jupyter-set path and this file's own local path hit the
+  same real-world failure: cdn.plot.ly answers anywhere from ~1.5s to a full
+  10s+ timeout under real network conditions (measured directly). A
+  requirejs.onError handler below catches exactly the resulting timeout on
+  the "plotly" module -- regardless of which of the two require.config()
+  calls most recently set its path -- and retries once against the local
+  bundle.
+-->
+<script>
+if (typeof window.require === "undefined") {
+  document.write('<script src="/site_libs/quarto-contrib/mn-plotly-1.0.0/require.min.js"><\/script>');
+}
+</script>
+<script>
+if (window.require && window.require.config) {
+  window.require.config({
+    paths: { plotly: "/site_libs/quarto-contrib/mn-plotly-1.0.0/plotly.min" },
+    // shim.exports: after the script loads, hand require(["plotly"],...)
+    // callers the *global* window.Plotly instead of trusting whatever (if
+    // anything) the script itself passed to define() -- Plotly's own UMD
+    // wrapper reliably sets window.Plotly regardless of AMD context (also
+    // used directly by every plain fig.show() figure on this site, whose
+    // own generated embed script never goes through RequireJS at all), but
+    // its anonymous define() call is not reliably attributed to the
+    // "plotly" request specifically when this same URL is also loaded via
+    // a separate plain <script src> elsewhere on the page (a simple,
+    // non-widget figure) -- shim sidesteps that ambiguity entirely.
+    shim: { plotly: { exports: "Plotly" } }
+  });
+  // See failure mode (B) above: a later Jupyter-generated fig.show() embed
+  // script can still call its own require.undef("plotly") +
+  // require.config({paths: {plotly: <external CDN>}}) after this runs,
+  // pointing "plotly" back at an unreliable external host. This handler
+  // fires on ANY module load timeout; when it's specifically "plotly", drop
+  // whatever path is currently registered (however it got there) and retry
+  // once against the local bundle instead of the external CDN.
+  //
+  // Deliberately never re-throws: once the retry above is issued, the
+  // ORIGINAL failed network request for the external CDN copy can still
+  // land afterwards and fire a second, by-then-harmless onError (verified:
+  // requireType "scripterror", after the retry has already resolved the
+  // widget's real require(["plotly"], callback) via RequireJS's own
+  // pending-callback bookkeeping) -- throwing there would surface a
+  // spurious uncaught exception for something already fixed. console.warn
+  // keeps that visible in devtools without it looking like a live failure.
+  window.require.onError = function (err) {
+    if (err.requireModules && err.requireModules.indexOf("plotly") !== -1) {
+      if (err.requireType === "timeout") {
+        window.require.undef("plotly");
+        window.require.config({ paths: { plotly: "/site_libs/quarto-contrib/mn-plotly-1.0.0/plotly.min" } });
+        window.require(["plotly"]);
+      } else {
+        console.warn("plotly require() error after fallback (likely a stale network request):", err);
+      }
+    } else {
+      throw err;
+    }
+  };
+}
+</script>
+
+<!--
+  window.fpmiWithMathJax(cb): same rationale as the FPMI homepage loader (_home_widgets/loader.qmd)'s
+  copy of this helper (see there for the original), extended to course
+  pages. Quarto only emits a <script defer src=".../mathjax@3/.../tex-*.js">
+  tag in <head> at all when it sees real markdown math OUTSIDE any
+  ```{=html}``` block on the page -- a hand-built widget's math lives
+  entirely inside \(...\)/\[...\] strings in JS-generated DOM content
+  (e.g. a dynamically updated status line), which Quarto's static math
+  scanner never looks inside, so a page whose ONLY math is like that (no
+  prose math of its own) gets no MathJax script at all. Confirmed on an
+  already-shipped widget (030/020_quantile_function_fig.qmd's #qf-status)
+  that had silently never rendered its \(...\) as real math since it was
+  written -- not a new bug, just never noticed because the broken math was
+  inside dynamically-generated text rather than the static page body.
+
+  Three cases this handles, in order:
+  1. window.MathJax already fully started (page had prose math elsewhere,
+     Quarto's own <script defer> already ran) -- just wait on the
+     documented startup.promise signal and fire cb.
+  2. Quarto's own MathJax <script defer> tag IS present in <head> but
+     hasn't executed/initialized yet (defer runs after DOM parsing, and
+     this include-before-body block runs earlier, during parsing) -- poll
+     briefly for window.MathJax to appear rather than racing to load a
+     SECOND copy, which would either double-load or (depending on load
+     order) silently no-op.
+  3. No MathJax script present at all (case A above) -- fetch it ourselves,
+     same URL/approach as loader.qmd.
+-->
+<script>
+window.fpmiWithMathJax = window.fpmiWithMathJax || function (cb) {
+  if (window.MathJax && window.MathJax.startup) { window.MathJax.startup.promise.then(cb); return; }
+  if (window.__fpmiMathJaxQueue) { window.__fpmiMathJaxQueue.push(cb); return; }
+  window.__fpmiMathJaxQueue = [cb];
+  function flushQueue() {
+    var q = window.__fpmiMathJaxQueue;
+    window.__fpmiMathJaxQueue = null;
+    q.forEach(function (f) { f(); });
+  }
+  var hasMathJaxTag = !!document.querySelector('script[src*="mathjax"]');
+  if (hasMathJaxTag) {
+    // Case 2: Quarto's own deferred MathJax script is already in <head> --
+    // poll for it to finish initializing instead of loading a duplicate.
+    var waited = 0;
+    var poll = setInterval(function () {
+      waited += 50;
+      if (window.MathJax && window.MathJax.startup) {
+        clearInterval(poll);
+        window.MathJax.startup.promise.then(flushQueue);
+      } else if (waited > 10000) {
+        // Should never happen (the tag is already there, defer always runs
+        // before window.onload) -- bail rather than poll forever.
+        clearInterval(poll);
+        console.warn("fpmiWithMathJax: gave up waiting for Quarto's own MathJax script to initialize");
+      }
+    }, 50);
+    return;
+  }
+  // Case 3: no MathJax anywhere on the page -- fetch it ourselves. SVG
+  // output specifically (not CHTML, despite Quarto's own injected tag
+  // using CHTML): confirmed Plotly's own $...$ annotation/tick-label math
+  // rendering hard-requires the SVG output jax and throws
+  // 'Output Jax "svg" is not defined' if only CHTML is loaded (its
+  // internal math path calls MathJax.tex2svg specifically, independent of
+  // whatever jax Quarto's page-level script configured) -- same reason
+  // the FPMI homepage loader (_home_widgets/loader.qmd)'s original copy of this helper uses tex-svg.js.
+  var s = document.createElement("script");
+  s.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js";
+  s.onload = function () {
+    window.MathJax.startup.promise.then(flushQueue);
+  };
+  document.head.appendChild(s);
+};
+</script>
+<!--
+  window.fpmiGraph: shared toolkit for the hand-built Plotly *graph diagrams*
+  (vertices + edges) used by the algorithms courses (courses/11-DM-CS/AA/...
+  specials). Plotly has no native graph/network primitives, so every widget
+  used to re-implement the same edge-polyline/marker/annotation plumbing by
+  hand -- and, since a plain `mode:"lines"` polyline can't carry an arrowhead
+  or per-edge hover, all of them ended up as staticPlot line drawings with
+  no direction on directed graphs and no hover at all. This helper gives
+  every widget, from one `spec`:
+
+    * one scatter trace PER EDGE (so an individual edge can be restyled --
+      hover-highlight, per-step emphasis, transitions -- and can have its own
+      hover text via an invisible midpoint marker), optionally curved
+      (`bend`) so a pair of opposite arcs u->v / v->u stays readable;
+    * arrowheads for `directed` edges via layout.annotations in data
+      coordinates, shortened so the head lands on the vertex rim, not under
+      the marker;
+    * a soft halo under each vertex, $...$ MathJax labels via annotations
+      (never mode:"markers+text" -- see project memory: Plotly's marker text
+      is raw SVG <text>, which can't hold MathJax output), and hover labels;
+    * hover-highlight: hovering a vertex lifts its incident edges and dims
+      the rest (plotly_hover/unhover + Plotly.restyle on the edge traces);
+    * animated transitions between algorithm steps (Plotly.animate on a
+      trace layout that stays structurally identical across steps -- the
+      trace count must not change, so per-step differences are expressed
+      purely as style: color/width/opacity/dash);
+    * a step player (prev / next / autoplay, keyboard arrows) that builds its
+      own controls, and a path tracer that grows a highlighted polyline along
+      a vertex sequence over time (Hamiltonian paths, tours, Euler walks).
+
+  Draw order inside `data`: edges (one trace each) -> edge midpoints (hover
+  only) -> halo -> vertices -> optional path trace. Trace indices are
+  returned in `built.meta` so callers never hard-code them.
+-->
+<script>
+(function () {
+  if (window.fpmiGraph) return;
+  var G = {};
+
+  // Every UI string this helper generates itself (default edge-weight hover
+  // text, the step-player's button labels) is project-agnostic: it reads
+  // `document.documentElement.lang` (set by each project's own `_quarto.yml`
+  // `lang:` field) and falls back to Russian, the language every existing
+  // call site (mnedoshivin, math-notes_CU_2, math-notes_FPMI_2) was written
+  // for -- so this stays a silent no-op everywhere except an `lang="en"`
+  // project such as mnedoshivin_en.
+  var IS_EN = (document.documentElement.lang || "").toLowerCase().indexOf("en") === 0;
+  var WEIGHT_WORD = IS_EN ? "weight" : "вес";
+
+  G.colors = {
+    vert: "#eaf2fb", vertLine: "#1e3a8a", vertText: "#0b0b0b",
+    sel: "#2a78d6", selText: "#ffffff",
+    accent: "#f5a623", accentLine: "#8a5a00",
+    done: "#a8a29e", edge: "#78716c", edgeFaded: "#d6d3d1",
+    red: "#b91c1c", redSoft: "#fca5a5", green: "#556B2F", greenSoft: "#bbf7d0",
+    bg: "#fcfcfb"
+  };
+
+  // Plotly may arrive through RequireJS (course pages, see
+  // plotly-require-config.html), through the homepage's own
+  // fpmiWithPlotly loader, or already be a global -- accept all three.
+  G.withPlotly = function (cb) {
+    if (window.Plotly && window.Plotly.newPlot) { cb(window.Plotly); return; }
+    if (window.fpmiWithPlotly) { window.fpmiWithPlotly(cb); return; }
+    if (window.require) { window.require(["plotly"], cb); return; }
+    console.warn("fpmiGraph: no Plotly loader available on this page");
+  };
+  // MathJax must exist BEFORE Plotly builds any $...$ annotation (Plotly
+  // stamps data-math="N" at build time and never retries), hence the order.
+  G.ready = function (cb) {
+    var run = function () { G.withPlotly(cb); };
+    if (window.fpmiWithMathJax) { window.fpmiWithMathJax(run); } else { run(); }
+  };
+
+  // ── geometry ───────────────────────────────────────────────────────────────
+  // Quadratic curve from p0 to p1 bulging `bend` data units to the left of
+  // the p0->p1 direction (negative bends right). n+1 points.
+  G.curve = function (p0, p1, bend, n) {
+    n = n || 16;
+    var dx = p1[0] - p0[0], dy = p1[1] - p0[1];
+    var len = Math.sqrt(dx * dx + dy * dy) || 1;
+    var nx = -dy / len, ny = dx / len;
+    var cx = (p0[0] + p1[0]) / 2 + nx * bend, cy = (p0[1] + p1[1]) / 2 + ny * bend;
+    var pts = [];
+    for (var i = 0; i <= n; i++) {
+      var t = i / n, a = (1 - t) * (1 - t), b = 2 * (1 - t) * t, c = t * t;
+      pts.push([a * p0[0] + b * cx + c * p1[0], a * p0[1] + b * cy + c * p1[1]]);
+    }
+    return pts;
+  };
+  G.circle = function (cx, cy, r, n) {
+    n = n || 64;
+    var x = [], y = [];
+    for (var i = 0; i <= n; i++) { var a = 2 * Math.PI * i / n; x.push(cx + r * Math.cos(a)); y.push(cy + r * Math.sin(a)); }
+    return { x: x, y: y };
+  };
+  // "$v_{1}$" from "v1", "$s'$" from "s'", plain "s" from "s".
+  G.texLabel = function (id) {
+    var m = /^([A-Za-z]+)(\d+)('*)$/.exec(id);
+    if (m) return "$" + m[1] + "_{" + m[2] + "}" + m[3] + "$";
+    return /^[A-Za-z]'*$/.test(id) ? "$" + id + "$" : id;
+  };
+  // Unicode subscript fallback for hover text (Plotly hover can't do MathJax).
+  var SUB = { "0": "₀", "1": "₁", "2": "₂", "3": "₃", "4": "₄", "5": "₅", "6": "₆", "7": "₇", "8": "₈", "9": "₉" };
+  G.plainLabel = function (id) {
+    var m = /^([A-Za-z]+)(\d+)('*)$/.exec(id);
+    if (!m) return id;
+    return m[1] + m[2].split("").map(function (c) { return SUB[c] || c; }).join("") + m[3];
+  };
+
+  function assign(dst) {
+    for (var i = 1; i < arguments.length; i++) { var s = arguments[i]; if (s) for (var k in s) if (Object.prototype.hasOwnProperty.call(s, k)) dst[k] = s[k]; }
+    return dst;
+  }
+  function normEdge(e) {
+    if (Array.isArray(e)) { var o = { u: e[0], v: e[1] }; if (e[2] && typeof e[2] === "object") assign(o, e[2]); else if (e[2] !== undefined) o.weight = e[2]; return o; }
+    return assign({}, e);
+  }
+
+  // ── build ──────────────────────────────────────────────────────────────────
+  // spec = {
+  //   verts: {id: [x, y]},            order: [ids] (optional, defaults to key order)
+  //   edges: [[u, v] | [u, v, weight] | {u, v, color, width, dash, opacity, bend, hover, arrow, weight}]
+  //   directed: bool,                 edge: fn(edgeObj) -> style overrides (per step)
+  //   vert: fn(id) -> {color, line, lineWidth, size, opacity, label, hover, symbol}
+  //   labels: bool|{id: text}         (default: true -> G.texLabel(id))
+  //   size: 24, halo: true, weights: bool (annotate edge weights at midpoints)
+  //   range: {x: [..], y: [..]}       (default: bbox + padding), pad: 0.8
+  //   annotations: [], shapes: []     (extra), pathTrace: bool (reserve a trace for tracePath)
+  //   height/width: layout size override
+  // }
+  G.build = function (spec) {
+    var C = G.colors;
+    var ids = spec.order || Object.keys(spec.verts);
+    var size = spec.size || 24;
+    var edges = (spec.edges || []).map(normEdge);
+    var data = [], annotations = [], meta = { edgeIdx: [], edgeStyles: [], edges: edges, ids: ids, size: size };
+
+    // range
+    var xs = ids.map(function (i) { return spec.verts[i][0]; }), ys = ids.map(function (i) { return spec.verts[i][1]; });
+    var pad = spec.pad !== undefined ? spec.pad : 0.8;
+    var xr = spec.range && spec.range.x || [Math.min.apply(null, xs) - pad, Math.max.apply(null, xs) + pad];
+    var yr = spec.range && spec.range.y || [Math.min.apply(null, ys) - pad, Math.max.apply(null, ys) + pad];
+    // Vertex radius in data units, for arrowhead shortening: estimate from
+    // the plot's pixel width (marker size is in px, the axis range in data).
+    var plotPx = spec.plotWidthPx || 460;
+    var rData = spec.vertRadius !== undefined ? spec.vertRadius : (size / 2) * (xr[1] - xr[0]) / plotPx * 1.15;
+
+    // edges
+    var midX = [], midY = [], midText = [];
+    edges.forEach(function (e, k) {
+      var st = assign({ color: C.edge, width: 1.6, dash: "solid", opacity: 1, bend: 0 }, e, spec.edge ? spec.edge(e, k) : null);
+      var p0 = spec.verts[e.u], p1 = spec.verts[e.v];
+      var pts = st.bend ? G.curve(p0, p1, st.bend) : [p0, p1];
+      var directed = st.arrow !== undefined ? st.arrow : !!spec.directed;
+      if (directed) {
+        // trim the last segment so the arrowhead (drawn separately) ends on
+        // the target vertex rim; the line itself stops there too.
+        var a = pts[pts.length - 2], b = pts[pts.length - 1];
+        var dx = b[0] - a[0], dy = b[1] - a[1], L = Math.sqrt(dx * dx + dy * dy) || 1;
+        var head = [b[0] - dx / L * rData, b[1] - dy / L * rData];
+        var tail = [head[0] - dx / L * Math.min(L, rData * 1.6), head[1] - dy / L * Math.min(L, rData * 1.6)];
+        pts = pts.slice(0, -1).concat([head]);
+        annotations.push({
+          x: head[0], y: head[1], ax: tail[0], ay: tail[1], xref: "x", yref: "y", axref: "x", ayref: "y",
+          showarrow: true, arrowhead: 2, arrowsize: 1.15, arrowwidth: st.width, arrowcolor: st.color,
+          opacity: st.opacity, text: "", standoff: 0
+        });
+      }
+      data.push({
+        x: pts.map(function (p) { return p[0]; }), y: pts.map(function (p) { return p[1]; }),
+        mode: "lines", line: { color: st.color, width: st.width, dash: st.dash }, opacity: st.opacity,
+        hoverinfo: "skip", showlegend: false, name: e.u + "-" + e.v
+      });
+      meta.edgeIdx.push(data.length - 1);
+      meta.edgeStyles.push({ color: st.color, width: st.width, dash: st.dash, opacity: st.opacity });
+      var mid = pts[Math.floor(pts.length / 2)];
+      if (pts.length === 2) mid = [(p0[0] + p1[0]) / 2, (p0[1] + p1[1]) / 2];
+      midX.push(mid[0]); midY.push(mid[1]);
+      var hover = st.hover !== undefined ? st.hover : (G.plainLabel(e.u) + (directed ? " → " : " — ") + G.plainLabel(e.v) + (st.weight !== undefined ? "<br>" + (WEIGHT_WORD) + " " + st.weight : ""));
+      midText.push(hover);
+      // st.weight (not e.weight): a per-step override may hide a faded edge's
+      // label by returning {weight: undefined}
+      if (spec.weights && st.weight !== undefined && st.opacity > 0.05) {
+        annotations.push({ x: mid[0], y: mid[1], text: String(st.weight), showarrow: false,
+          font: { size: 11, color: st.color === C.edgeFaded ? "#a8a29e" : "#44403c" }, bgcolor: "rgba(252,252,251,0.9)", borderpad: 1 });
+      }
+    });
+    // invisible edge midpoints: hover only (per-point hoverinfo so a hidden
+    // edge -- opacity 0, e.g. "not added yet" in a step player -- shows no
+    // empty tooltip)
+    data.push({ x: midX, y: midY, mode: "markers", marker: { size: 14, opacity: 0 }, hovertext: midText,
+      hoverinfo: meta.edgeStyles.map(function (s) { return s.opacity > 0 ? "text" : "skip"; }), showlegend: false, name: "edges" });
+    meta.midIdx = data.length - 1;
+
+    // vertices
+    var vx = [], vy = [], vColor = [], vLine = [], vLineW = [], vSize = [], vOp = [], vHover = [], vSym = [], haloColor = [];
+    ids.forEach(function (id) {
+      var st = assign({ color: C.vert, line: C.vertLine, lineWidth: 1.8, size: size, opacity: 1, symbol: "circle" }, spec.vert ? spec.vert(id) : null);
+      vx.push(spec.verts[id][0]); vy.push(spec.verts[id][1]);
+      vColor.push(st.color); vLine.push(st.line); vLineW.push(st.lineWidth); vSize.push(st.size); vOp.push(st.opacity); vSym.push(st.symbol);
+      vHover.push(st.hover !== undefined ? st.hover : G.plainLabel(id));
+      haloColor.push(st.opacity === 0 ? "rgba(0,0,0,0)" : (st.halo || (st.color === C.vert ? "rgba(42,120,214,0.10)" : G.rgba(st.color, 0.22))));
+      var lbl = st.label !== undefined ? st.label
+        : (spec.labels === false ? null : (spec.labels && typeof spec.labels === "object" ? spec.labels[id] : G.texLabel(id)));
+      if (lbl) {
+        annotations.push({ x: spec.verts[id][0], y: spec.verts[id][1], text: lbl, showarrow: false,
+          font: { size: st.labelSize || 13, color: st.labelColor || (st.color === C.vert || st.color === C.accent ? C.vertText : C.selText) }, opacity: st.opacity });
+      }
+    });
+    if (spec.halo !== false) {
+      data.push({ x: vx, y: vy, mode: "markers", marker: { size: vSize.map(function (s) { return s + 14; }), color: haloColor, line: { width: 0 } },
+        opacity: 1, hoverinfo: "skip", showlegend: false, name: "halo" });
+      meta.haloIdx = data.length - 1;
+    }
+    data.push({ x: vx, y: vy, mode: "markers", marker: { size: vSize, color: vColor, symbol: vSym, opacity: vOp, line: { color: vLine, width: vLineW } },
+      hovertext: vHover, hoverinfo: vOp.map(function (o) { return o > 0 ? "text" : "skip"; }), showlegend: false, name: "vertices",
+      hoverlabel: { bgcolor: "#1c1917", bordercolor: "#1c1917", font: { color: "#fff", size: 12 } } });
+    meta.vertIdx = data.length - 1;
+    if (spec.pathTrace) {
+      data.push({ x: [], y: [], mode: "lines", line: { color: C.red, width: 3.2, shape: "linear" }, hoverinfo: "skip", showlegend: false, name: "path" });
+      meta.pathIdx = data.length - 1;
+    }
+
+    var layout = {
+      xaxis: { visible: false, range: xr, fixedrange: true },
+      yaxis: { visible: false, range: yr, fixedrange: true, scaleanchor: "x" },
+      margin: { t: 8, b: 8, l: 8, r: 8 },
+      plot_bgcolor: C.bg, paper_bgcolor: C.bg, showlegend: false, hovermode: "closest",
+      annotations: annotations.concat(spec.annotations || []), shapes: spec.shapes || [],
+      transition: { duration: 420, easing: "cubic-in-out" }
+    };
+    if (spec.height) layout.height = spec.height;
+    return { data: data, layout: layout, meta: meta };
+  };
+
+  G.rgba = function (hex, a) {
+    var m = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(hex);
+    if (!m) return hex;
+    return "rgba(" + parseInt(m[1], 16) + "," + parseInt(m[2], 16) + "," + parseInt(m[3], 16) + "," + a + ")";
+  };
+
+  // ── draw (with transitions) ────────────────────────────────────────────────
+  G.config = { displayModeBar: false, displaylogo: false, scrollZoom: false, responsive: true };
+  G.draw = function (el, built, opts) {
+    if (typeof el === "string") el = document.getElementById(el);
+    opts = opts || {};
+    G.ready(function (Plotly) {
+      var canAnimate = el.data && el.data.length === built.data.length && !opts.noAnimate;
+      if (canAnimate) {
+        // Same trace structure as the previous step -> tween colors/widths/
+        // positions instead of snapping. Layout (annotations, shapes) is
+        // applied at the start of the frame.
+        Plotly.animate(el, { data: built.data, layout: built.layout },
+          { transition: { duration: opts.duration || 420, easing: "cubic-in-out" },
+            frame: { duration: opts.duration || 420, redraw: false } });
+      } else if (el.data) {
+        Plotly.react(el, built.data, built.layout, G.config);
+      } else {
+        Plotly.newPlot(el, built.data, built.layout, G.config);
+      }
+      el.__fpmiGraph = built;
+      if (!el.__fpmiHoverBound && opts.hover !== false) { G.attachHover(el); el.__fpmiHoverBound = true; }
+      if (opts.then) opts.then(Plotly);
+    });
+  };
+
+  // ── hover-highlight: lift a vertex's incident edges, dim the rest ──────────
+  G.attachHover = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    var restore = function () {
+      var b = el.__fpmiGraph; if (!b || !window.Plotly) return;
+      var s = b.meta.edgeStyles;
+      window.Plotly.restyle(el, {
+        "line.width": s.map(function (x) { return x.width; }),
+        "line.color": s.map(function (x) { return x.color; }),
+        "opacity": s.map(function (x) { return x.opacity; })
+      }, b.meta.edgeIdx);
+    };
+    el.on("plotly_hover", function (ev) {
+      var b = el.__fpmiGraph; if (!b || !ev.points || !ev.points.length) return;
+      var p = ev.points[0];
+      if (p.curveNumber !== b.meta.vertIdx) return;
+      var id = b.meta.ids[p.pointNumber];
+      var widths = [], colors = [], ops = [];
+      b.meta.edges.forEach(function (e, k) {
+        var st = b.meta.edgeStyles[k], inc = (e.u === id || e.v === id);
+        widths.push(inc ? Math.max(st.width * 1.9, 3) : st.width);
+        colors.push(inc ? (st.color === G.colors.edge || st.color === G.colors.edgeFaded ? G.colors.sel : st.color) : st.color);
+        ops.push(inc ? 1 : Math.min(st.opacity, 0.28));
+      });
+      window.Plotly.restyle(el, { "line.width": widths, "line.color": colors, "opacity": ops }, b.meta.edgeIdx);
+    });
+    el.on("plotly_unhover", restore);
+  };
+
+  // ── step player ────────────────────────────────────────────────────────────
+  // G.player({ container, count, render(i), autoplayMs, loop, start })
+  // Builds: [← Back] [Step i / N] [Next →] [▶ Auto]; arrow keys work while
+  // the controls have focus. render(i) is called for every step change.
+  // UI strings use the same IS_EN language switch declared at the top of
+  // this file. `o.label` still overrides the step word directly, same as
+  // before this change, for any call site that wants a custom label.
+  var PLAYER_STR = IS_EN
+    ? { back: "← Back", next: "Next →", auto: "▶ Auto", autoTitle: "Autoplay", pause: "⏸ Pause", step: "Step" }
+    : { back: "← Назад", next: "Вперёд →", auto: "▶ Авто", autoTitle: "Автовоспроизведение", pause: "⏸ Пауза", step: "Шаг" };
+  G.player = function (o) {
+    var box = typeof o.container === "string" ? document.getElementById(o.container) : o.container;
+    box.classList.add("fpmi-graph-controls");
+    box.setAttribute("tabindex", "0");
+    box.innerHTML =
+      '<button type="button" class="fg-prev">' + PLAYER_STR.back + '</button>' +
+      '<span class="fg-step"></span>' +
+      '<button type="button" class="fg-next">' + PLAYER_STR.next + '</button>' +
+      '<button type="button" class="fg-play" title="' + PLAYER_STR.autoTitle + '">' + PLAYER_STR.auto + '</button>';
+    var prev = box.querySelector(".fg-prev"), next = box.querySelector(".fg-next"), play = box.querySelector(".fg-play"), lbl = box.querySelector(".fg-step");
+    var cur = o.start || 0, timer = null, N = o.count;
+    function stop() { if (timer) { clearInterval(timer); timer = null; } play.textContent = PLAYER_STR.auto; play.classList.remove("active"); }
+    function go(i, fromAuto) {
+      if (!fromAuto) stop();
+      cur = Math.max(0, Math.min(N - 1, i));
+      lbl.textContent = (o.label || PLAYER_STR.step) + " " + (cur + 1) + " / " + N;
+      prev.disabled = cur === 0; next.disabled = cur === N - 1;
+      o.render(cur);
+    }
+    prev.addEventListener("click", function () { go(cur - 1); });
+    next.addEventListener("click", function () { go(cur + 1); });
+    play.addEventListener("click", function () {
+      if (timer) { stop(); return; }
+      play.textContent = PLAYER_STR.pause; play.classList.add("active");
+      if (cur === N - 1) go(0, true);
+      timer = setInterval(function () {
+        if (cur < N - 1) go(cur + 1, true);
+        else if (o.loop) go(0, true);
+        else stop();
+      }, o.autoplayMs || 1600);
+    });
+    box.addEventListener("keydown", function (ev) {
+      if (ev.key === "ArrowRight") { go(cur + 1); ev.preventDefault(); }
+      else if (ev.key === "ArrowLeft") { go(cur - 1); ev.preventDefault(); }
+    });
+    go(cur);
+    return { go: go, next: function () { go(cur + 1); }, prev: function () { go(cur - 1); }, current: function () { return cur; }, stop: stop };
+  };
+
+  // ── path tracer ────────────────────────────────────────────────────────────
+  // Grows the reserved path trace (spec.pathTrace) along `ids` over
+  // `duration` ms, with a moving tip. Returns a cancel function.
+  G.tracePath = function (el, verts, ids, opts) {
+    if (typeof el === "string") el = document.getElementById(el);
+    opts = opts || {};
+    var b = el.__fpmiGraph; if (!b || b.meta.pathIdx === undefined || !window.Plotly) return function () {};
+    var pts = ids.map(function (id) { return verts[id]; });
+    var segs = pts.length - 1, dur = opts.duration || 500 * segs, t0 = null, cancelled = false;
+    var style = { "line.color": opts.color || G.colors.red, "line.width": opts.width || 3.2 };
+    window.Plotly.restyle(el, style, [b.meta.pathIdx]);
+    function frame(ts) {
+      if (cancelled) return;
+      if (t0 === null) t0 = ts;
+      var f = Math.min(1, (ts - t0) / dur), pos = f * segs, k = Math.floor(pos), r = pos - k;
+      var x = [], y = [];
+      for (var i = 0; i <= Math.min(k, segs); i++) { x.push(pts[i][0]); y.push(pts[i][1]); }
+      if (k < segs) { x.push(pts[k][0] + (pts[k + 1][0] - pts[k][0]) * r); y.push(pts[k][1] + (pts[k + 1][1] - pts[k][1]) * r); }
+      window.Plotly.restyle(el, { x: [x], y: [y] }, [b.meta.pathIdx]);
+      if (f < 1) requestAnimationFrame(frame); else if (opts.done) opts.done();
+    }
+    requestAnimationFrame(frame);
+    return function () { cancelled = true; };
+  };
+  G.clearPath = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    var b = el.__fpmiGraph; if (!b || b.meta.pathIdx === undefined || !window.Plotly) return;
+    window.Plotly.restyle(el, { x: [[]], y: [[]] }, [b.meta.pathIdx]);
+  };
+
+  // Typeset \(...\) math in a caption/status element (after innerHTML update).
+  G.typeset = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    if (window.fpmiWithMathJax) window.fpmiWithMathJax(function () { if (window.MathJax && window.MathJax.typesetPromise) window.MathJax.typesetPromise([el]); else if (window.MathJax) window.MathJax.typeset([el]); });
+  };
+  G.setCaption = function (id, html) { var el = document.getElementById(id); if (!el) return; el.innerHTML = html; G.typeset(el); };
+
+  window.fpmiGraph = G;
+})();
+</script>
+<style>
+  /* Shared look for every fpmiGraph widget (see graph-helper.html). */
+  .fpmi-graph { padding: 1rem 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .fpmi-graph h2.fg-title { font-size: 16px; font-weight: 500; margin: 0 0 4px; }
+  .fpmi-graph p.fg-sub { font-size: 13px; color: #78716c; margin: 0 0 0.75rem; }
+  .fpmi-graph .fg-plot { width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 6px 18px rgba(0,58,65,0.06); }
+  .fpmi-graph .fg-caption { font-size: 13px; color: #44403c; margin-top: 0.6rem; min-height: 1.4em; line-height: 1.5; }
+  .fpmi-graph .fg-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .fpmi-graph .fg-arrow { font-size: 26px; color: #78716c; }
+  .fpmi-graph-controls, .fpmi-graph .fg-controls { display: flex; align-items: center; gap: 10px; margin: 0.5rem 0 0.9rem; flex-wrap: wrap; outline: none; }
+  .fpmi-graph-controls button, .fpmi-graph button {
+    font-size: 13px; padding: 6px 12px; cursor: pointer; border-radius: 8px;
+    border: 1px solid #d6d3d1; background: #fff; color: #292524; transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  }
+  .fpmi-graph-controls button:hover:not(:disabled), .fpmi-graph button:hover:not(:disabled) { background: #f5f5f4; border-color: #a8a29e; }
+  .fpmi-graph-controls button:disabled, .fpmi-graph button:disabled { opacity: 0.4; cursor: default; }
+  .fpmi-graph-controls button.active, .fpmi-graph button.active { background: #eaf2fb; border-color: #2a78d6; color: #1c4a7a; font-weight: 600; box-shadow: 0 0 0 3px rgba(42,120,214,0.12); }
+  .fpmi-graph-controls .fg-step { font-size: 13px; font-weight: 600; color: #44403c; min-width: 6.5em; text-align: center; }
+  .fpmi-graph-controls:focus-within .fg-step { color: #1c4a7a; }
+  .fpmi-graph label { font-size: 13px; color: #57534e; }
+  .fpmi-graph input[type="range"] { accent-color: #2a78d6; }
+  .fpmi-graph .fg-val { font-size: 13px; font-weight: 600; min-width: 2em; display: inline-block; color: #1c4a7a; }
+  .fpmi-graph .fg-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: #57534e; margin-top: 0.4rem; }
+  .fpmi-graph .fg-legend span::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; background: var(--c, #eaf2fb); border: 1.5px solid var(--b, #1e3a8a); }
+  .fpmi-graph .fg-legend span.line::before { border-radius: 0; height: 3px; width: 18px; border: none; vertical-align: 2px; background: var(--c, #78716c); }
+</style>
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../courses/04-probability/01_MT/contents/010_classical_geom_models.html">I. Основы вероятности</a></li><li class="breadcrumb-item"><a href="../../../../courses/04-probability/01_MT/contents/030_distributions_means.html">3. Ковариация, сходимости случайных величин, предельные теоремы</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Ковариация, сходимости случайных величин, предельные теоремы</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Дата публикации</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">18 октября 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><span id="sec-ch:limit_theorems"></span></p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Предупреждение</span>Черновик
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Этот конспект ещё находится в процессе редактуры: в тексте могут встречаться опечатки, неточности и локально не проработанные места. Если что-то нашли — сообщите, пожалуйста, автору (контакты на <a href="../../../../courses/04-probability/01_MT/overview.html#об-этом-пособии">странице курса</a>).</p>
+</div>
+</div>
+<section id="ковариация-корреляция" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Ковариация, корреляция</h1>
+<div class="callout callout-style-simple callout-mn-def no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-1" class="definition theorem">
+<p><span class="theorem-title"><strong>Определение 1</strong></span> <em>Ковариацией</em> случайных величин <span class="math inline">\(\xi , \eta\)</span> называется</p>
+<p><span class="math display">\[
+  \operatorname {Cov}\left[ \xi , \eta \right] = \mathbb {E}\left[\left(\xi - \mathbb {E}\left[\xi \right]\right) \cdot \left(\eta - \mathbb {E}\left[\eta \right]\right)\right]  
+\]</span></p>
+<p>Сразу раскроем ее, используя линейность матожидания:</p>
+<p><span class="math display">\[
+  \operatorname {Cov}\left[ \xi , \eta \right] = \mathbb {E}\left[\xi \eta \right] - \mathbb {E}\left[\xi \right] \cdot \mathbb {E}\left[\eta \right] - \mathbb {E}\left[\xi \right] \cdot \mathbb {E}\left[\eta \right] + \mathbb {E}\left[\xi \right] \cdot \mathbb {E}\left[\eta \right] = \mathbb {E}\left[\xi \eta \right]- \mathbb {E}\left[\xi \right] \cdot \mathbb {E}\left[\eta \right]  
+\]</span></p>
+<p>Ковариация существует, если существуют первые моменты <span class="math inline">\(\mathbb {E}\left[\xi \right]\)</span>, <span class="math inline">\(\mathbb {E}\left[\eta \right]\)</span> и <span class="math inline">\(\mathbb {E}\left[\xi \eta \right]\)</span>.</p>
+<p><em>Корреляцией</em> случайных величин <span class="math inline">\(\xi , \eta\)</span> называется дробь</p>
+<p><span class="math display">\[
+  \operatorname {Corr}\left[ \xi , \eta \right] = \frac{\operatorname {Cov}\left[ \xi , \eta \right]}{\sqrt{\operatorname {Var}\left[\xi \right] \operatorname {Var}\left[\eta \right]}}  
+\]</span></p>
+<p>Она существует, если существуют соотв. дисперсии.</p>
+</div>
+</div>
+</div>
+</div>
+<p>Корреляция является в некотором смысле мерой зависимости случайных величин <span class="math inline">\(\xi , \eta\)</span>. Так, если случайные величины <span class="math inline">\(\xi , \eta\)</span> независимы, то <span class="math inline">\(\operatorname {Corr}\left[ \xi , \eta \right] =0\)</span>. Если же <span class="math inline">\(\operatorname {Corr}\left[ \xi , \eta \right] = \pm 1\)</span>, то случайные величины линейно зависимы.</p>
+<p><strong>Свойства ковариации</strong></p>
+<ul>
+<li><p>Ковариация симметрична: <span class="math inline">\(\operatorname {Cov}\left[ \xi , \eta \right] = \operatorname {Cov}\left[ \eta , \xi \right]\)</span>;</p></li>
+<li><p>Ковариация билинейна:</p>
+<p><span class="math display">\[
+\begin{align}  \operatorname {Cov}\left[ a_1\xi _1 + a_2\xi _2, \eta \right] &amp; = a_1\operatorname {Cov}\left[ \xi _1, \eta \right] + a_2 \operatorname {Cov}\left[ \xi _2, \eta \right] \\ \operatorname {Cov}\left[ \xi , b_1\eta _1 + b_2\eta _2 \right] &amp; = b_1\operatorname {Cov}\left[ \xi , \eta _1 \right] + b_2 \operatorname {Cov}\left[ \xi , \eta _2 \right] \end{align}
+\]</span></p></li>
+<li><p><span class="math inline">\(\operatorname {Cov}\left[ \xi , \xi \right] = \operatorname {Var}\left[\xi \right]\)</span>;</p></li>
+<li><p><span class="math inline">\(\operatorname {Cov}\left[ \xi , \eta \right] = \mathbb {E}\left[\xi \eta \right] - \mathbb {E}\left[\xi \right]\mathbb {E}\left[\eta \right]\)</span>;</p></li>
+<li><p>если <span class="math inline">\(\xi , \eta\)</span> независимы, то <span class="math inline">\(\operatorname {Cov}\left[ \xi , \eta \right]=0\)</span>;</p></li>
+<li><p>если <span class="math inline">\(c\in \mathbb {R}\)</span> – некоторая константа, то <span class="math inline">\(\operatorname {Cov}\left[ \xi + c, \eta \right] = \operatorname {Cov}\left[ \xi , \eta \right]\)</span>;</p></li>
+<li><p><span class="math inline">\(\operatorname {Var}\left[\xi_{1}+\ldots +\xi_{n}\right]=\operatorname {Var}\left[\xi_{1}\right]+\ldots +\operatorname {Var}\left[\xi_{n}\right]+\sum_{i \neq j} \operatorname {Cov}\left[ \xi_i, \xi_j \right]\)</span>.</p></li>
+</ul>
+<div id="expl-1" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Приведите пример двух зависимых случайных величин <span class="math inline">\(\xi , \eta\)</span>, ковариация которых равна <span class="math inline">\(0\)</span>.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Суть: ковариация показывает степень линейной зависимости. Однако зависимость может быть нелинейная, при том, что коэффициент линейной зависимости равен <span class="math inline">\(0\)</span>.</p>
+<p>Положим <span class="math inline">\(\Omega =\left\{ \omega_{1}, \omega_{2}, \omega_{3}\right\}\)</span> с вероятностями по <span class="math inline">\(1/3\)</span>. Зададим на элементарных исходах <span class="math inline">\(\xi\)</span>, <span class="math inline">\(\eta\)</span> следующим образом:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th><span class="math inline">\(\omega _1\)</span></th>
+<th><span class="math inline">\(\omega _2\)</span></th>
+<th><span class="math inline">\(\omega _3\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\mathbb {P}\left(\omega _i\right)\)</span></td>
+<td><span class="math inline">\(1/3\)</span></td>
+<td><span class="math inline">\(1/3\)</span></td>
+<td><span class="math inline">\(1/3\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\xi\)</span></td>
+<td><span class="math inline">\(1\)</span></td>
+<td><span class="math inline">\(1\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\eta\)</span></td>
+<td><span class="math inline">\(1\)</span></td>
+<td><span class="math inline">\(-1\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>Заметим, что <span class="math inline">\(\xi \eta = \eta\)</span> и <span class="math inline">\(\mathbb {E}\left[\eta \right] = 1 \cdot \frac{1}{3} - 1 \cdot \frac{1}{3} + 0 \cdot \frac{1}{3} = 0\)</span>, следовательно</p>
+<p><span class="math display">\[
+  \operatorname {Cov}\left[ \xi , \eta \right] = \mathbb {E}\left[\xi \eta \right] - \mathbb {E}\left[\xi \right]\mathbb {E}\left[\eta \right] = \mathbb {E}\left[\eta \right] - \mathbb {E}\left[\xi \right] \cdot \mathbb {E}\left[\eta \right] = 0 - \frac{2}{3} \cdot 0 = 0  
+\]</span></p></li>
+<li><p>Случайные величины зависимы. Действительно, <span class="math inline">\(\mathbb {P}\left(\xi = 0\right) = \mathbb {P}\left(\eta = 0\right) = \mathbb {P}\left(\omega_3\right) = \frac{1}{3}\)</span>, при этом</p>
+<p><span class="math display">\[
+  \mathbb {P}\left(\xi =0, \eta =0\right) = \mathbb {P}\left(\omega _3\right) =\frac{1}{3} \neq \frac{1}{3} \cdot \frac{1}{3} = \mathbb {P}\left(\xi = 0\right) \cdot \mathbb {P}\left(\eta = 0\right)  
+\]</span></p></li>
+</ul>
+<p>В данном случае зависимость есть, но она нелинейная: <span class="math inline">\(\xi = \eta^2\)</span> или <span class="math inline">\(\xi = \left|\eta \right|\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="индикаторный-метод" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Индикаторный метод</h1>
+<div id="expl-2" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Дана таблица (сетка) <span class="math inline">\(5 \times 4\)</span>. Паук хочет дойти из левого нижнего узла в правый верхний по сторонам клеток таблицы. Он может ходить только направо или вверх. Из всех возможных путей длины <span class="math inline">\(9\)</span> паук выбирает свой путь <strong>равновероятно</strong>. Вычислите</p>
+<ol type="1">
+<li><p>мат. ожидание,</p></li>
+<li><p>дисперсию и ст. отклонение (корень из дисперсии) количества поворотов, которые он совершит в пути.</p></li>
+</ol>
+<div id="fig-fig-1" class="tikz-figure quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="fig-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Рисунок&nbsp;1: Сетка 5\times 4: паук идёт только направо или вверх. В данном примере пути паук сделал 5 поворотов."><img src="030_distributions_means_files/mediabag/fig-1.svg" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;1: Сетка <span class="math inline">\(5\times 4\)</span>: паук идёт только направо или вверх. В данном примере пути паук сделал <span class="math inline">\(5\)</span> поворотов.
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Вообще говоря, в подобных задачах можно обходиться без формализма с вероятностной тройкой, сразу переходя к расчетам, но для наглядности мы построим вероятностное пространство.</p>
+<p>Паук обязан сделать <span class="math inline">\(5\)</span> переходов по горизонтальным сторонам и <span class="math inline">\(4\)</span> по вертикальным. Соотв. эксперимент можно формализовать так:</p>
+<p><span class="math display">\[
+  \Omega = \left\{ \omega = \left(\omega _1, \ldots , \omega _9\right) \quad : \quad \omega _i \in \left\{ 0,1\right\} , \;  \sum _{1}^9 \omega _i = 4\right\} , \quad \mathcal{F} = 2^{\Omega }, \quad \mathbb {P}\left(B\right) = \frac{\left|B\right|}{\left|\Omega \right|} = \frac{\left|B\right|}{C_{9}^5}, \;  B \in \mathcal{F}  
+\]</span></p>
+<p><span class="math inline">\(0\)</span> соответствует переходу направо, <span class="math inline">\(1\)</span> – вверх.</p>
+<p>Заметим, что количество поворотов <span class="math inline">\(X\)</span> – это количество в <span class="math inline">\(\omega \in \left\{ 0,1\right\}^9\)</span> подпоследовательностей вида <span class="math inline">\(0,1\)</span> или <span class="math inline">\(1,0\)</span>. Т.е.</p>
+<p><span class="math display">\[
+\begin{align}  X &amp; = \; \mathbb {1}_{A_1} + \ldots + \; \mathbb {1}_{A_8} = \sum _{k=1}^{8} \; \mathbb {1}_{A_{k}}= \sum _{k=1}^{8} \bigg[\; \mathbb {1}_{\left\{ \omega _{k} = 1, \;  \omega _{k+1} = 0\right\} } + \; \mathbb {1}_{\left\{ \omega _{k} = 0, \;  \omega _{k+1} = 1\right\} }\bigg] \end{align}
+\]</span></p>
+<p>где <span class="math inline">\(A_i = \left\{ \omega_i \neq \omega_{i+1}\right\}\)</span> – событие, соответствующее повороту на <span class="math inline">\(i\)</span>-м шаге, <span class="math inline">\(\; \mathbb {1}_{A_i} = \; \mathbb {1}_{A_i}(\omega )\)</span> – индикатор этого события.</p>
+<p>Заметим, что для произвольного события <span class="math inline">\(A\)</span> индикатор имеет распределение Бернулли: <span class="math inline">\(\; \mathbb {1}_{A} \sim \operatorname {Ber}(\mathbb {P}\left(A\right))\)</span>, следовательно</p>
+<p><span class="math display">\[
+  \mathbb {E}\left[\; \mathbb {1}_{A}\right] = \mathbb {P}\left(A\right), \quad \operatorname {Var}\left[\; \mathbb {1}_{A}\right] = \mathbb {P}\left(A\right) \cdot (1 - \mathbb {P}\left(A\right))  
+\]</span></p>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>1.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Матожидание случайной величины, равной сумме индикаторов каких-то событий, можно вычислить как сумму вероятностей этих событий. Обратите внимание, что эта формула работает независимо от того, зависимы ли события (а в данном случае они зависимы), или нет.</p>
+<p><span class="math display">\[
+\begin{align}  \mathbb {E}\left[X\right] = \mathbb {E}\left[\sum _{i=1}^{8} \; \mathbb {1}_{A_{i}}\right] = \sum _{i=1}^{8} \mathbb {P}\left(A_{i}\right) \end{align}
+\]</span></p>
+<p>Посчитаем вероятность отдельного события:</p>
+<p><span class="math display">\[
+  \mathbb {P}\left(A_i\right) = \mathbb {P}\left(\left\{ \omega \;  \;  : \;  \;  \omega _i = 0, \;  \omega _{i+1} = 1\right\} \right) + \mathbb {P}\left(\left\{ \omega \;  \;  : \;  \;  \omega _{i} = 1, \;  \omega _{i+1} = 0\right\} \right) = 2 \cdot \frac{C_{7}^4}{C_{9}^5} = \frac{5}{9}  
+\]</span></p>
+<p>Обратите внимание, что вероятность не зависит от <span class="math inline">\(i\)</span>.</p>
+<p>Итого, <span class="math inline">\(\mathbb {E}\left[X\right] = 8 \cdot \frac{5}{9} = \frac{40}{9}\)</span>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>2.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>С дисперсией сложнее, поскольку при ее вычислении уже необходимо учитывать зависимости между событиями в индикаторах. Имеем</p>
+<p><span class="math display">\[
+\begin{align}  \operatorname {Var}\left[X\right] = \operatorname {Cov}\left[ X, X \right] &amp; = \sum _{i,j=1}^{8} \operatorname {Cov}\left[ \; \mathbb {1}_{A_{i}}, \; \mathbb {1}_{A_{j}} \right] = \sum _{i=1}^{8}\operatorname {Var}\left[\; \mathbb {1}_{A_{i}}\right] + \sum _{\substack {i,j=1 \\ i \neq j}}^{8} \operatorname {Cov}\left[ \; \mathbb {1}_{A_{i}}, \; \mathbb {1}_{A_{j}} \right] = \\ &amp; = \sum _{i=1}^{8}\operatorname {Var}\left[\; \mathbb {1}_{A_{i}}\right] + 2\sum _{\substack {i,j=1 \\ i &lt; j}}^{8} \operatorname {Cov}\left[ \; \mathbb {1}_{A_{i}}, \; \mathbb {1}_{A_{j}} \right] \end{align}
+\]</span></p>
+<p>Заметим, что <span class="math inline">\(\operatorname {Cov}\left[ \; \mathbb {1}_{A_{i}}, \; \mathbb {1}_{A_{j}} \right]\)</span> зависит только от <span class="math inline">\(\left|i-j\right|\)</span>: если <span class="math inline">\(\left|i-j\right| = 1\)</span>, т.е. это соседние повороты, то они влияют друг на друга. Если же <span class="math inline">\(\left|i-j\right| \geq 2\)</span>, то повороты не влияют друг на друга. Следовательно,</p>
+<p><span class="math display">\[
+\begin{align}  \operatorname {Var}\left[X\right] &amp; = \sum _{i=1}^{8}\operatorname {Var}\left[\; \mathbb {1}_{A_{i}}\right] + 2\sum _{i=1}^{7} \operatorname {Cov}\left[ \; \mathbb {1}_{A_{i}}, \; \mathbb {1}_{A_{i+1}} \right] + 2\sum _{\substack {i,j=1 \\ i + 1 &lt; j}}^{8} \operatorname {Cov}\left[ \; \mathbb {1}_{A_{i}}, \; \mathbb {1}_{A_{j}} \right] = \\ &amp; = 8 \cdot \operatorname {Var}\left[\; \mathbb {1}_{A_{1}}\right] + 2 \cdot 7 \cdot \operatorname {Cov}\left[ \; \mathbb {1}_{A_1}, \; \mathbb {1}_{A_2} \right] + \left(64 - 14 - 8\right) \cdot \operatorname {Cov}\left[ \; \mathbb {1}_{A_{1}}, \; \mathbb {1}_{A_{3}} \right] \end{align}
+\]</span></p>
+<p>Посчитаем каждое слагаемое отдельно.</p>
+<ul>
+<li><p><span class="math inline">\(\operatorname {Var}\left[\; \mathbb {1}_{A_{1}}\right] = \mathbb {P}\left(A_1\right) \cdot (1 - \mathbb {P}\left(A_1\right)) = \frac{5}{9} \cdot \frac{4}{9} = \frac{20}{81}\)</span></p></li>
+<li><p><span class="math inline">\(\operatorname {Cov}\left[ \; \mathbb {1}_{A_{1}}, \; \mathbb {1}_{A_{2}} \right] = \mathbb {E}\left[\; \mathbb {1}_{A_{1}, \;  A_{2}}\right] -\mathbb {E}\left[\; \mathbb {1}_{A_{1}}\right]\mathbb {E}\left[\; \mathbb {1}_{A_2}\right] = \mathbb {E}\left[\; \mathbb {1}_{A_{1}, \;  A_{2}}\right] - \left(\frac{5}{9}\right)^2\)</span>. Имеем</p>
+<p><span class="math display">\[
+\begin{align}  \mathbb {E}\left[\; \mathbb {1}_{A_{1}, \;  A_{2}}\right] &amp; = \mathbb {P}\left(\left\{ \omega \;  : \;  \omega _1 = \omega _3 = 1, \;  \omega _2 = 0\right\} \right) + \mathbb {P}\left(\left\{ \omega \;  : \;  \omega _1 = \omega _3 = 0, \;  \omega _2 = 1\right\} \right) = \\ &amp; = \frac{1}{C_9^5} \left(C_6^4 + C_{6}^3\right) = \cdots = \frac{5}{18} \end{align}
+\]</span></p>
+<p>Итого, <span class="math inline">\(\operatorname {Cov}\left[ \; \mathbb {1}_{A_{1}}, \; \mathbb {1}_{A_{2}} \right] = \frac{5}{18} - \frac{25}{81} = \frac{45 - 50}{162} = -\frac{5}{162}\)</span>.</p></li>
+<li><p><span class="math inline">\(\operatorname {Cov}\left[ \; \mathbb {1}_{A_{1}}, \; \mathbb {1}_{A_{3}} \right] = \mathbb {E}\left[\; \mathbb {1}_{A_{1}, \;  A_{3}}\right] -\mathbb {E}\left[\; \mathbb {1}_{A_{1}}\right]\mathbb {E}\left[\; \mathbb {1}_{A_3}\right] = \mathbb {E}\left[\; \mathbb {1}_{A_{1}, \;  A_{3}}\right] - \left(\frac{5}{9}\right)^2\)</span>. Имеем</p>
+<p><span class="math display">\[
+\begin{align}  \mathbb {E}\left[\; \mathbb {1}_{A_{1}, \;  A_{3}}\right] &amp; = 4\mathbb {P}\left(\left\{ \omega \;  : \;  \omega _1 = 1, \;  \omega _2 = 0, \;  \omega _3 = 1, \;  \omega _4 = 0\right\} \right) = 4\frac{C_5^3}{C_9^5} = \cdots = \frac{20}{63} \end{align}
+\]</span></p>
+<p>Итого, <span class="math inline">\(\operatorname {Cov}\left[ \; \mathbb {1}_{A_{1}}, \; \mathbb {1}_{A_{3}} \right] = \frac{20}{63} - \frac{25}{81} = \frac{180 - 175}{7 \cdot 9^2} = \frac{5}{567}\)</span>.</p></li>
+</ul>
+<p>Итого,</p>
+<p><span class="math display">\[
+\begin{align}  \operatorname {Var}\left[X\right] = 8 \cdot \frac{20}{81} + 2 \cdot 7 \cdot \left(-\frac{5}{162}\right) + 2 \cdot 21 \cdot \frac{5}{567}= \frac{160}{81} - \frac{35}{81} + \frac{30}{81} = \frac{155}{81} \approx 1.91 \end{align}
+\]</span></p>
+<p>Стандартное отклонение: <span class="math inline">\(\operatorname {SD}(X) = \sqrt{\operatorname {Var}\left[X\right]} = \frac{\sqrt{155}}{9} \approx 1.38\)</span>.</p>
+<p>(Ответ можно проверить прямым перебором: всех путей всего <span class="math inline">\(C_9^4 = 126\)</span>, и честное суммирование по ним дает ровно <span class="math inline">\(\mathbb {E}\left[X\right] = \frac{40}{9}\)</span> и <span class="math inline">\(\operatorname {Var}\left[X\right] = \frac{155}{81}\)</span>.)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Ответ
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>1.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\mathbb {E}\left[X\right] = \frac{40}{9} \approx 4.44\)</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>2.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\operatorname {Var}\left[X\right] = \frac{155}{81} \approx 1.91\)</span>, <span class="math inline">\(\operatorname {SD}(X) \approx 1.38\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="prob-3" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>В гости пришли <span class="math inline">\(N\)</span> гостей в шляпах. Уходя, в темной прихожей каждый из них взял какую-нибудь шляпу наугад. Найдите</p>
+<ol type="1">
+<li><p>математическое ожидание,</p></li>
+<li><p>дисперсию и ст. отклонение шляп, доставшихся хозяевам.</p></li>
+</ol>
+<div class="callout callout-style-default callout-hint no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hint</span>Подсказка
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Используйте индикаторный метод.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="сходимости-случайных-величин" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Сходимости случайных величин</h1>
+<p>В предельных теоремах, ради которых затевается эта глава (ЗБЧ, ЦПТ, закон редких событий – см. следующий раздел), участвуют два вида сходимости последовательностей случайных величин: <em>сходимость по вероятности</em> и <em>сходимость по распределению</em>. Определим их, пользуясь только теми средствами, которые у нас уже есть: вероятностями событий и функциями распределения.</p>
+<section id="сходимость-по-вероятности" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="сходимость-по-вероятности"><span class="header-section-number">3.1</span> Сходимость по вероятности</h2>
+<div class="callout callout-style-simple callout-mn-def no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-2" class="definition theorem">
+<p><span class="theorem-title"><strong>Определение 2</strong></span> Пусть <span class="math inline">\(\xi , \xi_1, \xi_2, \ldots\)</span> – случайные величины, заданные на одном вероятностном пространстве. Говорят, что последовательность <span class="math inline">\(\xi_1, \xi_2, \ldots\)</span> <em><a href="https://en.wikipedia.org/wiki/Convergence_of_random_variables#Convergence_in_probability">сходится по вероятности</a></em> к <span class="math inline">\(\xi\)</span>, если для любого <span class="math inline">\(\varepsilon &gt; 0\)</span> <span class="math display">\[
+  \mathbb {P}\left(\left|\xi _n - \xi \right| \geq \varepsilon \right) \xrightarrow [n \to \infty ]{} 0  
+\]</span> Обозначение: <span class="math display">\[
+  \xi _n \xrightarrow [n \to \infty ]{\mathbb {P}} \xi  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p>Смысл: с ростом <span class="math inline">\(n\)</span> случайная величина <span class="math inline">\(\xi_n\)</span> всё реже отклоняется от <span class="math inline">\(\xi\)</span> больше, чем на любую наперёд заданную ошибку <span class="math inline">\(\varepsilon\)</span>. Именно эта сходимость появится в ЗБЧ: среднее арифметическое <span class="math inline">\(\frac{S_n}{n}\)</span> сходится по вероятности к матожиданию.</p>
+<p>Обратите внимание: чтобы выражение <span class="math inline">\(\left|\xi_n - \xi \right|\)</span> имело смысл, случайные величины <span class="math inline">\(\xi_n\)</span> и <span class="math inline">\(\xi\)</span> обязаны быть заданы на одном и том же <span class="math inline">\(\Omega\)</span>.</p>
+<div id="prob-4" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Правда ли, что из сходимости по вероятности следует сходимость матожиданий?</p>
+</div>
+</div>
+</div>
+<div id="prob-5" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(\left(\xi_{n}-\xi \right)^{2} \xrightarrow {\mathbb {P}} 0\)</span>. Покажите, что <span class="math inline">\(\xi_{n}^{2} \xrightarrow {\mathbb {P}} \xi^{2}\)</span>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="сходимость-по-распределению" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="сходимость-по-распределению"><span class="header-section-number">3.2</span> Сходимость по распределению</h2>
+<p>Второй вид сходимости отвечает на другой вопрос: не &lt;&lt;близки ли значения <span class="math inline">\(\xi_n\)</span> и <span class="math inline">\(\xi\)</span> как функций на <span class="math inline">\(\Omega\)</span>&gt;&gt;, а &lt;&lt;похоже ли <strong>распределение</strong> <span class="math inline">\(\xi_n\)</span> на распределение <span class="math inline">\(\xi\)</span>&gt;&gt;. Так, в ЦПТ утверждается, что распределение нормированной суммы приближается к нормальному распределению; сами случайные величины при этом ни к какой конкретной случайной величине не &lt;&lt;прижимаются&gt;&gt; – сходятся именно их распределения.</p>
+<p>Распределение на <span class="math inline">\(\mathbb {R}\)</span> полностью описывается своей функцией распределения (см. главу&nbsp;<a href="../../../../courses/04-probability/01_MT/contents/020_cond_probability_indep.html#sec-ch:random_variables">о случайных величинах и функции распределения</a>), поэтому сходимость распределений естественно определять через сходимость функций распределения. Единственная тонкость – в каких точках требовать сходимость. Рассмотрим пример: пусть <span class="math inline">\(\xi_n \equiv \frac{1}{n}\)</span> – константные случайные величины. Разумно ожидать, что <span class="math inline">\(\xi_n\)</span> сходятся (в любом осмысленном смысле) к <span class="math inline">\(\xi \equiv 0\)</span>. Посмотрим на функции распределения:</p>
+<p><span class="math display">\[
+  F_{\xi _n}(x) = \; \mathbb {1}_{x \geq \tfrac {1}{n}} \xrightarrow [n \to \infty ]{} \begin{cases}  1, &amp;  x &gt; 0 \\ 0, &amp;  x \leq 0\end{cases}, \qquad \text{при этом} \qquad F_{\xi }(x) = \; \mathbb {1}_{x \geq 0}  
+\]</span></p>
+<p>Пределы совпадают всюду, кроме единственной точки <span class="math inline">\(x = 0\)</span>: <span class="math inline">\(F_{\xi_n}(0) = 0 \not\to 1 = F_{\xi }(0)\)</span>. Заметим, что <span class="math inline">\(x=0\)</span> – это в точности точка разрыва (скачка) предельной функции распределения. Чтобы такие естественные примеры не ломали определение, в точках разрыва предельной <span class="math inline">\(F\)</span> сходимость не требуют.</p>
+<div class="callout callout-style-simple callout-mn-def no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-3" class="definition theorem">
+<p><span class="theorem-title"><strong>Определение 3</strong></span> Говорят, что последовательность случайных величин <span class="math inline">\(\xi_1, \xi_2, \ldots\)</span> <em><a href="https://en.wikipedia.org/wiki/Convergence_of_random_variables#Convergence_in_distribution">сходится по распределению</a></em> к случайной величине <span class="math inline">\(\xi\)</span>, если <span class="math display">\[
+  F_{\xi _n}(x) \xrightarrow [n \to \infty ]{} F_{\xi }(x) \qquad \text{для всех } x \in \mathbb {R}, \text{ в которых } F_{\xi } \text{ непрерывна}  
+\]</span> Обозначение: <span class="math display">\[
+  \xi _{n} \xrightarrow [n \to \infty ]{d} \xi ,  
+\]</span> от англ. <em>distribution</em> (распределение).</p>
+</div>
+</div>
+</div>
+</div>
+<p>Поскольку в определении участвуют только функции распределения, случайные величины <span class="math inline">\(\xi_1, \xi_2, \ldots\)</span> и <span class="math inline">\(\xi\)</span> могут быть заданы на совершенно разных вероятностных пространствах – в отличие от сходимости по вероятности. По той же причине вместо предельной случайной величины можно указывать сразу предельное распределение и писать, например, <span class="math inline">\(\xi_n \xrightarrow [n \to \infty ]{d} \mathscr {N}\left(0, 1\right)\)</span> (так мы и сделаем в ЦПТ).</p>
+<div id="prob-6" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Правда ли, что из сходимости по распределению следует сходимость матожиданий? А именно, <span class="math display">\[
+  \xi _n \xrightarrow [n \to \infty ]{d} \xi \quad \stackrel{?}{\;  \Rightarrow \; } \quad \mathbb {E}\left[\xi _n\right] \xrightarrow [n \to \infty ]{} \mathbb {E}\left[\xi \right]  
+\]</span> Докажите, если это верно. Если это неверно – приведите контрпример.</p>
+<div class="callout callout-style-default callout-hint no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hint</span>Подсказка
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Рассмотрите в качестве <span class="math inline">\(\xi\)</span> нулевую константу: <span class="math inline">\(\xi \equiv 0\)</span>. Проверьте, обязательно ли в этом случае будет сходимость <span class="math inline">\(\mathbb {E}\left[\xi_n\right] \to 0\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="prob-7" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 5
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(\xi_n\)</span> равномерно распределена на <span class="math inline">\(\{ 1,2,\dots ,n\}\)</span>: <span class="math inline">\(\xi_n \sim \operatorname {Unif}\left\{ 1,\ldots ,n\right\}\)</span>. Пусть <span class="math inline">\(\eta_n = \frac{\xi_n}{n}\)</span>. Сходится ли последовательность <span class="math inline">\(\eta_1, \eta_2, \ldots\)</span> по распределению?</p>
+</div>
+</div>
+</div>
+</section>
+<section id="связь-двух-сходимостей" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="связь-двух-сходимостей"><span class="header-section-number">3.3</span> Связь двух сходимостей</h2>
+<div class="callout callout-style-simple callout-mn-lem no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="lem-lemma:P_vs_d" class="lemma theorem">
+<p><span class="theorem-title"><strong>Лемма 1</strong></span> Пусть <span class="math inline">\(\xi , \xi_1, \xi_2, \ldots\)</span> – это случайные величины на одном вероятностном пространстве. Тогда <span class="math display">\[
+  \xi _n \xrightarrow [n \to \infty ]{\mathbb {P}} \xi \quad \;  \Rightarrow \;  \quad \xi _n \xrightarrow [n \to \infty ]{d} \xi  
+\]</span> Обратное в общем случае неверно (см. задачи ниже). Однако если предел – константа <span class="math inline">\(c \in \mathbb {R}\)</span> (точнее, случайная величина, тождественно равная <span class="math inline">\(c\)</span>), то сходимости эквивалентны: <span class="math display">\[
+  \xi _n \xrightarrow [n \to \infty ]{\mathbb {P}} c \quad \iff \quad \xi _n \xrightarrow [n \to \infty ]{d} c  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-8" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Докажите вторую часть леммы в сторону <span class="math inline">\(\Leftarrow\)</span>: если <span class="math inline">\(\xi_n \xrightarrow [n \to \infty ]{d} c\)</span>, то <span class="math inline">\(\xi_n \xrightarrow [n \to \infty ]{\mathbb {P}} c\)</span>.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Функция распределения константы: <span class="math inline">\(F_c(x) = \; \mathbb {1}_{x \geq c}\)</span>. Она непрерывна во всех точках, кроме <span class="math inline">\(x = c\)</span>. Пусть <span class="math inline">\(\varepsilon &gt; 0\)</span> – произвольное. Точки <span class="math inline">\(c - \varepsilon\)</span> и <span class="math inline">\(c + \frac{\varepsilon }{2}\)</span> отличны от <span class="math inline">\(c\)</span>, т.е. являются точками непрерывности <span class="math inline">\(F_c\)</span>, следовательно в них есть сходимость функций распределения. Имеем <span class="math display">\[
+\begin{align}  \mathbb {P}\left(\left|\xi _n - c\right| \geq \varepsilon \right) &amp; = \mathbb {P}\left(\xi _n \leq c - \varepsilon \right) + \mathbb {P}\left(\xi _n \geq c + \varepsilon \right) \leq F_{\xi _n}(c-\varepsilon ) + 1 - F_{\xi _n}\left(c + \tfrac {\varepsilon }{2}\right) \xrightarrow [n \to \infty ]{} \\ &amp; \xrightarrow [n \to \infty ]{} F_c(c - \varepsilon ) + 1 - F_c\left(c + \tfrac {\varepsilon }{2}\right) = 0 + 1 - 1 = 0 \end{align}
+\]</span> Пояснение к неравенству: <span class="math inline">\(\mathbb {P}\left(\xi_n \geq c + \varepsilon \right) \leq \mathbb {P}\left(\xi_n &gt; c + \frac{\varepsilon }{2}\right) = 1 - F_{\xi_n}\left(c + \frac{\varepsilon }{2}\right)\)</span>. ЧТД.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="prob-9" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 6
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-20" class="callout-20-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(\xi_n \sim \mathrm{Ber}\! \left(\tfrac {1}{n}\right)\)</span>. Сходится ли (к какой-то случайной величине) последовательность <span class="math inline">\(\xi_1, \xi_2, \ldots\)</span> по распределению? А по вероятности?</p>
+</div>
+</div>
+</div>
+<div id="prob-10" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 7
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-21" class="callout-21-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(\Omega = \left\{ \omega_1, \omega_2, \omega_3\right\}\)</span> с классической вероятностью (<span class="math inline">\(\mathbb {P}\left(\omega_i\right) = \frac{1}{3}\)</span>). Определим случайные величины <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th><span class="math inline">\(\omega _1\)</span></th>
+<th><span class="math inline">\(\omega _2\)</span></th>
+<th><span class="math inline">\(\omega _3\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(X\)</span></td>
+<td><span class="math inline">\(1\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(Y\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(1\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Пусть <span class="math inline">\(\xi_{2n-1} = X\)</span>, <span class="math inline">\(\xi_{2n} = Y\)</span> для <span class="math inline">\(n \in \mathbb {N}\)</span>. Сходится ли (к какой-то случайной величине) последовательность <span class="math inline">\(\xi_1, \xi_2, \ldots\)</span> по распределению? А по вероятности?</p>
+</div>
+</div>
+</div>
+</section>
+<section id="взгляд-вперёд-сходимость-на-языке-мер-необязательное" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="взгляд-вперёд-сходимость-на-языке-мер-необязательное"><span class="header-section-number">3.4</span> Взгляд вперёд: сходимость на языке мер (необязательное)</h2>
+<p>сходимость распределений как мерweak-convergence Определение сходимости по распределению через функции распределения – рабочее, но выглядит привязанным к прямой <span class="math inline">\(\mathbb {R}\)</span>: в <span class="math inline">\(\mathbb {R}^{n}\)</span> и тем более в бесконечномерных пространствах функций распределения в привычном виде нет, а сходимость распределений определять нужно. &lt;&lt;Правильное&gt;&gt; определение формулируется на языке самих распределений, т.е. вероятностных <strong>мер</strong>, и опирается на понятия, которые мы строго введём лишь в главах <a href="../../../../courses/04-probability/01_MT/contents/040_systems_of_sets.html#sec-ch:systems_of_sets">о системах множеств и борелевской сигма-алгебре</a>–<a href="../../../../courses/04-probability/01_MT/contents/070_complete_measure.html#sec-ch:lebesgue_measure">о мере Лебега</a> (борелевские множества, мера на сигма-алгебре). Этот подраздел – необязательный анонс: при первом чтении его можно пропустить и вернуться после глав о теории меры.</p>
+<p>Предположим, у нас есть последовательность распределений (вероятностных мер) <span class="math inline">\(\mathbf{P}_1, \mathbf{P}_2, \ldots\)</span> на <span class="math inline">\((\mathbb {R}, \mathscr {B}\left(\mathbb {R}\right))\)</span>. Говорят, что эта последовательность <em><a href="https://en.wikipedia.org/wiki/Convergence_of_measures#Setwise_convergence_of_measures">сильно сходится</a></em> (или <em>сходится помножественно</em>, т.е. сходится на каждом множестве) к распределению <span class="math inline">\(\mathbf{P}\)</span>, если</p>
+<p><span class="math display">\[
+  \mathbf{P}_{n}\left(B\right) \xrightarrow [n \to \infty ]{} \mathbf{P}\left(B\right), \quad \forall B \in \mathscr {B}\left(\mathbb {R}\right)  
+\]</span></p>
+<p>Обозначение:</p>
+<p><span class="math display">\[
+  \mathbf{P}_n \xrightarrow [n \to \infty ]{s} \mathbf{P},  
+\]</span></p>
+<p>от англ. <em>strong</em> (сильный).</p>
+<p>Сильная сходимость не очень удобна. Например, если <span class="math inline">\(\mathbf{P}_n = \delta_{1/n}\)</span>, т.е. это единичные массы в точках <span class="math inline">\(\frac{1}{n}\)</span>, то такая последовательность сильно никуда не сходится, в частности, она не сходится к <span class="math inline">\(\delta_0\)</span>. Действительно, если взять <span class="math inline">\(B = \left\{ 0\right\}\)</span>, то</p>
+<p><span class="math display">\[
+  \delta _{1/n}(\left\{ 0\right\} ) = 0 \not\to 1 = \delta _{0}(\left\{ 0\right\} )  
+\]</span></p>
+<p>при <span class="math inline">\(n \to \infty\)</span>. (Сравните с примером <span class="math inline">\(\xi_n \equiv \frac{1}{n}\)</span> выше: это те же самые распределения!) В связи с этим вводят <em>слабую сходимость</em>. Говорят, что <span class="math inline">\(\mathbf{P}_1, \mathbf{P}_2, \ldots\)</span> <em><a href="https://en.wikipedia.org/wiki/Convergence_of_measures#Weak_convergence_of_measures">слабо сходятся</a></em> к <span class="math inline">\(\mathbf{P}\)</span>, если</p>
+<p><span class="math display">\[
+  \mathbf{P}_{n}\left(B\right) \xrightarrow [n \to \infty ]{} \mathbf{P}\left(B\right), \quad \forall B \in \mathscr {B}\left(\mathbb {R}\right), \;  \mathbf{P}\left(\partial B\right) = 0  
+\]</span></p>
+<p>Отличие от сильной сходимости в том, что теперь мы должны проверять сходимость не на всех борелевских множествах, но только на т.н. <em>множествах непрерывности</em> для <span class="math inline">\(\mathbf{P}\)</span>, т.е. на таких множествах, предельная мера границы которых равна <span class="math inline">\(0\)</span>. Обозначение:</p>
+<p><span class="math display">\[
+  \mathbf{P}_n \xrightarrow [n \to \infty ]{w} \mathbf{P},  
+\]</span></p>
+<p>от англ. <em>weak</em> (слабый).</p>
+<div id="prob-11" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 8
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-22" class="callout-22-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Докажите, что <span class="math display">\[
+  \delta _{1/n} \xrightarrow [n \to \infty ]{w} \delta _0  
+\]</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-2" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 1 (Эквивалентные формулировки слабой сходимости, б/д)</strong></span> Следующие условия эквивалентны:</p>
+<ul>
+<li><p><span class="math inline">\(\mathbf{P}_{n} \xrightarrow [n \to \infty ]{w} \mathbf{P}\)</span>;</p></li>
+<li><p><span class="math inline">\(\int f \;  \mathrm{d}\mathbf{P}_n \to \int f \;  \mathrm{d} \mathbf{P}\)</span> для любой <strong>непрерывной</strong>, <strong>ограниченной</strong> функции <span class="math inline">\(f: \mathbb {R} \to \mathbb {R}\)</span>;</p></li>
+<li><p><span class="math inline">\(F_{\mathbf{P}_n}(x) \to F_{\mathbf{P}}(x)\)</span> для любой точки <span class="math inline">\(x \in \mathbb {R}\)</span>, в которой <span class="math inline">\(F_{\mathbf{P}}\)</span> непрерывна.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p>Интегралы во втором пункте – это интегралы Лебега по мерам <span class="math inline">\(\mathbf{P}_n\)</span>, <span class="math inline">\(\mathbf{P}\)</span>; их мы построим в главе&nbsp;<a href="../../../../courses/04-probability/01_MT/contents/100_Lebesgue_integral.html#sec-ch:lebesgue_integral">о построении интеграла Лебега</a>. Обратите внимание на третий пункт: именно его мы приняли выше за <strong>определение</strong> сходимости по распределению. Т.е. наша &lt;&lt;элементарная&gt;&gt; сходимость через функции распределения – это в точности слабая сходимость распределений:</p>
+<p><span class="math display">\[
+  \xi _{n} \xrightarrow [n \to \infty ]{d} \xi \quad \iff \quad \mathbf{P}_{\xi _n} \xrightarrow [n \to \infty ]{w} \mathbf{P}_{\xi }  
+\]</span></p>
+<p>На языке случайных величин теорема выше переписывается так.</p>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-3" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 2 (Эквивалентные формулировки сходимости по распределению, б/д)</strong></span> Следующие условия эквивалентны:</p>
+<ul>
+<li><p><span class="math inline">\(\xi_{n} \xrightarrow [n \to \infty ]{d} \xi\)</span>;</p></li>
+<li><p><span class="math inline">\(\mathbb {E}\left[f(\xi_n)\right] \to \mathbb {E}\left[f(\xi )\right]\)</span> для любой <strong>непрерывной</strong>, <strong>ограниченной</strong> функции <span class="math inline">\(f: \mathbb {R} \to \mathbb {R}\)</span>;</p></li>
+<li><p><span class="math inline">\(F_{\xi_n}(x) \to F_{\xi }(x)\)</span> для любой точки <span class="math inline">\(x \in \mathbb {R}\)</span>, в которой <span class="math inline">\(F_{\xi }\)</span> непрерывна.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="предельные-теоремы" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Предельные теоремы</h1>
+<section id="закон-больших-чисел" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="закон-больших-чисел"><span class="header-section-number">4.1</span> Закон больших чисел</h2>
+<p>Пусть даны <span class="math inline">\(\xi_1, \xi_2, \ldots\)</span> – независимые одинаково распределенные случайные величины (сокращенно <em>НОРСВ</em>) с матожиданием <span class="math inline">\(\mu := \mathbb {E}\left[\xi_1\right]\)</span>. Закон больших чисел (ЗБЧ) обуславливает сходимость их среднего арифметического <span class="math inline">\(\frac{S_n}{n}\)</span> к <span class="math inline">\(\mu\)</span>, где <span class="math inline">\(S_n = \xi_1 + \ldots + \xi_n\)</span>.</p>
+<p>Есть много разных вариантов ЗБЧ. Мы сформулируем ЗБЧ в самой простой формулировке.</p>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-4" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 3 (ЗБЧ)</strong></span> Пусть <span class="math inline">\(X_1, X_2, \ldots\)</span> – это НОРСВ с конечным вторым моментом (т.е. дисперсия <span class="math inline">\(\operatorname {Var}\left[X_1\right] = \sigma^2 &lt; \infty\)</span> существует), пусть <span class="math inline">\(\mu := \mathbb {E}\left[X_1\right]\)</span>. Тогда <span class="math display">\[
+  \frac{1}{n}S_n \xrightarrow [n \to \infty ]{d, \mathbb {P}} \mu .  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p>Статус честности: ЗБЧ мы сейчас докажем полностью строго – с той оговоркой, что свойства матожидания и дисперсии, используемые в доказательстве (линейность, дисперсия суммы независимых), мы обосновали пока только для дискретных распределений (см. долг&nbsp;@debt:expectation). После главы&nbsp;<a href="../../../../courses/04-probability/01_MT/contents/100_Lebesgue_integral.html#sec-ch:integral_properties">о свойствах интеграла Лебега</a> доказательство станет честным в полной общности – ни одна его строчка при этом не изменится.</p>
+<p>Для доказательства нам понадобятся следующие известные оценки.</p>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-5" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 4 (Неравенство Маркова)</strong></span> Пусть <span class="math inline">\(Y \geq 0\)</span> и <span class="math inline">\(\mathbb {E}\left[Y\right] &lt; \infty\)</span>. Тогда для любого <span class="math inline">\(a &gt; 0\)</span> <span class="math display">\[
+  \mathbb {P}(Y \geq a) \leq \frac{\mathbb {E}\left[Y\right]}{a}.  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-6" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 5 (Неравенство Чебышева)</strong></span> Пусть <span class="math inline">\(Y\)</span> имеет конечное матожидание <span class="math inline">\(\mu\)</span> и дисперсию <span class="math inline">\(\sigma^2\)</span>. Тогда для любого <span class="math inline">\(\varepsilon &gt; 0\)</span> <span class="math display">\[
+  \mathbb {P}\big(|Y - \mu | \geq \varepsilon \big) \leq \frac{\sigma ^2}{\varepsilon ^2}.  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p>Оба неравенства будут доказаны в общем виде в главе&nbsp;<a href="../../../../courses/04-probability/01_MT/contents/100_Lebesgue_integral.html#sec-ch:integral_properties">о свойствах интеграла Лебега</a>, когда матожидание станет интегралом Лебега. Для дискретных случайных величин, впрочем, всё доказывается уже сейчас.</p>
+<div id="prob-12" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 9
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Докажите неравенство Маркова для дискретной случайной величины <span class="math inline">\(Y \geq 0\)</span>. Затем выведите из него неравенство Чебышева, применив неравенство Маркова к случайной величине <span class="math inline">\((Y - \mu )^2\)</span>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-proof no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Mn-proof</span>Доказательство
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="доказательство-збч" class="level2 mn-proof-body" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="доказательство-збч"><span class="header-section-number">4.2</span> Доказательство ЗБЧ</h2>
+<p>Рассмотрим <span class="math inline">\(\frac{1}{n}S_n = \frac{1}{n}\sum_{k=1}^n X_k\)</span>. По линейности матожидания имеем <span class="math display">\[
+  \mathbb {E}\left[\frac{1}{n}S_n\right] = \mu .  
+\]</span> Найдём дисперсию: <span class="math display">\[
+  \operatorname {Var}\left[\frac{1}{n}S_n\right] = \frac{1}{n^2}\operatorname {Var}\left[\sum _{k=1}^n X_k\right]  
+\]</span> Так как <span class="math inline">\(X_k\)</span> независимы и одинаково распределены, <span class="math display">\[
+  \operatorname {Var}\left[\sum _{k=1}^n X_k\right] = n \cdot \operatorname {Var}\left[X_1\right] = n\sigma ^2.  
+\]</span> Следовательно, <span class="math display">\[
+  \operatorname {Var}\left[\frac{1}{n}S_n\right] = \frac{\sigma ^2}{n}.  
+\]</span> По неравенству Чебышева для любого <span class="math inline">\(\varepsilon &gt; 0\)</span>: <span class="math display">\[
+  \mathbb {P}\! \left(\left|\frac{1}{n}S_n - \mu \right| \geq \varepsilon \right) \leq \frac{\operatorname {Var}\left[\frac{1}{n}S_n\right]}{\varepsilon ^2} = \frac{1}{n^2} \cdot \frac{\operatorname {Var}\left[S_n\right]}{\varepsilon ^2} = \frac{1}{n^2} \cdot \frac{n \sigma ^2}{\varepsilon ^2} = \frac{\sigma ^2}{n\varepsilon ^2}.  
+\]</span> Правая часть стремится к <span class="math inline">\(0\)</span> при <span class="math inline">\(n \to \infty\)</span>, откуда следует, что <span class="math display">\[
+  \frac{1}{n}S_n \xrightarrow {\mathbb {P}} \mu .  
+\]</span> Так как предел константа, то имеем также сходимость по распределению. Теорема доказана.</p>
+</section>
+</div>
+</div>
+</div>
+<p>Заметим, что некоторые условия из ЗБЧ можно ослабить.</p>
+<ul>
+<li><p>Вместо независимости требовать некоррелированность. Действительно, независимость нам была нужна, чтобы представить дисперсию суммы как сумму дисперсий. Но для этого достаточно попарной некоррелированности.</p></li>
+<li><p>Вместо одинаковой распределенности требовать, чтобы</p>
+<ul>
+<li><p>матожидания сходились к какой-то константе <span class="math inline">\(\mu\)</span>: <span class="math inline">\(\mathbb {E}\left[X_n\right] \to \mu\)</span> при <span class="math inline">\(n \to \infty\)</span></p></li>
+<li><p>дисперсии были равномерно ограниченны: существует <span class="math inline">\(M &gt; 0\)</span>, такое что <span class="math inline">\(\operatorname {Var}\left[X_n\right] \leq M\)</span> для всех <span class="math inline">\(n \in \mathbb {N}\)</span></p></li>
+</ul>
+<p>(проверьте самостоятельно, что это действительно так)</p></li>
+<li><p>Если формулировать ЗБЧ как</p>
+<p><span class="math display">\[
+  \frac{1}{n} \left(S_n - \mathbb {E}\left[S_n\right]\right) \xrightarrow [n \to \infty ]{d,\mathbb {P}} 0  
+\]</span></p>
+<p>то вместо <span class="math inline">\(\frac{1}{n}\)</span> можно брать <span class="math inline">\(\frac{1}{n^{\alpha }}\)</span>, <span class="math inline">\(\alpha &gt; 0.5\)</span> – произвольное.</p></li>
+</ul>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-7" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 6 (ЗБЧ, более общая формулировка)</strong></span> Пусть <span class="math inline">\(X_1, X_2, \ldots\)</span> – это некоррелированные случайные величины с конечным вторым моментом. Пусть дисперсии равномерно ограниченны: существует <span class="math inline">\(M &gt; 0\)</span>, такое что <span class="math inline">\(\operatorname {Var}\left[X_i\right] \leq M\)</span> для всех <span class="math inline">\(i\)</span>. Тогда <span class="math display">\[
+  \frac{1}{n^\alpha }\left(S_n - \mathbb {E}\left[S_n\right]\right) \xrightarrow [n \to \infty ]{d, \mathbb {P}} 0  
+\]</span> для произвольного <span class="math inline">\(\alpha &gt; 0.5\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-proof no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Mn-proof</span>Доказательство
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="mn-proof-body">
+<p>Пусть <span class="math inline">\(Y_i = X_i - \mathbb {E}\left[X_i\right]\)</span>. Тогда <span class="math inline">\(\mathbb {E}\left[Y_i\right] = 0\)</span>, <span class="math inline">\(\operatorname {Var}\left[Y_i\right] = \operatorname {Var}\left[X_i\right]\)</span>, <span class="math display">\[
+  S_n - \mathbb {E}\left[S_n\right] = \sum _{i=1}^n X_i - \mathbb {E}\left[\sum _{i=1}^n X_i \right] = \sum _{i=1}^n Y_i  
+\]</span> Далее, по неравенству Чебышева, <span class="math display">\[
+\begin{align}  \mathbb {P}\left(\left|\frac{1}{n^{\alpha }}\left(S_n - \mathbb {E}\left[S_n\right]\right) \right| &gt; \varepsilon \right) &amp; = \mathbb {P}\left(\left|\frac{1}{n^{\alpha }}\sum _{i=1}^n Y_i\right| &gt; \varepsilon \right) \leq \frac{1}{n^{2\alpha }} \cdot \frac{\operatorname {Var}\left[\sum _{1}^n Y_i\right]}{\varepsilon ^2} = \frac{1}{n^{2\alpha }} \cdot \frac{\sum _{1}^n\operatorname {Var}\left[ Y_i\right]}{\varepsilon ^2} \leq \\ &amp; \leq \frac{M}{n^{2\alpha - 1} \varepsilon ^2} \to 0 \end{align}
+\]</span> Дисперсия суммы распалась в сумму дисперсий благодаря некоррелированности.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="prob-13" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 10
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-26" class="callout-26-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть случайная величина <span class="math inline">\(\eta_{n}\)</span> равна сумме очков, появившихся при <span class="math inline">\(n\)</span> бросаниях симметричной игральной кости. Найдите предел по вероятности для <span class="math inline">\(\frac{\eta_{n}}{n}\)</span>.</p>
+</div>
+</div>
+</div>
+<div id="prob-14" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 11
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-27" class="callout-27-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Для независимых случайных величин <span class="math inline">\(\xi_{1}, \xi_{2}, \ldots \sim \operatorname {Bern}(p)\)</span> обозначим через <span class="math inline">\(\eta_{n}\)</span> количество таких <span class="math inline">\(i\)</span> от 1 до <span class="math inline">\(n\)</span>, что <span class="math inline">\(\xi_{i} = \xi_{i+1} = 1\)</span>. Найдите предел по вероятности для <span class="math inline">\(\frac{\eta_{n}}{n}\)</span>.</p>
+</div>
+</div>
+</div>
+<div id="prob-15" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 12
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-28" class="callout-28-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Случайные величины <span class="math inline">\(\xi_{1}, \xi_{2}, \ldots\)</span> независимы, <span class="math inline">\(\mathbb {E}\left[\xi_{k}\right] = a, \operatorname {Var}\left[\xi_{k}\right] = \sigma^{2} &lt; \infty , k \in \mathbb {N}\)</span>. Пусть <span class="math display">\[
+  \zeta _{n} = \sum _{1 \leqslant i &lt; j \leqslant n} \xi _{i} \xi _{j} .  
+\]</span> Найдите предел по вероятности для <span class="math inline">\(\frac{\zeta_{n}}{n^{2}}\)</span>.</p>
+</div>
+</div>
+</div>
+<div id="prob-16" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 13
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-29" class="callout-29-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Последовательность <span class="math inline">\(\xi_{1}, \xi_{2}, \ldots\)</span> состоит из независимых одинаково распределённых случайных величин, <span class="math inline">\(\mathbb {E}\left[\xi_{n}\right] = 0, \operatorname {Var}\left[\xi_{n}\right] = \sigma^{2} &lt; \infty , n \in \mathbb {N}\)</span>. Удовлетворяют ли ЗБЧ последовательности случайных величин</p>
+<ol type="1">
+<li><p><span class="math inline">\(\zeta_{n} = \xi_{n}+\xi_{n+1}\)</span>?</p></li>
+<li><p><span class="math inline">\(\eta_{n} = \sum_{k = 0}^{\left[n^{\frac{1}{3}}\right]} \xi_{n+k}\)</span>?</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="prob-17" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 14
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-30" class="callout-30-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Последовательность <span class="math inline">\(\xi_{1}, \xi_{2}, \ldots\)</span> образована независимыми случайными величинами <span class="math display">\[
+  \mathbb {E}\left[\xi _{n}\right] = 0, \quad \operatorname {Var}\left[\xi _{n}\right] = C \cdot n^{\alpha }, \quad C &gt; 0, \quad \alpha \geqslant 0, \quad n \in \mathbb {N} .  
+\]</span> При каких значениях <span class="math inline">\(\alpha\)</span> последовательность <span class="math inline">\(\xi_{1}, \xi_{2}, \ldots\)</span> удовлетворяет ЗБЧ и при каких значениях <span class="math inline">\(\alpha\)</span> может не удовлетворять?</p>
+</div>
+</div>
+</div>
+</section>
+<section id="центральная-предельная-теорема" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="центральная-предельная-теорема"><span class="header-section-number">4.3</span> Центральная предельная теорема</h2>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-8" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 7</strong></span> Пусть <span class="math inline">\(X_1, X_2, \ldots\)</span> – квадратично интегрируемые НОРСВ. Пусть <span class="math inline">\(\mu = \mathbb {E}\left[X_1\right]\)</span>, <span class="math inline">\(\sigma^2 = \operatorname {Var}\left[X_1\right]\)</span>. Тогда <span class="math display">\[
+  \frac{S_n - n\mu }{\sqrt{n}\sigma } \xrightarrow [n \to \infty ]{d} \mathscr {N}\left(0, 1\right)  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p>Центрируем и нормируем <span class="math inline">\(X_i\)</span>: <span class="math inline">\(Y_i := \frac{X_i - \mu }{\sigma }\)</span> (тогда <span class="math inline">\(\mathbb {E}\left[Y_i\right] = 0\)</span>, <span class="math inline">\(\operatorname {Var}\left[Y_i\right] = 1\)</span>). Тогда для <span class="math inline">\(\tilde{S}_n = Y_1 + \ldots + Y_n\)</span> ЦПТ будет выглядеть так:</p>
+<p><span class="math display">\[
+  \frac{\tilde{S}_n}{\sqrt{n}} \xrightarrow [n \to \infty ]{d} \mathscr {N}\left(0, 1\right)  
+\]</span></p>
+<p>Отличие ЦПТ от ЗБЧ в том, что в ЗБЧ сумма <span class="math inline">\(S_n\)</span> скалируется на <span class="math inline">\(n\)</span>, а в ЦПТ на <span class="math inline">\(\sqrt{n}\)</span>.</p>
+<p>Статус честности: ЦПТ мы принимаем <strong>без доказательства</strong>, причём этот долг будет возвращён не в нашем курсе, а в следующем – в курсе теории вероятностей. Стандартное доказательство использует аппарат <em>характеристических функций</em>, который сам строится на интеграле Лебега (глава&nbsp;<a href="../../../../courses/04-probability/01_MT/contents/100_Lebesgue_integral.html#sec-ch:lebesgue_integral">о построении интеграла Лебега</a>) от комплекснозначных функций. Здесь ЦПТ для нас – витрина: она показывает, ради каких результатов возводится вся машинерия второй части курса. Отметим также, что предельный объект – нормальное распределение <span class="math inline">\(\mathscr {N}\left(0, 1\right)\)</span> – это распределение с плотностью, т.е. строго определить его мы сможем тоже только после построения интеграла (см. долг&nbsp;@debt:densities); пока понимаем <span class="math inline">\(\Phi (x)\)</span> как &lt;&lt;площадь под колоколом Гаусса от <span class="math inline">\(-\infty\)</span> до <span class="math inline">\(x\)</span>&gt;&gt; в смысле интеграла Римана.</p>
+<p>Неформально: если нам дана последовательность НОРСВ <span class="math inline">\(X_1,X_2, \ldots\)</span> с матожиданием <span class="math inline">\(\mu\)</span> и дисперсией <span class="math inline">\(\sigma^2\)</span>, то</p>
+<p><span class="math display">\[
+  \operatorname {Law}(S_n) = \mathbf{P}_{S_n} \approx \mathscr {N}\left(n\mu , n\sigma ^2\right)  
+\]</span></p>
+<p>где <span class="math inline">\(\operatorname {Law}(S_n)\)</span>, <span class="math inline">\(\mathbf{P}_{S_n}\)</span> – различные обозначения распределения <span class="math inline">\(S_n = X_1 + X_2 + \ldots + X_n\)</span>.</p>
+<div id="expl-18" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-33" class="callout-33-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>По схеме выбора с возвращением выбирается <span class="math inline">\(10000\)</span> случайных цифр. Найти приближенное значение вероятности того, что выбрано от <span class="math inline">\(940\)</span> до <span class="math inline">\(1060\)</span> девяток.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-31" class="callout-31-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Рассмотрим <span class="math inline">\(n=10000\)</span> независимых случайных величин <span class="math inline">\(\xi_{1}, \ldots , \xi_{n}\)</span>, распределенных по Бернулли с параметром <span class="math inline">\(0.1\)</span>. Имеем <span class="math inline">\(\mathbb {E}\left[\xi_1\right] = \mu = \frac{1}{10}\)</span>, <span class="math inline">\(\operatorname {Var}\left[\xi_1\right]= \sigma^2 = \frac{9}{100}\)</span>. По ЦПТ:</p>
+<p><span class="math display">\[
+  \frac{S_n - n\mu }{\sqrt{n}\sigma } = \frac{S_{10000} - 1000}{30} \stackrel{d}{\approx } \mathscr {N}\left(0, 1\right)  
+\]</span></p>
+<p>Следовательно,</p>
+<p><span class="math display">\[
+\begin{align}  \mathbb {P}\left(940 \leq S_{10000} \leq 1060\right) = \mathbb {P}\left(-2 \leq \frac{S_{10000} - 1000}{30} \leq 2\right) \approx \mathbb {P}\left(-2 \leq \eta \leq 2\right) = \Phi (2) - \Phi (-2) , \end{align}
+\]</span></p>
+<p>где <span class="math inline">\(\eta \sim \mathscr {N}\left(0, 1\right)\)</span>, а <span class="math inline">\(\Phi\)</span> – функция распределения стандартного нормального распределения.</p>
+<p>Заметим, что поскольку распределение <span class="math inline">\(\mathscr {N}\left(0, 1\right)\)</span> симметрично относительно нуля, <span class="math inline">\(\Phi (x) + \Phi (-x) = 1\)</span>, т.е.</p>
+<p><span class="math display">\[
+  \Phi (2) - \Phi (-2) =2\Phi (2) - 1.  
+\]</span></p>
+<p>Найти значение <span class="math inline">\(\Phi (2)\)</span> можно, например, <a href="https://homepage.divms.uiowa.edu/~mbognar/applets/normal.html">здесь</a>. Имеем <span class="math inline">\(\Phi (2) \approx 0.97725\)</span>, следовательно <span class="math inline">\(2\Phi (2) - 1\approx 0.9545 = 95.45\%\)</span>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Ответ
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-32" class="callout-32-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(0.9545\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="prob-19" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-34-contents" aria-controls="callout-34" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 15
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-34" class="callout-34-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Вы пригласили на вечеринку 64 гостя. Вам нужно приготовить бутерброды. Вы считаете, что гостю может понадобиться 0, 1 или 2 бутерброда с вероятностями <span class="math inline">\(1/4\)</span>, <span class="math inline">\(1/2\)</span> и <span class="math inline">\(1/4\)</span> соответственно. Вы предполагаете, что количество бутербродов, необходимое каждому гостю, не зависит от аппетита других гостей. Сколько бутербродов нужно приготовить, чтобы иметь 95-процентную уверенность, что всем хватит?</p>
+</div>
+</div>
+</div>
+<div id="prob-20" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-35-contents" aria-controls="callout-35" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 16
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-35" class="callout-35-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Покажите, что если нарушается условие независимости, то ЦПТ может не выполняться.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="закон-редких-событий" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="закон-редких-событий"><span class="header-section-number">4.4</span> Закон редких событий</h2>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-9" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 8 (Предельная теорема Пуассона, закон редких событий)</strong></span> Пусть <span class="math inline">\(X_1, X_2, \ldots , X_n, \ldots\)</span> – случайные величины , имеющие распределение <span class="math inline">\(\operatorname {Bin}(n, p_n)\)</span>, причем с ростом <span class="math inline">\(n\)</span> вероятность успеха падает со скоростью <span class="math inline">\(\frac{1}{n}\)</span>: найдется такое <span class="math inline">\(\lambda &gt; 0\)</span>, что <span class="math inline">\(p_n \sim \frac{\lambda }{n}\)</span> при <span class="math inline">\(n \to \infty\)</span>. Эквивалентно: <span class="math inline">\(np_n \xrightarrow [n \to \infty ]{} \lambda\)</span>. Эквивалентно: <span class="math inline">\(\mathbb {E}\left[X_n\right] \xrightarrow [n \to \infty ]{} \lambda\)</span>. Тогда <span class="math display">\[
+  X_n \xrightarrow [n \to \infty ]{d}\operatorname {Pois}(\lambda )  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p>Теорема Пуассона кратко:</p>
+<p><span class="math display">\[
+  \operatorname {Bin}(n,p_n) \xrightarrow [n \to \infty ]{w} \operatorname {Pois}(\lambda ) \quad \text{ если } \lambda := \lim _{n \to \infty }np_n &gt; 0  
+\]</span></p>
+<p>Статус честности: в отличие от ЦПТ, закон редких событий полностью доказуем уже сейчас, элементарными средствами – это единственная предельная теорема этой главы, у которой долгов нет вовсе.</p>
+<div id="prob-21" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-37-contents" aria-controls="callout-37" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 17
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-37" class="callout-37-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Докажите предельную теорему Пуассона.</p>
+<div class="callout callout-style-default callout-hint no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-36-contents" aria-controls="callout-36" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hint</span>Подсказка
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-36" class="callout-36-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Сначала докажите поточечную сходимость функций масс: <span class="math inline">\(\mathbb {P}\left(X_n = k\right) \to \frac{\lambda^k}{k!}e^{-\lambda }\)</span> для каждого фиксированного <span class="math inline">\(k \in \mathbb {Z}_+\)</span>. Затем объясните, почему для целочисленных случайных величин отсюда следует сходимость функций распределения в каждой точке.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="цпт-vs-зрс" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="цпт-vs-зрс"><span class="header-section-number">4.5</span> ЦПТ VS ЗРС</h2>
+<p>Рассмотрим распределение <span class="math inline">\(\operatorname {Bin}(n,p)\)</span>. В каких случаях использовать аппроксимацию из ЦПТ, а в каких из ЗРС? При сравнительно большом <span class="math inline">\(\lambda := np\)</span> (обычно при <span class="math inline">\(\lambda &gt; 9\)</span>) для аппроксимации <span class="math inline">\(\operatorname {Bin}(n,p)\)</span> используется нормальное распределение:</p>
+<p><span class="math display">\[
+  \operatorname {Bin}(n,p) \approx \mathscr {N}\left(np, np(1-p)\right)  
+\]</span></p>
+<p>При малых <span class="math inline">\(\lambda = np\)</span> (<span class="math inline">\(\lambda &lt; 9\)</span>) для аппроксимации можно использовать пуассоновское распределение:</p>
+<p><span class="math display">\[
+  \operatorname {Bin}(n,p) \approx \operatorname {Pois}(\lambda )  
+\]</span></p>
+<div id="expl-22" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-42-contents" aria-controls="callout-42" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 5
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-42" class="callout-42-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Известно, что левши составляют в среднем <span class="math inline">\(1 \%\)</span>. Оценить вероятность того, что по меньшей мере четверо левшей окажется среди</p>
+<ol type="1">
+<li><p><span class="math inline">\(200\)</span> человек;</p></li>
+<li><p><span class="math inline">\(10000\)</span> человек;</p></li>
+</ol>
+<div class="callout callout-style-default callout-hint no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-38-contents" aria-controls="callout-38" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hint</span>Подсказка
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-38" class="callout-38-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Используйте ЦПТ или закон редких событий</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-41-contents" aria-controls="callout-41" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-41" class="callout-41-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>1.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(n = 200\)</span>, <span class="math inline">\(p = 0.01\)</span>, <span class="math inline">\(\lambda = np = 2\)</span>. Так как <span class="math inline">\(\lambda\)</span> мало, используем приближение Пуассона:</p>
+<p><span class="math display">\[
+  \mathbf{P}\left\{ S_{200} \geq 4\right\}  = 1 - \mathbf{P}\left\{ S_{200} \leq 3\right\}  \approx 1 - e^{-2}\left(1 + 2 + \frac{2^2}{2!} + \frac{2^3}{3!}\right) = 1 - e^{-2}(1 + 2 + 2 + 1.\overline{3}) \approx 1 - 0.857 \approx 0.143.  
+\]</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>2.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(n = 10000\)</span>, <span class="math inline">\(p = 0.01\)</span>, <span class="math inline">\(\lambda = np = 100\)</span>. Используем нормальное приближение:</p>
+<p><span class="math display">\[
+  \mathbf{P}\left\{ S_{10000} \geq 4\right\}  \approx 1 - \Phi \left(\frac{4 - 100}{\sqrt{100 \cdot 0.99}}\right) \approx 1 - \Phi (-9.6) \approx 1.  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="prob-23" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-43-contents" aria-controls="callout-43" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 18
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-43" class="callout-43-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Вероятность попадания в цель при одном выстреле равна 0,001. Для поражения цели необходимо не менее двух попаданий. Произведено 5000 выстрелов. Найти вероятность поражения цели.</p>
+</div>
+</div>
+</div>
+<div id="prob-24" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-44-contents" aria-controls="callout-44" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 19
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-44" class="callout-44-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Известно, что вероятность рождения мальчика приблизительно равна 0,515. Какова вероятность того, что среди 10 тысяч новорожденных число мальчиков будет не больше, чем девочек?</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="итог-трёх-недель-инвентаризация-долгов" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Итог трёх недель: инвентаризация долгов</h1>
+<p>Первые три главы построены на честном фундаменте лишь частично. Всюду, где пространство исходов не более чем счётно, наши определения и доказательства полны. Но в общем случае мы набрали долгов – и вся вторая часть курса будет их планомерным возвратом:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Долг~ <span class="math inline">\(\ref{debt:borel-lebesgue}\)</span>: что такое борелевские множества и мера Лебега (длина, площадь)? Почему нельзя измерять множества?</td>
+<td>Главы~ –: системы множеств, мера, теорема Каратеодори, мера Лебега</td>
+</tr>
+<tr class="even">
+<td>Долг~ <span class="math inline">\(\ref{debt:measurability}\)</span>: что такое измеримость случайной величины?</td>
+<td>Глава~ : измеримые функции</td>
+</tr>
+<tr class="odd">
+<td>Долг~ <span class="math inline">\(\ref{debt:cdf-defines-distrib}\)</span>: почему функция распределения однозначно задаёт распределение?</td>
+<td>Главы~ –: теорема Каратеодори, мера Лебега–Стилтьеса</td>
+</tr>
+<tr class="even">
+<td>Долг~ <span class="math inline">\(\ref{debt:densities}\)</span>: что такое плотность и непрерывные распределения?</td>
+<td>Главы~ – (интеграл Лебега) и глава~ (теорема Радона–Никодима)</td>
+</tr>
+<tr class="odd">
+<td>Долг~ <span class="math inline">\(\ref{debt:expectation}\)</span>: что такое<span class="math inline">\(\mathbb {E}\left[\xi \right]\)</span> для произвольной случайной величины? Почему матожидание линейно?</td>
+<td>Главы~ –: интеграл Лебега и его свойства (в т.ч. неравенство Маркова в общем виде)</td>
+</tr>
+<tr class="even">
+<td>Долг~ <span class="math inline">\(\ref{debt:weak-convergence}\)</span>: что такое сходимость распределений &lt;&lt;по-настоящему&gt;&gt;, на языке мер?</td>
+<td>Главы~ – дают язык мер; сходимости измеримых функций – глава~ </td>
+</tr>
+<tr class="odd">
+<td>ЦПТ принята без доказательства</td>
+<td>Следующий курс (теория вероятностей): характеристические функции</td>
+</tr>
+</tbody>
+</table>
+<p>Начиная со следующей главы мы забудем на время про вероятность и займёмся фундаментом: множествами, которые можно измерять, и мерами на них.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Скопировано");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Скопировано");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<!--
+  Hover preview for @expl-... (example) cross-references.
+
+  Quarto's own html format already ships a native crossref-hover-preview
+  script (bundled tippy, no CDN, wired up for every a.quarto-xref link --
+  see site_libs/quarto-html/tippy.umd.min.js and the inline tippyHover/
+  processXRef script Quarto emits near the end of <body>). That native
+  script now covers theorem-family types too, since
+  _extensions/mn-theorems wraps them into real Quarto callouts.
+
+  Examples are the one remaining gap: mn-problems.lua's Pandoc filter
+  intercepts @expl-... citations and emits a raw `<a class="xref-callout"
+  data-tippy-ref="...">` directly, bypassing Quarto's own crossref
+  resolution entirely (needed because examples use the filter's own custom
+  numbering, not Quarto's native one) -- so they never get the
+  a.quarto-xref class Quarto's native script looks for. This file only
+  fills that one gap, reusing the SAME window.tippy Quarto's native script
+  already set up (no separate Popper/Tippy load of our own -- an earlier
+  version of this file loaded Popper+Tippy from unpkg.com via plain
+  <script src>, which registered as an anonymous AMD module on pages with
+  Quarto's RequireJS loader and broke both the popup AND, as collateral
+  damage, quarto's own native tippy setup).
+-->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (!window.tippy) return; // native script didn't run (shouldn't happen on an html-format page)
+
+  document.querySelectorAll("a.xref-callout").forEach(function (anchor) {
+    var targetId = anchor.getAttribute("data-tippy-ref");
+    var inner = targetId && document.getElementById(targetId);
+    if (!inner) return;
+
+    var outer = inner.closest(".callout-style-default") || inner;
+
+    tippy(anchor, {
+      content: function () {
+        var clone = outer.cloneNode(true);
+        var uid = "mn-xref-" + targetId;
+        clone.querySelectorAll("[id]").forEach(function (el) {
+          el.id = uid + "-" + el.id;
+        });
+        clone.querySelectorAll("[data-bs-target]").forEach(function (el) {
+          var orig = el.getAttribute("data-bs-target");
+          el.setAttribute("data-bs-target", "." + uid + "-" + orig.replace(/^\./, ""));
+        });
+        clone.querySelectorAll("[aria-controls]").forEach(function (el) {
+          el.setAttribute("aria-controls", uid + "-" + el.getAttribute("aria-controls"));
+        });
+        if (window.Quarto && window.Quarto.typesetMath) {
+          window.Quarto.typesetMath(clone);
+        }
+        return clone;
+      },
+      allowHTML: true,
+      interactive: true,
+      maxWidth: 500,
+      theme: "quarto",
+      placement: "bottom-start",
+      appendTo: function (el) { return el.parentElement; },
+    });
+  });
+});
+</script>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

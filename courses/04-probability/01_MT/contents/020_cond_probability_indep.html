@@ -1,0 +1,2366 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Распределения вероятностей. Случайные величины. Матожидание – Курсы ФПМИ</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/favicon.ico" rel="icon">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-18b92d25f2a0372079463917332f47f0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-90af2ae3f5f11ccb077ed1c2d3900ada.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/quarto-contrib/mn-problems-1.0.0/mn-problems.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/mn-theorems-1.0.0/mn-theorems.css" rel="stylesheet">
+<script src="../../../../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script src="../../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Поиск не дал результатов",
+    "search-matching-documents-text": "Результаты поиска",
+    "search-copy-link-title": "Скопировать ссылку",
+    "search-hide-matches-text": "Скрыть дополнительные результаты",
+    "search-more-match-text": "дополнительный результат в этом документе",
+    "search-more-matches-text": "дополнительных результата(-ов) в этом документе",
+    "search-clear-button-title": "Очистить",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Отменить",
+    "search-submit-button-title": "Найти",
+    "search-label": "Поиск"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script type="text/javascript">
+window.PlotlyConfig = {MathJaxConfig: 'local'};
+if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+if (typeof require !== 'undefined') {
+require.undef("plotly");
+requirejs.config({
+    paths: {
+        'plotly': ['https://cdn.plot.ly/plotly-2.35.2.min']
+    }
+});
+require(['plotly'], function(Plotly) {
+    window._Plotly = Plotly;
+});
+}
+</script>
+
+<style>
+div.callout-thumbs-up.callout {
+  border-left-color: #008000;
+}
+div.callout-thumbs-up.callout-style-default .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-thumbs-up .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-thumbs-up.callout-style-default .callout-icon::before, div.callout-thumbs-up.callout-titled .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23008000" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/></svg>');
+}
+div.callout-todo.callout {
+  border-left-color: pink;
+}
+div.callout-todo.callout-style-default .callout-header {
+  background-color: rgb(from pink r g b / 13%);
+}
+div.callout-todo .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.callout-titled .callout-icon::before {
+  content: '📝';
+  background-image: none;
+}
+div.callout-enum-item.callout {
+  border-left-color: #008000;
+}
+div.callout-enum-item.callout-style-default .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-enum-item .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-enum-item.callout-style-default .callout-icon::before, div.callout-enum-item.callout-titled .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23008000" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/></svg>');
+}
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/logo.png" alt="" class="navbar-logo light-content">
+    <img src="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/logo.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../../../index.html">
+    <span class="navbar-title">Курсы ФПМИ</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Поиск"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Переключить навигацию" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> 
+<span class="menu-text">Главная</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Курсы</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../../courses/index.html">
+ <span class="dropdown-text">Все курсы (37)</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../../courses/04-probability/index.html">
+ <span class="dropdown-text">Вероятность (4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/01-analysis/index.html">
+ <span class="dropdown-text">Анализ (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/02-algebra/index.html">
+ <span class="dropdown-text">Алгебра (4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/03-discrete-cs/index.html">
+ <span class="dropdown-text">Дискретная математика и CS (9)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/05-programming-systems/index.html">
+ <span class="dropdown-text">Программирование и системы (7)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/06-data-computing/index.html">
+ <span class="dropdown-text">Данные и вычисления (5)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Учебный план</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">    
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/I.html">
+ <span class="dropdown-text">I семестр (7)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/II.html">
+ <span class="dropdown-text">II семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/III.html">
+ <span class="dropdown-text">III семестр (9)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/IV.html">
+ <span class="dropdown-text">IV семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/V.html">
+ <span class="dropdown-text">V семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/VI.html">
+ <span class="dropdown-text">VI семестр (4)</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--2" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">О проекте</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu--2">    
+        <li>
+    <a class="dropdown-item" href="../../../../about.html">
+ <span class="dropdown-text">О проекте</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../editorial-policy.html">
+ <span class="dropdown-text">Статус материалов и редакционная политика</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://mipt.ru/education/schools/fpmi"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:web" style="font-size: 1.25em;" aria-label="Icon web from mdi Iconify.design set." title="Сайт ФПМИ"></iconify-icon></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../courses/04-probability/01_MT/contents/010_classical_geom_models.html">I. Основы вероятности</a></li><li class="breadcrumb-item"><a href="../../../../courses/04-probability/01_MT/contents/020_cond_probability_indep.html">2. Распределения вероятностей. Случайные величины. Матожидание</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
+<div style="font-weight: bold; font-size: 1.1em;">
+<p>ОВиТМ</p>
+</div>
+</div></div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Обзор курса</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/program.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Программа курса</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../courses/04-probability/01_MT/contents/010_classical_geom_models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">I. Основы вероятности</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Переключить раздел">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/010_classical_geom_models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Вероятностное пространство. Классические модели. Независимость</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/020_cond_probability_indep.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">2. Распределения вероятностей. Случайные величины. Матожидание</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/030_distributions_means.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Ковариация, сходимости случайных величин, предельные теоремы</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../courses/04-probability/01_MT/contents/040_systems_of_sets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">II. Теория меры</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Переключить раздел">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/040_systems_of_sets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Системы множеств. Борелевская сигма-алгебра</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/050_measure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Функции множеств на полукольцах и сигма-алгебрах. Мера</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/060_outer_measure_Lebesgue.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Внешняя мера, теорема Каратеодори о продолжении</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/070_complete_measure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Мера Лебега, мера Лебега-Стилтьеса</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/090_convergence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. Измеримые функции и их сходимости</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/100_Lebesgue_integral.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. Интеграл Лебега: интеграл по мере</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/120_product_of_measures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. Произведение мер</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/122_Banach_Lp_spaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11. Лебеговы пространства L^p(mu)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/130_signed_measures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12. Меры со знаком, плотности</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/135_differentiation_AC_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">13. Дифференцирование интеграла Лебега. Абсолютно непрерывные функции</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Содержание</h2>
+   
+  <ul>
+  <li><a href="#случайные-величины" id="toc-случайные-величины" class="nav-link active" data-scroll-target="#случайные-величины"><span class="header-section-number">1</span> Случайные величины</a></li>
+  <li><a href="#распределение-вероятностей" id="toc-распределение-вероятностей" class="nav-link" data-scroll-target="#распределение-вероятностей"><span class="header-section-number">2</span> Распределение вероятностей</a></li>
+  <li><a href="#от-распределения-к-случайной-величине" id="toc-от-распределения-к-случайной-величине" class="nav-link" data-scroll-target="#от-распределения-к-случайной-величине"><span class="header-section-number">3</span> От распределения к случайной величине</a></li>
+  <li><a href="#функция-распределения" id="toc-функция-распределения" class="nav-link" data-scroll-target="#функция-распределения"><span class="header-section-number">4</span> Функция распределения</a></li>
+  <li><a href="#различные-задачи" id="toc-различные-задачи" class="nav-link" data-scroll-target="#различные-задачи"><span class="header-section-number">5</span> Различные задачи</a></li>
+  <li><a href="#матожидание-для-дискретного-распределения" id="toc-матожидание-для-дискретного-распределения" class="nav-link" data-scroll-target="#матожидание-для-дискретного-распределения"><span class="header-section-number">6</span> Матожидание для дискретного распределения</a></li>
+  <li><a href="#дисперсия" id="toc-дисперсия" class="nav-link" data-scroll-target="#дисперсия"><span class="header-section-number">7</span> Дисперсия</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<!--
+  Explicit RequireJS path mapping for "plotly", used by every hand-built
+  interactive widget on this site via require(["plotly"], function(Plotly){...}).
+
+  There was never a require.config() call anywhere setting this up -- it
+  only ever worked because Plotly's own UMD bundle, loaded elsewhere on the
+  same page via a plain <script src> for a simple (non-widget) fig.show()
+  figure, self-registers as an anonymous AMD module when window.define
+  exists (Quarto's RequireJS loader, used for MathJax), and RequireJS
+  happens to attribute that anonymous module to the "plotly" name if the
+  timing/script-load-order lines up. That's pure luck, not a real mapping --
+  a page with only widget figures (no plain fig.show() figure to "donate"
+  its Plotly load) had nothing to claim from, and any change to script load
+  order/timing (e.g. removing an unrelated script elsewhere on the page)
+  can flip which pending require() call an anonymous define() gets
+  attributed to, breaking it silently. Explicit config removes the guesswork.
+
+  Two separate failure modes found in practice, both fixed here:
+
+  (A) A page with ONLY hand-built widgets (no {python} cell at all -- e.g.
+  specials/030/020_quantile_function_fig.qmd) never gets Quarto's own
+  <script src=".../requirejs@.../require.min.js"> in <head> in the first
+  place: that tag is only emitted when the page has a Jupyter code cell.
+  window.require is simply undefined there, so the widget's own
+  require(["plotly"], ...) throws "require is not defined" unconditionally
+  -- not a network flake, 100% of the time regardless of connection quality.
+  Fixed below by synchronously document.write-ing a local copy of
+  require.min.js when window.require isn't already present -- document.write
+  from an inline <script> during initial HTML parsing inserts into the parse
+  stream immediately, so by the next statement window.require is guaranteed
+  defined, still fully synchronously (no defer/async race).
+
+  (B) A page with BOTH a plain fig.show() figure AND a hand-built widget:
+  RequireJS *is* already in <head> here, so this file's require.config()
+  below does run against a real window.require. But the Jupyter-generated
+  embed script for the fig.show() figure -- which appears later in <body>,
+  wherever that Python cell sits -- unconditionally calls
+  require.undef("plotly") followed by its OWN require.config() pointing at
+  a *different* version on the *same* external CDN (observed:
+  cdn.plot.ly/plotly-2.35.2.min vs. the 3.4.0 configured here), clobbering
+  this file's mapping before the widget's own require(["plotly"], ...) ever
+  runs. Both that Jupyter-set path and this file's own local path hit the
+  same real-world failure: cdn.plot.ly answers anywhere from ~1.5s to a full
+  10s+ timeout under real network conditions (measured directly). A
+  requirejs.onError handler below catches exactly the resulting timeout on
+  the "plotly" module -- regardless of which of the two require.config()
+  calls most recently set its path -- and retries once against the local
+  bundle.
+-->
+<script>
+if (typeof window.require === "undefined") {
+  document.write('<script src="/site_libs/quarto-contrib/mn-plotly-1.0.0/require.min.js"><\/script>');
+}
+</script>
+<script>
+if (window.require && window.require.config) {
+  window.require.config({
+    paths: { plotly: "/site_libs/quarto-contrib/mn-plotly-1.0.0/plotly.min" },
+    // shim.exports: after the script loads, hand require(["plotly"],...)
+    // callers the *global* window.Plotly instead of trusting whatever (if
+    // anything) the script itself passed to define() -- Plotly's own UMD
+    // wrapper reliably sets window.Plotly regardless of AMD context (also
+    // used directly by every plain fig.show() figure on this site, whose
+    // own generated embed script never goes through RequireJS at all), but
+    // its anonymous define() call is not reliably attributed to the
+    // "plotly" request specifically when this same URL is also loaded via
+    // a separate plain <script src> elsewhere on the page (a simple,
+    // non-widget figure) -- shim sidesteps that ambiguity entirely.
+    shim: { plotly: { exports: "Plotly" } }
+  });
+  // See failure mode (B) above: a later Jupyter-generated fig.show() embed
+  // script can still call its own require.undef("plotly") +
+  // require.config({paths: {plotly: <external CDN>}}) after this runs,
+  // pointing "plotly" back at an unreliable external host. This handler
+  // fires on ANY module load timeout; when it's specifically "plotly", drop
+  // whatever path is currently registered (however it got there) and retry
+  // once against the local bundle instead of the external CDN.
+  //
+  // Deliberately never re-throws: once the retry above is issued, the
+  // ORIGINAL failed network request for the external CDN copy can still
+  // land afterwards and fire a second, by-then-harmless onError (verified:
+  // requireType "scripterror", after the retry has already resolved the
+  // widget's real require(["plotly"], callback) via RequireJS's own
+  // pending-callback bookkeeping) -- throwing there would surface a
+  // spurious uncaught exception for something already fixed. console.warn
+  // keeps that visible in devtools without it looking like a live failure.
+  window.require.onError = function (err) {
+    if (err.requireModules && err.requireModules.indexOf("plotly") !== -1) {
+      if (err.requireType === "timeout") {
+        window.require.undef("plotly");
+        window.require.config({ paths: { plotly: "/site_libs/quarto-contrib/mn-plotly-1.0.0/plotly.min" } });
+        window.require(["plotly"]);
+      } else {
+        console.warn("plotly require() error after fallback (likely a stale network request):", err);
+      }
+    } else {
+      throw err;
+    }
+  };
+}
+</script>
+
+<!--
+  window.fpmiWithMathJax(cb): same rationale as the FPMI homepage loader (_home_widgets/loader.qmd)'s
+  copy of this helper (see there for the original), extended to course
+  pages. Quarto only emits a <script defer src=".../mathjax@3/.../tex-*.js">
+  tag in <head> at all when it sees real markdown math OUTSIDE any
+  ```{=html}``` block on the page -- a hand-built widget's math lives
+  entirely inside \(...\)/\[...\] strings in JS-generated DOM content
+  (e.g. a dynamically updated status line), which Quarto's static math
+  scanner never looks inside, so a page whose ONLY math is like that (no
+  prose math of its own) gets no MathJax script at all. Confirmed on an
+  already-shipped widget (030/020_quantile_function_fig.qmd's #qf-status)
+  that had silently never rendered its \(...\) as real math since it was
+  written -- not a new bug, just never noticed because the broken math was
+  inside dynamically-generated text rather than the static page body.
+
+  Three cases this handles, in order:
+  1. window.MathJax already fully started (page had prose math elsewhere,
+     Quarto's own <script defer> already ran) -- just wait on the
+     documented startup.promise signal and fire cb.
+  2. Quarto's own MathJax <script defer> tag IS present in <head> but
+     hasn't executed/initialized yet (defer runs after DOM parsing, and
+     this include-before-body block runs earlier, during parsing) -- poll
+     briefly for window.MathJax to appear rather than racing to load a
+     SECOND copy, which would either double-load or (depending on load
+     order) silently no-op.
+  3. No MathJax script present at all (case A above) -- fetch it ourselves,
+     same URL/approach as loader.qmd.
+-->
+<script>
+window.fpmiWithMathJax = window.fpmiWithMathJax || function (cb) {
+  if (window.MathJax && window.MathJax.startup) { window.MathJax.startup.promise.then(cb); return; }
+  if (window.__fpmiMathJaxQueue) { window.__fpmiMathJaxQueue.push(cb); return; }
+  window.__fpmiMathJaxQueue = [cb];
+  function flushQueue() {
+    var q = window.__fpmiMathJaxQueue;
+    window.__fpmiMathJaxQueue = null;
+    q.forEach(function (f) { f(); });
+  }
+  var hasMathJaxTag = !!document.querySelector('script[src*="mathjax"]');
+  if (hasMathJaxTag) {
+    // Case 2: Quarto's own deferred MathJax script is already in <head> --
+    // poll for it to finish initializing instead of loading a duplicate.
+    var waited = 0;
+    var poll = setInterval(function () {
+      waited += 50;
+      if (window.MathJax && window.MathJax.startup) {
+        clearInterval(poll);
+        window.MathJax.startup.promise.then(flushQueue);
+      } else if (waited > 10000) {
+        // Should never happen (the tag is already there, defer always runs
+        // before window.onload) -- bail rather than poll forever.
+        clearInterval(poll);
+        console.warn("fpmiWithMathJax: gave up waiting for Quarto's own MathJax script to initialize");
+      }
+    }, 50);
+    return;
+  }
+  // Case 3: no MathJax anywhere on the page -- fetch it ourselves. SVG
+  // output specifically (not CHTML, despite Quarto's own injected tag
+  // using CHTML): confirmed Plotly's own $...$ annotation/tick-label math
+  // rendering hard-requires the SVG output jax and throws
+  // 'Output Jax "svg" is not defined' if only CHTML is loaded (its
+  // internal math path calls MathJax.tex2svg specifically, independent of
+  // whatever jax Quarto's page-level script configured) -- same reason
+  // the FPMI homepage loader (_home_widgets/loader.qmd)'s original copy of this helper uses tex-svg.js.
+  var s = document.createElement("script");
+  s.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js";
+  s.onload = function () {
+    window.MathJax.startup.promise.then(flushQueue);
+  };
+  document.head.appendChild(s);
+};
+</script>
+<!--
+  window.fpmiGraph: shared toolkit for the hand-built Plotly *graph diagrams*
+  (vertices + edges) used by the algorithms courses (courses/11-DM-CS/AA/...
+  specials). Plotly has no native graph/network primitives, so every widget
+  used to re-implement the same edge-polyline/marker/annotation plumbing by
+  hand -- and, since a plain `mode:"lines"` polyline can't carry an arrowhead
+  or per-edge hover, all of them ended up as staticPlot line drawings with
+  no direction on directed graphs and no hover at all. This helper gives
+  every widget, from one `spec`:
+
+    * one scatter trace PER EDGE (so an individual edge can be restyled --
+      hover-highlight, per-step emphasis, transitions -- and can have its own
+      hover text via an invisible midpoint marker), optionally curved
+      (`bend`) so a pair of opposite arcs u->v / v->u stays readable;
+    * arrowheads for `directed` edges via layout.annotations in data
+      coordinates, shortened so the head lands on the vertex rim, not under
+      the marker;
+    * a soft halo under each vertex, $...$ MathJax labels via annotations
+      (never mode:"markers+text" -- see project memory: Plotly's marker text
+      is raw SVG <text>, which can't hold MathJax output), and hover labels;
+    * hover-highlight: hovering a vertex lifts its incident edges and dims
+      the rest (plotly_hover/unhover + Plotly.restyle on the edge traces);
+    * animated transitions between algorithm steps (Plotly.animate on a
+      trace layout that stays structurally identical across steps -- the
+      trace count must not change, so per-step differences are expressed
+      purely as style: color/width/opacity/dash);
+    * a step player (prev / next / autoplay, keyboard arrows) that builds its
+      own controls, and a path tracer that grows a highlighted polyline along
+      a vertex sequence over time (Hamiltonian paths, tours, Euler walks).
+
+  Draw order inside `data`: edges (one trace each) -> edge midpoints (hover
+  only) -> halo -> vertices -> optional path trace. Trace indices are
+  returned in `built.meta` so callers never hard-code them.
+-->
+<script>
+(function () {
+  if (window.fpmiGraph) return;
+  var G = {};
+
+  // Every UI string this helper generates itself (default edge-weight hover
+  // text, the step-player's button labels) is project-agnostic: it reads
+  // `document.documentElement.lang` (set by each project's own `_quarto.yml`
+  // `lang:` field) and falls back to Russian, the language every existing
+  // call site (mnedoshivin, math-notes_CU_2, math-notes_FPMI_2) was written
+  // for -- so this stays a silent no-op everywhere except an `lang="en"`
+  // project such as mnedoshivin_en.
+  var IS_EN = (document.documentElement.lang || "").toLowerCase().indexOf("en") === 0;
+  var WEIGHT_WORD = IS_EN ? "weight" : "вес";
+
+  G.colors = {
+    vert: "#eaf2fb", vertLine: "#1e3a8a", vertText: "#0b0b0b",
+    sel: "#2a78d6", selText: "#ffffff",
+    accent: "#f5a623", accentLine: "#8a5a00",
+    done: "#a8a29e", edge: "#78716c", edgeFaded: "#d6d3d1",
+    red: "#b91c1c", redSoft: "#fca5a5", green: "#556B2F", greenSoft: "#bbf7d0",
+    bg: "#fcfcfb"
+  };
+
+  // Plotly may arrive through RequireJS (course pages, see
+  // plotly-require-config.html), through the homepage's own
+  // fpmiWithPlotly loader, or already be a global -- accept all three.
+  G.withPlotly = function (cb) {
+    if (window.Plotly && window.Plotly.newPlot) { cb(window.Plotly); return; }
+    if (window.fpmiWithPlotly) { window.fpmiWithPlotly(cb); return; }
+    if (window.require) { window.require(["plotly"], cb); return; }
+    console.warn("fpmiGraph: no Plotly loader available on this page");
+  };
+  // MathJax must exist BEFORE Plotly builds any $...$ annotation (Plotly
+  // stamps data-math="N" at build time and never retries), hence the order.
+  G.ready = function (cb) {
+    var run = function () { G.withPlotly(cb); };
+    if (window.fpmiWithMathJax) { window.fpmiWithMathJax(run); } else { run(); }
+  };
+
+  // ── geometry ───────────────────────────────────────────────────────────────
+  // Quadratic curve from p0 to p1 bulging `bend` data units to the left of
+  // the p0->p1 direction (negative bends right). n+1 points.
+  G.curve = function (p0, p1, bend, n) {
+    n = n || 16;
+    var dx = p1[0] - p0[0], dy = p1[1] - p0[1];
+    var len = Math.sqrt(dx * dx + dy * dy) || 1;
+    var nx = -dy / len, ny = dx / len;
+    var cx = (p0[0] + p1[0]) / 2 + nx * bend, cy = (p0[1] + p1[1]) / 2 + ny * bend;
+    var pts = [];
+    for (var i = 0; i <= n; i++) {
+      var t = i / n, a = (1 - t) * (1 - t), b = 2 * (1 - t) * t, c = t * t;
+      pts.push([a * p0[0] + b * cx + c * p1[0], a * p0[1] + b * cy + c * p1[1]]);
+    }
+    return pts;
+  };
+  G.circle = function (cx, cy, r, n) {
+    n = n || 64;
+    var x = [], y = [];
+    for (var i = 0; i <= n; i++) { var a = 2 * Math.PI * i / n; x.push(cx + r * Math.cos(a)); y.push(cy + r * Math.sin(a)); }
+    return { x: x, y: y };
+  };
+  // "$v_{1}$" from "v1", "$s'$" from "s'", plain "s" from "s".
+  G.texLabel = function (id) {
+    var m = /^([A-Za-z]+)(\d+)('*)$/.exec(id);
+    if (m) return "$" + m[1] + "_{" + m[2] + "}" + m[3] + "$";
+    return /^[A-Za-z]'*$/.test(id) ? "$" + id + "$" : id;
+  };
+  // Unicode subscript fallback for hover text (Plotly hover can't do MathJax).
+  var SUB = { "0": "₀", "1": "₁", "2": "₂", "3": "₃", "4": "₄", "5": "₅", "6": "₆", "7": "₇", "8": "₈", "9": "₉" };
+  G.plainLabel = function (id) {
+    var m = /^([A-Za-z]+)(\d+)('*)$/.exec(id);
+    if (!m) return id;
+    return m[1] + m[2].split("").map(function (c) { return SUB[c] || c; }).join("") + m[3];
+  };
+
+  function assign(dst) {
+    for (var i = 1; i < arguments.length; i++) { var s = arguments[i]; if (s) for (var k in s) if (Object.prototype.hasOwnProperty.call(s, k)) dst[k] = s[k]; }
+    return dst;
+  }
+  function normEdge(e) {
+    if (Array.isArray(e)) { var o = { u: e[0], v: e[1] }; if (e[2] && typeof e[2] === "object") assign(o, e[2]); else if (e[2] !== undefined) o.weight = e[2]; return o; }
+    return assign({}, e);
+  }
+
+  // ── build ──────────────────────────────────────────────────────────────────
+  // spec = {
+  //   verts: {id: [x, y]},            order: [ids] (optional, defaults to key order)
+  //   edges: [[u, v] | [u, v, weight] | {u, v, color, width, dash, opacity, bend, hover, arrow, weight}]
+  //   directed: bool,                 edge: fn(edgeObj) -> style overrides (per step)
+  //   vert: fn(id) -> {color, line, lineWidth, size, opacity, label, hover, symbol}
+  //   labels: bool|{id: text}         (default: true -> G.texLabel(id))
+  //   size: 24, halo: true, weights: bool (annotate edge weights at midpoints)
+  //   range: {x: [..], y: [..]}       (default: bbox + padding), pad: 0.8
+  //   annotations: [], shapes: []     (extra), pathTrace: bool (reserve a trace for tracePath)
+  //   height/width: layout size override
+  // }
+  G.build = function (spec) {
+    var C = G.colors;
+    var ids = spec.order || Object.keys(spec.verts);
+    var size = spec.size || 24;
+    var edges = (spec.edges || []).map(normEdge);
+    var data = [], annotations = [], meta = { edgeIdx: [], edgeStyles: [], edges: edges, ids: ids, size: size };
+
+    // range
+    var xs = ids.map(function (i) { return spec.verts[i][0]; }), ys = ids.map(function (i) { return spec.verts[i][1]; });
+    var pad = spec.pad !== undefined ? spec.pad : 0.8;
+    var xr = spec.range && spec.range.x || [Math.min.apply(null, xs) - pad, Math.max.apply(null, xs) + pad];
+    var yr = spec.range && spec.range.y || [Math.min.apply(null, ys) - pad, Math.max.apply(null, ys) + pad];
+    // Vertex radius in data units, for arrowhead shortening: estimate from
+    // the plot's pixel width (marker size is in px, the axis range in data).
+    var plotPx = spec.plotWidthPx || 460;
+    var rData = spec.vertRadius !== undefined ? spec.vertRadius : (size / 2) * (xr[1] - xr[0]) / plotPx * 1.15;
+
+    // edges
+    var midX = [], midY = [], midText = [];
+    edges.forEach(function (e, k) {
+      var st = assign({ color: C.edge, width: 1.6, dash: "solid", opacity: 1, bend: 0 }, e, spec.edge ? spec.edge(e, k) : null);
+      var p0 = spec.verts[e.u], p1 = spec.verts[e.v];
+      var pts = st.bend ? G.curve(p0, p1, st.bend) : [p0, p1];
+      var directed = st.arrow !== undefined ? st.arrow : !!spec.directed;
+      if (directed) {
+        // trim the last segment so the arrowhead (drawn separately) ends on
+        // the target vertex rim; the line itself stops there too.
+        var a = pts[pts.length - 2], b = pts[pts.length - 1];
+        var dx = b[0] - a[0], dy = b[1] - a[1], L = Math.sqrt(dx * dx + dy * dy) || 1;
+        var head = [b[0] - dx / L * rData, b[1] - dy / L * rData];
+        var tail = [head[0] - dx / L * Math.min(L, rData * 1.6), head[1] - dy / L * Math.min(L, rData * 1.6)];
+        pts = pts.slice(0, -1).concat([head]);
+        annotations.push({
+          x: head[0], y: head[1], ax: tail[0], ay: tail[1], xref: "x", yref: "y", axref: "x", ayref: "y",
+          showarrow: true, arrowhead: 2, arrowsize: 1.15, arrowwidth: st.width, arrowcolor: st.color,
+          opacity: st.opacity, text: "", standoff: 0
+        });
+      }
+      data.push({
+        x: pts.map(function (p) { return p[0]; }), y: pts.map(function (p) { return p[1]; }),
+        mode: "lines", line: { color: st.color, width: st.width, dash: st.dash }, opacity: st.opacity,
+        hoverinfo: "skip", showlegend: false, name: e.u + "-" + e.v
+      });
+      meta.edgeIdx.push(data.length - 1);
+      meta.edgeStyles.push({ color: st.color, width: st.width, dash: st.dash, opacity: st.opacity });
+      var mid = pts[Math.floor(pts.length / 2)];
+      if (pts.length === 2) mid = [(p0[0] + p1[0]) / 2, (p0[1] + p1[1]) / 2];
+      midX.push(mid[0]); midY.push(mid[1]);
+      var hover = st.hover !== undefined ? st.hover : (G.plainLabel(e.u) + (directed ? " → " : " — ") + G.plainLabel(e.v) + (st.weight !== undefined ? "<br>" + (WEIGHT_WORD) + " " + st.weight : ""));
+      midText.push(hover);
+      // st.weight (not e.weight): a per-step override may hide a faded edge's
+      // label by returning {weight: undefined}
+      if (spec.weights && st.weight !== undefined && st.opacity > 0.05) {
+        annotations.push({ x: mid[0], y: mid[1], text: String(st.weight), showarrow: false,
+          font: { size: 11, color: st.color === C.edgeFaded ? "#a8a29e" : "#44403c" }, bgcolor: "rgba(252,252,251,0.9)", borderpad: 1 });
+      }
+    });
+    // invisible edge midpoints: hover only (per-point hoverinfo so a hidden
+    // edge -- opacity 0, e.g. "not added yet" in a step player -- shows no
+    // empty tooltip)
+    data.push({ x: midX, y: midY, mode: "markers", marker: { size: 14, opacity: 0 }, hovertext: midText,
+      hoverinfo: meta.edgeStyles.map(function (s) { return s.opacity > 0 ? "text" : "skip"; }), showlegend: false, name: "edges" });
+    meta.midIdx = data.length - 1;
+
+    // vertices
+    var vx = [], vy = [], vColor = [], vLine = [], vLineW = [], vSize = [], vOp = [], vHover = [], vSym = [], haloColor = [];
+    ids.forEach(function (id) {
+      var st = assign({ color: C.vert, line: C.vertLine, lineWidth: 1.8, size: size, opacity: 1, symbol: "circle" }, spec.vert ? spec.vert(id) : null);
+      vx.push(spec.verts[id][0]); vy.push(spec.verts[id][1]);
+      vColor.push(st.color); vLine.push(st.line); vLineW.push(st.lineWidth); vSize.push(st.size); vOp.push(st.opacity); vSym.push(st.symbol);
+      vHover.push(st.hover !== undefined ? st.hover : G.plainLabel(id));
+      haloColor.push(st.opacity === 0 ? "rgba(0,0,0,0)" : (st.halo || (st.color === C.vert ? "rgba(42,120,214,0.10)" : G.rgba(st.color, 0.22))));
+      var lbl = st.label !== undefined ? st.label
+        : (spec.labels === false ? null : (spec.labels && typeof spec.labels === "object" ? spec.labels[id] : G.texLabel(id)));
+      if (lbl) {
+        annotations.push({ x: spec.verts[id][0], y: spec.verts[id][1], text: lbl, showarrow: false,
+          font: { size: st.labelSize || 13, color: st.labelColor || (st.color === C.vert || st.color === C.accent ? C.vertText : C.selText) }, opacity: st.opacity });
+      }
+    });
+    if (spec.halo !== false) {
+      data.push({ x: vx, y: vy, mode: "markers", marker: { size: vSize.map(function (s) { return s + 14; }), color: haloColor, line: { width: 0 } },
+        opacity: 1, hoverinfo: "skip", showlegend: false, name: "halo" });
+      meta.haloIdx = data.length - 1;
+    }
+    data.push({ x: vx, y: vy, mode: "markers", marker: { size: vSize, color: vColor, symbol: vSym, opacity: vOp, line: { color: vLine, width: vLineW } },
+      hovertext: vHover, hoverinfo: vOp.map(function (o) { return o > 0 ? "text" : "skip"; }), showlegend: false, name: "vertices",
+      hoverlabel: { bgcolor: "#1c1917", bordercolor: "#1c1917", font: { color: "#fff", size: 12 } } });
+    meta.vertIdx = data.length - 1;
+    if (spec.pathTrace) {
+      data.push({ x: [], y: [], mode: "lines", line: { color: C.red, width: 3.2, shape: "linear" }, hoverinfo: "skip", showlegend: false, name: "path" });
+      meta.pathIdx = data.length - 1;
+    }
+
+    var layout = {
+      xaxis: { visible: false, range: xr, fixedrange: true },
+      yaxis: { visible: false, range: yr, fixedrange: true, scaleanchor: "x" },
+      margin: { t: 8, b: 8, l: 8, r: 8 },
+      plot_bgcolor: C.bg, paper_bgcolor: C.bg, showlegend: false, hovermode: "closest",
+      annotations: annotations.concat(spec.annotations || []), shapes: spec.shapes || [],
+      transition: { duration: 420, easing: "cubic-in-out" }
+    };
+    if (spec.height) layout.height = spec.height;
+    return { data: data, layout: layout, meta: meta };
+  };
+
+  G.rgba = function (hex, a) {
+    var m = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(hex);
+    if (!m) return hex;
+    return "rgba(" + parseInt(m[1], 16) + "," + parseInt(m[2], 16) + "," + parseInt(m[3], 16) + "," + a + ")";
+  };
+
+  // ── draw (with transitions) ────────────────────────────────────────────────
+  G.config = { displayModeBar: false, displaylogo: false, scrollZoom: false, responsive: true };
+  G.draw = function (el, built, opts) {
+    if (typeof el === "string") el = document.getElementById(el);
+    opts = opts || {};
+    G.ready(function (Plotly) {
+      var canAnimate = el.data && el.data.length === built.data.length && !opts.noAnimate;
+      if (canAnimate) {
+        // Same trace structure as the previous step -> tween colors/widths/
+        // positions instead of snapping. Layout (annotations, shapes) is
+        // applied at the start of the frame.
+        Plotly.animate(el, { data: built.data, layout: built.layout },
+          { transition: { duration: opts.duration || 420, easing: "cubic-in-out" },
+            frame: { duration: opts.duration || 420, redraw: false } });
+      } else if (el.data) {
+        Plotly.react(el, built.data, built.layout, G.config);
+      } else {
+        Plotly.newPlot(el, built.data, built.layout, G.config);
+      }
+      el.__fpmiGraph = built;
+      if (!el.__fpmiHoverBound && opts.hover !== false) { G.attachHover(el); el.__fpmiHoverBound = true; }
+      if (opts.then) opts.then(Plotly);
+    });
+  };
+
+  // ── hover-highlight: lift a vertex's incident edges, dim the rest ──────────
+  G.attachHover = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    var restore = function () {
+      var b = el.__fpmiGraph; if (!b || !window.Plotly) return;
+      var s = b.meta.edgeStyles;
+      window.Plotly.restyle(el, {
+        "line.width": s.map(function (x) { return x.width; }),
+        "line.color": s.map(function (x) { return x.color; }),
+        "opacity": s.map(function (x) { return x.opacity; })
+      }, b.meta.edgeIdx);
+    };
+    el.on("plotly_hover", function (ev) {
+      var b = el.__fpmiGraph; if (!b || !ev.points || !ev.points.length) return;
+      var p = ev.points[0];
+      if (p.curveNumber !== b.meta.vertIdx) return;
+      var id = b.meta.ids[p.pointNumber];
+      var widths = [], colors = [], ops = [];
+      b.meta.edges.forEach(function (e, k) {
+        var st = b.meta.edgeStyles[k], inc = (e.u === id || e.v === id);
+        widths.push(inc ? Math.max(st.width * 1.9, 3) : st.width);
+        colors.push(inc ? (st.color === G.colors.edge || st.color === G.colors.edgeFaded ? G.colors.sel : st.color) : st.color);
+        ops.push(inc ? 1 : Math.min(st.opacity, 0.28));
+      });
+      window.Plotly.restyle(el, { "line.width": widths, "line.color": colors, "opacity": ops }, b.meta.edgeIdx);
+    });
+    el.on("plotly_unhover", restore);
+  };
+
+  // ── step player ────────────────────────────────────────────────────────────
+  // G.player({ container, count, render(i), autoplayMs, loop, start })
+  // Builds: [← Back] [Step i / N] [Next →] [▶ Auto]; arrow keys work while
+  // the controls have focus. render(i) is called for every step change.
+  // UI strings use the same IS_EN language switch declared at the top of
+  // this file. `o.label` still overrides the step word directly, same as
+  // before this change, for any call site that wants a custom label.
+  var PLAYER_STR = IS_EN
+    ? { back: "← Back", next: "Next →", auto: "▶ Auto", autoTitle: "Autoplay", pause: "⏸ Pause", step: "Step" }
+    : { back: "← Назад", next: "Вперёд →", auto: "▶ Авто", autoTitle: "Автовоспроизведение", pause: "⏸ Пауза", step: "Шаг" };
+  G.player = function (o) {
+    var box = typeof o.container === "string" ? document.getElementById(o.container) : o.container;
+    box.classList.add("fpmi-graph-controls");
+    box.setAttribute("tabindex", "0");
+    box.innerHTML =
+      '<button type="button" class="fg-prev">' + PLAYER_STR.back + '</button>' +
+      '<span class="fg-step"></span>' +
+      '<button type="button" class="fg-next">' + PLAYER_STR.next + '</button>' +
+      '<button type="button" class="fg-play" title="' + PLAYER_STR.autoTitle + '">' + PLAYER_STR.auto + '</button>';
+    var prev = box.querySelector(".fg-prev"), next = box.querySelector(".fg-next"), play = box.querySelector(".fg-play"), lbl = box.querySelector(".fg-step");
+    var cur = o.start || 0, timer = null, N = o.count;
+    function stop() { if (timer) { clearInterval(timer); timer = null; } play.textContent = PLAYER_STR.auto; play.classList.remove("active"); }
+    function go(i, fromAuto) {
+      if (!fromAuto) stop();
+      cur = Math.max(0, Math.min(N - 1, i));
+      lbl.textContent = (o.label || PLAYER_STR.step) + " " + (cur + 1) + " / " + N;
+      prev.disabled = cur === 0; next.disabled = cur === N - 1;
+      o.render(cur);
+    }
+    prev.addEventListener("click", function () { go(cur - 1); });
+    next.addEventListener("click", function () { go(cur + 1); });
+    play.addEventListener("click", function () {
+      if (timer) { stop(); return; }
+      play.textContent = PLAYER_STR.pause; play.classList.add("active");
+      if (cur === N - 1) go(0, true);
+      timer = setInterval(function () {
+        if (cur < N - 1) go(cur + 1, true);
+        else if (o.loop) go(0, true);
+        else stop();
+      }, o.autoplayMs || 1600);
+    });
+    box.addEventListener("keydown", function (ev) {
+      if (ev.key === "ArrowRight") { go(cur + 1); ev.preventDefault(); }
+      else if (ev.key === "ArrowLeft") { go(cur - 1); ev.preventDefault(); }
+    });
+    go(cur);
+    return { go: go, next: function () { go(cur + 1); }, prev: function () { go(cur - 1); }, current: function () { return cur; }, stop: stop };
+  };
+
+  // ── path tracer ────────────────────────────────────────────────────────────
+  // Grows the reserved path trace (spec.pathTrace) along `ids` over
+  // `duration` ms, with a moving tip. Returns a cancel function.
+  G.tracePath = function (el, verts, ids, opts) {
+    if (typeof el === "string") el = document.getElementById(el);
+    opts = opts || {};
+    var b = el.__fpmiGraph; if (!b || b.meta.pathIdx === undefined || !window.Plotly) return function () {};
+    var pts = ids.map(function (id) { return verts[id]; });
+    var segs = pts.length - 1, dur = opts.duration || 500 * segs, t0 = null, cancelled = false;
+    var style = { "line.color": opts.color || G.colors.red, "line.width": opts.width || 3.2 };
+    window.Plotly.restyle(el, style, [b.meta.pathIdx]);
+    function frame(ts) {
+      if (cancelled) return;
+      if (t0 === null) t0 = ts;
+      var f = Math.min(1, (ts - t0) / dur), pos = f * segs, k = Math.floor(pos), r = pos - k;
+      var x = [], y = [];
+      for (var i = 0; i <= Math.min(k, segs); i++) { x.push(pts[i][0]); y.push(pts[i][1]); }
+      if (k < segs) { x.push(pts[k][0] + (pts[k + 1][0] - pts[k][0]) * r); y.push(pts[k][1] + (pts[k + 1][1] - pts[k][1]) * r); }
+      window.Plotly.restyle(el, { x: [x], y: [y] }, [b.meta.pathIdx]);
+      if (f < 1) requestAnimationFrame(frame); else if (opts.done) opts.done();
+    }
+    requestAnimationFrame(frame);
+    return function () { cancelled = true; };
+  };
+  G.clearPath = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    var b = el.__fpmiGraph; if (!b || b.meta.pathIdx === undefined || !window.Plotly) return;
+    window.Plotly.restyle(el, { x: [[]], y: [[]] }, [b.meta.pathIdx]);
+  };
+
+  // Typeset \(...\) math in a caption/status element (after innerHTML update).
+  G.typeset = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    if (window.fpmiWithMathJax) window.fpmiWithMathJax(function () { if (window.MathJax && window.MathJax.typesetPromise) window.MathJax.typesetPromise([el]); else if (window.MathJax) window.MathJax.typeset([el]); });
+  };
+  G.setCaption = function (id, html) { var el = document.getElementById(id); if (!el) return; el.innerHTML = html; G.typeset(el); };
+
+  window.fpmiGraph = G;
+})();
+</script>
+<style>
+  /* Shared look for every fpmiGraph widget (see graph-helper.html). */
+  .fpmi-graph { padding: 1rem 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .fpmi-graph h2.fg-title { font-size: 16px; font-weight: 500; margin: 0 0 4px; }
+  .fpmi-graph p.fg-sub { font-size: 13px; color: #78716c; margin: 0 0 0.75rem; }
+  .fpmi-graph .fg-plot { width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 6px 18px rgba(0,58,65,0.06); }
+  .fpmi-graph .fg-caption { font-size: 13px; color: #44403c; margin-top: 0.6rem; min-height: 1.4em; line-height: 1.5; }
+  .fpmi-graph .fg-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .fpmi-graph .fg-arrow { font-size: 26px; color: #78716c; }
+  .fpmi-graph-controls, .fpmi-graph .fg-controls { display: flex; align-items: center; gap: 10px; margin: 0.5rem 0 0.9rem; flex-wrap: wrap; outline: none; }
+  .fpmi-graph-controls button, .fpmi-graph button {
+    font-size: 13px; padding: 6px 12px; cursor: pointer; border-radius: 8px;
+    border: 1px solid #d6d3d1; background: #fff; color: #292524; transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  }
+  .fpmi-graph-controls button:hover:not(:disabled), .fpmi-graph button:hover:not(:disabled) { background: #f5f5f4; border-color: #a8a29e; }
+  .fpmi-graph-controls button:disabled, .fpmi-graph button:disabled { opacity: 0.4; cursor: default; }
+  .fpmi-graph-controls button.active, .fpmi-graph button.active { background: #eaf2fb; border-color: #2a78d6; color: #1c4a7a; font-weight: 600; box-shadow: 0 0 0 3px rgba(42,120,214,0.12); }
+  .fpmi-graph-controls .fg-step { font-size: 13px; font-weight: 600; color: #44403c; min-width: 6.5em; text-align: center; }
+  .fpmi-graph-controls:focus-within .fg-step { color: #1c4a7a; }
+  .fpmi-graph label { font-size: 13px; color: #57534e; }
+  .fpmi-graph input[type="range"] { accent-color: #2a78d6; }
+  .fpmi-graph .fg-val { font-size: 13px; font-weight: 600; min-width: 2em; display: inline-block; color: #1c4a7a; }
+  .fpmi-graph .fg-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: #57534e; margin-top: 0.4rem; }
+  .fpmi-graph .fg-legend span::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; background: var(--c, #eaf2fb); border: 1.5px solid var(--b, #1e3a8a); }
+  .fpmi-graph .fg-legend span.line::before { border-radius: 0; height: 3px; width: 18px; border: none; vertical-align: 2px; background: var(--c, #78716c); }
+</style>
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../courses/04-probability/01_MT/contents/010_classical_geom_models.html">I. Основы вероятности</a></li><li class="breadcrumb-item"><a href="../../../../courses/04-probability/01_MT/contents/020_cond_probability_indep.html">2. Распределения вероятностей. Случайные величины. Матожидание</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Распределения вероятностей. Случайные величины. Матожидание</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Дата публикации</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">18 октября 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><span id="sec-ch:random_variables"></span></p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Предупреждение</span>Черновик
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Этот конспект ещё находится в процессе редактуры: в тексте могут встречаться опечатки, неточности и локально не проработанные места. Если что-то нашли — сообщите, пожалуйста, автору (контакты на <a href="../../../../courses/04-probability/01_MT/overview.html#об-этом-пособии">странице курса</a>).</p>
+</div>
+</div>
+<section id="случайные-величины" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Случайные величины</h1>
+<p>Многие эксперименты имеют исходы, которые удобно выражать числами. Например, результат броска игральной кости — это число очков на выпавшей грани из множества <span class="math inline">\(\{ 1, \ldots , 6\}\)</span>. При построении вероятностной модели этому числовому исходу ставится в соответствие элементарное событие.</p>
+<p>Функция, которая сопоставляет каждому элементарному событию некоторое число, и для которой можно определять вероятности ее попадания в различные (борелевские) подмножества <span class="math inline">\(\mathbb {R}\)</span>, называется <em>случайной величиной</em>. Введение этого понятия служит важным инструментом в теории вероятностей, поскольку позволяет:</p>
+<ul>
+<li><p>Значительно упростить вычисление вероятностей различных событий,</p></li>
+<li><p>Сформулировать и доказать ключевые предельные теоремы.</p></li>
+</ul>
+<p>Прежде чем дать строгое определение случайной величины, полезно вспомнить общее понятие <strong>измеримой функции</strong>.</p>
+<div class="callout callout-style-simple callout-mn-def no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-1" class="definition theorem">
+<p><span class="theorem-title"><strong>Определение 1</strong></span> Пусть <span class="math inline">\(\Omega\)</span>- некоторое множество, <span class="math inline">\(\mathcal{F}\)</span> – <span class="math inline">\(\sigma\)</span>-алгебра на нем. Пусть, кроме того, <span class="math inline">\(\mathcal{E}\)</span> – <span class="math inline">\(\sigma\)</span>-алгебра на некотором множестве <span class="math inline">\(E\)</span>.</p>
+<ul>
+<li><p>Множество вместе с некоторой своей сигма-алгеброй называется <em>измеримым пространством</em>. <span class="math inline">\(\left(\Omega , \mathcal{F}\right)\)</span> и <span class="math inline">\(\left(E, \mathcal{E}\right)\)</span> – это 2 измеримых пространства.</p></li>
+<li><p>Отображение <span class="math inline">\(X: \Omega \rightarrow E\)</span> из одного измеримого пространства в другое называется <em>измеримым</em> (более точно <em><span class="math inline">\(\mathcal{F} \mid \mathcal{E}\)</span>-измеримым</em>), если для любого множества <span class="math inline">\(B \in \mathcal{E}\)</span> его прообраз лежит в <span class="math inline">\(\mathcal{F}\)</span>:</p>
+<p><span class="math display">\[
+  \underbrace{X^{-1}(B) = \{ \omega \in \Omega : X(\omega ) \in B\}  = \left\{ X \in B\right\} }_{\text{различные обозначения прообраза}} \in \mathcal{F}  
+\]</span></p>
+<p>Смысл: если на <span class="math inline">\(\left(\Omega , \mathcal{F}\right)\)</span> задана вероятность (вероятностная мера) <span class="math inline">\(\mathbb {P}\)</span>, то свойство измеримости функции <span class="math inline">\(X:\Omega \to E\)</span> позволяет измерять вероятность попасть <span class="math inline">\(X\)</span> в произвольное множество из сигма-алгебры на области значений <span class="math inline">\(E\)</span>.</p></li>
+<li><p>В теории вероятностей измеримое отображение называется <em>случайным элементом</em>. Т.е. если <span class="math inline">\((\Omega , \mathcal{F}, \mathbb {P})\)</span> – вероятностное пространство, и <span class="math inline">\(X: \Omega \to E\)</span> – измеримое отображение, то <span class="math inline">\(X\)</span> называется случайным элементом (со значениями в <span class="math inline">\((E, \mathcal{E})\)</span>).</p></li>
+<li><p>Если <span class="math inline">\((E, \mathcal{E}) = \left(\mathbb {R}, \mathscr {B}\left(\mathbb {R}\right)\right)\)</span>, то случайный элемент <span class="math inline">\(X\)</span> называют <em>случайной величиной</em>. Т.е. случайная величина – это измеримая функция (отображение в <span class="math inline">\(\left(\mathbb {R}, \mathscr {B}\left(\mathbb {R}\right)\right)\)</span>).</p>
+<p>Еще раз повторим, что измеримость позволяет вычислять вероятность того, что случайная величина, например, не превосходит <span class="math inline">\(7\)</span>: <span class="math inline">\(\mathbb {P}\left(X \leq 7\right)\)</span>. Действительно, <span class="math inline">\(\left\{ X \leq 7\right\}  = \left\{ \omega : \;  X(\omega ) \leq 7\right\}  = X^{-1}\left((-\infty , 7]\right)\)</span>, множество <span class="math inline">\((-\infty , 7]\)</span> является борелевским, следовательно <span class="math inline">\(\left\{ X \leq 7\right\}  \in \mathcal{F}\)</span> и это множество можно вставлять в вероятность.</p></li>
+<li><p>Если отображение <span class="math inline">\(\xi : \Omega \rightarrow \mathbb {R}^{n}\)</span> является <span class="math inline">\(\mathcal{F} \mid \mathscr {B}\left(\mathbb {R}^{n}\right)\)</span>-измеримым, то оно называется <em>случайным вектором</em>.</p></li>
+<li><p>Отображение <span class="math inline">\(f: \mathbb {R}^{n} \rightarrow \mathbb {R}^{k}\)</span> называется <em>борелевским</em> (или <em>измеримым по Борелю</em>), если оно является <span class="math inline">\(\mathcal{B}\left(\mathbb {R}^{n}\right) \mid \mathcal{B}\left(\mathbb {R}^{k}\right)\)</span>-измеримым.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p>измеримость и борелевская сигма-алгебраmeasurability Определение случайной величины опирается на борелевскую сигма-алгебру <span class="math inline">\(\mathscr {B}\left(\mathbb {R}\right)\)</span>, которую мы строго построим в главе&nbsp;<a href="../../../../courses/04-probability/01_MT/contents/040_systems_of_sets.html#sec-ch:systems_of_sets">о системах множеств и борелевской сигма-алгебре</a>, а систематическое изучение измеримых функций нас ждёт в главе&nbsp;<a href="../../../../courses/04-probability/01_MT/contents/090_convergence.html#sec-ch:measurable_funcs">об измеримых функциях</a>. Пока достаточно такого понимания: <span class="math inline">\(\mathscr {B}\left(\mathbb {R}\right)\)</span> содержит все множества, которые встречаются на практике (все промежутки и всё, что можно получить из них счётными объединениями, пересечениями и дополнениями), а измеримость – техническое условие согласованности <span class="math inline">\(X\)</span> с сигма-алгебрами, которое для всех практически встречающихся функций выполняется автоматически. В дискретном случае (<span class="math inline">\(\mathcal{F} = 2^{\Omega }\)</span>) измерима вообще любая функция.</p>
+<p>Нужно отметить, что условие измеримости носит скорее теоретический характер. В реальной практике очень сложно встретить неизмеримую функцию; подавляющее большинство функций будет обладать измеримостью, т.е. будет случайными элементами (величинами или векторами). Все известные вам стандартные функции из <span class="math inline">\(\mathbb {R}\)</span> в <span class="math inline">\(\mathbb {R}\)</span> являются измеримыми по Борелю. А в дискретном случае, например, вообще все функции <span class="math inline">\(\Omega \mapsto \mathbb {R}\)</span> являются измеримыми, поскольку <span class="math inline">\(\mathcal{F} = 2^{\Omega }\)</span>, т.е. любой прообраз попадет в <span class="math inline">\(\mathcal{F}\)</span>.</p>
+<p>Для упрощения записи вероятностей событий, связанных со случайными величинами, вводятся обозначения:</p>
+<p><span class="math display">\[
+\begin{align}  \mathbb {P}\left(\left\{ \omega : \xi (\omega ) \in B\right\} \right) &amp; =: \mathbb {P}\left(\xi \in B\right) \\ \mathbb {P}\left(\left\{ \omega : \xi (\omega ) &lt; x\right\} \right) &amp; =: \mathbb {P}\left(\xi &lt; x\right) \\ \mathbb {P}\left(\left\{ \omega : \xi (\omega ) = x\right\} \right) &amp; =: \mathbb {P}\left(\xi =x \right) \\ \mathcal{F}_{\xi } &amp; := \left\{ \xi ^{-1}(B) \mid B \in \mathscr {B}\left(\mathbb {R}^{n}\right)\right\}  \\ \end{align}
+\]</span></p>
+<p>Приведем простейшие примеры случайных величин.</p>
+<ul>
+<li><p>Модель броска монетки с вероятностью орла <span class="math inline">\(p\)</span>: <span class="math inline">\(\Omega = \left\{ \omega_{\text{о}}, \omega_{\text{р}}\right\}\)</span>, <span class="math inline">\(\mathcal{F}=2^{\Omega }\)</span>, <span class="math inline">\(\mathbb {P}\left(\left\{ \omega_{\text{о}}\right\} \right) = p\)</span>. Пусть, кроме того,</p>
+<p><span class="math display">\[
+  \xi : \Omega \rightarrow \left\{ 0,1\right\} , \qquad \xi \left(\omega _{\text{о}}\right)=1, \quad \xi \left(\omega _{\text{р}}\right)=0  
+\]</span></p>
+<p>Тогда имеем: <span class="math inline">\(\mathbb {P}\left(\xi = 1\right) = p\)</span>, <span class="math inline">\(\mathbb {P}\left(\xi = 0\right) = 1-p\)</span>.</p></li>
+<li><p>Пусть <span class="math inline">\(\Omega\)</span> – произвольное множество, <span class="math inline">\(\mathcal{F}\)</span> – это <span class="math inline">\(\sigma\)</span>-алгебра на нем и <span class="math inline">\(A \in \mathcal{F}\)</span>. Случайная величина <span class="math inline">\(I_{A}: \Omega \rightarrow \{ 0,1\}\)</span>, где <span class="math inline">\(I_{A}(\omega )=1\)</span> в том и только том случае, когда <span class="math inline">\(\omega \in A\)</span>, называется <em>индикатором события <span class="math inline">\(A\)</span></em>.</p></li>
+</ul>
+<p>Заметим, что свойство измеримости при определении случайных величин (шире, случайных векторов и элементов) необходимо для подсчета вероятностей свойств, связанных со значениями случайных величин. Иными словами, нас интересуют вероятности <span class="math inline">\(\mathbb {P}\left(\xi \in B\right)\)</span>, <span class="math inline">\(B \in \mathcal{E}\)</span>. Легко доказать, что функция <span class="math inline">\(\mathbf{P}_{\xi }: \mathcal{B}\left(\mathbb {R}^{n}\right) \rightarrow [0,1]\)</span>, значения которой задаются равенством</p>
+<p><span class="math display">\[
+  \mathbf{P}_{\xi }\left(B\right) := \mathbb {P}\left(\xi \in B\right) = \mathbb {P}\left(\left\{ \omega \;  : \;  \xi (\omega ) \in B\right\} \right),  
+\]</span></p>
+<p>является вероятностной мерой. В этой связи вводят следующие определения.</p>
+<div id="fig-fig-1" class="tikz-figure quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="fig-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Рисунок&nbsp;1: Случайная величина X: \Omega \to \mathbb {R} “толкает” вероятностную меру \mathbb {P} из области определения (\Omega , \mathcal{F}) в область значений (\mathbb {R}, \mathscr {B}\left(\mathbb {R}\right)). На области значений (\mathbb {R}, \mathscr {B}\left(\mathbb {R}\right)) появляется вероятностная мера \mathbf{P}_X (по-английски она так и называется, ). Она задается по правилу \mathbf{P}_{X}\left(B\right) := \mathbb {P}\left(X^{-1}(B)\right) = \mathbb {P}\left(X \in B\right), B \in \mathscr {B}\left(\mathbb {R}\right) (т.е. \mathbf{P}_{X} = \mathbb {P} \circ X^{-1}). Эта мера \mathbf{P}_X и называется  X."><img src="020_cond_probability_indep_files/mediabag/fig-1.svg" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Рисунок&nbsp;1: Случайная величина <span class="math inline">\(X: \Omega \to \mathbb {R}\)</span> “толкает” вероятностную меру <span class="math inline">\(\mathbb {P}\)</span> из области определения <span class="math inline">\((\Omega , \mathcal{F})\)</span> в область значений <span class="math inline">\((\mathbb {R}, \mathscr {B}\left(\mathbb {R}\right))\)</span>. На области значений <span class="math inline">\((\mathbb {R}, \mathscr {B}\left(\mathbb {R}\right))\)</span> появляется вероятностная мера <span class="math inline">\(\mathbf{P}_X\)</span> (по-английски она так и называется, ). Она задается по правилу <span class="math inline">\(\mathbf{P}_{X}\left(B\right) := \mathbb {P}\left(X^{-1}(B)\right) = \mathbb {P}\left(X \in B\right)\)</span>, <span class="math inline">\(B \in \mathscr {B}\left(\mathbb {R}\right)\)</span> (т.е. <span class="math inline">\(\mathbf{P}_{X} = \mathbb {P} \circ X^{-1}\)</span>). Эта мера <span class="math inline">\(\mathbf{P}_X\)</span> и называется <span class="math inline">\(X\)</span>.
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-simple callout-mn-def no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-2" class="definition theorem">
+<p><span class="theorem-title"><strong>Определение 2</strong></span> Вероятностная мера <span class="math inline">\(\mathbf{P}_{\xi }\)</span> на <span class="math inline">\((\mathbb {R}, \mathscr {B}\left(\mathbb {R}\right))\)</span> называется <em>распределением случайной величины <span class="math inline">\(\xi\)</span></em>.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="распределение-вероятностей" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Распределение вероятностей</h1>
+<p>Термин <em>распределение</em> (или <em>распределение вероятностей</em>), без привязки к случайной величине, – это, в общем, синоним вероятностной меры (вероятности). Отличие лишь в том, что вероятность может задаваться на произвольном измеримом пространстве <span class="math inline">\((\Omega , \mathcal{F})\)</span>, а распределение, как правило, задается на <span class="math inline">\((\mathbb {R}, \mathscr {B}\left(\mathbb {R}\right))\)</span> (шире, на <span class="math inline">\((\mathbb {R}^{n}, \mathscr {B}\left(\mathbb {R}^{n}\right))\)</span>).</p>
+<p>Самые распространенные типы распределений - дискретное и абсолютно непрерывное распределения вероятностей. Мы рассмотрим дискретные.</p>
+<p>а где непрерывные распределения?densities В этой главе мы сознательно ограничиваемся дискретными распределениями. Привычные &lt;&lt;непрерывные&gt;&gt; распределения – равномерное на отрезке, нормальное <span class="math inline">\(\mathscr {N}\left(a, \sigma^2\right)\)</span>, экспоненциальное – задаются не массами отдельных точек, а <em>плотностью</em>. Чтобы честно определить, что такое плотность и как по ней считать вероятности и матожидания, нужен интеграл Лебега (главы&nbsp;<a href="../../../../courses/04-probability/01_MT/contents/100_Lebesgue_integral.html#sec-ch:lebesgue_integral">о построении интеграла Лебега</a>–<a href="../../../../courses/04-probability/01_MT/contents/100_Lebesgue_integral.html#sec-ch:integral_properties">о его свойствах</a>) и теорема Радона–Никодима (глава&nbsp;<a href="../../../../courses/04-probability/01_MT/contents/130_signed_measures.html#sec-ch:signed_measures">о мерах со знаком</a>). Это ещё одна – и, пожалуй, главная прикладная – причина строить теорию меры.</p>
+<p><em>Носитель распределения</em> – это наименьшее замкнутое множество, мера которого <span class="math inline">\(1\)</span>. Обозначение: <span class="math inline">\(\operatorname {supp}\mathbf{P}\)</span>. Имеем</p>
+<p><span class="math display">\[
+  \operatorname {supp}\mathbf{P} = \bigcap _{\substack { B \subset \mathbb {R} \\ B \text{ -- замкн.} \\ \mathbf{P}\left(B\right) = 1}} B  
+\]</span></p>
+<p>Например, носитель меры Лебега на отрезке <span class="math inline">\([0,1]\)</span> – это отрезок <span class="math inline">\([0,1]\)</span>. Носитель меры Дирака в точке <span class="math inline">\(c\)</span> – это <span class="math inline">\(\left\{ c\right\}\)</span> (см. ниже).</p>
+<p>Распределение <span class="math inline">\(\mathbf{P}\)</span> называется <em>дискретным</em>, если его носитель – это не более чем счетное множество. Такое распределение удобно задавать просто через массы отдельных точек носителя: значение <span class="math inline">\(\mathbf{P}\left(\left\{ x\right\} \right)\)</span>, <span class="math inline">\(x \in \operatorname {supp}\mathbf{P}\)</span>, называют <em>функцией масс</em> (или <em>функцией вероятности</em>; от англ. <em>probability mass function</em> происходит часто встречающееся сокращение PMF).</p>
+<p>Приведем примеры дискретных распределений.</p>
+<ul>
+<li><p>Мера Дирака в точке <span class="math inline">\(c \in \mathbb {R}\)</span>: <span class="math inline">\(\delta_c\)</span>. Имеем <span class="math inline">\(\operatorname {supp}\delta_{c} = \left\{ c\right\}\)</span>, <span class="math inline">\(\mathbf{P}\left(\left\{ c\right\} \right) = 1\)</span>.</p></li>
+<li><p><em>Дискретное равномерное распределение</em> <span class="math inline">\(\operatorname {Unif}\left\{ 1,\ldots ,N\right\}\)</span> на множестве <span class="math inline">\(\{ 1, \ldots , N\}\)</span> определяется следующим образом:</p>
+<p><span class="math display">\[
+  \operatorname {supp}\operatorname {Unif}\left\{ 1,\ldots ,N\right\}  = \left\{ 1, \ldots , N\right\} , \qquad \mathbf{P}\left(\left\{ k\right\} \right) = \frac{1}{N}, \quad k \in \left\{ 1, \ldots , N\right\}   
+\]</span></p>
+<p>Иначе говоря,</p>
+<p><span class="math display">\[
+  \operatorname {Unif}\left\{ 1,\ldots ,N\right\}  = \frac{1}{N}\delta _1 + \frac{1}{N}\delta _2 + \ldots + \frac{1}{N}\delta _N  
+\]</span></p>
+<p>Легко проверить, что это действительно распределение: все массы положительны, в сумме дают <span class="math inline">\(1\)</span>.</p></li>
+<li><p><em>Распределение Бернулли</em> с параметром <span class="math inline">\(p \in (0,1)\)</span>: <span class="math inline">\(\operatorname {Ber}(p)\)</span>.</p>
+<p><span class="math display">\[
+  \operatorname {supp}\operatorname {Ber}(p) = \left\{ 0,1\right\} , \qquad \mathbf{P}\left(\left\{ 0\right\} \right) = 1-p, \quad \mathbf{P}\left(\left\{ 1\right\} \right) = p  
+\]</span></p>
+<p>Иначе говоря,</p>
+<p><span class="math display">\[
+  \operatorname {Ber}(p) = (1-p)\cdot \delta _0 + p\cdot \delta _{1}  
+\]</span></p>
+<p>Физическая модель – бросок несимметричной монеты, где выпадению орла сопоставляется <span class="math inline">\(1\)</span>, а выпадению решки <span class="math inline">\(0\)</span>.</p></li>
+<li><p><em>Биномиальное распределение</em> <span class="math inline">\(\operatorname {Bin}(n,p)\)</span> с параметрами <span class="math inline">\((n, p)\)</span>, <span class="math inline">\(n \in \mathbb {N}, p \in (0,1)\)</span>:</p>
+<p><span class="math display">\[
+  \mathbf{P}\left(\left\{ k\right\} \right) = C_{n}^{k}p^{k}(1-p)^{n-k}, \qquad k \in \left\{ 0, \ldots , n\right\}  = \operatorname {supp}\operatorname {Bin}(n,p)  
+\]</span></p>
+<p>Физическая модель - количество успехов в <span class="math inline">\(n\)</span> независимых испытаниях в схеме Бернулли.</p></li>
+<li><p><em>Пуассоновское распределение</em> <span class="math inline">\(\operatorname {Pois}(\lambda )\)</span> с параметром <span class="math inline">\(\lambda &gt;0\)</span>:</p>
+<p><span class="math display">\[
+  \mathbf{P}\left(\left\{ k\right\} \right) = \frac{\lambda ^{k}}{k!} e^{-\lambda }, \qquad k \in \mathbb {Z}_{+} = \left\{ 0,1,2, \ldots \right\}  = \operatorname {supp}\operatorname {Pois}(\lambda )  
+\]</span></p>
+<p>Физическая модель – количество успехов серии независимых испытаний в схеме Бернулли с параметром <span class="math inline">\(\lambda / n\)</span>, где <span class="math inline">\(n \gg \lambda\)</span>.</p></li>
+<li><p><em>Геометрическое распределение</em> <span class="math inline">\(\operatorname {Geom}(p)\)</span> с параметром <span class="math inline">\(p \in (0,1)\)</span>:</p>
+<p><span class="math display">\[
+  \mathbf{P}\left(\left\{ k\right\} \right) = (1-p)^{k-1}p, \qquad k \in \mathbb {N} = \operatorname {supp}\operatorname {Geom}(p)  
+\]</span></p>
+<p>Физическая модель: количество бросков монетки до первого орла.</p></li>
+</ul>
+<p>Случайные величины <span class="math inline">\(\xi , \eta\)</span> называются независимыми, если независимы события <span class="math inline">\(\left\{ \xi \in B_1\right\}\)</span>, <span class="math inline">\(\left\{ \eta \in B_2\right\}\)</span> для произвольных борелевских <span class="math inline">\(B_1, B_2 \in \mathscr {B}\left(\mathbb {R}\right)\)</span>. Т.е.</p>
+<p><span class="math display">\[
+  \mathbb {P}\left(\xi \in B_1, \eta \in B_2\right) = \mathbb {P}\left(\xi \in B_1\right) \cdot \mathbb {P}\left(\eta \in B_2\right), \qquad \forall \;  B_1, B_2 \in \mathscr {B}\left(\mathbb {R}\right)  
+\]</span></p>
+<div id="expl-1" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Для двух независимых случайных величин <span class="math inline">\(\xi \sim \operatorname {Pois}(\lambda )\)</span> и <span class="math inline">\(\eta \sim \operatorname {Pois}(\theta )\)</span> найдите распределение величины <span class="math inline">\(\xi +\eta\)</span>.</p>
+<p><em>Запись <span class="math inline">\(\xi \sim \operatorname {Pois}(\lambda )\)</span> обозначает, что <span class="math inline">\(\xi\)</span> распределена по пуассоновскому закону: <span class="math inline">\(\mathbf{P}_{\xi } = \operatorname {Pois}(\lambda )\)</span>.</em></p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Носитель <span class="math inline">\(\xi\)</span>, <span class="math inline">\(\eta\)</span> (т.е. носитель их распределений) – это множество <span class="math inline">\(\mathbb {Z}_{+}\)</span>. Значит и их сумма с вероятностью <span class="math inline">\(1\)</span> будет принимать значения в <span class="math inline">\(\mathbb {Z}_{+}\)</span>: <span class="math inline">\(\operatorname {supp}(\xi + \eta ) \subseteq \mathbb {Z}_+\)</span><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Чтобы решить задачу, достаточно найти функцию масс для <span class="math inline">\(\xi + \eta\)</span>. Для произвольного <span class="math inline">\(k \in \mathbb {Z}_+\)</span> имеем <span class="math display">\[
+  \mathbf{P}_{\xi + \eta }\left(\left\{ k\right\} \right) = \mathbb {P}\left(\xi + \eta = k\right) = \sum _{i=0}^{k} \mathbb {P}\left(\xi = i, \;  \eta = k-i\right)  
+\]</span> Воспользуемся независимостью <span class="math inline">\(\xi\)</span>, <span class="math inline">\(\eta\)</span>, получим <span class="math display">\[
+\begin{align}  \mathbb {P}\left(\xi = i, \;  \eta = k-i\right) &amp; = \mathbb {P}\left(\xi \in \left\{ i\right\} , \;  \eta \in \left\{ k-i\right\} \right) = \mathbb {P}\left(\xi = i\right) \cdot \mathbb {P}\left(\eta = k-i\right) = e^{-(\lambda + \theta )} \cdot \frac{\lambda ^{i}}{i!} \cdot \frac{\theta ^{k-i}}{(k-i)!} = \\ &amp; = e^{-(\lambda + \theta )} \cdot \frac{1}{k!} \cdot C_{k}^{i} \cdot \lambda ^{i} \cdot \theta ^{k-i} \end{align}
+\]</span> Далее, используя бином Ньютона, получаем <span class="math display">\[
+  \mathbf{P}_{\xi + \eta }\left(\left\{ k\right\} \right) = e^{-(\lambda + \theta )} \cdot \frac{1}{k!} \cdot \sum _{i=0}^{k} C_{k}^{i} \cdot \lambda ^{i} \cdot \theta ^{k-i} = e^{-(\lambda + \theta )} \cdot \frac{1}{k!} \cdot (\lambda + \theta )^{k}  
+\]</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Ответ
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\xi + \eta \sim \operatorname {Pois}(\lambda + \theta )\)</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>В приведённом выше примере, как можно заметить, хотя речь шла о случайной величине, на самом деле объектом изучения было не само отображение <span class="math inline">\(\Omega \to \mathbb {R}\)</span>, а его распределение вероятностей. В теории вероятностей так часто происходит: случайную величину и ее распределение используют взаимозаменяемо. Важно при этом всё-таки отличать их. Распределение случайной величины – это <strong>лишь одна из ее характеристик</strong>. Две абсолютно разные случайные величины (как функции) могут иметь одинаковое распределение.</p>
+<div id="prob-2" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Для двух независимых случайных величин <span class="math inline">\(\xi \sim \operatorname {Bin}(n, p)\)</span> и <span class="math inline">\(\eta \sim \operatorname {Bin}(m, p)\)</span> найдите распределение величины <span class="math inline">\(\xi +\eta\)</span>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="от-распределения-к-случайной-величине" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> От распределения к случайной величине</h1>
+<p>Как мы выяснили, любая случайная величина имеет распределение, т.&nbsp;е. порождает вероятностную меру на <span class="math inline">\((\mathbb {R}, \mathcal{B}(\mathbb {R}))\)</span>. В реальных задачах, однако, зачастую вообще не упоминают исходное вероятностное пространство <span class="math inline">\((\Omega , \mathcal{F}, \mathbb {P})\)</span>, а просто говорят о некоторой случайной величине с заданным распределением <span class="math inline">\(\mathbf{P}\)</span>.</p>
+<p>Возникает вопрос: а существует ли в принципе такая случайная величина? Можно ли построить <span class="math inline">\((\Omega , \mathcal{F}, \mathbb {P})\)</span> и измеримое отображение <span class="math inline">\(X \colon \Omega \to \mathbb {R}\)</span> так, чтобы <span class="math inline">\(\mathbf{P} = \mathbf{P}_{X}\)</span>? Ответ на этот вопрос утвердительный. Вот стандартная конструкция:</p>
+<p><span class="math display">\[
+  (\Omega , \mathcal{F}, \mathbb {P}) := (\mathbb {R}, \mathcal{B}(\mathbb {R}), \mathbf{P}), \qquad X(\omega ) := \omega \qquad \text{(т.е. $X = \operatorname {Id}$)}.  
+\]</span></p>
+<p>Ее можно несколько упростить, если брать вместо <span class="math inline">\(\mathbb {R}\)</span> только лишь носитель распределения <span class="math inline">\(\mathbf{P}\)</span>:</p>
+<p><span class="math display">\[
+  \Omega := \operatorname {supp}\mathbf{P}, \qquad \mathcal{F} := \left\{ B \cap \operatorname {supp}\mathbf{P}, \;  B \in \mathscr {B}\left(\mathbb {R}\right)\right\} , \qquad \mathbb {P} := \mathbf{P}|_{\operatorname {supp}\mathbf{P}}  
+\]</span></p>
+<div id="expl-3" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>Докажите существование случайной величины с распределением Пуассона с параметром <span class="math inline">\(\lambda &gt; 0\)</span>.</p></li>
+<li><p>Докажите существование двух независимых пуассоновских случайных величин с параметрами <span class="math inline">\(\lambda_1, \lambda_2 \in (0,+\infty )\)</span>.</p></li>
+</ol>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>(1)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(\Omega = \mathbb {Z}_+\)</span>, <span class="math inline">\(\mathcal{F} = 2^{\mathbb {Z}_+}\)</span>, <span class="math inline">\(\mathbb {P} = \operatorname {Pois}(\lambda )\)</span>, <span class="math inline">\(X = \operatorname {Id}\)</span>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>(2)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(\Omega = \mathbb {Z}_+ \times \mathbb {Z}_+\)</span>, <span class="math inline">\(\mathcal{F} = 2^{\Omega }\)</span>. Далее, для произвольного <span class="math inline">\(\omega = (k_1, k_2) \in \mathbb {Z}_+ \times \mathbb {Z}_+\)</span> пусть</p>
+<p><span class="math display">\[
+  \mathbb {P}\left(\left\{ \omega \right\} \right) := \frac{\lambda _1^{k_1}}{k_1!}e^{-\lambda _1} \cdot \frac{\lambda _2^{k_2}}{k_2!}e^{-\lambda _2}  
+\]</span></p>
+<p>Пусть <span class="math inline">\(X := \operatorname {Id}\)</span>. Имеем <span class="math inline">\(X: \Omega \to \mathbb {Z}_+ \times \mathbb {Z}_+\)</span>, т.е. у <span class="math inline">\(X\)</span> две координатные функции: <span class="math inline">\(X = (X_1, X_2)\)</span>. Вот <span class="math inline">\(X_1, X_2\)</span> и будут независимыми пуассоновскими с параметрами <span class="math inline">\(\lambda_1\)</span>, <span class="math inline">\(\lambda_2\)</span> (проверьте сами).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="функция-распределения" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Функция распределения</h1>
+<div class="callout callout-style-simple callout-mn-def no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-3" class="definition theorem">
+<p><span class="theorem-title"><strong>Определение 3</strong></span> Пусть <span class="math inline">\(\mathbf{P}\)</span> – распределение на <span class="math inline">\((\mathbb {R}, \mathscr {B}\left(\mathbb {R}\right))\)</span>. Функция</p>
+<p><span class="math display">\[
+  F_{\mathbf{P}}(x) := \mathbf{P}\left((-\infty , x]\right), \quad x \in \mathbb {R}  
+\]</span></p>
+<p>называется <em>функцией распределения</em> вероятностной меры <span class="math inline">\(\mathbf{P}\)</span>.</p>
+<p>Если <span class="math inline">\(\xi\)</span> – это случайная величина, то <em>функцией распределения <span class="math inline">\(\xi\)</span></em> называется функция</p>
+<p><span class="math display">\[
+  F_{\xi }(x) := F_{\mathbf{P}_{\xi }}(x) = \mathbb {P}\left(\xi \in (-\infty , x]\right) = \mathbb {P}\left(\xi \leq x\right), \quad x \in \mathbb {R}  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p>Отметим свойства функции распределения.</p>
+<ol type="1">
+<li><p><span class="math inline">\(F(x)\)</span> – неубывающая функция;</p></li>
+<li><p><span class="math inline">\(\lim_{x \rightarrow -\infty } F(x)=0\)</span>, <span class="math inline">\(\lim_{x \rightarrow +\infty } F(x)=1\)</span>;</p></li>
+<li><p><span class="math inline">\(F(x)\)</span> непрерывна справа и имеет пределы слева в каждой точке <span class="math inline">\(x \in \mathbb {R}\)</span>.</p></li>
+</ol>
+<p>Прежде чем идти дальше, взглянем на графики функций распределения для дискретных распределений, введённых в предыдущем разделе – на них хорошо видны все три перечисленных свойства (в частности, скачки в точках носителя и то, что закрашенная точка – всегда <strong>правый</strong> конец скачка).</p>
+<div id="8f6e57c7" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div>                            <div id="d818d18b-6697-42d9-a26b-fada083beab3" class="plotly-graph-div" style="height:780px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("d818d18b-6697-42d9-a26b-fada083beab3")) {                    Plotly.newPlot(                        "d818d18b-6697-42d9-a26b-fada083beab3",                        [{"hovertemplate":"F(x) = 0.0000\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[-1,2],"y":[0.0,0.0],"type":"scatter","xaxis":"x","yaxis":"y"},{"hovertemplate":"F(x) = 1.0000\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[2,5],"y":[1.0,1.0],"type":"scatter","xaxis":"x","yaxis":"y"},{"hovertemplate":"F(x\u207b) = %{y:.4f}\u003cextra\u003e\u043e\u0442\u043a\u0440\u044b\u0442\u0430\u044f \u0442\u043e\u0447\u043a\u0430\u003c\u002fextra\u003e","marker":{"color":"#2a78d6","line":{"width":2},"size":7,"symbol":"circle-open"},"mode":"markers","showlegend":false,"x":[2],"y":[0.0],"type":"scatter","xaxis":"x","yaxis":"y"},{"hovertemplate":"F(x) = %{y:.4f}\u003cextra\u003e\u0437\u0430\u043a\u0440\u0430\u0448\u0435\u043d\u043d\u0430\u044f \u0442\u043e\u0447\u043a\u0430\u003c\u002fextra\u003e","marker":{"color":"#2a78d6","size":7,"symbol":"circle"},"mode":"markers","showlegend":false,"x":[2],"y":[1.0],"type":"scatter","xaxis":"x","yaxis":"y"},{"hovertemplate":"F(x) = 0.0000\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[0,1],"y":[0.0,0.0],"type":"scatter","xaxis":"x2","yaxis":"y2"},{"hovertemplate":"F(x) = 0.2000\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[1,2],"y":[0.2,0.2],"type":"scatter","xaxis":"x2","yaxis":"y2"},{"hovertemplate":"F(x) = 0.4000\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[2,3],"y":[0.4,0.4],"type":"scatter","xaxis":"x2","yaxis":"y2"},{"hovertemplate":"F(x) = 0.6000\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[3,4],"y":[0.6000000000000001,0.6000000000000001],"type":"scatter","xaxis":"x2","yaxis":"y2"},{"hovertemplate":"F(x) = 0.8000\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[4,5],"y":[0.8,0.8],"type":"scatter","xaxis":"x2","yaxis":"y2"},{"hovertemplate":"F(x) = 1.0000\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[5,6],"y":[1.0,1.0],"type":"scatter","xaxis":"x2","yaxis":"y2"},{"hovertemplate":"F(x\u207b) = %{y:.4f}\u003cextra\u003e\u043e\u0442\u043a\u0440\u044b\u0442\u0430\u044f \u0442\u043e\u0447\u043a\u0430\u003c\u002fextra\u003e","marker":{"color":"#2a78d6","line":{"width":2},"size":7,"symbol":"circle-open"},"mode":"markers","showlegend":false,"x":[1,2,3,4,5],"y":[0.0,0.2,0.4,0.6000000000000001,0.8],"type":"scatter","xaxis":"x2","yaxis":"y2"},{"hovertemplate":"F(x) = %{y:.4f}\u003cextra\u003e\u0437\u0430\u043a\u0440\u0430\u0448\u0435\u043d\u043d\u0430\u044f \u0442\u043e\u0447\u043a\u0430\u003c\u002fextra\u003e","marker":{"color":"#2a78d6","size":7,"symbol":"circle"},"mode":"markers","showlegend":false,"x":[1,2,3,4,5],"y":[0.2,0.4,0.6000000000000001,0.8,1.0],"type":"scatter","xaxis":"x2","yaxis":"y2"},{"hovertemplate":"F(x) = 0.0000\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[-1,0],"y":[0.0,0.0],"type":"scatter","xaxis":"x3","yaxis":"y3"},{"hovertemplate":"F(x) = 0.7000\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[0,1],"y":[0.7,0.7],"type":"scatter","xaxis":"x3","yaxis":"y3"},{"hovertemplate":"F(x) = 1.0000\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[1,2],"y":[1.0,1.0],"type":"scatter","xaxis":"x3","yaxis":"y3"},{"hovertemplate":"F(x\u207b) = %{y:.4f}\u003cextra\u003e\u043e\u0442\u043a\u0440\u044b\u0442\u0430\u044f \u0442\u043e\u0447\u043a\u0430\u003c\u002fextra\u003e","marker":{"color":"#2a78d6","line":{"width":2},"size":7,"symbol":"circle-open"},"mode":"markers","showlegend":false,"x":[0,1],"y":[0.0,0.7],"type":"scatter","xaxis":"x3","yaxis":"y3"},{"hovertemplate":"F(x) = %{y:.4f}\u003cextra\u003e\u0437\u0430\u043a\u0440\u0430\u0448\u0435\u043d\u043d\u0430\u044f \u0442\u043e\u0447\u043a\u0430\u003c\u002fextra\u003e","marker":{"color":"#2a78d6","size":7,"symbol":"circle"},"mode":"markers","showlegend":false,"x":[0,1],"y":[0.7,1.0],"type":"scatter","xaxis":"x3","yaxis":"y3"},{"hovertemplate":"F(x) = 0.0000\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[-1,0],"y":[0.0,0.0],"type":"scatter","xaxis":"x4","yaxis":"y4"},{"hovertemplate":"F(x) = 0.0778\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[0,1],"y":[0.07775999999999994,0.07775999999999994],"type":"scatter","xaxis":"x4","yaxis":"y4"},{"hovertemplate":"F(x) = 0.3370\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[1,2],"y":[0.33696000000000004,0.33696000000000004],"type":"scatter","xaxis":"x4","yaxis":"y4"},{"hovertemplate":"F(x) = 0.6826\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[2,3],"y":[0.6825599999999998,0.6825599999999998],"type":"scatter","xaxis":"x4","yaxis":"y4"},{"hovertemplate":"F(x) = 0.9130\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[3,4],"y":[0.9129599999999998,0.9129599999999998],"type":"scatter","xaxis":"x4","yaxis":"y4"},{"hovertemplate":"F(x) = 0.9898\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[4,5],"y":[0.9897599999999998,0.9897599999999998],"type":"scatter","xaxis":"x4","yaxis":"y4"},{"hovertemplate":"F(x) = 1.0000\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[5,6],"y":[0.9999999999999998,0.9999999999999998],"type":"scatter","xaxis":"x4","yaxis":"y4"},{"hovertemplate":"F(x\u207b) = %{y:.4f}\u003cextra\u003e\u043e\u0442\u043a\u0440\u044b\u0442\u0430\u044f \u0442\u043e\u0447\u043a\u0430\u003c\u002fextra\u003e","marker":{"color":"#2a78d6","line":{"width":2},"size":7,"symbol":"circle-open"},"mode":"markers","showlegend":false,"x":[0,1,2,3,4,5],"y":[0.0,0.07775999999999994,0.33696000000000004,0.6825599999999998,0.9129599999999998,0.9897599999999998],"type":"scatter","xaxis":"x4","yaxis":"y4"},{"hovertemplate":"F(x) = %{y:.4f}\u003cextra\u003e\u0437\u0430\u043a\u0440\u0430\u0448\u0435\u043d\u043d\u0430\u044f \u0442\u043e\u0447\u043a\u0430\u003c\u002fextra\u003e","marker":{"color":"#2a78d6","size":7,"symbol":"circle"},"mode":"markers","showlegend":false,"x":[0,1,2,3,4,5],"y":[0.07775999999999994,0.33696000000000004,0.6825599999999998,0.9129599999999998,0.9897599999999998,0.9999999999999998],"type":"scatter","xaxis":"x4","yaxis":"y4"},{"hovertemplate":"F(x) = 0.0000\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[-1,0],"y":[0.0,0.0],"type":"scatter","xaxis":"x5","yaxis":"y5"},{"hovertemplate":"F(x) = 0.1353\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[0,1],"y":[0.1353352832366127,0.1353352832366127],"type":"scatter","xaxis":"x5","yaxis":"y5"},{"hovertemplate":"F(x) = 0.4060\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[1,2],"y":[0.4060058497098381,0.4060058497098381],"type":"scatter","xaxis":"x5","yaxis":"y5"},{"hovertemplate":"F(x) = 0.6767\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[2,3],"y":[0.6766764161830635,0.6766764161830635],"type":"scatter","xaxis":"x5","yaxis":"y5"},{"hovertemplate":"F(x) = 0.8571\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[3,4],"y":[0.857123460498547,0.857123460498547],"type":"scatter","xaxis":"x5","yaxis":"y5"},{"hovertemplate":"F(x) = 0.9473\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[4,5],"y":[0.9473469826562888,0.9473469826562888],"type":"scatter","xaxis":"x5","yaxis":"y5"},{"hovertemplate":"F(x) = 0.9834\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[5,6],"y":[0.9834363915193856,0.9834363915193856],"type":"scatter","xaxis":"x5","yaxis":"y5"},{"hovertemplate":"F(x) = 0.9955\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[6,9],"y":[0.9954661944737511,0.9954661944737511],"type":"scatter","xaxis":"x5","yaxis":"y5"},{"hovertemplate":"F(x\u207b) = %{y:.4f}\u003cextra\u003e\u043e\u0442\u043a\u0440\u044b\u0442\u0430\u044f \u0442\u043e\u0447\u043a\u0430\u003c\u002fextra\u003e","marker":{"color":"#2a78d6","line":{"width":2},"size":7,"symbol":"circle-open"},"mode":"markers","showlegend":false,"x":[0,1,2,3,4,5,6],"y":[0.0,0.1353352832366127,0.4060058497098381,0.6766764161830635,0.857123460498547,0.9473469826562888,0.9834363915193856],"type":"scatter","xaxis":"x5","yaxis":"y5"},{"hovertemplate":"F(x) = %{y:.4f}\u003cextra\u003e\u0437\u0430\u043a\u0440\u0430\u0448\u0435\u043d\u043d\u0430\u044f \u0442\u043e\u0447\u043a\u0430\u003c\u002fextra\u003e","marker":{"color":"#2a78d6","size":7,"symbol":"circle"},"mode":"markers","showlegend":false,"x":[0,1,2,3,4,5,6],"y":[0.1353352832366127,0.4060058497098381,0.6766764161830635,0.857123460498547,0.9473469826562888,0.9834363915193856,0.9954661944737511],"type":"scatter","xaxis":"x5","yaxis":"y5"},{"hovertemplate":"F(x) = 0.0000\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[0,1],"y":[0.0,0.0],"type":"scatter","xaxis":"x6","yaxis":"y6"},{"hovertemplate":"F(x) = 0.4000\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[1,2],"y":[0.4,0.4],"type":"scatter","xaxis":"x6","yaxis":"y6"},{"hovertemplate":"F(x) = 0.6400\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[2,3],"y":[0.64,0.64],"type":"scatter","xaxis":"x6","yaxis":"y6"},{"hovertemplate":"F(x) = 0.7840\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[3,4],"y":[0.784,0.784],"type":"scatter","xaxis":"x6","yaxis":"y6"},{"hovertemplate":"F(x) = 0.8704\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[4,5],"y":[0.8704000000000001,0.8704000000000001],"type":"scatter","xaxis":"x6","yaxis":"y6"},{"hovertemplate":"F(x) = 0.9222\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[5,6],"y":[0.9222400000000001,0.9222400000000001],"type":"scatter","xaxis":"x6","yaxis":"y6"},{"hovertemplate":"F(x) = 0.9533\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[6,7],"y":[0.9533440000000001,0.9533440000000001],"type":"scatter","xaxis":"x6","yaxis":"y6"},{"hovertemplate":"F(x) = 0.9720\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2a78d6","width":2.5},"mode":"lines","showlegend":false,"x":[7,9],"y":[0.9720064,0.9720064],"type":"scatter","xaxis":"x6","yaxis":"y6"},{"hovertemplate":"F(x\u207b) = %{y:.4f}\u003cextra\u003e\u043e\u0442\u043a\u0440\u044b\u0442\u0430\u044f \u0442\u043e\u0447\u043a\u0430\u003c\u002fextra\u003e","marker":{"color":"#2a78d6","line":{"width":2},"size":7,"symbol":"circle-open"},"mode":"markers","showlegend":false,"x":[1,2,3,4,5,6,7],"y":[0.0,0.4,0.64,0.784,0.8704000000000001,0.9222400000000001,0.9533440000000001],"type":"scatter","xaxis":"x6","yaxis":"y6"},{"hovertemplate":"F(x) = %{y:.4f}\u003cextra\u003e\u0437\u0430\u043a\u0440\u0430\u0448\u0435\u043d\u043d\u0430\u044f \u0442\u043e\u0447\u043a\u0430\u003c\u002fextra\u003e","marker":{"color":"#2a78d6","size":7,"symbol":"circle"},"mode":"markers","showlegend":false,"x":[1,2,3,4,5,6,7],"y":[0.4,0.64,0.784,0.8704000000000001,0.9222400000000001,0.9533440000000001,0.9720064],"type":"scatter","xaxis":"x6","yaxis":"y6"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"xaxis":{"anchor":"y","domain":[0.0,0.455],"title":{"text":"x"},"zeroline":true,"zerolinecolor":"#c3c2b7","gridcolor":"#e1e0d9","fixedrange":true},"yaxis":{"anchor":"x","domain":[0.7266666666666668,1.0],"title":{"text":"F(x)"},"range":[-0.05,1.15],"zeroline":true,"zerolinecolor":"#c3c2b7","gridcolor":"#e1e0d9","tickvals":[0,0.2,0.4,0.6,0.8,1.0],"fixedrange":true},"xaxis2":{"anchor":"y2","domain":[0.545,1.0],"title":{"text":"x"},"zeroline":true,"zerolinecolor":"#c3c2b7","gridcolor":"#e1e0d9","fixedrange":true},"yaxis2":{"anchor":"x2","domain":[0.7266666666666668,1.0],"title":{"text":"F(x)"},"range":[-0.05,1.15],"zeroline":true,"zerolinecolor":"#c3c2b7","gridcolor":"#e1e0d9","tickvals":[0,0.2,0.4,0.6,0.8,1.0],"fixedrange":true},"xaxis3":{"anchor":"y3","domain":[0.0,0.455],"title":{"text":"x"},"zeroline":true,"zerolinecolor":"#c3c2b7","gridcolor":"#e1e0d9","fixedrange":true},"yaxis3":{"anchor":"x3","domain":[0.3633333333333334,0.6366666666666667],"title":{"text":"F(x)"},"range":[-0.05,1.15],"zeroline":true,"zerolinecolor":"#c3c2b7","gridcolor":"#e1e0d9","tickvals":[0,0.2,0.4,0.6,0.8,1.0],"fixedrange":true},"xaxis4":{"anchor":"y4","domain":[0.545,1.0],"title":{"text":"x"},"zeroline":true,"zerolinecolor":"#c3c2b7","gridcolor":"#e1e0d9","fixedrange":true},"yaxis4":{"anchor":"x4","domain":[0.3633333333333334,0.6366666666666667],"title":{"text":"F(x)"},"range":[-0.05,1.15],"zeroline":true,"zerolinecolor":"#c3c2b7","gridcolor":"#e1e0d9","tickvals":[0,0.2,0.4,0.6,0.8,1.0],"fixedrange":true},"xaxis5":{"anchor":"y5","domain":[0.0,0.455],"title":{"text":"x"},"zeroline":true,"zerolinecolor":"#c3c2b7","gridcolor":"#e1e0d9","fixedrange":true},"yaxis5":{"anchor":"x5","domain":[0.0,0.2733333333333334],"title":{"text":"F(x)"},"range":[-0.05,1.15],"zeroline":true,"zerolinecolor":"#c3c2b7","gridcolor":"#e1e0d9","tickvals":[0,0.2,0.4,0.6,0.8,1.0],"fixedrange":true},"xaxis6":{"anchor":"y6","domain":[0.545,1.0],"title":{"text":"x"},"zeroline":true,"zerolinecolor":"#c3c2b7","gridcolor":"#e1e0d9","fixedrange":true},"yaxis6":{"anchor":"x6","domain":[0.0,0.2733333333333334],"title":{"text":"F(x)"},"range":[-0.05,1.15],"zeroline":true,"zerolinecolor":"#c3c2b7","gridcolor":"#e1e0d9","tickvals":[0,0.2,0.4,0.6,0.8,1.0],"fixedrange":true},"annotations":[{"font":{"size":16},"showarrow":false,"text":"\u03b4_c, c = 2","x":0.2275,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"Unif{1,\u2026,5}","x":0.7725,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"Ber(p = 0.3)","x":0.2275,"xanchor":"center","xref":"paper","y":0.6366666666666667,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"Bin(n = 5, p = 0.4)","x":0.7725,"xanchor":"center","xref":"paper","y":0.6366666666666667,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"Pois(\u03bb = 2)","x":0.2275,"xanchor":"center","xref":"paper","y":0.2733333333333334,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"Geom(p = 0.4)","x":0.7725,"xanchor":"center","xref":"paper","y":0.2733333333333334,"yanchor":"bottom","yref":"paper"},{"font":{"color":"#898781","size":9},"showarrow":false,"text":"\u22ef \u2192 1","x":6.6,"xref":"x5","y":1.06,"yref":"y5"},{"font":{"color":"#898781","size":9},"showarrow":false,"text":"\u22ef \u2192 1","x":7.6,"xref":"x6","y":1.06,"yref":"y6"}],"margin":{"l":50,"r":20,"t":40,"b":40},"plot_bgcolor":"#fcfcfb","paper_bgcolor":"#fcfcfb","height":780,"showlegend":false},                        {"displayModeBar": false, "displaylogo": false, "scrollZoom": false, "responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('d818d18b-6697-42d9-a26b-fada083beab3');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+<p>Функции распределения шести дискретных распределений из предыдущего раздела. Открытый кружок ○ — значение, которое <em>не</em> достигается (предел слева); закрашенный кружок ● — значение, которое достигается в этой точке (в силу непрерывности справа). У пуассоновского и геометрического распределений показаны только первые несколько скачков — дальше функция распределения продолжает по мелким шагам приближаться к 1, но никогда не становится равной 1 на конечном расстоянии (носитель бесконечен).</p>
+</div>
+</div>
+<p>Оказывается, для задания распределения вероятностей достаточно задать вероятностную меру лишь на множествах <span class="math inline">\((-\infty , x]\)</span> для всех действительных <span class="math inline">\(x\)</span>.</p>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-1" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 1</strong></span> Пусть <span class="math inline">\(F=F(x)\)</span> – функция на числовой прямой <span class="math inline">\(\mathbb {R}\)</span>, удовлетворяющая свойствам 1 - 3. Тогда на <span class="math inline">\((\mathbb {R}, \mathscr {B}\left(\mathbb {R}\right))\)</span> существует, и притом единственное, распределение вероятностей <span class="math inline">\(\mathbf{P}\)</span> такое, что <span class="math inline">\(F\)</span> – соответствующая этому распределению функция распределения.</p>
+</div>
+</div>
+</div>
+</div>
+<p>Эта теорема оправдывает введение следующего понятия: всякая функция <span class="math inline">\(F\)</span>, удовлетворяющая условиям 1) - 3), называется <em>функцией распределения на числовой прямой <span class="math inline">\(\mathbb {R}\)</span></em>.</p>
+<p>функция распределения однозначно задаёт распределениеcdf-defines-distrib Теорема выше – это чистая теория меры, и её долг будет возвращён полностью. Существование меры по функции <span class="math inline">\(F\)</span> – это теорема Каратеодори о продолжении (глава&nbsp;<a href="../../../../courses/04-probability/01_MT/contents/060_outer_measure_Lebesgue.html#sec-ch:caratheodory">о внешней мере и теореме Каратеодори</a>), применённая к функции множеств <span class="math inline">\((a,b] \mapsto F(b)-F(a)\)</span>; единственность – теорема о единственности продолжения с <span class="math inline">\(\pi\)</span>-системы (там же). Итоговая конструкция называется <em>мерой Лебега–Стилтьеса</em> (глава&nbsp;<a href="../../../../courses/04-probability/01_MT/contents/070_complete_measure.html#sec-ch:lebesgue_measure">о мере Лебега</a>).</p>
+<div id="expl-4" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(F(x)\)</span> – функция распределения на числовой прямой, соответствующая распределению вероятностей <span class="math inline">\(\mathbf{P}\)</span>. Доказать равенство <span class="math inline">\(\mathbf{P}\left((a, b]\right) = F(b) - F(a)\)</span> для любых <span class="math inline">\(-\infty &lt;a&lt;b&lt;\infty\)</span>.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>В силу определения вероятностной меры <span class="math display">\[
+  \mathbf{P}\left((-\infty , a]\right) + \mathbf{P}\left((a, b]\right) = \mathbf{P}\left((-\infty , b]\right)  
+\]</span> В соответствии с определением функции распределения выполнено <span class="math inline">\(F(a)+ \mathbf{P}\left((a, b]\right) = F(b)\)</span>. Окончательно получаем <span class="math inline">\(\mathbf{P}\left((a, b]\right) = F(b) - F(a)\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Приведем простейшие примеры функций распределения.</p>
+<ul>
+<li><p>Пусть</p>
+<p><span class="math display">\[
+  F(x)= \begin{cases} 0, &amp;  x&lt;0 \\ x, &amp;  0 \leq x \leq 1 \\ 1, &amp;  x&gt;1\end{cases}  
+\]</span></p>
+<p>В этом случае соответствующее распределение вероятностей <span class="math inline">\(\lambda\)</span> называют <em>мерой Лебега</em> на отрезке <span class="math inline">\([0,1]\)</span>. Ясно, что для любых <span class="math inline">\(a&lt;b \in [0,1]\)</span> выполнено</p>
+<p><span class="math display">\[
+  \lambda ((a, b))=\lambda ([a, b))=\lambda ((a, b])=\lambda ([a, b])=b-a  
+\]</span></p></li>
+<li><p>Пусть</p>
+<p><span class="math display">\[
+  F(x)= \begin{cases} 0, &amp;  x&lt;c \\ 1, &amp;  x \geq c\end{cases}  
+\]</span></p>
+<p>Соответствующее распределение вероятностей:</p>
+<p><span class="math display">\[
+  \mathbf{P}\left(A\right) = \delta _c(A) = \begin{cases} 0, &amp;  c \notin A \\ 1, &amp;  c \in A\end{cases}  
+\]</span></p>
+<p>если <span class="math inline">\(A \in \mathscr {B}\left(\mathbb {R}\right)\)</span>. Т.е. это распределение соответствует единичной массе, сосредоточенной в точке <span class="math inline">\(c\)</span>. Такая вероятностная мера называется <em>мерой Дирака</em> (обозн.: <span class="math inline">\(\delta_c\)</span>).</p></li>
+</ul>
+<div id="prob-5" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Для <span class="math inline">\(\xi \sim \operatorname {Geom}(p)\)</span> найдите функцию распределения <span class="math inline">\(F_{\xi }(n)\)</span>. Найдите т.н. <em>функцию выживания</em> <span class="math display">\[
+  S_{\xi }(n) = 1 - F_{\xi }(n) = \mathbb {P}\left(\xi &gt; n\right),  
+\]</span> <span class="math inline">\(n \geq 0\)</span>.</p>
+</div>
+</div>
+</div>
+<div id="prob-6" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Для независимых случайных величин <span class="math inline">\(X_{1}, \ldots , X_{n} \sim \operatorname {Geom}(p)\)</span> найдите распределение величины <span class="math inline">\(\min \left\{ X_{1}, \ldots , X_{n}\right\}\)</span>.</p>
+</div>
+</div>
+</div>
+<div id="prob-7" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Для независимых случайных величин <span class="math inline">\(X_{1}, \ldots , X_{n} \sim \operatorname {Geom}(p)\)</span> найдите распределение величины <span class="math inline">\(X_{1}+\ldots +X_{n}\)</span>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="различные-задачи" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Различные задачи</h1>
+<div id="expl-8" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть летает <span class="math inline">\(n\)</span> бабочек. Любитель бабочек Владимир поймал <span class="math inline">\(X \sim \operatorname {Bin}(n, p)\)</span> бабочек. Каждая пойманная бабочка оказывается красивой с вероятностью <span class="math inline">\(\theta\)</span> независимо от общего количества бабочек и от остальных бабочек. Пусть <span class="math inline">\(Y\)</span> — количество красивых бабочек среди пойманных. Найдите распределение величины <span class="math inline">\(Y\)</span>.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ul>
+<li><p><strong>Первый способ, идейный.</strong> Каждая бабочка может быть поймана с вероятностью <span class="math inline">\(p\)</span>, и независимо от этого может быть красивой с вероятностью <span class="math inline">\(\theta\)</span>. Т.е. она одновременно поймана и красива с вероятностью <span class="math inline">\(p \theta\)</span> (т.е. имеет распределение <span class="math inline">\(\operatorname {Ber}(p \theta )\)</span>), независимо от других бабочек. <span class="math inline">\(Y\)</span> – это сумма пойманных и красивых. Сумма независимых биномиальных случайных величин с одним параметром <span class="math inline">\(p \theta\)</span> – это СВ, распределенная по <span class="math inline">\(\operatorname {Bin}(n, p \theta )\)</span>.</p></li>
+<li><p><strong>Второй способ: расписываем в явном виде.</strong> Носитель <span class="math inline">\(X\)</span> – это множество <span class="math inline">\(\{ 0,\ldots ,n\}\)</span>, значит у <span class="math inline">\(Y\)</span> тот же носитель (или меньше). Заметим, что если среди пойманных <span class="math inline">\(k\)</span> красивых (<span class="math inline">\(Y = k\)</span>), то всего поймано не меньше <span class="math inline">\(k\)</span> (и не больше <span class="math inline">\(n\)</span> по условию, <span class="math inline">\(k \leq X \leq n\)</span>). Т.е.</p>
+<p><span class="math display">\[
+  \left\{ Y = k\right\}  = \bigsqcup _{i=k}^{n} \left\{ Y=k, X = i\right\}   
+\]</span></p>
+<p>По формуле полной вероятности имеем</p>
+<p><span class="math display">\[
+\begin{align}  \mathbb {P}\left(Y = k\right) &amp; = \sum _{i = k}^{n}\mathbb {P}\left(Y = k, X= i\right) = \sum _{i = k}^{n}\mathbb {P}\left(Y = k \mid X= i\right) \cdot \mathbb {P}\left(X = i\right) = \\ &amp; = \sum _{i=k}^{n} \binom {i}{k} \theta ^{k}(1-\theta )^{i-k} \cdot \binom {n}{i} p^{i} (1-p)^{n-i} = \\ &amp; = \binom {n}{k} (p \theta )^k \sum _{i=k}^{n} \binom {n-k}{i-k} p^{i-k} (1-\theta )^{i-k} (1-p)^{n-i} \\ &amp; = \binom {n}{k} (p \theta )^k \sum _{j=0}^{n-k} \binom {n-k}{j} [p(1-\theta )]^j (1-p)^{n-k-j} \\ &amp; = \binom {n}{k} (p \theta )^k [p(1-\theta ) + (1-p)]^{n-k} \\ &amp; = \binom {n}{k} (p \theta )^k (1 - p\theta )^{n-k} \end{align}
+\]</span></p>
+<p>где мы сделали замену <span class="math inline">\(j = i - k\)</span> и воспользовались формулой бинома Ньютона.</p>
+<p>Таким образом, <span class="math inline">\(Y \sim \operatorname {Bin}(n, p\theta )\)</span>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Ответ
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\operatorname {Bin}(n, p \theta )\)</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="prob-9" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 5
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Некоторое насекомое откладывает <span class="math inline">\(X \sim \operatorname {Pois}(\lambda )\)</span> яиц. Из них вылупляется <span class="math inline">\(Y\)</span> потомков, причём вероятность развития насекомого из яйца равна <span class="math inline">\(p\)</span>, и развитие насекомого из яйца не зависит ни от количества яиц, ни от развития других яиц. Найти распределение величины <span class="math inline">\(Y\)</span>.</p>
+</div>
+</div>
+</div>
+<div id="prob-10" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 6
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Ося и Киса решают задачи независимо друг от друга: Ося по ОВиТМу, а Киса по матанализу. Известно, что количество решённых Осей задач имеет распределение <span class="math inline">\(\operatorname {Pois}(\lambda )\)</span>, а количество решённых Кисой задач имеет распределение <span class="math inline">\(\operatorname {Pois}(\theta )\)</span>. Найдите вероятность того, что Ося решил <span class="math inline">\(k\)</span> задач, если вместе они решили <span class="math inline">\(n\)</span> задач.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="матожидание-для-дискретного-распределения" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Матожидание для дискретного распределения</h1>
+<p>Математическое ожидание - это, неформально, среднее значение, которое принимает случайная величина. Так, среднее значение, выпадающее на игральной кости, равно <span class="math inline">\(3.5\)</span>, и математическое ожидание случайной величины, равной значению, выпавшему на кости, также равно <span class="math inline">\(3.5\)</span>.</p>
+<p>Если случайная величина имеет дискретное распределение, то определение математического ожидания вводится естественным образом как взвешенная сумма значений случайной величины.</p>
+<div class="callout callout-style-simple callout-mn-def no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-4" class="definition theorem">
+<p><span class="theorem-title"><strong>Определение 4</strong></span> <em>Математическим ожиданием</em> случайной величины <span class="math inline">\(\xi\)</span>, имеющей дискретное распределение, называется величина <span class="math inline">\(\mathbb {E}\left[\xi \right]\)</span>, равная <span class="math display">\[
+  \mathbb {E}\left[\xi \right] := \sum _{k \in \operatorname {supp}\xi } k \cdot \mathbb {P}\left(\xi =k\right),  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p>Если множество <span class="math inline">\(X\)</span> бесконечное, то сумма в определении математического ожидания может быть бесконечной или вообще не существовать. В случае, когда сумма бесконечна, говорят, что математическое ожидание бесконечно. Если же сумма не существует, то и математического ожидания не существует.</p>
+<p>Если <span class="math inline">\(\varphi : \mathbb {R} \rightarrow \mathbb {R}\)</span> – произвольная борелевская функция, то по определению <span class="math inline">\(\mathbb {E}\left[\varphi (\xi )\right] = \sum_{k \in \varphi (X)} k \cdot \mathbb {P}\left(\varphi (\xi ) = k\right)\)</span>, где <span class="math inline">\(\varphi (X)\)</span> – это область значений преобразованной случайной величины <span class="math inline">\(\varphi (\xi )\)</span>. На практике искать область значений <span class="math inline">\(\varphi (\xi )\)</span> и распределение <span class="math inline">\(\varphi (\xi )\)</span> часто достаточно сложно, вместо этого используется следующая формула:</p>
+<p><span class="math display">\[
+  \mathbb {E}\left[\varphi (\xi )\right]=\sum _{x \in X} \varphi (x) \mathbb {P}\left(\xi =x\right)  
+\]</span></p>
+<p>где <span class="math inline">\(X\)</span>- множество значений случайной величины <span class="math inline">\(\xi\)</span>.</p>
+<div id="expl-11" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 5
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Вычислите <span class="math inline">\(\mathbb {E}\left[\xi \right]\)</span>, <span class="math inline">\(\mathbb {E}\left[\xi^2\right]\)</span>, <span class="math inline">\(\mathbb {E}\left[e^{\xi }\right]\)</span>, если</p>
+<ol type="1">
+<li><p><span class="math inline">\(\xi \sim \operatorname {Bern}(p)\)</span>, <span class="math inline">\(p \in (0,1)\)</span>. Т.е. <span class="math inline">\(\mathbb {P}\left(\xi = 1\right) = 1 - \mathbb {P}\left(\xi = 0\right) = p\)</span>.</p></li>
+<li><p><span class="math inline">\(\xi \sim \operatorname {Pois}(\lambda )\)</span>, <span class="math inline">\(\lambda &gt; 0\)</span>. Т.е. <span class="math inline">\(\mathbb {P}\left(\xi = k\right) = \frac{\lambda^k}{k!}e^{-\lambda }\)</span>.</p></li>
+</ol>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-22" class="callout-22-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>(1)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\begin{align}  \mathbb {E}\left[\xi \right] &amp; = 0 \cdot \mathbb {P}\left(\xi = 0\right) + 1 \cdot \mathbb {P}\left(\xi = 1\right) = p \\ \mathbb {E}\left[\xi ^2\right] &amp; = 0^2 \cdot \mathbb {P}\left(\xi = 0\right) + 1^2 \cdot \mathbb {P}\left(\xi = 1\right) = p \\ \mathbb {E}\left[e^\xi \right] &amp; = e^0 \cdot \mathbb {P}\left(\xi = 0\right) + e^1 \cdot \mathbb {P}\left(\xi = 1\right) = (1 - p) + pe \end{align}
+\]</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>(2)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\begin{align}  \mathbb {E}\left[\xi \right] &amp; = \sum _{k=0}^{\infty } k \mathbb {P}\left(\xi =k\right)=\lambda e^{-\lambda } \sum _{k=1}^{\infty } \frac{\lambda ^{k-1}}{(k-1)!}=\lambda \\ \mathbb {E}\left[\xi ^2\right] &amp; = \sum _{k=0}^{\infty } k^2 \mathbb {P}\left(\xi =k\right)= e^{-\lambda } \sum _{k=1}^{\infty } \quad \underbrace{k}_{(k-1) + 1} \frac{\lambda ^k}{(k-1)!} = e^{-\lambda } \cdot \left(\sum _{k=2}^{\infty } \frac{\lambda ^k}{(k-2)!} + \sum _{k=1}^{\infty } \frac{\lambda ^k}{(k-1)!}\right) = \\ &amp; = e^{-\lambda } \cdot \left(\lambda ^2 e^{\lambda } + \lambda e^{\lambda }\right) = \lambda ^2 + \lambda \\ \mathbb {E}\left[e^\xi \right] &amp; = \sum _{k=0}^{\infty } e^{k} \mathbb {P}\left(\xi =k\right) = e^{-\lambda } \sum _{k=0}^{\infty } \frac{(\lambda e)^k}{k!} = e^{-\lambda } \cdot e^{\lambda e} = e^{\lambda (e - 1)} \end{align}
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Свойства:</p>
+<ul>
+<li><p>Матожидание линейно:</p>
+<ul>
+<li><p><span class="math inline">\(\mathbb {E}\left[\alpha \cdot \xi \right] = \alpha \cdot \mathbb {E}\left[\xi \right]\)</span>, <span class="math inline">\(\alpha \in \mathbb {R}\)</span>, <span class="math inline">\(\xi\)</span> – СВ.</p></li>
+<li><p><span class="math inline">\(\mathbb {E}\left[\xi + \eta \right] = \mathbb {E}\left[\xi \right] + \mathbb {E}\left[\eta \right]\)</span> для любых случайных величин <span class="math inline">\(\xi\)</span>, <span class="math inline">\(\eta\)</span> (при условии, что матожи существуют).</p></li>
+</ul></li>
+<li><p>Если случайные величины независимы, то матожидание мультипликативно:</p>
+<p><span class="math display">\[
+  \mathbb {E}\left[\xi \cdot \eta \right] = \mathbb {E}\left[\xi \right] \cdot \mathbb {E}\left[\eta \right]  
+\]</span></p>
+<p>Однако в общем случае, как правило, матожидание не мультипликативно: <span class="math inline">\(\mathbb {E}\left[\xi \cdot \eta \right] \neq \mathbb {E}\left[\xi \right] \cdot \mathbb {E}\left[\eta \right]\)</span>. В частности, если <span class="math inline">\(\xi\)</span> имеет какое-то нетривиальное распределение (не распределение Дирака), то, например, <span class="math inline">\(\mathbb {E}\left[\xi^2\right] \neq \left(\mathbb {E}\left[\xi \right]\right)^2\)</span>.</p></li>
+</ul>
+<p>матожидание в общем случаеexpectation Мы определили матожидание только для дискретных распределений – как сумму ряда. Для произвольной случайной величины <span class="math inline">\(\mathbb {E}\left[\xi \right]\)</span> определяется как <em>интеграл Лебега</em> <span class="math inline">\(\int_{\Omega } \xi \,  d\mathbb {P}\)</span>, который мы построим в главе&nbsp;<a href="../../../../courses/04-probability/01_MT/contents/100_Lebesgue_integral.html#sec-ch:lebesgue_integral">о построении интеграла Лебега</a>. Там же (и в главе&nbsp;<a href="../../../../courses/04-probability/01_MT/contents/100_Lebesgue_integral.html#sec-ch:integral_properties">о его свойствах</a>) будут честно, в полной общности, доказаны свойства, которыми мы пользуемся уже сейчас: линейность, мультипликативность для независимых, предельные переходы. В дискретном случае наше определение с общим совпадает, а линейность доказывается элементарно (перестановкой сумм) – проверьте.</p>
+</section>
+<section id="дисперсия" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Дисперсия</h1>
+<p>Разумеется, по одному известному среднему значению случайной величины сложно судить о ее распределении. Дополнительную информацию дает среднее квадратическое отклонение от математического ожидания, которое называют дисперсией.</p>
+<div class="callout callout-style-simple callout-mn-def no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-5" class="definition theorem">
+<p><span class="theorem-title"><strong>Определение 5</strong></span> <em>Дисперсией</em> случайной величины <span class="math inline">\(\xi\)</span> называется величина <span class="math display">\[
+  \operatorname {Var}\left[\xi \right] = \mathbb {E}\left[(\xi - \mathbb {E}\left[\xi \right])^2\right]  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p>В силу линейности матожидания для дисперсии есть удобная формула:</p>
+<p><span class="math display">\[
+  \operatorname {Var}\left[\xi \right] = \mathbb {E}\left[\xi ^2 - 2\xi \cdot \mathbb {E}\left[\xi \right] + \left(\mathbb {E}\left[\xi \right]\right)^2\right] = \mathbb {E}\left[\xi ^2\right] - 2 \cdot \mathbb {E}\left[\xi \right] \cdot \mathbb {E}\left[\xi \right] + \left(\mathbb {E}\left[\xi \right]\right)^2 = \mathbb {E}\left[\xi ^2\right] - \left(\mathbb {E}\left[\xi \right]\right)^2  
+\]</span></p>
+<div id="expl-12" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 6
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-25" class="callout-25-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Случайная величина <span class="math inline">\(\xi\)</span> имеет пуассоновское распределение с параметром <span class="math inline">\(\lambda\)</span>. Найдите <span class="math inline">\(\operatorname {Var}\left[\xi \right]\)</span>.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-24" class="callout-24-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Мы выше уже получали <span class="math inline">\(\mathbb {E}\left[\xi \right] = \lambda\)</span>, <span class="math inline">\(\mathbb {E}\left[\xi^2\right] = \lambda^2 + \lambda\)</span>. Следовательно <span class="math display">\[
+  \operatorname {Var}\left[\xi \right] = \mathbb {E}\left[\xi ^2\right] - \left(\mathbb {E}\left[\xi \right]\right)^2 = \lambda ^2 + \lambda - \lambda ^2 = \lambda  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-13" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 7
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-27" class="callout-27-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(R_n = \left\{ 1, \ldots , n\right\}\)</span>. Случайная величина <span class="math inline">\(\xi\)</span> равна количеству элементов <span class="math inline">\(R_{n}\)</span>, остающихся на своих местах при случайной перестановке. Найдите <span class="math inline">\(\mathbb {E}\left[\xi \right]\)</span> и <span class="math inline">\(\operatorname {Var}\left[\xi \right]\)</span>.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-26" class="callout-26-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть для каждого <span class="math inline">\(i \in \{ 1, \ldots , n\}\)</span> случайная величина <span class="math inline">\(\xi_{i}\)</span> равна индикатору события <span class="math inline">\(A_{i}\)</span>, которое заключается в том, что элемент <span class="math inline">\(i\)</span> остался на своем месте после случайной перестановки. Заметим, что <span class="math inline">\(\xi_i \sim \operatorname {Ber}(p_i)\)</span>, где <span class="math inline">\(p_i = \mathbb {P}\left(A_i\right)\)</span>. Имеем</p>
+<p><span class="math display">\[
+\xi =\xi _{1}+\ldots +\xi _{n}
+\]</span></p>
+<p>Матожидание:</p>
+<p><span class="math display">\[
+  \mathbb {E}\left[\xi _i\right] = \mathbb {P}\left(A_{i}\right)=\frac{(n-1)!}{n!}=\frac{1}{n}  
+\]</span></p>
+<p>В силу свойства линейности матожа получаем</p>
+<p><span class="math display">\[
+  \mathbb {E}\left[\xi \right]=\mathbb {E}\left[\xi \right]_{1}+\ldots +\mathbb {E}\left[\xi \right]_{n}=1  
+\]</span></p>
+<p>Дисперсия:</p>
+<p><span class="math display">\[
+\begin{align}  \operatorname {Var}\left[\xi \right] &amp; = \mathbb {E}\left[\xi \right]^{2}-(\mathbb {E}\left[\xi \right])^{2} = \mathbb {E}\left[\left(\xi _{1}+\ldots +\xi _{n}\right)^2\right] - 1 = \\ &amp; = \sum _{i, j=1}^{n} \mathbb {E}\left[\xi _{i} \xi _j\right] - 1 =\sum _{i=1}^{n} \mathbb {E}\left[\xi _{i}^2\right]+2 \sum _{1 \leq i&lt;j \leq n} \mathbb {E}\left[\xi _{i} \xi _{j}\right]-1= \\ &amp; =\sum _{i=1}^{n} \mathbb {E}\left[\xi _{i}\right]+n(n-1) \mathbb {E}\left[\xi _{1} \xi _{2}\right]-1=1+n(n-1) \frac{(n-2)!}{n!}-1= \\ &amp; = 1 \end{align}
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="prob-14" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 7
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-28" class="callout-28-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Шестигранный кубик подбрасывается независимо <span class="math inline">\(n\)</span> раз. Случайная величина <span class="math inline">\(\xi\)</span> равна количеству выпавших единиц, а <span class="math inline">\(\eta\)</span> — сумме выпавших очков. Найдите математические ожидания этих величин.</p>
+</div>
+</div>
+</div>
+<div id="prob-15" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Задача 8
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-29" class="callout-29-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Случайная величина <span class="math inline">\(\xi\)</span> имеет дискретное распределение на <span class="math inline">\(\mathbb {N}\)</span>, <span class="math display">\[
+  \mathbf{P}\left(\left\{ k\right\} \right) = \frac{C}{k(k+1)} \qquad \text{ для } \quad k \in \mathbb {N}  
+\]</span> Найдите константу <span class="math inline">\(C \in \mathbb {R}\)</span>. Найдите для получившегося распределения математическое ожидание.</p>
+</div>
+</div>
+</div>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Сноски</h2>
+
+<ol>
+<li id="fn1"><p>Запись <span class="math inline">\(\operatorname {supp}(\xi + \eta )\)</span> обозначает носитель распределения <span class="math inline">\(\xi + \eta\)</span>, т.е. <span class="math inline">\(\operatorname {supp}(\xi + \eta ) = \operatorname {supp}\mathbf{P}_{\xi + \eta }\)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Скопировано");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Скопировано");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<!--
+  Hover preview for @expl-... (example) cross-references.
+
+  Quarto's own html format already ships a native crossref-hover-preview
+  script (bundled tippy, no CDN, wired up for every a.quarto-xref link --
+  see site_libs/quarto-html/tippy.umd.min.js and the inline tippyHover/
+  processXRef script Quarto emits near the end of <body>). That native
+  script now covers theorem-family types too, since
+  _extensions/mn-theorems wraps them into real Quarto callouts.
+
+  Examples are the one remaining gap: mn-problems.lua's Pandoc filter
+  intercepts @expl-... citations and emits a raw `<a class="xref-callout"
+  data-tippy-ref="...">` directly, bypassing Quarto's own crossref
+  resolution entirely (needed because examples use the filter's own custom
+  numbering, not Quarto's native one) -- so they never get the
+  a.quarto-xref class Quarto's native script looks for. This file only
+  fills that one gap, reusing the SAME window.tippy Quarto's native script
+  already set up (no separate Popper/Tippy load of our own -- an earlier
+  version of this file loaded Popper+Tippy from unpkg.com via plain
+  <script src>, which registered as an anonymous AMD module on pages with
+  Quarto's RequireJS loader and broke both the popup AND, as collateral
+  damage, quarto's own native tippy setup).
+-->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (!window.tippy) return; // native script didn't run (shouldn't happen on an html-format page)
+
+  document.querySelectorAll("a.xref-callout").forEach(function (anchor) {
+    var targetId = anchor.getAttribute("data-tippy-ref");
+    var inner = targetId && document.getElementById(targetId);
+    if (!inner) return;
+
+    var outer = inner.closest(".callout-style-default") || inner;
+
+    tippy(anchor, {
+      content: function () {
+        var clone = outer.cloneNode(true);
+        var uid = "mn-xref-" + targetId;
+        clone.querySelectorAll("[id]").forEach(function (el) {
+          el.id = uid + "-" + el.id;
+        });
+        clone.querySelectorAll("[data-bs-target]").forEach(function (el) {
+          var orig = el.getAttribute("data-bs-target");
+          el.setAttribute("data-bs-target", "." + uid + "-" + orig.replace(/^\./, ""));
+        });
+        clone.querySelectorAll("[aria-controls]").forEach(function (el) {
+          el.setAttribute("aria-controls", uid + "-" + el.getAttribute("aria-controls"));
+        });
+        if (window.Quarto && window.Quarto.typesetMath) {
+          window.Quarto.typesetMath(clone);
+        }
+        return clone;
+      },
+      allowHTML: true,
+      interactive: true,
+      maxWidth: 500,
+      theme: "quarto",
+      placement: "bottom-start",
+      appendTo: function (el) { return el.parentElement; },
+    });
+  });
+});
+</script>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

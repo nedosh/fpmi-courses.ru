@@ -1,0 +1,253 @@
+/* mn-theorems: shared styling for every theorem-like environment.
+ *
+ * One card for every type: thin uniform border, an accent stripe on the
+ * left, and a full-width tinted header bar (icon + bold title). Same DOM
+ * and same rules in every project; only the values of the CSS custom
+ * properties below differ, and those are declared by each project's
+ * format theme (theme.scss, `:root { ... }`). Every property has a
+ * fallback, so a project that declares nothing still gets a sane look.
+ *
+ * ---- design contract (declare in the format's theme.scss) ----------------
+ *   --mn-ink            body text color inside environments
+ *   --mn-rule           hairline border color
+ *   --mn-color-thm      theorem / lemma / corollary / proposition / conjecture
+ *   --mn-color-lem, --mn-color-cor, --mn-color-prp, --mn-color-cnj
+ *                       optional per-type overrides, default to --mn-color-thm
+ *   --mn-color-def      definition
+ *   --mn-color-exm      example
+ *   --mn-color-exr      exercise / algorithm (--mn-color-alg to split)
+ *   --mn-color-remark   remark / extra (--mn-color-extra to split)
+ *   --mn-color-proof    proof / solution / answer
+ *   --mn-env-icons      "inline-block" (show glyph before the title) or "none"
+ * --------------------------------------------------------------------------
+ *
+ * Two DOM shapes come out of mn-theorems.lua:
+ *   theorem family (thm..alg): override-title is off, so Quarto renders its
+ *     native title INLINE at the start of the body --
+ *     <span class="theorem-title"><strong>Теорема 1 (Name)</strong></span>
+ *     -- already numbered. We turn that span into a header bar.
+ *   proof family (proof remark solution answer extra): the Callout has a
+ *     real title, so Quarto builds a real .callout-header (with the
+ *     collapse toggle when collapse is set). Quarto's own Proof renderer
+ *     still emits its inline "<em>Доказательство</em>. " span for native
+ *     proof/remark/solution -- hidden, the header already shows the title.
+ */
+
+/* ---------- per-type accent ---------- */
+
+.callout.callout-mn-thm { --accent: var(--mn-color-thm, #775AFF); }
+.callout.callout-mn-lem { --accent: var(--mn-color-lem, var(--mn-color-thm, #775AFF)); }
+.callout.callout-mn-cor { --accent: var(--mn-color-cor, var(--mn-color-thm, #775AFF)); }
+.callout.callout-mn-prp { --accent: var(--mn-color-prp, var(--mn-color-thm, #775AFF)); }
+.callout.callout-mn-cnj { --accent: var(--mn-color-cnj, var(--mn-color-thm, #775AFF)); }
+.callout.callout-mn-def { --accent: var(--mn-color-def, #2A78D6); }
+.callout.callout-mn-exm { --accent: var(--mn-color-exm, #C2571F); }
+.callout.callout-mn-exr { --accent: var(--mn-color-exr, #1C7A1C); }
+.callout.callout-mn-alg { --accent: var(--mn-color-alg, var(--mn-color-exr, #1C7A1C)); }
+.callout.callout-mn-remark   { --accent: var(--mn-color-remark, #B8386A); }
+.callout.callout-mn-extra    { --accent: var(--mn-color-extra, var(--mn-color-remark, #B8386A)); }
+.callout.callout-mn-proof    { --accent: var(--mn-color-proof, #55525E); }
+.callout.callout-mn-solution { --accent: var(--mn-color-proof, #55525E); }
+.callout.callout-mn-answer   { --accent: var(--mn-color-proof, #55525E); }
+
+/* ---------- per-type icon (bootstrap-icons, always shipped by Quarto's bootstrap themes) ---------- */
+
+.callout-mn-thm .theorem-title::before { font-family: "bootstrap-icons"; content: "\f154"; } /* award */
+.callout-mn-lem .theorem-title::before { font-family: "bootstrap-icons"; content: "\f503"; } /* puzzle */
+.callout-mn-cor .theorem-title::before { font-family: "bootstrap-icons"; content: "\f134"; } /* arrow-right-circle */
+.callout-mn-prp .theorem-title::before { font-family: "bootstrap-icons"; content: "\f3cc"; } /* flag */
+.callout-mn-cnj .theorem-title::before { font-family: "bootstrap-icons"; content: "\f505"; } /* question-circle */
+.callout-mn-def .theorem-title::before { font-family: "bootstrap-icons"; content: "\f1a2"; } /* bookmark */
+.callout-mn-exm .theorem-title::before { font-family: "bootstrap-icons"; content: "\f46b"; } /* lightbulb */
+.callout-mn-exr .theorem-title::before { font-family: "bootstrap-icons"; content: "\f4ca"; } /* pencil-square */
+.callout-mn-alg .theorem-title::before { font-family: "bootstrap-icons"; content: "\f2ee"; } /* diagram-3 */
+.callout-mn-remark   .callout-header::before { font-family: "bootstrap-icons"; content: "\f264"; } /* chat-square-text */
+.callout-mn-extra    .callout-header::before { font-family: "bootstrap-icons"; content: "\f4fe"; } /* plus-square */
+.callout-mn-proof    .callout-header::before { content: "\25A0"; font-size: 0.75em; }            /* ∎ */
+.callout-mn-solution .callout-header::before { font-family: "bootstrap-icons"; content: "\f26b"; } /* check-circle */
+.callout-mn-answer   .callout-header::before { font-family: "bootstrap-icons"; content: "\f1de"; } /* bullseye */
+
+/* ---------- shared card structure for every mn-* type ---------- */
+
+.callout.callout:is(
+  .callout-mn-thm, .callout-mn-lem, .callout-mn-cor, .callout-mn-prp, .callout-mn-cnj,
+  .callout-mn-def, .callout-mn-exm, .callout-mn-exr, .callout-mn-alg,
+  .callout-mn-proof, .callout-mn-remark, .callout-mn-solution, .callout-mn-answer, .callout-mn-extra
+) {
+  /* .callout repeated to out-specificity bootstrap's unconditional fallback
+     `div.callout.callout{border-left-color:#6c757d}` (0,2,1) */
+  border: 1px solid var(--mn-rule, #E6E3EC);
+  border-left: 5px solid var(--accent);
+  border-radius: 5px;
+  background: #FFFFFF;
+  margin: 1.5rem 0;
+  padding: 0; /* appearance:simple gives .callout its own padding; zero it so
+                 the header bar sits flush against the border */
+  box-shadow: none;
+}
+
+.callout:is(
+  .callout-mn-thm, .callout-mn-lem, .callout-mn-cor, .callout-mn-prp, .callout-mn-cnj,
+  .callout-mn-def, .callout-mn-exm, .callout-mn-exr, .callout-mn-alg,
+  .callout-mn-proof, .callout-mn-remark, .callout-mn-solution, .callout-mn-answer, .callout-mn-extra
+) .callout-icon-container {
+  display: none;
+}
+
+.callout:is(
+  .callout-mn-thm, .callout-mn-lem, .callout-mn-cor, .callout-mn-prp, .callout-mn-cnj,
+  .callout-mn-def, .callout-mn-exm, .callout-mn-exr, .callout-mn-alg,
+  .callout-mn-proof, .callout-mn-remark, .callout-mn-solution, .callout-mn-answer, .callout-mn-extra
+) > .callout-body {
+  display: block;
+  margin: 0; /* bootstrap's own .callout-body margin-top would reopen a white gap above the header */
+}
+
+.callout:is(
+  .callout-mn-thm, .callout-mn-lem, .callout-mn-cor, .callout-mn-prp, .callout-mn-cnj,
+  .callout-mn-def, .callout-mn-exm, .callout-mn-exr, .callout-mn-alg,
+  .callout-mn-proof, .callout-mn-remark, .callout-mn-solution, .callout-mn-answer, .callout-mn-extra
+) .callout-body-container {
+  padding: 1.1rem 1.3rem 1.15rem;
+  color: var(--mn-ink, #141414);
+}
+
+/* Quarto's theorem/proof wrapper carries a small margin-top on its first
+   child (bootstrap `.callout:not(.callout-titled) .callout-body>div>:first-child`,
+   0,4,1) which otherwise leaves a thin white gap above the header bar. */
+.callout.callout:is(
+  .callout-mn-thm, .callout-mn-lem, .callout-mn-cor, .callout-mn-prp, .callout-mn-cnj,
+  .callout-mn-def, .callout-mn-exm, .callout-mn-exr, .callout-mn-alg,
+  .callout-mn-proof, .callout-mn-remark, .callout-mn-solution, .callout-mn-answer, .callout-mn-extra
+) .callout-body-container > :first-child {
+  margin-top: 0;
+}
+.callout:is(
+  .callout-mn-thm, .callout-mn-lem, .callout-mn-cor, .callout-mn-prp, .callout-mn-cnj,
+  .callout-mn-def, .callout-mn-exm, .callout-mn-exr, .callout-mn-alg,
+  .callout-mn-proof, .callout-mn-remark, .callout-mn-solution, .callout-mn-answer, .callout-mn-extra
+) .callout-body-container > *:last-child,
+.callout:is(
+  .callout-mn-thm, .callout-mn-lem, .callout-mn-cor, .callout-mn-prp, .callout-mn-cnj,
+  .callout-mn-def, .callout-mn-exm, .callout-mn-exr, .callout-mn-alg,
+  .callout-mn-proof, .callout-mn-remark, .callout-mn-solution, .callout-mn-answer, .callout-mn-extra
+) .callout-body-container :is(.theorem, .proof, [class^="mn-"][class$="-body"]) > *:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- theorem family: inline native title -> header bar ---------- */
+
+.callout:is(
+  .callout-mn-thm, .callout-mn-lem, .callout-mn-cor, .callout-mn-prp, .callout-mn-cnj,
+  .callout-mn-def, .callout-mn-exm, .callout-mn-exr, .callout-mn-alg
+) .theorem-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  background: color-mix(in srgb, var(--accent) 9%, white);
+  color: var(--accent);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9rem; /* = Quarto's native .callout-header size */
+  letter-spacing: 0.01em;
+  border-radius: 0 4px 0 0;
+  margin: -1.1rem -1.3rem 0.9rem -1.3rem; /* escape the body padding to run full width */
+  padding: 0.3rem 0.6rem;
+}
+.callout:is(
+  .callout-mn-thm, .callout-mn-lem, .callout-mn-cor, .callout-mn-prp, .callout-mn-cnj,
+  .callout-mn-def, .callout-mn-exm, .callout-mn-exr, .callout-mn-alg
+) .theorem-title strong {
+  font-weight: 600;
+  font-style: normal;
+  font-size: 0.9rem;
+  color: inherit;
+}
+.callout:is(
+  .callout-mn-thm, .callout-mn-lem, .callout-mn-cor, .callout-mn-prp, .callout-mn-cnj,
+  .callout-mn-def, .callout-mn-exm, .callout-mn-exr, .callout-mn-alg
+) .theorem-title::before {
+  display: var(--mn-env-icons, inline-block);
+  flex: none;
+  font-size: 0.85rem;
+  line-height: 1;
+  opacity: 0.9;
+}
+
+/* ---------- proof family: real .callout-header ---------- */
+
+/* Quarto's native inline "<em>Доказательство</em>. " lead-in is redundant
+   with the real header -- hide it. Specificity must beat the shared
+   rules above (.callout + :is() + class = 3 classes). */
+.callout.callout:is(.callout-mn-proof, .callout-mn-remark, .callout-mn-solution) .proof-title {
+  display: none;
+}
+
+/* .callout doubled + child combinator: must beat Quarto's own
+   `.callout.callout-style-simple>div.callout-header` (0,3,1), which sets
+   opacity:75% -- on a light tint that makes the bar nearly invisible (and
+   Chromium composites the semi-transparent flex row unevenly). */
+.callout.callout:is(
+  .callout-mn-proof, .callout-mn-remark, .callout-mn-solution, .callout-mn-answer, .callout-mn-extra
+) > .callout-header {
+  display: flex;
+  opacity: 1;
+  align-items: center;
+  gap: 0.35rem;
+  background: color-mix(in srgb, var(--accent) 9%, white);
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.01em;
+  border-radius: 0 4px 0 0;
+  padding: 0.3rem 0.6rem;
+}
+.callout:is(
+  .callout-mn-proof, .callout-mn-remark, .callout-mn-solution, .callout-mn-answer, .callout-mn-extra
+) .callout-header[data-bs-toggle] {
+  cursor: pointer;
+}
+.callout:is(
+  .callout-mn-proof, .callout-mn-remark, .callout-mn-solution, .callout-mn-answer, .callout-mn-extra
+) .callout-header::before {
+  display: var(--mn-env-icons, inline-block);
+  flex: none;
+  font-size: 0.85em;
+  line-height: 1;
+  opacity: 0.9;
+}
+.callout-mn-proof .callout-header::before {
+  font-size: 0.75em;
+}
+.callout:is(
+  .callout-mn-proof, .callout-mn-remark, .callout-mn-solution, .callout-mn-answer, .callout-mn-extra
+) .callout-title-container {
+  flex: 1 1 auto;
+}
+
+/* collapse toggle (proof starts collapsed; solution/answer start open) */
+.callout:is(
+  .callout-mn-proof, .callout-mn-remark, .callout-mn-solution, .callout-mn-answer, .callout-mn-extra
+) .callout-btn-toggle {
+  flex: none;
+  color: var(--accent);
+  opacity: 0.8;
+}
+.callout:is(
+  .callout-mn-proof, .callout-mn-remark, .callout-mn-solution, .callout-mn-answer, .callout-mn-extra
+) .callout-toggle {
+  transition: transform 0.15s ease;
+}
+.callout:is(
+  .callout-mn-proof, .callout-mn-remark, .callout-mn-solution, .callout-mn-answer, .callout-mn-extra
+) .callout-header[aria-expanded="false"] .callout-toggle {
+  transform: rotate(-90deg);
+}
+
+/* proof ends with a QED mark, matching the ∎ used as its icon */
+.callout-mn-proof .callout-body-container :is(.proof, .mn-proof-body) > *:last-child::after {
+  content: " \25A0";
+  font-size: 0.8em;
+  color: var(--accent);
+  margin-left: 0.15em;
+}

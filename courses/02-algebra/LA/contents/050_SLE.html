@@ -1,0 +1,2404 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Системы линейных уравнений – Курсы ФПМИ</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/favicon.ico" rel="icon">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-18b92d25f2a0372079463917332f47f0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-90af2ae3f5f11ccb077ed1c2d3900ada.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/quarto-contrib/mn-problems-1.0.0/mn-problems.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/mn-theorems-1.0.0/mn-theorems.css" rel="stylesheet">
+<script src="../../../../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Поиск не дал результатов",
+    "search-matching-documents-text": "Результаты поиска",
+    "search-copy-link-title": "Скопировать ссылку",
+    "search-hide-matches-text": "Скрыть дополнительные результаты",
+    "search-more-match-text": "дополнительный результат в этом документе",
+    "search-more-matches-text": "дополнительных результата(-ов) в этом документе",
+    "search-clear-button-title": "Очистить",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Отменить",
+    "search-submit-button-title": "Найти",
+    "search-label": "Поиск"
+  }
+}</script>
+<style>
+div.callout-enum-item.callout {
+  border-left-color: #008000;
+}
+div.callout-enum-item.callout-style-default .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-enum-item .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-enum-item.callout-style-default .callout-icon::before, div.callout-enum-item.callout-titled .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23008000" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/></svg>');
+}
+div.callout-todo.callout {
+  border-left-color: pink;
+}
+div.callout-todo.callout-style-default .callout-header {
+  background-color: rgb(from pink r g b / 13%);
+}
+div.callout-todo .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.callout-titled .callout-icon::before {
+  content: '📝';
+  background-image: none;
+}
+div.callout-thumbs-up.callout {
+  border-left-color: #008000;
+}
+div.callout-thumbs-up.callout-style-default .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-thumbs-up .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-thumbs-up.callout-style-default .callout-icon::before, div.callout-thumbs-up.callout-titled .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23008000" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/></svg>');
+}
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/logo.png" alt="" class="navbar-logo light-content">
+    <img src="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/logo.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../../../index.html">
+    <span class="navbar-title">Курсы ФПМИ</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Поиск"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Переключить навигацию" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> 
+<span class="menu-text">Главная</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Курсы</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../../courses/index.html">
+ <span class="dropdown-text">Все курсы (37)</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../../courses/04-probability/index.html">
+ <span class="dropdown-text">Вероятность (4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/01-analysis/index.html">
+ <span class="dropdown-text">Анализ (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/02-algebra/index.html">
+ <span class="dropdown-text">Алгебра (4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/03-discrete-cs/index.html">
+ <span class="dropdown-text">Дискретная математика и CS (9)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/05-programming-systems/index.html">
+ <span class="dropdown-text">Программирование и системы (7)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/06-data-computing/index.html">
+ <span class="dropdown-text">Данные и вычисления (5)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Учебный план</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">    
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/I.html">
+ <span class="dropdown-text">I семестр (7)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/II.html">
+ <span class="dropdown-text">II семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/III.html">
+ <span class="dropdown-text">III семестр (9)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/IV.html">
+ <span class="dropdown-text">IV семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/V.html">
+ <span class="dropdown-text">V семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/VI.html">
+ <span class="dropdown-text">VI семестр (4)</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--2" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">О проекте</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu--2">    
+        <li>
+    <a class="dropdown-item" href="../../../../about.html">
+ <span class="dropdown-text">О проекте</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../editorial-policy.html">
+ <span class="dropdown-text">Статус материалов и редакционная политика</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://mipt.ru/education/schools/fpmi"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:web" style="font-size: 1.25em;" aria-label="Icon web from mdi Iconify.design set." title="Сайт ФПМИ"></iconify-icon></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../courses/02-algebra/LA/contents/050_SLE.html">1. Системы линейных уравнений</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
+<div style="font-weight: bold; font-size: 1.1em;">
+<p>Линейная алгебра</p>
+</div>
+</div></div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/02-algebra/LA/overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Обзор курса</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/02-algebra/LA/contents/050_SLE.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">1. Системы линейных уравнений</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/02-algebra/LA/contents/060_LinSpaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Линейные пространства</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/02-algebra/LA/contents/070_LinMaps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Линейные отображения</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/02-algebra/LA/contents/080_LinTransStruct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Структура линейных преобразований</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/02-algebra/LA/contents/090_BilinForms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Билинейные формы</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/02-algebra/LA/contents/100_InnerProduct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Скалярное произведение</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Содержание</h2>
+   
+  <ul>
+  <li><a href="#системы-линейных-уравнений-с-определителем-отличным-от-0" id="toc-системы-линейных-уравнений-с-определителем-отличным-от-0" class="nav-link active" data-scroll-target="#системы-линейных-уравнений-с-определителем-отличным-от-0"><span class="header-section-number">1</span> Системы линейных уравнений с определителем, отличным от 0</a></li>
+  <li><a href="#системы-линейных-однородных-уравнений-слоу" id="toc-системы-линейных-однородных-уравнений-слоу" class="nav-link" data-scroll-target="#системы-линейных-однородных-уравнений-слоу"><span class="header-section-number">2</span> Системы линейных однородных уравнений (СЛОУ)</a></li>
+  <li><a href="#системы-линейных-уравнений-общего-вида" id="toc-системы-линейных-уравнений-общего-вида" class="nav-link" data-scroll-target="#системы-линейных-уравнений-общего-вида"><span class="header-section-number">3</span> Системы линейных уравнений общего вида</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<!--
+  Explicit RequireJS path mapping for "plotly", used by every hand-built
+  interactive widget on this site via require(["plotly"], function(Plotly){...}).
+
+  There was never a require.config() call anywhere setting this up -- it
+  only ever worked because Plotly's own UMD bundle, loaded elsewhere on the
+  same page via a plain <script src> for a simple (non-widget) fig.show()
+  figure, self-registers as an anonymous AMD module when window.define
+  exists (Quarto's RequireJS loader, used for MathJax), and RequireJS
+  happens to attribute that anonymous module to the "plotly" name if the
+  timing/script-load-order lines up. That's pure luck, not a real mapping --
+  a page with only widget figures (no plain fig.show() figure to "donate"
+  its Plotly load) had nothing to claim from, and any change to script load
+  order/timing (e.g. removing an unrelated script elsewhere on the page)
+  can flip which pending require() call an anonymous define() gets
+  attributed to, breaking it silently. Explicit config removes the guesswork.
+
+  Two separate failure modes found in practice, both fixed here:
+
+  (A) A page with ONLY hand-built widgets (no {python} cell at all -- e.g.
+  specials/030/020_quantile_function_fig.qmd) never gets Quarto's own
+  <script src=".../requirejs@.../require.min.js"> in <head> in the first
+  place: that tag is only emitted when the page has a Jupyter code cell.
+  window.require is simply undefined there, so the widget's own
+  require(["plotly"], ...) throws "require is not defined" unconditionally
+  -- not a network flake, 100% of the time regardless of connection quality.
+  Fixed below by synchronously document.write-ing a local copy of
+  require.min.js when window.require isn't already present -- document.write
+  from an inline <script> during initial HTML parsing inserts into the parse
+  stream immediately, so by the next statement window.require is guaranteed
+  defined, still fully synchronously (no defer/async race).
+
+  (B) A page with BOTH a plain fig.show() figure AND a hand-built widget:
+  RequireJS *is* already in <head> here, so this file's require.config()
+  below does run against a real window.require. But the Jupyter-generated
+  embed script for the fig.show() figure -- which appears later in <body>,
+  wherever that Python cell sits -- unconditionally calls
+  require.undef("plotly") followed by its OWN require.config() pointing at
+  a *different* version on the *same* external CDN (observed:
+  cdn.plot.ly/plotly-2.35.2.min vs. the 3.4.0 configured here), clobbering
+  this file's mapping before the widget's own require(["plotly"], ...) ever
+  runs. Both that Jupyter-set path and this file's own local path hit the
+  same real-world failure: cdn.plot.ly answers anywhere from ~1.5s to a full
+  10s+ timeout under real network conditions (measured directly). A
+  requirejs.onError handler below catches exactly the resulting timeout on
+  the "plotly" module -- regardless of which of the two require.config()
+  calls most recently set its path -- and retries once against the local
+  bundle.
+-->
+<script>
+if (typeof window.require === "undefined") {
+  document.write('<script src="/site_libs/quarto-contrib/mn-plotly-1.0.0/require.min.js"><\/script>');
+}
+</script>
+<script>
+if (window.require && window.require.config) {
+  window.require.config({
+    paths: { plotly: "/site_libs/quarto-contrib/mn-plotly-1.0.0/plotly.min" },
+    // shim.exports: after the script loads, hand require(["plotly"],...)
+    // callers the *global* window.Plotly instead of trusting whatever (if
+    // anything) the script itself passed to define() -- Plotly's own UMD
+    // wrapper reliably sets window.Plotly regardless of AMD context (also
+    // used directly by every plain fig.show() figure on this site, whose
+    // own generated embed script never goes through RequireJS at all), but
+    // its anonymous define() call is not reliably attributed to the
+    // "plotly" request specifically when this same URL is also loaded via
+    // a separate plain <script src> elsewhere on the page (a simple,
+    // non-widget figure) -- shim sidesteps that ambiguity entirely.
+    shim: { plotly: { exports: "Plotly" } }
+  });
+  // See failure mode (B) above: a later Jupyter-generated fig.show() embed
+  // script can still call its own require.undef("plotly") +
+  // require.config({paths: {plotly: <external CDN>}}) after this runs,
+  // pointing "plotly" back at an unreliable external host. This handler
+  // fires on ANY module load timeout; when it's specifically "plotly", drop
+  // whatever path is currently registered (however it got there) and retry
+  // once against the local bundle instead of the external CDN.
+  //
+  // Deliberately never re-throws: once the retry above is issued, the
+  // ORIGINAL failed network request for the external CDN copy can still
+  // land afterwards and fire a second, by-then-harmless onError (verified:
+  // requireType "scripterror", after the retry has already resolved the
+  // widget's real require(["plotly"], callback) via RequireJS's own
+  // pending-callback bookkeeping) -- throwing there would surface a
+  // spurious uncaught exception for something already fixed. console.warn
+  // keeps that visible in devtools without it looking like a live failure.
+  window.require.onError = function (err) {
+    if (err.requireModules && err.requireModules.indexOf("plotly") !== -1) {
+      if (err.requireType === "timeout") {
+        window.require.undef("plotly");
+        window.require.config({ paths: { plotly: "/site_libs/quarto-contrib/mn-plotly-1.0.0/plotly.min" } });
+        window.require(["plotly"]);
+      } else {
+        console.warn("plotly require() error after fallback (likely a stale network request):", err);
+      }
+    } else {
+      throw err;
+    }
+  };
+}
+</script>
+
+<!--
+  window.fpmiWithMathJax(cb): same rationale as the FPMI homepage loader (_home_widgets/loader.qmd)'s
+  copy of this helper (see there for the original), extended to course
+  pages. Quarto only emits a <script defer src=".../mathjax@3/.../tex-*.js">
+  tag in <head> at all when it sees real markdown math OUTSIDE any
+  ```{=html}``` block on the page -- a hand-built widget's math lives
+  entirely inside \(...\)/\[...\] strings in JS-generated DOM content
+  (e.g. a dynamically updated status line), which Quarto's static math
+  scanner never looks inside, so a page whose ONLY math is like that (no
+  prose math of its own) gets no MathJax script at all. Confirmed on an
+  already-shipped widget (030/020_quantile_function_fig.qmd's #qf-status)
+  that had silently never rendered its \(...\) as real math since it was
+  written -- not a new bug, just never noticed because the broken math was
+  inside dynamically-generated text rather than the static page body.
+
+  Three cases this handles, in order:
+  1. window.MathJax already fully started (page had prose math elsewhere,
+     Quarto's own <script defer> already ran) -- just wait on the
+     documented startup.promise signal and fire cb.
+  2. Quarto's own MathJax <script defer> tag IS present in <head> but
+     hasn't executed/initialized yet (defer runs after DOM parsing, and
+     this include-before-body block runs earlier, during parsing) -- poll
+     briefly for window.MathJax to appear rather than racing to load a
+     SECOND copy, which would either double-load or (depending on load
+     order) silently no-op.
+  3. No MathJax script present at all (case A above) -- fetch it ourselves,
+     same URL/approach as loader.qmd.
+-->
+<script>
+window.fpmiWithMathJax = window.fpmiWithMathJax || function (cb) {
+  if (window.MathJax && window.MathJax.startup) { window.MathJax.startup.promise.then(cb); return; }
+  if (window.__fpmiMathJaxQueue) { window.__fpmiMathJaxQueue.push(cb); return; }
+  window.__fpmiMathJaxQueue = [cb];
+  function flushQueue() {
+    var q = window.__fpmiMathJaxQueue;
+    window.__fpmiMathJaxQueue = null;
+    q.forEach(function (f) { f(); });
+  }
+  var hasMathJaxTag = !!document.querySelector('script[src*="mathjax"]');
+  if (hasMathJaxTag) {
+    // Case 2: Quarto's own deferred MathJax script is already in <head> --
+    // poll for it to finish initializing instead of loading a duplicate.
+    var waited = 0;
+    var poll = setInterval(function () {
+      waited += 50;
+      if (window.MathJax && window.MathJax.startup) {
+        clearInterval(poll);
+        window.MathJax.startup.promise.then(flushQueue);
+      } else if (waited > 10000) {
+        // Should never happen (the tag is already there, defer always runs
+        // before window.onload) -- bail rather than poll forever.
+        clearInterval(poll);
+        console.warn("fpmiWithMathJax: gave up waiting for Quarto's own MathJax script to initialize");
+      }
+    }, 50);
+    return;
+  }
+  // Case 3: no MathJax anywhere on the page -- fetch it ourselves. SVG
+  // output specifically (not CHTML, despite Quarto's own injected tag
+  // using CHTML): confirmed Plotly's own $...$ annotation/tick-label math
+  // rendering hard-requires the SVG output jax and throws
+  // 'Output Jax "svg" is not defined' if only CHTML is loaded (its
+  // internal math path calls MathJax.tex2svg specifically, independent of
+  // whatever jax Quarto's page-level script configured) -- same reason
+  // the FPMI homepage loader (_home_widgets/loader.qmd)'s original copy of this helper uses tex-svg.js.
+  var s = document.createElement("script");
+  s.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js";
+  s.onload = function () {
+    window.MathJax.startup.promise.then(flushQueue);
+  };
+  document.head.appendChild(s);
+};
+</script>
+<!--
+  window.fpmiGraph: shared toolkit for the hand-built Plotly *graph diagrams*
+  (vertices + edges) used by the algorithms courses (courses/11-DM-CS/AA/...
+  specials). Plotly has no native graph/network primitives, so every widget
+  used to re-implement the same edge-polyline/marker/annotation plumbing by
+  hand -- and, since a plain `mode:"lines"` polyline can't carry an arrowhead
+  or per-edge hover, all of them ended up as staticPlot line drawings with
+  no direction on directed graphs and no hover at all. This helper gives
+  every widget, from one `spec`:
+
+    * one scatter trace PER EDGE (so an individual edge can be restyled --
+      hover-highlight, per-step emphasis, transitions -- and can have its own
+      hover text via an invisible midpoint marker), optionally curved
+      (`bend`) so a pair of opposite arcs u->v / v->u stays readable;
+    * arrowheads for `directed` edges via layout.annotations in data
+      coordinates, shortened so the head lands on the vertex rim, not under
+      the marker;
+    * a soft halo under each vertex, $...$ MathJax labels via annotations
+      (never mode:"markers+text" -- see project memory: Plotly's marker text
+      is raw SVG <text>, which can't hold MathJax output), and hover labels;
+    * hover-highlight: hovering a vertex lifts its incident edges and dims
+      the rest (plotly_hover/unhover + Plotly.restyle on the edge traces);
+    * animated transitions between algorithm steps (Plotly.animate on a
+      trace layout that stays structurally identical across steps -- the
+      trace count must not change, so per-step differences are expressed
+      purely as style: color/width/opacity/dash);
+    * a step player (prev / next / autoplay, keyboard arrows) that builds its
+      own controls, and a path tracer that grows a highlighted polyline along
+      a vertex sequence over time (Hamiltonian paths, tours, Euler walks).
+
+  Draw order inside `data`: edges (one trace each) -> edge midpoints (hover
+  only) -> halo -> vertices -> optional path trace. Trace indices are
+  returned in `built.meta` so callers never hard-code them.
+-->
+<script>
+(function () {
+  if (window.fpmiGraph) return;
+  var G = {};
+
+  // Every UI string this helper generates itself (default edge-weight hover
+  // text, the step-player's button labels) is project-agnostic: it reads
+  // `document.documentElement.lang` (set by each project's own `_quarto.yml`
+  // `lang:` field) and falls back to Russian, the language every existing
+  // call site (mnedoshivin, math-notes_CU_2, math-notes_FPMI_2) was written
+  // for -- so this stays a silent no-op everywhere except an `lang="en"`
+  // project such as mnedoshivin_en.
+  var IS_EN = (document.documentElement.lang || "").toLowerCase().indexOf("en") === 0;
+  var WEIGHT_WORD = IS_EN ? "weight" : "вес";
+
+  G.colors = {
+    vert: "#eaf2fb", vertLine: "#1e3a8a", vertText: "#0b0b0b",
+    sel: "#2a78d6", selText: "#ffffff",
+    accent: "#f5a623", accentLine: "#8a5a00",
+    done: "#a8a29e", edge: "#78716c", edgeFaded: "#d6d3d1",
+    red: "#b91c1c", redSoft: "#fca5a5", green: "#556B2F", greenSoft: "#bbf7d0",
+    bg: "#fcfcfb"
+  };
+
+  // Plotly may arrive through RequireJS (course pages, see
+  // plotly-require-config.html), through the homepage's own
+  // fpmiWithPlotly loader, or already be a global -- accept all three.
+  G.withPlotly = function (cb) {
+    if (window.Plotly && window.Plotly.newPlot) { cb(window.Plotly); return; }
+    if (window.fpmiWithPlotly) { window.fpmiWithPlotly(cb); return; }
+    if (window.require) { window.require(["plotly"], cb); return; }
+    console.warn("fpmiGraph: no Plotly loader available on this page");
+  };
+  // MathJax must exist BEFORE Plotly builds any $...$ annotation (Plotly
+  // stamps data-math="N" at build time and never retries), hence the order.
+  G.ready = function (cb) {
+    var run = function () { G.withPlotly(cb); };
+    if (window.fpmiWithMathJax) { window.fpmiWithMathJax(run); } else { run(); }
+  };
+
+  // ── geometry ───────────────────────────────────────────────────────────────
+  // Quadratic curve from p0 to p1 bulging `bend` data units to the left of
+  // the p0->p1 direction (negative bends right). n+1 points.
+  G.curve = function (p0, p1, bend, n) {
+    n = n || 16;
+    var dx = p1[0] - p0[0], dy = p1[1] - p0[1];
+    var len = Math.sqrt(dx * dx + dy * dy) || 1;
+    var nx = -dy / len, ny = dx / len;
+    var cx = (p0[0] + p1[0]) / 2 + nx * bend, cy = (p0[1] + p1[1]) / 2 + ny * bend;
+    var pts = [];
+    for (var i = 0; i <= n; i++) {
+      var t = i / n, a = (1 - t) * (1 - t), b = 2 * (1 - t) * t, c = t * t;
+      pts.push([a * p0[0] + b * cx + c * p1[0], a * p0[1] + b * cy + c * p1[1]]);
+    }
+    return pts;
+  };
+  G.circle = function (cx, cy, r, n) {
+    n = n || 64;
+    var x = [], y = [];
+    for (var i = 0; i <= n; i++) { var a = 2 * Math.PI * i / n; x.push(cx + r * Math.cos(a)); y.push(cy + r * Math.sin(a)); }
+    return { x: x, y: y };
+  };
+  // "$v_{1}$" from "v1", "$s'$" from "s'", plain "s" from "s".
+  G.texLabel = function (id) {
+    var m = /^([A-Za-z]+)(\d+)('*)$/.exec(id);
+    if (m) return "$" + m[1] + "_{" + m[2] + "}" + m[3] + "$";
+    return /^[A-Za-z]'*$/.test(id) ? "$" + id + "$" : id;
+  };
+  // Unicode subscript fallback for hover text (Plotly hover can't do MathJax).
+  var SUB = { "0": "₀", "1": "₁", "2": "₂", "3": "₃", "4": "₄", "5": "₅", "6": "₆", "7": "₇", "8": "₈", "9": "₉" };
+  G.plainLabel = function (id) {
+    var m = /^([A-Za-z]+)(\d+)('*)$/.exec(id);
+    if (!m) return id;
+    return m[1] + m[2].split("").map(function (c) { return SUB[c] || c; }).join("") + m[3];
+  };
+
+  function assign(dst) {
+    for (var i = 1; i < arguments.length; i++) { var s = arguments[i]; if (s) for (var k in s) if (Object.prototype.hasOwnProperty.call(s, k)) dst[k] = s[k]; }
+    return dst;
+  }
+  function normEdge(e) {
+    if (Array.isArray(e)) { var o = { u: e[0], v: e[1] }; if (e[2] && typeof e[2] === "object") assign(o, e[2]); else if (e[2] !== undefined) o.weight = e[2]; return o; }
+    return assign({}, e);
+  }
+
+  // ── build ──────────────────────────────────────────────────────────────────
+  // spec = {
+  //   verts: {id: [x, y]},            order: [ids] (optional, defaults to key order)
+  //   edges: [[u, v] | [u, v, weight] | {u, v, color, width, dash, opacity, bend, hover, arrow, weight}]
+  //   directed: bool,                 edge: fn(edgeObj) -> style overrides (per step)
+  //   vert: fn(id) -> {color, line, lineWidth, size, opacity, label, hover, symbol}
+  //   labels: bool|{id: text}         (default: true -> G.texLabel(id))
+  //   size: 24, halo: true, weights: bool (annotate edge weights at midpoints)
+  //   range: {x: [..], y: [..]}       (default: bbox + padding), pad: 0.8
+  //   annotations: [], shapes: []     (extra), pathTrace: bool (reserve a trace for tracePath)
+  //   height/width: layout size override
+  // }
+  G.build = function (spec) {
+    var C = G.colors;
+    var ids = spec.order || Object.keys(spec.verts);
+    var size = spec.size || 24;
+    var edges = (spec.edges || []).map(normEdge);
+    var data = [], annotations = [], meta = { edgeIdx: [], edgeStyles: [], edges: edges, ids: ids, size: size };
+
+    // range
+    var xs = ids.map(function (i) { return spec.verts[i][0]; }), ys = ids.map(function (i) { return spec.verts[i][1]; });
+    var pad = spec.pad !== undefined ? spec.pad : 0.8;
+    var xr = spec.range && spec.range.x || [Math.min.apply(null, xs) - pad, Math.max.apply(null, xs) + pad];
+    var yr = spec.range && spec.range.y || [Math.min.apply(null, ys) - pad, Math.max.apply(null, ys) + pad];
+    // Vertex radius in data units, for arrowhead shortening: estimate from
+    // the plot's pixel width (marker size is in px, the axis range in data).
+    var plotPx = spec.plotWidthPx || 460;
+    var rData = spec.vertRadius !== undefined ? spec.vertRadius : (size / 2) * (xr[1] - xr[0]) / plotPx * 1.15;
+
+    // edges
+    var midX = [], midY = [], midText = [];
+    edges.forEach(function (e, k) {
+      var st = assign({ color: C.edge, width: 1.6, dash: "solid", opacity: 1, bend: 0 }, e, spec.edge ? spec.edge(e, k) : null);
+      var p0 = spec.verts[e.u], p1 = spec.verts[e.v];
+      var pts = st.bend ? G.curve(p0, p1, st.bend) : [p0, p1];
+      var directed = st.arrow !== undefined ? st.arrow : !!spec.directed;
+      if (directed) {
+        // trim the last segment so the arrowhead (drawn separately) ends on
+        // the target vertex rim; the line itself stops there too.
+        var a = pts[pts.length - 2], b = pts[pts.length - 1];
+        var dx = b[0] - a[0], dy = b[1] - a[1], L = Math.sqrt(dx * dx + dy * dy) || 1;
+        var head = [b[0] - dx / L * rData, b[1] - dy / L * rData];
+        var tail = [head[0] - dx / L * Math.min(L, rData * 1.6), head[1] - dy / L * Math.min(L, rData * 1.6)];
+        pts = pts.slice(0, -1).concat([head]);
+        annotations.push({
+          x: head[0], y: head[1], ax: tail[0], ay: tail[1], xref: "x", yref: "y", axref: "x", ayref: "y",
+          showarrow: true, arrowhead: 2, arrowsize: 1.15, arrowwidth: st.width, arrowcolor: st.color,
+          opacity: st.opacity, text: "", standoff: 0
+        });
+      }
+      data.push({
+        x: pts.map(function (p) { return p[0]; }), y: pts.map(function (p) { return p[1]; }),
+        mode: "lines", line: { color: st.color, width: st.width, dash: st.dash }, opacity: st.opacity,
+        hoverinfo: "skip", showlegend: false, name: e.u + "-" + e.v
+      });
+      meta.edgeIdx.push(data.length - 1);
+      meta.edgeStyles.push({ color: st.color, width: st.width, dash: st.dash, opacity: st.opacity });
+      var mid = pts[Math.floor(pts.length / 2)];
+      if (pts.length === 2) mid = [(p0[0] + p1[0]) / 2, (p0[1] + p1[1]) / 2];
+      midX.push(mid[0]); midY.push(mid[1]);
+      var hover = st.hover !== undefined ? st.hover : (G.plainLabel(e.u) + (directed ? " → " : " — ") + G.plainLabel(e.v) + (st.weight !== undefined ? "<br>" + (WEIGHT_WORD) + " " + st.weight : ""));
+      midText.push(hover);
+      // st.weight (not e.weight): a per-step override may hide a faded edge's
+      // label by returning {weight: undefined}
+      if (spec.weights && st.weight !== undefined && st.opacity > 0.05) {
+        annotations.push({ x: mid[0], y: mid[1], text: String(st.weight), showarrow: false,
+          font: { size: 11, color: st.color === C.edgeFaded ? "#a8a29e" : "#44403c" }, bgcolor: "rgba(252,252,251,0.9)", borderpad: 1 });
+      }
+    });
+    // invisible edge midpoints: hover only (per-point hoverinfo so a hidden
+    // edge -- opacity 0, e.g. "not added yet" in a step player -- shows no
+    // empty tooltip)
+    data.push({ x: midX, y: midY, mode: "markers", marker: { size: 14, opacity: 0 }, hovertext: midText,
+      hoverinfo: meta.edgeStyles.map(function (s) { return s.opacity > 0 ? "text" : "skip"; }), showlegend: false, name: "edges" });
+    meta.midIdx = data.length - 1;
+
+    // vertices
+    var vx = [], vy = [], vColor = [], vLine = [], vLineW = [], vSize = [], vOp = [], vHover = [], vSym = [], haloColor = [];
+    ids.forEach(function (id) {
+      var st = assign({ color: C.vert, line: C.vertLine, lineWidth: 1.8, size: size, opacity: 1, symbol: "circle" }, spec.vert ? spec.vert(id) : null);
+      vx.push(spec.verts[id][0]); vy.push(spec.verts[id][1]);
+      vColor.push(st.color); vLine.push(st.line); vLineW.push(st.lineWidth); vSize.push(st.size); vOp.push(st.opacity); vSym.push(st.symbol);
+      vHover.push(st.hover !== undefined ? st.hover : G.plainLabel(id));
+      haloColor.push(st.opacity === 0 ? "rgba(0,0,0,0)" : (st.halo || (st.color === C.vert ? "rgba(42,120,214,0.10)" : G.rgba(st.color, 0.22))));
+      var lbl = st.label !== undefined ? st.label
+        : (spec.labels === false ? null : (spec.labels && typeof spec.labels === "object" ? spec.labels[id] : G.texLabel(id)));
+      if (lbl) {
+        annotations.push({ x: spec.verts[id][0], y: spec.verts[id][1], text: lbl, showarrow: false,
+          font: { size: st.labelSize || 13, color: st.labelColor || (st.color === C.vert || st.color === C.accent ? C.vertText : C.selText) }, opacity: st.opacity });
+      }
+    });
+    if (spec.halo !== false) {
+      data.push({ x: vx, y: vy, mode: "markers", marker: { size: vSize.map(function (s) { return s + 14; }), color: haloColor, line: { width: 0 } },
+        opacity: 1, hoverinfo: "skip", showlegend: false, name: "halo" });
+      meta.haloIdx = data.length - 1;
+    }
+    data.push({ x: vx, y: vy, mode: "markers", marker: { size: vSize, color: vColor, symbol: vSym, opacity: vOp, line: { color: vLine, width: vLineW } },
+      hovertext: vHover, hoverinfo: vOp.map(function (o) { return o > 0 ? "text" : "skip"; }), showlegend: false, name: "vertices",
+      hoverlabel: { bgcolor: "#1c1917", bordercolor: "#1c1917", font: { color: "#fff", size: 12 } } });
+    meta.vertIdx = data.length - 1;
+    if (spec.pathTrace) {
+      data.push({ x: [], y: [], mode: "lines", line: { color: C.red, width: 3.2, shape: "linear" }, hoverinfo: "skip", showlegend: false, name: "path" });
+      meta.pathIdx = data.length - 1;
+    }
+
+    var layout = {
+      xaxis: { visible: false, range: xr, fixedrange: true },
+      yaxis: { visible: false, range: yr, fixedrange: true, scaleanchor: "x" },
+      margin: { t: 8, b: 8, l: 8, r: 8 },
+      plot_bgcolor: C.bg, paper_bgcolor: C.bg, showlegend: false, hovermode: "closest",
+      annotations: annotations.concat(spec.annotations || []), shapes: spec.shapes || [],
+      transition: { duration: 420, easing: "cubic-in-out" }
+    };
+    if (spec.height) layout.height = spec.height;
+    return { data: data, layout: layout, meta: meta };
+  };
+
+  G.rgba = function (hex, a) {
+    var m = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(hex);
+    if (!m) return hex;
+    return "rgba(" + parseInt(m[1], 16) + "," + parseInt(m[2], 16) + "," + parseInt(m[3], 16) + "," + a + ")";
+  };
+
+  // ── draw (with transitions) ────────────────────────────────────────────────
+  G.config = { displayModeBar: false, displaylogo: false, scrollZoom: false, responsive: true };
+  G.draw = function (el, built, opts) {
+    if (typeof el === "string") el = document.getElementById(el);
+    opts = opts || {};
+    G.ready(function (Plotly) {
+      var canAnimate = el.data && el.data.length === built.data.length && !opts.noAnimate;
+      if (canAnimate) {
+        // Same trace structure as the previous step -> tween colors/widths/
+        // positions instead of snapping. Layout (annotations, shapes) is
+        // applied at the start of the frame.
+        Plotly.animate(el, { data: built.data, layout: built.layout },
+          { transition: { duration: opts.duration || 420, easing: "cubic-in-out" },
+            frame: { duration: opts.duration || 420, redraw: false } });
+      } else if (el.data) {
+        Plotly.react(el, built.data, built.layout, G.config);
+      } else {
+        Plotly.newPlot(el, built.data, built.layout, G.config);
+      }
+      el.__fpmiGraph = built;
+      if (!el.__fpmiHoverBound && opts.hover !== false) { G.attachHover(el); el.__fpmiHoverBound = true; }
+      if (opts.then) opts.then(Plotly);
+    });
+  };
+
+  // ── hover-highlight: lift a vertex's incident edges, dim the rest ──────────
+  G.attachHover = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    var restore = function () {
+      var b = el.__fpmiGraph; if (!b || !window.Plotly) return;
+      var s = b.meta.edgeStyles;
+      window.Plotly.restyle(el, {
+        "line.width": s.map(function (x) { return x.width; }),
+        "line.color": s.map(function (x) { return x.color; }),
+        "opacity": s.map(function (x) { return x.opacity; })
+      }, b.meta.edgeIdx);
+    };
+    el.on("plotly_hover", function (ev) {
+      var b = el.__fpmiGraph; if (!b || !ev.points || !ev.points.length) return;
+      var p = ev.points[0];
+      if (p.curveNumber !== b.meta.vertIdx) return;
+      var id = b.meta.ids[p.pointNumber];
+      var widths = [], colors = [], ops = [];
+      b.meta.edges.forEach(function (e, k) {
+        var st = b.meta.edgeStyles[k], inc = (e.u === id || e.v === id);
+        widths.push(inc ? Math.max(st.width * 1.9, 3) : st.width);
+        colors.push(inc ? (st.color === G.colors.edge || st.color === G.colors.edgeFaded ? G.colors.sel : st.color) : st.color);
+        ops.push(inc ? 1 : Math.min(st.opacity, 0.28));
+      });
+      window.Plotly.restyle(el, { "line.width": widths, "line.color": colors, "opacity": ops }, b.meta.edgeIdx);
+    });
+    el.on("plotly_unhover", restore);
+  };
+
+  // ── step player ────────────────────────────────────────────────────────────
+  // G.player({ container, count, render(i), autoplayMs, loop, start })
+  // Builds: [← Back] [Step i / N] [Next →] [▶ Auto]; arrow keys work while
+  // the controls have focus. render(i) is called for every step change.
+  // UI strings use the same IS_EN language switch declared at the top of
+  // this file. `o.label` still overrides the step word directly, same as
+  // before this change, for any call site that wants a custom label.
+  var PLAYER_STR = IS_EN
+    ? { back: "← Back", next: "Next →", auto: "▶ Auto", autoTitle: "Autoplay", pause: "⏸ Pause", step: "Step" }
+    : { back: "← Назад", next: "Вперёд →", auto: "▶ Авто", autoTitle: "Автовоспроизведение", pause: "⏸ Пауза", step: "Шаг" };
+  G.player = function (o) {
+    var box = typeof o.container === "string" ? document.getElementById(o.container) : o.container;
+    box.classList.add("fpmi-graph-controls");
+    box.setAttribute("tabindex", "0");
+    box.innerHTML =
+      '<button type="button" class="fg-prev">' + PLAYER_STR.back + '</button>' +
+      '<span class="fg-step"></span>' +
+      '<button type="button" class="fg-next">' + PLAYER_STR.next + '</button>' +
+      '<button type="button" class="fg-play" title="' + PLAYER_STR.autoTitle + '">' + PLAYER_STR.auto + '</button>';
+    var prev = box.querySelector(".fg-prev"), next = box.querySelector(".fg-next"), play = box.querySelector(".fg-play"), lbl = box.querySelector(".fg-step");
+    var cur = o.start || 0, timer = null, N = o.count;
+    function stop() { if (timer) { clearInterval(timer); timer = null; } play.textContent = PLAYER_STR.auto; play.classList.remove("active"); }
+    function go(i, fromAuto) {
+      if (!fromAuto) stop();
+      cur = Math.max(0, Math.min(N - 1, i));
+      lbl.textContent = (o.label || PLAYER_STR.step) + " " + (cur + 1) + " / " + N;
+      prev.disabled = cur === 0; next.disabled = cur === N - 1;
+      o.render(cur);
+    }
+    prev.addEventListener("click", function () { go(cur - 1); });
+    next.addEventListener("click", function () { go(cur + 1); });
+    play.addEventListener("click", function () {
+      if (timer) { stop(); return; }
+      play.textContent = PLAYER_STR.pause; play.classList.add("active");
+      if (cur === N - 1) go(0, true);
+      timer = setInterval(function () {
+        if (cur < N - 1) go(cur + 1, true);
+        else if (o.loop) go(0, true);
+        else stop();
+      }, o.autoplayMs || 1600);
+    });
+    box.addEventListener("keydown", function (ev) {
+      if (ev.key === "ArrowRight") { go(cur + 1); ev.preventDefault(); }
+      else if (ev.key === "ArrowLeft") { go(cur - 1); ev.preventDefault(); }
+    });
+    go(cur);
+    return { go: go, next: function () { go(cur + 1); }, prev: function () { go(cur - 1); }, current: function () { return cur; }, stop: stop };
+  };
+
+  // ── path tracer ────────────────────────────────────────────────────────────
+  // Grows the reserved path trace (spec.pathTrace) along `ids` over
+  // `duration` ms, with a moving tip. Returns a cancel function.
+  G.tracePath = function (el, verts, ids, opts) {
+    if (typeof el === "string") el = document.getElementById(el);
+    opts = opts || {};
+    var b = el.__fpmiGraph; if (!b || b.meta.pathIdx === undefined || !window.Plotly) return function () {};
+    var pts = ids.map(function (id) { return verts[id]; });
+    var segs = pts.length - 1, dur = opts.duration || 500 * segs, t0 = null, cancelled = false;
+    var style = { "line.color": opts.color || G.colors.red, "line.width": opts.width || 3.2 };
+    window.Plotly.restyle(el, style, [b.meta.pathIdx]);
+    function frame(ts) {
+      if (cancelled) return;
+      if (t0 === null) t0 = ts;
+      var f = Math.min(1, (ts - t0) / dur), pos = f * segs, k = Math.floor(pos), r = pos - k;
+      var x = [], y = [];
+      for (var i = 0; i <= Math.min(k, segs); i++) { x.push(pts[i][0]); y.push(pts[i][1]); }
+      if (k < segs) { x.push(pts[k][0] + (pts[k + 1][0] - pts[k][0]) * r); y.push(pts[k][1] + (pts[k + 1][1] - pts[k][1]) * r); }
+      window.Plotly.restyle(el, { x: [x], y: [y] }, [b.meta.pathIdx]);
+      if (f < 1) requestAnimationFrame(frame); else if (opts.done) opts.done();
+    }
+    requestAnimationFrame(frame);
+    return function () { cancelled = true; };
+  };
+  G.clearPath = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    var b = el.__fpmiGraph; if (!b || b.meta.pathIdx === undefined || !window.Plotly) return;
+    window.Plotly.restyle(el, { x: [[]], y: [[]] }, [b.meta.pathIdx]);
+  };
+
+  // Typeset \(...\) math in a caption/status element (after innerHTML update).
+  G.typeset = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    if (window.fpmiWithMathJax) window.fpmiWithMathJax(function () { if (window.MathJax && window.MathJax.typesetPromise) window.MathJax.typesetPromise([el]); else if (window.MathJax) window.MathJax.typeset([el]); });
+  };
+  G.setCaption = function (id, html) { var el = document.getElementById(id); if (!el) return; el.innerHTML = html; G.typeset(el); };
+
+  window.fpmiGraph = G;
+})();
+</script>
+<style>
+  /* Shared look for every fpmiGraph widget (see graph-helper.html). */
+  .fpmi-graph { padding: 1rem 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .fpmi-graph h2.fg-title { font-size: 16px; font-weight: 500; margin: 0 0 4px; }
+  .fpmi-graph p.fg-sub { font-size: 13px; color: #78716c; margin: 0 0 0.75rem; }
+  .fpmi-graph .fg-plot { width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 6px 18px rgba(0,58,65,0.06); }
+  .fpmi-graph .fg-caption { font-size: 13px; color: #44403c; margin-top: 0.6rem; min-height: 1.4em; line-height: 1.5; }
+  .fpmi-graph .fg-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .fpmi-graph .fg-arrow { font-size: 26px; color: #78716c; }
+  .fpmi-graph-controls, .fpmi-graph .fg-controls { display: flex; align-items: center; gap: 10px; margin: 0.5rem 0 0.9rem; flex-wrap: wrap; outline: none; }
+  .fpmi-graph-controls button, .fpmi-graph button {
+    font-size: 13px; padding: 6px 12px; cursor: pointer; border-radius: 8px;
+    border: 1px solid #d6d3d1; background: #fff; color: #292524; transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  }
+  .fpmi-graph-controls button:hover:not(:disabled), .fpmi-graph button:hover:not(:disabled) { background: #f5f5f4; border-color: #a8a29e; }
+  .fpmi-graph-controls button:disabled, .fpmi-graph button:disabled { opacity: 0.4; cursor: default; }
+  .fpmi-graph-controls button.active, .fpmi-graph button.active { background: #eaf2fb; border-color: #2a78d6; color: #1c4a7a; font-weight: 600; box-shadow: 0 0 0 3px rgba(42,120,214,0.12); }
+  .fpmi-graph-controls .fg-step { font-size: 13px; font-weight: 600; color: #44403c; min-width: 6.5em; text-align: center; }
+  .fpmi-graph-controls:focus-within .fg-step { color: #1c4a7a; }
+  .fpmi-graph label { font-size: 13px; color: #57534e; }
+  .fpmi-graph input[type="range"] { accent-color: #2a78d6; }
+  .fpmi-graph .fg-val { font-size: 13px; font-weight: 600; min-width: 2em; display: inline-block; color: #1c4a7a; }
+  .fpmi-graph .fg-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: #57534e; margin-top: 0.4rem; }
+  .fpmi-graph .fg-legend span::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; background: var(--c, #eaf2fb); border: 1.5px solid var(--b, #1e3a8a); }
+  .fpmi-graph .fg-legend span.line::before { border-radius: 0; height: 3px; width: 18px; border: none; vertical-align: 2px; background: var(--c, #78716c); }
+</style>
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Системы линейных уравнений</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Дата публикации</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">18 октября 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Предупреждение</span>Черновик
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Этот конспект ещё находится в процессе редактуры: в тексте могут встречаться опечатки, неточности и локально не проработанные места. Если что-то нашли — сообщите, пожалуйста, автору (контакты на <a href="../../../../courses/02-algebra/LA/overview.html#об-этом-пособии">странице курса</a>).</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-def no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-1" class="definition theorem">
+<p><span class="theorem-title"><strong>Определение 1</strong></span> <em>Система из <span class="math inline">\(m\)</span> линейных уравнений с <span class="math inline">\(n\)</span> неизвестными</em> (<em>СЛУ</em>) – это (матричное) уравнение вида <span class="math inline">\(A\overrightarrow {x} = \overrightarrow {b}\)</span>, где <span class="math inline">\(A \in \mathbb {R}^{m \times n}\)</span> – известная матрица, <em>матрица коэффициентов</em>, <span class="math inline">\(\overrightarrow {b} \in \mathbb {R}^{m}\)</span> – это известный столбец, <em>столбец свободных членов</em>, и <span class="math inline">\(\overrightarrow {x} \in \mathbb {R}^{n}\)</span> – это неизвестный столбец, <em>столбец переменных</em>. Перепишем матричное уравнение <span class="math inline">\(A\overrightarrow {x} = \overrightarrow {b}\)</span> покоординатно для наглядности: <span class="math display">\[
+  A\overrightarrow {x} = \overrightarrow {b} \iff \begin{cases}  a_{1,1}x_1 + \ldots + a_{1,n}x_n = b_1 \\ a_{2,1}x_1 + \ldots + a_{2,n}x_n = b_2 \\ \vdots \\ a_{m,1}x_1 + \ldots + a_{m,n}x_n = b_m \\ \end{cases}  
+\]</span></p>
+<ul>
+<li><p>СЛУ называется <em>совместной</em> или <em>разрешимой</em>, если она имеет хотя бы одно решение.</p></li>
+<li><p>СЛУ называется <em>однородной</em> (используется сокращение <em>СЛОУ</em>), если <span class="math inline">\(\overrightarrow {b} = \overrightarrow {0}\)</span>. Иначе система называется <em>неоднородной</em>.</p></li>
+<li><p>2 СЛУ называются <em>эквивалентными</em>, если множества их решений совпадают.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<section id="системы-линейных-уравнений-с-определителем-отличным-от-0" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Системы линейных уравнений с определителем, отличным от 0</h1>
+<p>Как решать СЛУ, в которой <span class="math inline">\(m=n\)</span> и <span class="math inline">\(\operatorname {det}\left(A\right) \neq 0\)</span>, мы уже изучали. Напомним, что в этом случае</p>
+<p><span class="math display">\[
+  A\overrightarrow {x} = \overrightarrow {b} \iff \underbrace{A^{-1} \cdot A\overrightarrow {x}}_{=\overrightarrow {x}} = A^{-1} \overrightarrow {b}  
+\]</span></p>
+<p>Т.е. у такой системы ровно одно решение, <span class="math inline">\(A^{-1} \overrightarrow {b}\)</span>. Самое сложное – найти <span class="math inline">\(A^{-1}\)</span>. 2 основных метода вычисления обратной матрицы: метод Крамера и метод Гаусса.</p>
+<p>Далее мы будем рассматривать общий случай: матрица <span class="math inline">\(A\)</span> не обязательно квадратная, или квадратная, но с произвольным определителем.</p>
+</section>
+<section id="системы-линейных-однородных-уравнений-слоу" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Системы линейных однородных уравнений (СЛОУ)</h1>
+<p>Имеем <span class="math inline">\(A \overrightarrow {x} = \overrightarrow {0}\)</span>. Заметим, что такая система всегда имеет т.н. <em>тривиальное</em> решение – нулевое решение <span class="math inline">\(\overrightarrow {x} = \overrightarrow {0} \in \mathbb {R}^{n}\)</span>. Попробуем найти нетривиальные решения: предполагаем, что <span class="math inline">\(\overrightarrow {x} \neq \overrightarrow {0}\)</span>. Напомним, что <span class="math inline">\(A\overrightarrow {x}\)</span> можно рассматривать как линейную комбинацию столбцов <span class="math inline">\(A\)</span> с коэфф. из <span class="math inline">\(\overrightarrow {x}\)</span>:</p>
+<p><span class="math display">\[
+  A\overrightarrow {x} = \overrightarrow {a}_{\cdot 1}x_1 + \ldots + \overrightarrow {a}_{\cdot n}x_n  
+\]</span></p>
+<p>Следовательно утверждение <span class="math inline">\(A \overrightarrow {x} = \overrightarrow {0}\)</span> равносильно линейной зависимости столбцов <span class="math inline">\(A\)</span>, а <span class="math inline">\(\overrightarrow {x}\)</span> – это коэффициенты этой зависимости, если она есть.</p>
+<div id="expl-SLOU:RREF" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример (Задача 18.1(11))
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Выписать матрицу коэффициентов данной системы линейных однородных уравнений. Решить систему:</p>
+<ol type="1">
+<li><span class="math inline">\(x_{1} + 3x_{2} + 3x_{3} + 2x_{4} + 6x_{5} = 0\)</span>, <span class="math inline">\(x_{1} - x_{2} - 2x_{3} - 3x_{5} = 0\)</span>, <span class="math inline">\(x_{1} + 11x_{2} + 7x_{3} + 6x_{4} + 18x_{5} = 0\)</span></li>
+</ol>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Имеем</p>
+<p><span class="math display">\[
+  \underbrace{\begin{bmatrix}  1 &amp;  3 &amp;  3 &amp;  2 &amp;  6 \\ 1 &amp;  -1 &amp;  -2 &amp;  0 &amp;  -3 \\ 1 &amp;  11 &amp;  7 &amp;  6 &amp;  18 \end{bmatrix}}_{= A} \cdot \begin{bmatrix}  x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5 \end{bmatrix} = \overrightarrow {0}  
+\]</span></p>
+<p>Заметим, что элементарные преобразования строк матрицы <span class="math inline">\(A\)</span> не меняют множества решений системы (подумайте, почему). Элементарные преобразования строк <span class="math inline">\(A\)</span>:</p>
+<p><span class="math display">\[
+\begin{align}  \begin{bmatrix}  1 &amp;  3 &amp;  3 &amp;  2 &amp;  6 \\ 1 &amp;  -1 &amp;  -2 &amp;  0 &amp;  -3 \\ 1 &amp;  11 &amp;  7 &amp;  6 &amp;  18 \end{bmatrix} &amp; \mathrel {\leadsto } \begin{bmatrix}  1 &amp;  3 &amp;  3 &amp;  2 &amp;  6 \\ 0 &amp;  -4 &amp;  -5 &amp;  -2 &amp;  -9 \\ 0 &amp;  8 &amp;  4 &amp;  4 &amp;  12 \end{bmatrix} \mathrel {\leadsto } \begin{bmatrix}  1 &amp;  3 &amp;  3 &amp;  2 &amp;  6 \\ 0 &amp;  1 &amp;  5/4 &amp;  1/2 &amp;  9/4 \\ 0 &amp;  0 &amp;  1 &amp;  0 &amp;  1 \end{bmatrix} \mathrel {\leadsto } \\ &amp; \mathrel {\leadsto } \begin{bmatrix}  1 &amp;  3 &amp;  0 &amp;  2 &amp;  3 \\ 0 &amp;  1 &amp;  0 &amp;  1/2 &amp;  1 \\ 0 &amp;  0 &amp;  1 &amp;  0 &amp;  1 \end{bmatrix} \mathrel {\leadsto } \begin{bmatrix}  1 &amp;  0 &amp;  0 &amp;  1/2 &amp;  0 \\ 0 &amp;  1 &amp;  0 &amp;  1/2 &amp;  1 \\ 0 &amp;  0 &amp;  1 &amp;  0 &amp;  1 \end{bmatrix} \end{align}
+\]</span></p>
+<p>Мы привели матрицу к <em>упрощенному (каноническому) виду</em>, а именно:</p>
+<ul>
+<li><p>это матрица ступенчатого вида;</p></li>
+<li><p>ведущий элемент в каждой строке равен <span class="math inline">\(1\)</span>, и он является единственным ненулевым элементом своего столбца.</p></li>
+</ul>
+<p>Т.е. матрица упрощенного вида – это матрица, которая (возможно, после перестановки местами некоторых столбцов, т.е. после перенумерации переменных) имеет вид</p>
+<p><span id="eq-SLOU:RREF"><span class="math display">\[
+  \begin{bmatrix}  I_r &amp;  &amp;  &amp;  C &amp;  &amp;  &amp;  \\ &amp;  &amp;  &amp;  &amp;  &amp;  &amp;  \\ 0 &amp;  &amp;  &amp;  &amp;  &amp;  &amp;  \\ &amp;  &amp;  &amp;  &amp;  &amp;  &amp;  \\ \end{bmatrix},
+\tag{1}\]</span></span></p>
+<p>где <span class="math inline">\(I_r\)</span> – единичная матрица порядка <span class="math inline">\(r\)</span>, <span class="math inline">\(C\)</span> – некоторая произвольная матрица размерности <span class="math inline">\(r \times (n - r)\)</span>.</p>
+<p>Таким образом, исходная система эквивалентна системе</p>
+<p><span class="math display">\[
+  \begin{cases}  x_1 + \frac{1}{2}x_4 = 0 \\ x_2 + \frac{1}{2}x_4 + x_5 = 0 \\ x_3 + x_5 = 0. \end{cases}  
+\]</span></p>
+<p>Переменные <span class="math inline">\(x_4 =: h_1, \;  x_5 =: h_2\)</span> можно взять в качестве <em>свободных переменных</em>. Тогда <span class="math inline">\(x_1, x_2, x_3\)</span> будут <em>главными</em> (зависимыми) переменными, причем</p>
+<p><span class="math display">\[
+  x_1 = -\frac{1}{2}h_1, \quad x_2 = -\frac{1}{2}h_1 - h_2, \quad x_3 = -h_2  
+\]</span></p>
+<p>В общем случае в качестве зависимых переменных можно брать переменные, соответствующие номерам столбцов, в которых стоят <strong>ведущие элементы строк</strong>. Оставшиеся переменные можно брать в качестве свободных.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Ответ
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Произвольное решение имеет вид <span class="math display">\[
+  \begin{bmatrix}  -\frac{1}{2}h_1 \\ -\frac{1}{2}h_1 - h_2 \\ -h_2 \\ h_1 \\ h_2 \end{bmatrix},  
+\]</span> где <span class="math inline">\(h_1, h_2 \in \mathbb {R}\)</span> – произвольные.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Заметим, что в предыдущем примере произвольное решение системы имеет вид</p>
+<p><span class="math display">\[
+  \begin{bmatrix}  x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5 \end{bmatrix} = \begin{bmatrix}  -\frac{1}{2}h_1 \\ -\frac{1}{2}h_1 - h_2 \\ -h_2 \\ h_1 \\ h_2 \end{bmatrix} = \begin{bmatrix}  -1/2 &amp;  0 \\ -1/2 &amp;  -1 \\ 0 &amp;  -1 \\ 1 &amp;  0 \\ 0 &amp;  1 \end{bmatrix} \cdot \begin{bmatrix}  h_1 \\ h_2 \end{bmatrix}, \qquad \begin{bmatrix}  h_1 \\ h_2 \end{bmatrix} \in \mathbb {R}^{2}  
+\]</span></p>
+<p>Т.е. множество решений СЛОУ является линейным подпространством в <span class="math inline">\(\mathbb {R}^{5}\)</span> с базисом</p>
+<p><span class="math display">\[
+  \begin{bmatrix}  -1/2 \\ -1/2\\ 0 \\ 1 \\ 0 \end{bmatrix}, \qquad \begin{bmatrix}  0 \\ -1 \\ -1 \\ 0 \\ 1 \end{bmatrix}  
+\]</span></p>
+<p>Оказывается, это верно для любой СЛОУ:</p>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-1" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 1</strong></span> Множество решений произвольной СЛОУ с <span class="math inline">\(n\)</span> неизвестными является подпространством в пространстве <span class="math inline">\(\mathbb {R}^{n}\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<p>Действительно, если <span class="math inline">\(\overrightarrow {x}_0, \overrightarrow {x_1}\)</span> – 2 решения СЛОУ, то несложно проверить, что <span class="math inline">\(\overrightarrow {x}_0 + \overrightarrow {x_1}\)</span> и <span class="math inline">\(\lambda \overrightarrow {x}_0\)</span> (<span class="math inline">\(\lambda \in \mathbb {R}\)</span> – произв.) также будут решениями.</p>
+<div class="callout callout-style-simple callout-mn-def no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-2" class="definition theorem">
+<p><span class="theorem-title"><strong>Определение 2</strong></span> Базис в пространстве решений СЛОУ называется <em>фундаментальной системой решений</em> (<em>ФСР</em>).</p>
+<p>Матрица, полученная выписыванием ФСР в столбцы, называется <em>фундаментальной матрицей системы</em>.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-SLE:Ex2" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример (Задача 18.1(9))
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Выписать матрицу коэффициентов данной системы линейных однородных уравнений. Решить систему: <span class="math inline">\(2x_{1} + 4x_{2} + 6x_{3} + x_{4} = 0\)</span>, <span class="math inline">\(x_{1} + 2x_{2} + 3x_{3} + x_{4} = 0\)</span>, <span class="math inline">\(3x_{1} + 6x_{2} + 9x_{3} - x_{4} = 0\)</span>, <span class="math inline">\(x_{1} + 2x_{2} + 3x_{3} + 5x_{4} = 0\)</span>. Найти фундаментальную матрицу системы <span class="math inline">\(\Phi\)</span>.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Имеем</p>
+<p><span class="math display">\[
+  \underbrace{\begin{bmatrix}  2 &amp;  4 &amp;  6 &amp;  1 \\ 1 &amp;  2 &amp;  3 &amp;  1 \\ 3 &amp;  6 &amp;  9 &amp;  -1 \\ 1 &amp;  2 &amp;  3 &amp;  5 \end{bmatrix}}_{= A} \cdot \begin{bmatrix}  x_1 \\ x_2 \\ x_3 \\ x_4 \end{bmatrix} = \overrightarrow {0}  
+\]</span></p>
+<p>Элементарные преобразования строк <span class="math inline">\(A\)</span>:</p>
+<p><span class="math display">\[
+\begin{align}  \begin{bmatrix}  2 &amp;  4 &amp;  6 &amp;  1 \\ 1 &amp;  2 &amp;  3 &amp;  1 \\ 3 &amp;  6 &amp;  9 &amp;  -1 \\ 1 &amp;  2 &amp;  3 &amp;  5 \end{bmatrix} &amp; \mathrel {\leadsto } \begin{bmatrix}  1 &amp;  2 &amp;  3 &amp;  1 \\ 0 &amp;  0 &amp;  0 &amp;  -1 \\ 0 &amp;  0 &amp;  0 &amp;  -4 \\ 0 &amp;  0 &amp;  0 &amp;  4 \end{bmatrix} \mathrel {\leadsto } \begin{bmatrix}  1 &amp;  2 &amp;  3 &amp;  1 \\ 0 &amp;  0 &amp;  0 &amp;  1 \\ 0 &amp;  0 &amp;  0 &amp;  0 \\ 0 &amp;  0 &amp;  0 &amp;  0 \end{bmatrix} \mathrel {\leadsto } \begin{bmatrix}  1 &amp;  2 &amp;  3 &amp;  0 \\ 0 &amp;  0 &amp;  0 &amp;  1 \\ 0 &amp;  0 &amp;  0 &amp;  0 \\ 0 &amp;  0 &amp;  0 &amp;  0 \end{bmatrix} \end{align}
+\]</span></p>
+<p>Мы привели матрицу к упрощенному виду, т.е. к виду <a href="#eq-SLOU:RREF" class="quarto-xref">Уравнение&nbsp;1</a> (после перестановки местами 2-го и 4-го столбцов во всяком случае).</p>
+<p>Таким образом, исходная система эквивалентна системе</p>
+<p><span class="math display">\[
+  \begin{cases}  x_1 + 2x_2 + 3x_3 + x_4 = 0\\ x_4 = 0 \end{cases}  
+\]</span></p>
+<p>Ведущие элементы строк стоят в 1 и 4 столбцах, т.е. <span class="math inline">\(x_2 = h_1\)</span>, <span class="math inline">\(x_3 = h_2\)</span> можно взять в качестве свободных переменных. <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_4\)</span> – это зависимые переменные:</p>
+<p><span class="math display">\[
+  x_4 = 0, \qquad x_1 = -2x_2 - 3x_3 = -2h_1 - 3h_2  
+\]</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Ответ
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Произвольное решение имеет вид <span class="math display">\[
+  \begin{bmatrix}  -2h_1 - 3h_2 \\ h_1 \\ h_2 \\ 0 \end{bmatrix} = \underbrace{\begin{bmatrix}  -2 &amp;  -3 \\ 1 &amp;  0 \\ 0 &amp;  1 \\ 0 &amp;  0 \end{bmatrix}}_{=\Phi } \cdot \begin{bmatrix}  h_1 \\ h_2 \end{bmatrix},  
+\]</span> где <span class="math inline">\(h_1, h_2 \in \mathbb {R}\)</span> – произвольные.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Посмотрим на СЛОУ с другой стороны. Заметим, что</p>
+<p><span class="math display">\[
+  A \cdot \overrightarrow {x} = \begin{bmatrix}  \overrightarrow {a}_{1 \cdot } \\ \overrightarrow {a}_{2 \cdot } \\ \vdots \\ \overrightarrow {a}_{m \cdot } \end{bmatrix} \cdot \overrightarrow {x} = \begin{bmatrix}  a_{1,1}x_1 + \ldots + a_{1,n} x_n \\ a_{2,1}x_1 + \ldots + a_{2,n} x_n \\ \vdots \\ a_{m,1}x_1 + \ldots + a_{m,n} x_n \end{bmatrix} = \begin{bmatrix}  \left\langle \overrightarrow {a}_{1 \cdot }^T, \overrightarrow {x} \right\rangle \\ \left\langle \overrightarrow {a}_{2 \cdot }^T, \overrightarrow {x} \right\rangle \\ \vdots \\ \left\langle \overrightarrow {a}_{m \cdot }^T, \overrightarrow {x} \right\rangle \end{bmatrix},  
+\]</span></p>
+<p>где <span class="math inline">\(\left\langle \cdot , \cdot \right\rangle\)</span> – стандартное скалярное произведение в <span class="math inline">\(\mathbb {R}^{n}\)</span>. Таким образом, решение СЛОУ <span class="math inline">\(A \overrightarrow {x} = \overrightarrow {0}\)</span> эквивалентно с геометрической точки зрения поиску вектора, ортогонального всем <span class="math inline">\(n\)</span>-мерным строкам матрицы <span class="math inline">\(A\)</span>. Отсюда вытекает следующая теорема:</p>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-2" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 2</strong></span> Размерность пространства решений СЛОУ равна <span class="math inline">\(n - \operatorname {rk}\left(A\right)\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<p>Из этого сразу вытекает, что размерность любой фундаментальной матрицы системы должна быть равна <span class="math inline">\(n \times (n - \operatorname {rk}\left(A\right))\)</span>. Однако в каком случае произвольная матрица <span class="math inline">\(\Phi \in \mathbb {R}^{n \times (n - \operatorname {rk}\left(A\right))}\)</span> будет фундаментальной матрицей системы <span class="math inline">\(A \overrightarrow {x} = \overrightarrow {0}\)</span>?</p>
+<div id="expl-1" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть дана СЛОУ <span class="math inline">\(A \overrightarrow {x} = \overrightarrow {0}\)</span>, где <span class="math inline">\(A \in \mathbb {R}^{m \times n}\)</span>, причем <span class="math inline">\(r = \operatorname {rk}\left(A\right)\)</span>. Докажите, что матрица <span class="math inline">\(\Phi\)</span> размерности <span class="math inline">\(n \times (n - \operatorname {rk}\left(A\right))\)</span> является фундаментальной матрицей данной СЛОУ тогда и только тогда, когда выполнено два условия:</p>
+<ol type="1">
+<li><p><span class="math inline">\(A \cdot \Phi = \overrightarrow {0}\)</span>;</p></li>
+<li><p><span class="math inline">\(\operatorname {rk}\left(\Phi \right) = n-r\)</span>.</p></li>
+</ol>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Обозначим через <span class="math inline">\(V \subseteq \mathbb {R}^{n}\)</span> пространство решений СЛОУ; мы знаем, что <span class="math inline">\(\dim V = n - r\)</span>.</p>
+<p>(<span class="math inline">\(\Rightarrow\)</span>) Пусть <span class="math inline">\(\Phi\)</span> – фундаментальная матрица. Тогда ее столбцы <span class="math inline">\(\overrightarrow {\phi }_{\cdot 1}, \ldots , \overrightarrow {\phi }_{\cdot (n-r)}\)</span> – базис <span class="math inline">\(V\)</span>. В частности, каждый столбец – решение: <span class="math inline">\(A \overrightarrow {\phi }_{\cdot j} = \overrightarrow {0}\)</span>, а это по столбцам и означает <span class="math inline">\(A \Phi = \overrightarrow {0}\)</span>. Кроме того, столбцы базиса линейно независимы, и их <span class="math inline">\(n-r\)</span> штук, т.е. <span class="math inline">\(\operatorname {rk}\left(\Phi \right) = n - r\)</span>.</p>
+<p>(<span class="math inline">\(\Leftarrow\)</span>) Пусть выполнены оба условия. Из <span class="math inline">\(A\Phi = \overrightarrow {0}\)</span> следует, что каждый столбец <span class="math inline">\(\Phi\)</span> лежит в <span class="math inline">\(V\)</span>. Из <span class="math inline">\(\operatorname {rk}\left(\Phi \right) = n-r\)</span> следует, что все <span class="math inline">\(n-r\)</span> столбцов линейно независимы. Итого: <span class="math inline">\(n - r = \dim V\)</span> линейно независимых векторов в пространстве <span class="math inline">\(V\)</span> – это базис <span class="math inline">\(V\)</span>. Т.е. <span class="math inline">\(\Phi\)</span> – фундаментальная матрица.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Учитывая пример выше, несложно показать, что если матрица <span class="math inline">\(A \in \mathbb {R}^{m \times n}\)</span> ранга <span class="math inline">\(\operatorname {rk}\left(A\right) = r\)</span> имеет (возможно, после перенумерации переменных) упрощенный вид</p>
+<p><span class="math display">\[
+  A' = \begin{bmatrix}  I_r &amp;  &amp;  &amp;  C &amp;  &amp;  &amp;  \\ &amp;  &amp;  &amp;  &amp;  &amp;  &amp;  \\ 0 &amp;  &amp;  &amp;  &amp;  &amp;  &amp;  \\ &amp;  &amp;  &amp;  &amp;  &amp;  &amp;  \\ \end{bmatrix},  
+\]</span></p>
+<p>где <span class="math inline">\(I_r\)</span> – единичная матрица порядка <span class="math inline">\(r\)</span>, <span class="math inline">\(C\)</span> – некоторая произвольная матрица размерности <span class="math inline">\(r \times (n - r)\)</span>, то фундаментальной матрицей для нее будет матрица блочного вида</p>
+<p><span class="math display">\[
+  \Phi = \begin{bmatrix}  -C &amp;  &amp;  &amp;  \\ &amp;  &amp;  &amp;  \\ I_{n-r} &amp;  &amp;  &amp;  \\ &amp;  &amp;  &amp;  \end{bmatrix}  
+\]</span></p>
+<p>Например, в задаче 18.1(11) имеем</p>
+<p><span class="math display">\[
+  A' = \begin{bmatrix}  1 &amp;  0 &amp;  0 &amp;  1/2 &amp;  0 \\ 0 &amp;  1 &amp;  0 &amp;  1/2 &amp;  1 \\ 0 &amp;  0 &amp;  1 &amp;  0 &amp;  1 \end{bmatrix}, \qquad \Phi = \begin{bmatrix}  -1/2 &amp;  0 \\ -1/2 &amp;  -1 \\ 0 &amp;  -1 \\ 1 &amp;  0 \\ 0 &amp;  1 \end{bmatrix}  
+\]</span></p>
+<p>В задаче <a href="#expl-SLE:Ex2">18.1(9)</a> имеем</p>
+<p><span class="math display">\[
+  A' = \begin{bmatrix}  1 &amp;  2 &amp;  3 &amp;  0 \\ 0 &amp;  0 &amp;  0 &amp;  1 \\ 0 &amp;  0 &amp;  0 &amp;  0 \\ 0 &amp;  0 &amp;  0 &amp;  0 \end{bmatrix}, \qquad \Phi = \begin{bmatrix}  -2 &amp;  -3 \\ 1 &amp;  0 \\ 0 &amp;  1 \\ 0 &amp;  0 \end{bmatrix}  
+\]</span></p>
+<div id="expl-cstmЗадача-18.17-1" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример (Задача 18.17(1))
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Найти хотя бы одну однородную систему линейных уравнений, для которой данная матрица является фундаментальной: <span class="math inline">\(A_{110}\)</span>. <span class="math inline">\(A_{110} = \left[\begin{smallmatrix}  3 &amp;  1 \\ 2 &amp;  1 \\ 1 &amp;  0 \end{smallmatrix}\right]\)</span>.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Ранг пространства решений равен рангу фундаментальной матрицы, а он равен <span class="math inline">\(2\)</span>. Учитывая, что <span class="math inline">\(n=3\)</span>, получаем, что ранг матрицы СЛОУ должен быть равен <span class="math inline">\(1\)</span>.</p>
+<p>По строкам у матрицы СЛОУ идет система <span class="math inline">\(n\)</span>-мерных строк, ортогональных ФСР. Пусть <span class="math inline">\(\overrightarrow {\alpha } = \begin{bmatrix}  \alpha_1 &amp;  \alpha_2 &amp;  \alpha_3 \end{bmatrix}\)</span> – произвольная строка матрицы <span class="math inline">\(A\)</span>. Имеем</p>
+<p><span class="math display">\[
+  \begin{cases}  \left\langle \overrightarrow {\alpha }^T, \begin{bmatrix}  3 &amp;  2 &amp;  1 \end{bmatrix}^T \right\rangle = 0 \\ \left\langle \overrightarrow {\alpha }^T, \begin{bmatrix}  1 &amp;  1 &amp;  0 \end{bmatrix}^T \right\rangle = 0 \\ \end{cases} \quad \iff A_{110}^T \cdot \overrightarrow {\alpha }^T = 0  
+\]</span></p>
+<p>Получили СЛОУ на числа <span class="math inline">\(\alpha_1, \alpha_2, \alpha_3\)</span>. Ее ФСР и будет строками искомой матрицы. Решим ее. Приведем матрицу <span class="math inline">\(A_{110}^T\)</span> эл. преобразованиями строк к упрощенному виду:</p>
+<p><span class="math display">\[
+  \begin{bmatrix}  3 &amp;  2 &amp;  1 \\ 1 &amp;  1 &amp;  0 \end{bmatrix} \mathrel {\leadsto } \begin{bmatrix}  1 &amp;  1 &amp;  0 \\ 0 &amp;  -1 &amp;  1 \end{bmatrix} \mathrel {\leadsto } \begin{bmatrix}  1 &amp;  0 &amp;  1 \\ 0 &amp;  1 &amp;  -1 \end{bmatrix}  
+\]</span></p>
+<p>ФСР будет состоять из одного вектора:</p>
+<p><span class="math display">\[
+  \begin{bmatrix}  -1 \\ 1 \\ 1 \end{bmatrix}  
+\]</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Ответ
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(A \overrightarrow {x} = \overrightarrow {0}\)</span>, где <span class="math inline">\(A = \begin{bmatrix}  -1 &amp;  1 &amp;  1 \end{bmatrix}\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-2" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 5
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Зная одну фундаментальную матрицу <span class="math inline">\(\Phi\)</span> некоторой СЛОУ (размерность <span class="math inline">\(\Phi\)</span> равна <span class="math inline">\(n \times (n-r)\)</span>), найти общий вид произвольной фундаментальной матрицы той же СЛОУ</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(\Phi '\)</span> – еще одна фундаментальная матрица той же СЛОУ. Каждый ее столбец лежит в пространстве решений <span class="math inline">\(V\)</span>, а столбцы <span class="math inline">\(\Phi\)</span> – базис <span class="math inline">\(V\)</span>. Значит, каждый столбец <span class="math inline">\(\overrightarrow {\phi }'_{\cdot j}\)</span> – линейная комбинация столбцов <span class="math inline">\(\Phi\)</span> с некоторыми коэффициентами <span class="math inline">\(\overrightarrow {b}_{\cdot j} \in \mathbb {R}^{n - r}\)</span>:</p>
+<p><span class="math display">\[
+  \overrightarrow {\phi }'_{\cdot j} = \Phi \cdot \overrightarrow {b}_{\cdot j}, \;  j \in \left\{ 1, \ldots , n-r\right\}  \quad \iff \quad \Phi ' = \Phi \cdot B, \quad B := \left(\overrightarrow {b}_{\cdot 1} \cdots \overrightarrow {b}_{\cdot (n-r)}\right) \in \mathbb {R}^{(n-r) \times (n-r)}  
+\]</span></p>
+<p>При этом матрица <span class="math inline">\(B\)</span> обязана быть невырожденной: это в точности матрица перехода между двумя базисами пространства <span class="math inline">\(V\)</span> (если бы ее столбцы были линейно зависимы, той же зависимостью были бы связаны и столбцы <span class="math inline">\(\Phi '\)</span>, что противоречит <span class="math inline">\(\operatorname {rk}\left(\Phi '\right) = n - r\)</span>).</p>
+<p>Обратно, для любой невырожденной <span class="math inline">\(B \in \mathbb {R}^{(n-r) \times (n-r)}\)</span> матрица <span class="math inline">\(\Phi \cdot B\)</span> фундаментальна: по критерию из примера выше достаточно заметить, что <span class="math inline">\(A (\Phi B) = (A\Phi ) B = \overrightarrow {0}\)</span> и <span class="math inline">\(\operatorname {rk}\left(\Phi B\right) = n - r\)</span> (умножение на невырожденную матрицу не меняет ранга).</p>
+<p>Обратите внимание: умножать нужно <strong>справа</strong> на невырожденную матрицу порядка <span class="math inline">\(n - r\)</span> (это замена базиса в пространстве решений). Умножение слева на невырожденную <span class="math inline">\(n \times n\)</span> матрицу, вообще говоря, выводит столбцы из пространства решений.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Ответ
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\Phi ' = \Phi \cdot B\)</span>, где <span class="math inline">\(B \in \mathbb {R}^{(n-r) \times (n-r)}\)</span> – произвольная невырожденная матрица.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-3" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 6
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(A\)</span> – матрица ранга <span class="math inline">\(r\)</span>, состоящая из <span class="math inline">\(n\)</span> столбцов. Известно, что для матрицы <span class="math inline">\(B\)</span> определено произведение <span class="math inline">\(AB = 0\)</span>. Оцените сверху <span class="math inline">\(\operatorname {rk}\left(B\right)\)</span>.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Равенство <span class="math inline">\(AB = 0\)</span> означает, что каждый столбец <span class="math inline">\(\overrightarrow {b}_{\cdot j}\)</span> матрицы <span class="math inline">\(B\)</span> удовлетворяет <span class="math inline">\(A \overrightarrow {b}_{\cdot j} = \overrightarrow {0}\)</span>, т.е. лежит в пространстве решений <span class="math inline">\(V\)</span> СЛОУ <span class="math inline">\(A \overrightarrow {x} = \overrightarrow {0}\)</span>. Размерность <span class="math inline">\(V\)</span> равна <span class="math inline">\(n - r\)</span>, поэтому среди столбцов <span class="math inline">\(B\)</span> не может быть больше, чем <span class="math inline">\(n-r\)</span>, линейно независимых: <span class="math display">\[
+  \operatorname {rk}\left(B\right) \leq n - r  
+\]</span> Граница достигается: в качестве <span class="math inline">\(B\)</span> можно взять фундаментальную матрицу <span class="math inline">\(\Phi\)</span> этой СЛОУ – тогда <span class="math inline">\(A\Phi = 0\)</span> и <span class="math inline">\(\operatorname {rk}\left(\Phi \right) = n - r\)</span>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Ответ
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\operatorname {rk}\left(B\right) \leq n -r\)</span>, причем граница достигается.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-4" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 7
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-20" class="callout-20-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Докажите, что СЛОУ <span class="math inline">\(A\overrightarrow {x} = \overrightarrow {0}\)</span> и <span class="math inline">\(B \overrightarrow {x} = \overrightarrow {0}\)</span> эквивалентны тогда и только тогда, когда <span class="math display">\[
+  \operatorname {rk}\left(\begin{bmatrix}  A\\ B \end{bmatrix}\right) = \operatorname {rk}\left(A\right) = \operatorname {rk}\left(B\right)  
+\]</span></p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть у обеих систем по <span class="math inline">\(n\)</span> неизвестных. Обозначим через <span class="math inline">\(V_A, V_B\)</span> пространства решений систем <span class="math inline">\(A\overrightarrow {x} = \overrightarrow {0}\)</span> и <span class="math inline">\(B\overrightarrow {x} = \overrightarrow {0}\)</span> соответственно. Ключевое наблюдение: решения системы с матрицей <span class="math inline">\(\left[\begin{smallmatrix}  A \\ B \end{smallmatrix}\right]\)</span> (уравнения обеих систем, собранные вместе) – это в точности векторы, являющиеся решениями обеих систем сразу, т.е. пространство решений объединенной системы равно <span class="math inline">\(V_A \cap V_B\)</span>. По теореме о размерности пространства решений</p>
+<p><span class="math display">\[
+  \dim V_A = n - \operatorname {rk}\left(A\right), \qquad \dim V_B = n - \operatorname {rk}\left(B\right), \qquad \dim \left(V_A \cap V_B\right) = n - \operatorname {rk}\left(\left[\begin{smallmatrix}  A \\ B \end{smallmatrix}\right]\right)  
+\]</span></p>
+<p>(<span class="math inline">\(\Rightarrow\)</span>) Если системы эквивалентны, то <span class="math inline">\(V_A = V_B\)</span>, и тогда <span class="math inline">\(V_A \cap V_B = V_A = V_B\)</span>. Переходя к размерностям и пользуясь формулами выше, получаем <span class="math inline">\(\operatorname {rk}\left(\left[\begin{smallmatrix}  A \\ B \end{smallmatrix}\right]\right) = \operatorname {rk}\left(A\right) = \operatorname {rk}\left(B\right)\)</span>.</p>
+<p>(<span class="math inline">\(\Leftarrow\)</span>) Пусть ранги равны. Заметим, что всегда <span class="math inline">\(V_A \cap V_B \subseteq V_A\)</span>. При этом из равенства рангов <span class="math inline">\(\dim \left(V_A \cap V_B\right) = \dim V_A\)</span>. Но если подпространство имеет ту же размерность, что и объемлющее пространство, то они совпадают: <span class="math inline">\(V_A \cap V_B = V_A\)</span>. Аналогично <span class="math inline">\(V_A \cap V_B = V_B\)</span>. Следовательно, <span class="math inline">\(V_A = V_B\)</span>, т.е. системы эквивалентны.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-5" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 8
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-22" class="callout-22-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(\Phi\)</span> – фундаментальная матрица СЛОУ <span class="math inline">\(A \overrightarrow {x} = \overrightarrow {0}\)</span>. Тогда система <span class="math inline">\(\Phi^T \overrightarrow {y} = \overrightarrow {0}\)</span> задает линейную оболочку строк матрицы <span class="math inline">\(A\)</span>.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-21" class="callout-21-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(A \in \mathbb {R}^{m \times n}\)</span>, <span class="math inline">\(r = \operatorname {rk}\left(A\right)\)</span>; тогда <span class="math inline">\(\Phi \in \mathbb {R}^{n \times (n-r)}\)</span>. Обозначим через <span class="math inline">\(W \subseteq \mathbb {R}^{n}\)</span> пространство решений системы <span class="math inline">\(\Phi^T \overrightarrow {y} = \overrightarrow {0}\)</span> и через <span class="math inline">\(L\)</span> – линейную оболочку транспонированных строк матрицы <span class="math inline">\(A\)</span> (как столбцов в <span class="math inline">\(\mathbb {R}^{n}\)</span>). Нужно доказать, что <span class="math inline">\(W = L\)</span>.</p>
+<p>Во-первых, <span class="math inline">\(L \subseteq W\)</span>. Действительно, условие <span class="math inline">\(\Phi^T \overrightarrow {y} = \overrightarrow {0}\)</span> означает, что <span class="math inline">\(\overrightarrow {y}\)</span> ортогонален всем столбцам <span class="math inline">\(\Phi\)</span>, т.е. всем решениям исходной СЛОУ. Но каждая строка <span class="math inline">\(A\)</span> ортогональна каждому решению (это в точности уравнения системы <span class="math inline">\(A\overrightarrow {x} = \overrightarrow {0}\)</span>), а значит, ортогональна решениям и любая линейная комбинация строк.</p>
+<p>Во-вторых, размерности совпадают. Ранг матрицы <span class="math inline">\(\Phi^T \in \mathbb {R}^{(n-r) \times n}\)</span> равен <span class="math inline">\(n - r\)</span>, поэтому по теореме о размерности пространства решений</p>
+<p><span class="math display">\[
+  \dim W = n - \operatorname {rk}\left(\Phi ^T\right) = n - (n - r) = r = \operatorname {rk}\left(A\right) = \dim L  
+\]</span></p>
+<p>Подпространство <span class="math inline">\(L \subseteq W\)</span> той же размерности, что и <span class="math inline">\(W\)</span>, совпадает с ним: <span class="math inline">\(L = W\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="системы-линейных-уравнений-общего-вида" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Системы линейных уравнений общего вида</h1>
+<p>Выполнение <span class="math inline">\(A \overrightarrow {x} = \overrightarrow {b}\)</span> равносильно тому, что вектор <span class="math inline">\(\overrightarrow {b}\)</span> можно выразить линейной комбинацией столбцов <span class="math inline">\(A\)</span> с коэфф. из <span class="math inline">\(\overrightarrow {x}\)</span>. Это равносильно тому, что <span class="math inline">\(\overrightarrow {b}\)</span> лежит в пространстве, порожденном столбцами <span class="math inline">\(A\)</span>. Отсюда вытекает</p>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-3" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 3 (Кронекер-Капелли)</strong></span> Система <span class="math inline">\(A \overrightarrow {x} = \overrightarrow {b}\)</span> совместна тогда и только тогда, когда <span class="math inline">\(\operatorname {rk}\left(A\right) = \operatorname {rk}\left(A \mid \overrightarrow {b}\right)\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-4" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 4</strong></span> Зафиксируем некоторое решение <span class="math inline">\(\overrightarrow {x}_0\)</span> совместной СЛУ <span class="math inline">\(A \overrightarrow {x} = \overrightarrow {b}\)</span>. Тогда всякое ее решение представляется в виде <span class="math inline">\(\overrightarrow {x}_0 + \overrightarrow {y}\)</span>, где <span class="math inline">\(\overrightarrow {y}\)</span> – некоторое решение однородной системы <span class="math inline">\(A \overrightarrow {x} = \overrightarrow {0}\)</span>.</p>
+<p>Обратно тоже верно: любая сумма вида <span class="math inline">\(\overrightarrow {x}_0 + \overrightarrow {y}\)</span> – решение СЛУ <span class="math inline">\(A \overrightarrow {x} = \overrightarrow {b}\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<style>
+  #afs-wrap { padding: 1rem 0; font-family: sans-serif; }
+  #afs-wrap p.sub { font-size: 13px; color: #888; margin: 0 0 0.75rem; }
+  .afs-controls { display: flex; align-items: center; gap: 12px; margin: 0.5rem 0 1rem; flex-wrap: wrap; }
+  .afs-controls label { font-size: 13px; color: #666; }
+  .afs-controls button {
+    font-size: 13px; padding: 6px 12px; cursor: pointer; border-radius: 6px;
+    border: 1px solid #ccc; background: #fff;
+  }
+  .afs-controls button.active { background: #eaf2fb; border-color: #2a78d6; color: #1c4a7a; font-weight: 600; }
+  #afs-canvas-wrap { width: 100%; max-width: 560px; height: 460px; position: relative; border: 1px solid #e5e5e5; border-radius: 8px; overflow: hidden; }
+</style>
+<div id="afs-wrap">
+  <h2 style="font-size:16px;font-weight:500;margin:0 0 4px;" class="anchored" data-anchor-id="системы-линейных-уравнений-общего-вида">Структура множества решений неоднородной СЛУ</h2>
+  <p class="sub">Множество решений \(A\vec{x}=\vec{b}\) — аффинный сдвиг \(\vec{x}_0+V\) пространства решений \(V\) однородной системы \(A\vec{x}=\vec{0}\) на произвольное частное решение \(\vec{x}_0\). Перетащите мышью, чтобы вращать сцену; ползунок двигает \(\vec{x}_0\) по плоскости \(\vec{x}_0+V\) (сама плоскость не меняется); кнопка справа схлопывает случай \(\vec{b}\to\vec{0}\).</p>
+  <div class="afs-controls">
+    <label>положение \(\vec{x}_0\) на плоскости:</label>
+    <input type="range" id="afs-t" min="-1" max="1" step="0.02" value="0" style="width:180px;">
+    <button id="afs-btn-b0">Показать \(\vec{b}\to\vec{0}\)</button>
+  </div>
+  <div id="afs-canvas-wrap"></div>
+  <div id="afs-caption" style="font-size:13px;color:#444;margin-top:0.5rem;"></div>
+</div>
+<script>
+// A plain <script src> for a UMD bundle like three.min.js checks
+// `typeof define === 'function' && define.amd` first and, if true, registers
+// itself as an anonymous AMD module instead of a global -- which RequireJS
+// (used by this site's Plotly figures) then rejects, leaving THREE undefined.
+// Hiding `define` for the duration of these loads forces the UMD fallback
+// branch that sets the real global, then it's restored.
+window.__amdDefineBackup = window.define;
+window.define = undefined;
+</script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+window.define = window.__amdDefineBackup;
+</script>
+<script>
+(function(){
+  var scene, camera, renderer, group, controls;
+  var homPlane, affPlane, x0Point, x0Vec, yVec, xyVec, xyPoint, dashedY;
+  var b0 = false;
+
+  var V_BASE1 = new THREE.Vector3(1.4, 0, 0);
+  var V_BASE2 = new THREE.Vector3(0, 0, 1.1);
+  var X0_BASE = new THREE.Vector3(0.3, 1.2, 0.2);
+
+  function planeMesh(color, opacity) {
+    var geo = new THREE.PlaneGeometry(3.2, 3.2, 1, 1);
+    var mat = new THREE.MeshBasicMaterial({ color: color, opacity: opacity, transparent: true, side: THREE.DoubleSide });
+    return new THREE.Mesh(geo, mat);
+  }
+
+  function orientPlaneToSpan(mesh, base1, base2) {
+    var normal = new THREE.Vector3().crossVectors(base1, base2).normalize();
+    var quat = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0,0,1), normal);
+    mesh.setRotationFromQuaternion(quat);
+  }
+
+  function arrow(color) {
+    return new THREE.ArrowHelper(new THREE.Vector3(1,0,0), new THREE.Vector3(0,0,0), 1, color, 0.12, 0.07);
+  }
+
+  function init() {
+    var container = document.getElementById("afs-canvas-wrap");
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xfcfcfb);
+    camera = new THREE.PerspectiveCamera(45, container.clientWidth/container.clientHeight, 0.1, 100);
+    camera.position.set(3.6, 2.6, 4.2);
+    camera.lookAt(0,0.6,0);
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    container.appendChild(renderer.domElement);
+
+    group = new THREE.Group();
+    scene.add(group);
+
+    homPlane = planeMesh(0x2a78d6, 0.15);
+    orientPlaneToSpan(homPlane, V_BASE1, V_BASE2);
+    group.add(homPlane);
+
+    affPlane = planeMesh(0x556B2F, 0.18);
+    orientPlaneToSpan(affPlane, V_BASE1, V_BASE2);
+    affPlane.position.copy(X0_BASE);
+    group.add(affPlane);
+
+    var originGeo = new THREE.SphereGeometry(0.05, 16, 16);
+    var originMat = new THREE.MeshBasicMaterial({ color: 0x1c1917 });
+    group.add(new THREE.Mesh(originGeo, originMat));
+
+    x0Vec = arrow(0x1c1917);
+    group.add(x0Vec);
+
+    yVec = arrow(0x2a78d6);
+    group.add(yVec);
+
+    xyVec = arrow(0x556B2F);
+    group.add(xyVec);
+
+    x0Point = new THREE.Mesh(new THREE.SphereGeometry(0.045, 16, 16), new THREE.MeshBasicMaterial({ color: 0x1c1917 }));
+    group.add(x0Point);
+    xyPoint = new THREE.Mesh(new THREE.SphereGeometry(0.045, 16, 16), new THREE.MeshBasicMaterial({ color: 0x556B2F }));
+    group.add(xyPoint);
+
+    var dashMat = new THREE.LineDashedMaterial({ color: 0x2a78d6, dashSize: 0.06, gapSize: 0.05 });
+    var dashGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(), new THREE.Vector3()]);
+    dashedY = new THREE.Line(dashGeo, dashMat);
+    group.add(dashedY);
+
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.target.set(0, 0.6, 0);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.update();
+
+    update();
+    animate();
+  }
+
+  function update() {
+    var t = parseFloat(document.getElementById("afs-t").value);
+    var yFixed = new THREE.Vector3(0.9, 0, -0.55);
+
+    var x0 = b0 ? new THREE.Vector3(0,0,0) : X0_BASE.clone().add(V_BASE1.clone().multiplyScalar(t*0.5));
+    affPlane.position.copy(b0 ? new THREE.Vector3(0,0,0) : x0.clone().sub(V_BASE1.clone().multiplyScalar(t*0.5)));
+    affPlane.material.opacity = b0 ? 0.0 : 0.18;
+
+    x0Vec.setDirection(x0.clone().normalize());
+    x0Vec.setLength(Math.max(x0.length(), 0.001));
+    x0Point.position.copy(x0);
+
+    yVec.setDirection(yFixed.clone().normalize());
+    yVec.setLength(yFixed.length());
+
+    var xy = x0.clone().add(yFixed);
+    xyVec.setDirection(xy.clone().normalize());
+    xyVec.setLength(Math.max(xy.length(), 0.001));
+    xyPoint.position.copy(xy);
+
+    var dashPts = [x0.clone(), xy.clone()];
+    dashedY.geometry.setFromPoints(dashPts);
+    dashedY.computeLineDistances();
+
+    var caption = b0
+      ? "При \\(\\vec{b}\\to\\vec{0}\\) плоскость \\(\\vec{x}_0+V\\) схлопывается в \\(V\\): неоднородная система становится однородной."
+      : "Каждое решение имеет вид \\(\\vec{x}_0+\\vec{y}\\), где \\(\\vec{y}\\in V\\). Плоскость \\(\\vec{x}_0+V\\) (зелёная) параллельна \\(V\\) (синяя), но не проходит через начало координат.";
+    if (window.fpmiWithMathJax) {
+      window.fpmiWithMathJax(function(){
+        document.getElementById("afs-caption").innerHTML = caption;
+        window.MathJax.typeset();
+      });
+    }
+  }
+
+  function animate() {
+    requestAnimationFrame(animate);
+    controls.update();
+    renderer.render(scene, camera);
+  }
+
+  document.getElementById("afs-t").addEventListener("input", update);
+  document.getElementById("afs-btn-b0").addEventListener("click", function(){
+    b0 = !b0;
+    this.classList.toggle("active", b0);
+    document.getElementById("afs-t").disabled = b0;
+    update();
+  });
+
+  init();
+})();
+</script>
+<div id="expl-cstmЗадача-19.6-22" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример (Задача 19.6(22))
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-25" class="callout-25-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Составить систему линейных уравнений по заданной расширенной матрице. Решить систему или установить ее несовместность. <span class="math inline">\(\left[A_{513} \mid \overrightarrow {c}_{62}\right]\)</span>. <span class="math inline">\(A_{513} = \left[\begin{smallmatrix}  -1 &amp;  -5 &amp;  -4 &amp;  -3 \\ 2 &amp;  -1 &amp;  2 &amp;  -1 \\ 5 &amp;  3 &amp;  8 &amp;  1 \\ \end{smallmatrix}\right], \quad \overrightarrow {c}_{62} = \left[\begin{smallmatrix}  -5\\ -2\\ 1\\ \end{smallmatrix}\right]\)</span>.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>СЛУ:</p>
+<p><span class="math display">\[
+  \begin{cases}  -x_1 -5x_2 - 4x_3 -3x_4 = -5 \\ 2x_1 -x_2 + 2x_3 -x_4 = -2 \\ 5x_1 + 3x_2 + 8x_3 + x_4 = 1 \\ \end{cases}  
+\]</span></p>
+<p>Запишем расширенную матрицу:</p>
+<p><span class="math display">\[
+  \left[A_{513} \mid \overrightarrow {c}_{62}\right] = \left[\begin{array}{cccc|c} -1 &amp;  -5 &amp;  -4 &amp;  -3 &amp;  -5 \\ 2 &amp;  -1 &amp;  2 &amp;  -1 &amp;  -2 \\ 5 &amp;  3 &amp;  8 &amp;  1 &amp;  1 \\ \end{array}\right]  
+\]</span></p>
+<p>Как решить неоднородную СЛУ? Заметим, что элементарные преобразования строк расширенной матрицы не меняют множества решений (подумайте, почему). Т.е. после элементарных преобразований строк мы приходим к эквивалентной системе линейных уравнений. Приведем расширенную матрицу к упрощенному виду:</p>
+<p><span class="math display">\[
+\begin{align}  \left[A_{513} \mid \overrightarrow {c}_{62}\right] &amp;  = \left[\begin{array}{cccc|c} -1 &amp;  -5 &amp;  -4 &amp;  -3 &amp;  -5 \\ 2 &amp;  -1 &amp;  2 &amp;  -1 &amp;  -2 \\ 5 &amp;  3 &amp;  8 &amp;  1 &amp;  1 \\ \end{array}\right] \\ &amp;  \mathrel {\leadsto } \left[\begin{array}{cccc|c} 1 &amp;  5 &amp;  4 &amp;  3 &amp;  5 \\ 0 &amp;  -11 &amp;  -6 &amp;  -7 &amp;  -12 \\ 0 &amp;  -22 &amp;  -12 &amp;  -14 &amp;  -24 \\ \end{array}\right] \\ &amp;  \mathrel {\leadsto } \left[\begin{array}{cccc|c} 1 &amp;  5 &amp;  4 &amp;  3 &amp;  5 \\ 0 &amp;  1 &amp;  6/11 &amp;  7/11 &amp;  12/11 \\ 0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 \\ \end{array}\right] \\ &amp;  \mathrel {\leadsto } \left[\begin{array}{cccc|c} 1 &amp;  0 &amp;  14/11 &amp;  -2/11 &amp;  -5/11 \\ 0 &amp;  1 &amp;  6/11 &amp;  7/11 &amp;  12/11 \\ 0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 \\ \end{array}\right] \end{align}
+\]</span></p>
+<p>Пришли к системе <span class="math inline">\(\left[A'_{513} \mid \overrightarrow {c}'_{62}\right]\)</span>, где</p>
+<p><span class="math display">\[
+  A'_{513} = \begin{bmatrix}  1 &amp;  0 &amp;  14/11 &amp;  -2/11 \\ 0 &amp;  1 &amp;  6/11 &amp;  7/11 \\ 0 &amp;  0 &amp;  0 &amp;  0 \\ \end{bmatrix}, \qquad \overrightarrow {c}'_{62} = \begin{bmatrix}  -5/11 \\ 12/11 \\ 0 \end{bmatrix}  
+\]</span></p>
+<p>Заметим, что через первые 2 столбца матрицы <span class="math inline">\(A'_{513}\)</span> можно выразить столбец <span class="math inline">\(\overrightarrow {c}'_{62}\)</span><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Таким образом, <span class="math inline">\(\overrightarrow {c}'_{62}\)</span> лежит в линейной оболочке столбцов матрицы <span class="math inline">\(A'_{513}\)</span>, а значит столбцовый ранг <span class="math inline">\(A'_{513}\)</span> и <span class="math inline">\(\left[A'_{513} \mid \overrightarrow {c}'_{62}\right]\)</span> совпадает. Следовательно, система <span class="math inline">\(A'_{513} \overrightarrow {x} = \overrightarrow {c}'_{62}\)</span> совместна. Значит и исходная система совместна.</p>
+<p>Решения будем искать в 2 этапа. Сначала необходимо найти решения СЛОУ <span class="math inline">\(A'_{513} \overrightarrow {x} = \overrightarrow {0}\)</span>. Фундаментальная матрица решений:</p>
+<p><span class="math display">\[
+  \Phi = \begin{bmatrix}  -14/11 &amp;  2/11 \\ -6/11 &amp;  -7/11 \\ 1 &amp;  0 \\ 0 &amp;  1 \end{bmatrix}  
+\]</span></p>
+<p>Далее необходимо найти хотя бы одно частное решение неоднородной системы <span class="math inline">\(A'_{513} \overrightarrow {x} = \overrightarrow {c}'_{62}\)</span>. Заметим, что в случае, когда <span class="math inline">\(A'_{513}\)</span> в упрощенной форме (как у нас), в качестве <span class="math inline">\(\overrightarrow {x}_0\)</span> можно взять вектор <span class="math inline">\(\overrightarrow {c}'_{62}\)</span>, дописав снизу такое количество нулей, чтобы в итоге получился <span class="math inline">\(n\)</span>-мерный вектор. В нашем случае размерность <span class="math inline">\(\overrightarrow {c}'_{62}\)</span> равна <span class="math inline">\(3\)</span>, а размерность <span class="math inline">\(\overrightarrow {x}\)</span> должна быть <span class="math inline">\(4\)</span>. Имеем</p>
+<p><span class="math display">\[
+  \overrightarrow {x}_0 = \begin{bmatrix}  -5/11 \\ 12/11 \\ 0 \\ 0 \end{bmatrix}  
+\]</span></p>
+<p>Это действительно частное решение:</p>
+<p><span class="math display">\[
+  A'_{513} \cdot \overrightarrow {x}_0 = \begin{bmatrix}  1 &amp;  0 &amp;  14/11 &amp;  -2/11 \\ 0 &amp;  1 &amp;  6/11 &amp;  7/11 \\ 0 &amp;  0 &amp;  0 &amp;  0 \\ \end{bmatrix} \cdot \begin{bmatrix}  -5/11 \\ 12/11 \\ 0 \\ 0 \end{bmatrix} = \begin{bmatrix}  -5/11 \\ 12/11 \\ 0 \end{bmatrix} = \overrightarrow {c}'_{62}  
+\]</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Ответ
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-24" class="callout-24-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Множество решений представляется в виде <span class="math display">\[
+  \underbrace{\overbrace{\begin{bmatrix}  -14/11 &amp;  2/11 \\ -6/11 &amp;  -7/11 \\ 1 &amp;  0 \\ 0 &amp;  1 \end{bmatrix}}^{=\Phi } \cdot \begin{bmatrix}  h_1 \\ h_2 \end{bmatrix}}_{=\overrightarrow {y}} + \underbrace{\begin{bmatrix}  -5/11 \\ 12/11 \\ 0 \\ 0 \end{bmatrix}}_{=\overrightarrow {x}_0},  
+\]</span> где <span class="math inline">\(\left[\begin{smallmatrix}  h_1 \\ h_2 \end{smallmatrix}\right] \in \mathbb {R}^{2}\)</span> – произвольное.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-cstm19.6-35" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 19.6(35)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-28" class="callout-28-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Составить систему линейных уравнений по заданной расширенной матрице. Решить систему или установить ее несовместность. <span class="math inline">\(\left\| A_{581} \mid \overrightarrow {c}_{76}\right\|\)</span>. <span class="math inline">\(A_{581} = \left[\begin{smallmatrix}  1 &amp;  3 &amp;  5 &amp;  7 &amp;  9 \\ 1 &amp;  -2 &amp;  3 &amp;  -4 &amp;  5 \\ 2 &amp;  11 &amp;  12 &amp;  25 &amp;  22 \\ \end{smallmatrix}\right], \quad \overrightarrow {c}_{76} = \left[\begin{smallmatrix}  1\\ 1\\ -3\\ \end{smallmatrix}\right]\)</span>.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-26" class="callout-26-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>СЛУ:</p>
+<p><span class="math display">\[
+  \begin{cases}  x_1 + 3x_2 + 5x_3 + 7x_4 + 9x_5 = 1 \\ x_1 - 2x_2 + 3x_3 - 4x_4 + 5x_5 = 1 \\ 2x_1 + 11x_2 + 12x_3 + 25x_4 + 22x_5 = -3 \end{cases}  
+\]</span></p>
+<p>Элементарные преобразования расширенной матрицы:</p>
+<p><span class="math display">\[
+  \left[\begin{array}{ccccc|c} 1 &amp;  3 &amp;  5 &amp;  7 &amp;  9 &amp;  1 \\ 1 &amp;  -2 &amp;  3 &amp;  -4 &amp;  5 &amp;  1 \\ 2 &amp;  11 &amp;  12 &amp;  25 &amp;  22 &amp;  -3 \\ \end{array}\right] \mathrel {\leadsto } \left[\begin{array}{ccccc|c} 1 &amp;  3 &amp;  5 &amp;  7 &amp;  9 &amp;  1 \\ 0 &amp;  -5 &amp;  -2 &amp;  -11 &amp;  -4 &amp;  0 \\ 0 &amp;  5 &amp;  2 &amp;  11 &amp;  4 &amp;  -5 \\ \end{array}\right] \mathrel {\leadsto } \left[\begin{array}{ccccc|c} 1 &amp;  3 &amp;  5 &amp;  7 &amp;  9 &amp;  1 \\ 0 &amp;  5 &amp;  2 &amp;  11 &amp;  4 &amp;  0 \\ 0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  -5 \\ \end{array}\right]  
+\]</span></p>
+<p>Пришли к системе <span class="math inline">\(\left[A'_{581} \mid \overrightarrow {c}'_{76}\right]\)</span>, где</p>
+<p><span class="math display">\[
+  A'_{581} = \begin{bmatrix}  1 &amp;  3 &amp;  5 &amp;  7 &amp;  9 \\ 0 &amp;  5 &amp;  2 &amp;  11 &amp;  4 \\ 0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 \\ \end{bmatrix}, \qquad \overrightarrow {c}'_{76} = \begin{bmatrix}  1 \\ 0 \\ -5 \end{bmatrix}  
+\]</span></p>
+<p>Вектор <span class="math inline">\(\overrightarrow {c}'_{76}\)</span> не выразить через столбцы <span class="math inline">\(A'_{581}\)</span>, т.к. у <span class="math inline">\(\overrightarrow {c}'_{76}\)</span> ненулевая 3-я координата. Следовательно, <span class="math inline">\(\operatorname {rk}\left(A'_{581}\right) \neq \operatorname {rk}\left(A'_{581} \mid \overrightarrow {c}'_{76} \right)\)</span>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Ответ
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-27" class="callout-27-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Решений нет.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-5" class="theorem">
+<p><span class="theorem-title"><strong>Теорема 5 (Фредгольм)</strong></span> Система <span class="math inline">\(A \overrightarrow {x} = \overrightarrow {b}\)</span>, <span class="math inline">\(A \in \mathbb {R}^{m \times n}\)</span> разрешима тогда и только тогда, когда любой вектор <span class="math inline">\(\overrightarrow {y}_0\)</span> из <span class="math inline">\(\mathbb {R}^{m}\)</span>, ортогональный столбцам <span class="math inline">\(A\)</span>, будет ортогонален и <span class="math inline">\(\overrightarrow {b}\)</span>. Иначе последнее условие можно сформулировать так: <span class="math display">\[
+  A^T \overrightarrow {y}_0 = \overrightarrow {0} \quad \;  \Rightarrow \;  \quad \overrightarrow {b}^T \overrightarrow {y}_0 = 0  
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-6" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 11
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-30" class="callout-30-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Доказать.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-29" class="callout-29-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>(<span class="math inline">\(\Rightarrow\)</span>) Пусть система разрешима, т.е. <span class="math inline">\(\overrightarrow {b} = A \overrightarrow {x}\)</span> для некоторого <span class="math inline">\(\overrightarrow {x}\)</span>. Тогда для любого <span class="math inline">\(\overrightarrow {y}_0\)</span> с <span class="math inline">\(A^T \overrightarrow {y}_0 = \overrightarrow {0}\)</span> имеем</p>
+<p><span class="math display">\[
+  \overrightarrow {b}^T \overrightarrow {y}_0 = \left(A\overrightarrow {x}\right)^T \overrightarrow {y}_0 = \overrightarrow {x}^T \underbrace{A^T \overrightarrow {y}_0}_{= \overrightarrow {0}} = 0  
+\]</span></p>
+<p>(<span class="math inline">\(\Leftarrow\)</span>) Пусть любое решение системы <span class="math inline">\(A^T \overrightarrow {y} = \overrightarrow {0}\)</span> удовлетворяет и уравнению <span class="math inline">\(\overrightarrow {b}^T \overrightarrow {y} = 0\)</span>. Это означает, что СЛОУ <span class="math inline">\(A^T \overrightarrow {y} = \overrightarrow {0}\)</span> и <span class="math inline">\(\left[A \mid \overrightarrow {b}\right]^T \overrightarrow {y} = \overrightarrow {0}\)</span> (та же система плюс уравнение <span class="math inline">\(\overrightarrow {b}^T \overrightarrow {y} = 0\)</span>) эквивалентны: каждое решение первой является решением второй, а обратное включение очевидно. По критерию эквивалентности СЛОУ (пример из предыдущего параграфа) тогда</p>
+<p><span class="math display">\[
+  \operatorname {rk}\left(A^T\right) = \operatorname {rk}\left(\left[A \mid \overrightarrow {b}\right]^T\right) \quad \iff \quad \operatorname {rk}\left(A\right) = \operatorname {rk}\left(A \mid \overrightarrow {b}\right)  
+\]</span></p>
+<p>(транспонирование не меняет ранга). По теореме Кронекера-Капелли система <span class="math inline">\(A \overrightarrow {x} = \overrightarrow {b}\)</span> совместна.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-7" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 12
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-32" class="callout-32-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Системы вида <span class="math inline">\(A \overrightarrow {x} = \overrightarrow {b}\)</span> над полем <span class="math inline">\(\mathbb {R}\)</span> совместны для любого столбца <span class="math inline">\(\overrightarrow {b}\)</span> тогда и только тогда, когда строки матрицы <span class="math inline">\(A\)</span> линейно независимы.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-31" class="callout-31-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Пусть <span class="math inline">\(A \in \mathbb {R}^{m \times n}\)</span>.</p>
+<p>(<span class="math inline">\(\Leftarrow\)</span>) Пусть строки <span class="math inline">\(A\)</span> линейно независимы, т.е. <span class="math inline">\(\operatorname {rk}\left(A\right) = m\)</span>. Тогда для любого <span class="math inline">\(\overrightarrow {b}\)</span> имеем</p>
+<p><span class="math display">\[
+  m = \operatorname {rk}\left(A\right) \leq \operatorname {rk}\left(A \mid \overrightarrow {b}\right) \leq m,  
+\]</span></p>
+<p>(приписывание столбца не уменьшает ранг, а ранг матрицы из <span class="math inline">\(m\)</span> строк не превосходит <span class="math inline">\(m\)</span>). Т.е. <span class="math inline">\(\operatorname {rk}\left(A\right) = \operatorname {rk}\left(A \mid \overrightarrow {b}\right)\)</span>, и по теореме Кронекера-Капелли система совместна.</p>
+<p>(<span class="math inline">\(\Rightarrow\)</span>) Пусть строки <span class="math inline">\(A\)</span> линейно зависимы, т.е. <span class="math inline">\(r = \operatorname {rk}\left(A\right) &lt; m\)</span>. Тогда линейная оболочка столбцов <span class="math inline">\(A\)</span> – подпространство в <span class="math inline">\(\mathbb {R}^{m}\)</span> размерности <span class="math inline">\(r &lt; m\)</span>, и найдется столбец <span class="math inline">\(\overrightarrow {b} \in \mathbb {R}^{m}\)</span>, не лежащий в ней (иначе оболочка совпадала бы со всем <span class="math inline">\(\mathbb {R}^{m}\)</span>). Для такого <span class="math inline">\(\overrightarrow {b}\)</span> имеем <span class="math inline">\(\operatorname {rk}\left(A \mid \overrightarrow {b}\right) = r + 1 \neq \operatorname {rk}\left(A\right)\)</span>, и по теореме Кронекера-Капелли система несовместна.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Сноски</h2>
+
+<ol>
+<li id="fn1"><p>Это было бы не так, если бы 3-я координата у <span class="math inline">\(\overrightarrow {c}'_{62}\)</span> была бы ненулевая.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Скопировано");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Скопировано");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<!--
+  Hover preview for @expl-... (example) cross-references.
+
+  Quarto's own html format already ships a native crossref-hover-preview
+  script (bundled tippy, no CDN, wired up for every a.quarto-xref link --
+  see site_libs/quarto-html/tippy.umd.min.js and the inline tippyHover/
+  processXRef script Quarto emits near the end of <body>). That native
+  script now covers theorem-family types too, since
+  _extensions/mn-theorems wraps them into real Quarto callouts.
+
+  Examples are the one remaining gap: mn-problems.lua's Pandoc filter
+  intercepts @expl-... citations and emits a raw `<a class="xref-callout"
+  data-tippy-ref="...">` directly, bypassing Quarto's own crossref
+  resolution entirely (needed because examples use the filter's own custom
+  numbering, not Quarto's native one) -- so they never get the
+  a.quarto-xref class Quarto's native script looks for. This file only
+  fills that one gap, reusing the SAME window.tippy Quarto's native script
+  already set up (no separate Popper/Tippy load of our own -- an earlier
+  version of this file loaded Popper+Tippy from unpkg.com via plain
+  <script src>, which registered as an anonymous AMD module on pages with
+  Quarto's RequireJS loader and broke both the popup AND, as collateral
+  damage, quarto's own native tippy setup).
+-->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (!window.tippy) return; // native script didn't run (shouldn't happen on an html-format page)
+
+  document.querySelectorAll("a.xref-callout").forEach(function (anchor) {
+    var targetId = anchor.getAttribute("data-tippy-ref");
+    var inner = targetId && document.getElementById(targetId);
+    if (!inner) return;
+
+    var outer = inner.closest(".callout-style-default") || inner;
+
+    tippy(anchor, {
+      content: function () {
+        var clone = outer.cloneNode(true);
+        var uid = "mn-xref-" + targetId;
+        clone.querySelectorAll("[id]").forEach(function (el) {
+          el.id = uid + "-" + el.id;
+        });
+        clone.querySelectorAll("[data-bs-target]").forEach(function (el) {
+          var orig = el.getAttribute("data-bs-target");
+          el.setAttribute("data-bs-target", "." + uid + "-" + orig.replace(/^\./, ""));
+        });
+        clone.querySelectorAll("[aria-controls]").forEach(function (el) {
+          el.setAttribute("aria-controls", uid + "-" + el.getAttribute("aria-controls"));
+        });
+        if (window.Quarto && window.Quarto.typesetMath) {
+          window.Quarto.typesetMath(clone);
+        }
+        return clone;
+      },
+      allowHTML: true,
+      interactive: true,
+      maxWidth: 500,
+      theme: "quarto",
+      placement: "bottom-start",
+      appendTo: function (el) { return el.parentElement; },
+    });
+  });
+});
+</script>
+
+
+
+
+</body></html>

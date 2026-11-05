@@ -1,0 +1,2063 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Предисловие. Классы сложности. NP-сложные задачи – Курсы ФПМИ</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/favicon.ico" rel="icon">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-18b92d25f2a0372079463917332f47f0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-90af2ae3f5f11ccb077ed1c2d3900ada.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/quarto-contrib/mn-problems-1.0.0/mn-problems.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/mn-theorems-1.0.0/mn-theorems.css" rel="stylesheet">
+<script src="../../../../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Поиск не дал результатов",
+    "search-matching-documents-text": "Результаты поиска",
+    "search-copy-link-title": "Скопировать ссылку",
+    "search-hide-matches-text": "Скрыть дополнительные результаты",
+    "search-more-match-text": "дополнительный результат в этом документе",
+    "search-more-matches-text": "дополнительных результата(-ов) в этом документе",
+    "search-clear-button-title": "Очистить",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Отменить",
+    "search-submit-button-title": "Найти",
+    "search-label": "Поиск"
+  }
+}</script>
+<style>
+div.callout-enum-item.callout {
+  border-left-color: #008000;
+}
+div.callout-enum-item.callout-style-default .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-enum-item .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-enum-item.callout-style-default .callout-icon::before, div.callout-enum-item.callout-titled .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23008000" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/></svg>');
+}
+div.callout-todo.callout {
+  border-left-color: pink;
+}
+div.callout-todo.callout-style-default .callout-header {
+  background-color: rgb(from pink r g b / 13%);
+}
+div.callout-todo .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.callout-titled .callout-icon::before {
+  content: '📝';
+  background-image: none;
+}
+div.callout-thumbs-up.callout {
+  border-left-color: #008000;
+}
+div.callout-thumbs-up.callout-style-default .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-thumbs-up .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-thumbs-up.callout-style-default .callout-icon::before, div.callout-thumbs-up.callout-titled .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23008000" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/></svg>');
+}
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/logo.png" alt="" class="navbar-logo light-content">
+    <img src="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/logo.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../../../index.html">
+    <span class="navbar-title">Курсы ФПМИ</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Поиск"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Переключить навигацию" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> 
+<span class="menu-text">Главная</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Курсы</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../../../../courses/index.html">
+ <span class="dropdown-text">Все курсы (37)</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../../courses/04-probability/index.html">
+ <span class="dropdown-text">Вероятность (4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/01-analysis/index.html">
+ <span class="dropdown-text">Анализ (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/02-algebra/index.html">
+ <span class="dropdown-text">Алгебра (4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/03-discrete-cs/index.html">
+ <span class="dropdown-text">Дискретная математика и CS (9)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/05-programming-systems/index.html">
+ <span class="dropdown-text">Программирование и системы (7)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/06-data-computing/index.html">
+ <span class="dropdown-text">Данные и вычисления (5)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Учебный план</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">    
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/I.html">
+ <span class="dropdown-text">I семестр (7)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/II.html">
+ <span class="dropdown-text">II семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/III.html">
+ <span class="dropdown-text">III семестр (9)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/IV.html">
+ <span class="dropdown-text">IV семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/V.html">
+ <span class="dropdown-text">V семестр (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/VI.html">
+ <span class="dropdown-text">VI семестр (4)</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--2" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">О проекте</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu--2">    
+        <li>
+    <a class="dropdown-item" href="../../../../about.html">
+ <span class="dropdown-text">О проекте</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../editorial-policy.html">
+ <span class="dropdown-text">Статус материалов и редакционная политика</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://mipt.ru/education/schools/fpmi"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:web" style="font-size: 1.25em;" aria-label="Icon web from mdi Iconify.design set." title="Сайт ФПМИ"></iconify-icon></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../courses/03-discrete-cs/AA/contents/010_Preface_NP.html">1. Предисловие. Классы сложности. NP-сложные задачи</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Переключить боковую панель навигации" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
+<div style="font-weight: bold; font-size: 1.1em;">
+<p>Приближённые алгоритмы</p>
+</div>
+</div></div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Обзор курса</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/contents/010_Preface_NP.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">1. Предисловие. Классы сложности. NP-сложные задачи</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/contents/020_Intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Комбинаторная оптимизация: введение</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/contents/030_Set_Cover.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Задача о покрытии множествами</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/contents/040_Metric_Problems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Задачи с метрикой</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/contents/050_k_Center.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Задача о k-центрах</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/03-discrete-cs/AA/contents/200_SSS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Кратчайшая суперстрока</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<!--
+  Explicit RequireJS path mapping for "plotly", used by every hand-built
+  interactive widget on this site via require(["plotly"], function(Plotly){...}).
+
+  There was never a require.config() call anywhere setting this up -- it
+  only ever worked because Plotly's own UMD bundle, loaded elsewhere on the
+  same page via a plain <script src> for a simple (non-widget) fig.show()
+  figure, self-registers as an anonymous AMD module when window.define
+  exists (Quarto's RequireJS loader, used for MathJax), and RequireJS
+  happens to attribute that anonymous module to the "plotly" name if the
+  timing/script-load-order lines up. That's pure luck, not a real mapping --
+  a page with only widget figures (no plain fig.show() figure to "donate"
+  its Plotly load) had nothing to claim from, and any change to script load
+  order/timing (e.g. removing an unrelated script elsewhere on the page)
+  can flip which pending require() call an anonymous define() gets
+  attributed to, breaking it silently. Explicit config removes the guesswork.
+
+  Two separate failure modes found in practice, both fixed here:
+
+  (A) A page with ONLY hand-built widgets (no {python} cell at all -- e.g.
+  specials/030/020_quantile_function_fig.qmd) never gets Quarto's own
+  <script src=".../requirejs@.../require.min.js"> in <head> in the first
+  place: that tag is only emitted when the page has a Jupyter code cell.
+  window.require is simply undefined there, so the widget's own
+  require(["plotly"], ...) throws "require is not defined" unconditionally
+  -- not a network flake, 100% of the time regardless of connection quality.
+  Fixed below by synchronously document.write-ing a local copy of
+  require.min.js when window.require isn't already present -- document.write
+  from an inline <script> during initial HTML parsing inserts into the parse
+  stream immediately, so by the next statement window.require is guaranteed
+  defined, still fully synchronously (no defer/async race).
+
+  (B) A page with BOTH a plain fig.show() figure AND a hand-built widget:
+  RequireJS *is* already in <head> here, so this file's require.config()
+  below does run against a real window.require. But the Jupyter-generated
+  embed script for the fig.show() figure -- which appears later in <body>,
+  wherever that Python cell sits -- unconditionally calls
+  require.undef("plotly") followed by its OWN require.config() pointing at
+  a *different* version on the *same* external CDN (observed:
+  cdn.plot.ly/plotly-2.35.2.min vs. the 3.4.0 configured here), clobbering
+  this file's mapping before the widget's own require(["plotly"], ...) ever
+  runs. Both that Jupyter-set path and this file's own local path hit the
+  same real-world failure: cdn.plot.ly answers anywhere from ~1.5s to a full
+  10s+ timeout under real network conditions (measured directly). A
+  requirejs.onError handler below catches exactly the resulting timeout on
+  the "plotly" module -- regardless of which of the two require.config()
+  calls most recently set its path -- and retries once against the local
+  bundle.
+-->
+<script>
+if (typeof window.require === "undefined") {
+  document.write('<script src="/site_libs/quarto-contrib/mn-plotly-1.0.0/require.min.js"><\/script>');
+}
+</script>
+<script>
+if (window.require && window.require.config) {
+  window.require.config({
+    paths: { plotly: "/site_libs/quarto-contrib/mn-plotly-1.0.0/plotly.min" },
+    // shim.exports: after the script loads, hand require(["plotly"],...)
+    // callers the *global* window.Plotly instead of trusting whatever (if
+    // anything) the script itself passed to define() -- Plotly's own UMD
+    // wrapper reliably sets window.Plotly regardless of AMD context (also
+    // used directly by every plain fig.show() figure on this site, whose
+    // own generated embed script never goes through RequireJS at all), but
+    // its anonymous define() call is not reliably attributed to the
+    // "plotly" request specifically when this same URL is also loaded via
+    // a separate plain <script src> elsewhere on the page (a simple,
+    // non-widget figure) -- shim sidesteps that ambiguity entirely.
+    shim: { plotly: { exports: "Plotly" } }
+  });
+  // See failure mode (B) above: a later Jupyter-generated fig.show() embed
+  // script can still call its own require.undef("plotly") +
+  // require.config({paths: {plotly: <external CDN>}}) after this runs,
+  // pointing "plotly" back at an unreliable external host. This handler
+  // fires on ANY module load timeout; when it's specifically "plotly", drop
+  // whatever path is currently registered (however it got there) and retry
+  // once against the local bundle instead of the external CDN.
+  //
+  // Deliberately never re-throws: once the retry above is issued, the
+  // ORIGINAL failed network request for the external CDN copy can still
+  // land afterwards and fire a second, by-then-harmless onError (verified:
+  // requireType "scripterror", after the retry has already resolved the
+  // widget's real require(["plotly"], callback) via RequireJS's own
+  // pending-callback bookkeeping) -- throwing there would surface a
+  // spurious uncaught exception for something already fixed. console.warn
+  // keeps that visible in devtools without it looking like a live failure.
+  window.require.onError = function (err) {
+    if (err.requireModules && err.requireModules.indexOf("plotly") !== -1) {
+      if (err.requireType === "timeout") {
+        window.require.undef("plotly");
+        window.require.config({ paths: { plotly: "/site_libs/quarto-contrib/mn-plotly-1.0.0/plotly.min" } });
+        window.require(["plotly"]);
+      } else {
+        console.warn("plotly require() error after fallback (likely a stale network request):", err);
+      }
+    } else {
+      throw err;
+    }
+  };
+}
+</script>
+
+<!--
+  window.fpmiWithMathJax(cb): same rationale as the FPMI homepage loader (_home_widgets/loader.qmd)'s
+  copy of this helper (see there for the original), extended to course
+  pages. Quarto only emits a <script defer src=".../mathjax@3/.../tex-*.js">
+  tag in <head> at all when it sees real markdown math OUTSIDE any
+  ```{=html}``` block on the page -- a hand-built widget's math lives
+  entirely inside \(...\)/\[...\] strings in JS-generated DOM content
+  (e.g. a dynamically updated status line), which Quarto's static math
+  scanner never looks inside, so a page whose ONLY math is like that (no
+  prose math of its own) gets no MathJax script at all. Confirmed on an
+  already-shipped widget (030/020_quantile_function_fig.qmd's #qf-status)
+  that had silently never rendered its \(...\) as real math since it was
+  written -- not a new bug, just never noticed because the broken math was
+  inside dynamically-generated text rather than the static page body.
+
+  Three cases this handles, in order:
+  1. window.MathJax already fully started (page had prose math elsewhere,
+     Quarto's own <script defer> already ran) -- just wait on the
+     documented startup.promise signal and fire cb.
+  2. Quarto's own MathJax <script defer> tag IS present in <head> but
+     hasn't executed/initialized yet (defer runs after DOM parsing, and
+     this include-before-body block runs earlier, during parsing) -- poll
+     briefly for window.MathJax to appear rather than racing to load a
+     SECOND copy, which would either double-load or (depending on load
+     order) silently no-op.
+  3. No MathJax script present at all (case A above) -- fetch it ourselves,
+     same URL/approach as loader.qmd.
+-->
+<script>
+window.fpmiWithMathJax = window.fpmiWithMathJax || function (cb) {
+  if (window.MathJax && window.MathJax.startup) { window.MathJax.startup.promise.then(cb); return; }
+  if (window.__fpmiMathJaxQueue) { window.__fpmiMathJaxQueue.push(cb); return; }
+  window.__fpmiMathJaxQueue = [cb];
+  function flushQueue() {
+    var q = window.__fpmiMathJaxQueue;
+    window.__fpmiMathJaxQueue = null;
+    q.forEach(function (f) { f(); });
+  }
+  var hasMathJaxTag = !!document.querySelector('script[src*="mathjax"]');
+  if (hasMathJaxTag) {
+    // Case 2: Quarto's own deferred MathJax script is already in <head> --
+    // poll for it to finish initializing instead of loading a duplicate.
+    var waited = 0;
+    var poll = setInterval(function () {
+      waited += 50;
+      if (window.MathJax && window.MathJax.startup) {
+        clearInterval(poll);
+        window.MathJax.startup.promise.then(flushQueue);
+      } else if (waited > 10000) {
+        // Should never happen (the tag is already there, defer always runs
+        // before window.onload) -- bail rather than poll forever.
+        clearInterval(poll);
+        console.warn("fpmiWithMathJax: gave up waiting for Quarto's own MathJax script to initialize");
+      }
+    }, 50);
+    return;
+  }
+  // Case 3: no MathJax anywhere on the page -- fetch it ourselves. SVG
+  // output specifically (not CHTML, despite Quarto's own injected tag
+  // using CHTML): confirmed Plotly's own $...$ annotation/tick-label math
+  // rendering hard-requires the SVG output jax and throws
+  // 'Output Jax "svg" is not defined' if only CHTML is loaded (its
+  // internal math path calls MathJax.tex2svg specifically, independent of
+  // whatever jax Quarto's page-level script configured) -- same reason
+  // the FPMI homepage loader (_home_widgets/loader.qmd)'s original copy of this helper uses tex-svg.js.
+  var s = document.createElement("script");
+  s.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js";
+  s.onload = function () {
+    window.MathJax.startup.promise.then(flushQueue);
+  };
+  document.head.appendChild(s);
+};
+</script>
+<!--
+  window.fpmiGraph: shared toolkit for the hand-built Plotly *graph diagrams*
+  (vertices + edges) used by the algorithms courses (courses/11-DM-CS/AA/...
+  specials). Plotly has no native graph/network primitives, so every widget
+  used to re-implement the same edge-polyline/marker/annotation plumbing by
+  hand -- and, since a plain `mode:"lines"` polyline can't carry an arrowhead
+  or per-edge hover, all of them ended up as staticPlot line drawings with
+  no direction on directed graphs and no hover at all. This helper gives
+  every widget, from one `spec`:
+
+    * one scatter trace PER EDGE (so an individual edge can be restyled --
+      hover-highlight, per-step emphasis, transitions -- and can have its own
+      hover text via an invisible midpoint marker), optionally curved
+      (`bend`) so a pair of opposite arcs u->v / v->u stays readable;
+    * arrowheads for `directed` edges via layout.annotations in data
+      coordinates, shortened so the head lands on the vertex rim, not under
+      the marker;
+    * a soft halo under each vertex, $...$ MathJax labels via annotations
+      (never mode:"markers+text" -- see project memory: Plotly's marker text
+      is raw SVG <text>, which can't hold MathJax output), and hover labels;
+    * hover-highlight: hovering a vertex lifts its incident edges and dims
+      the rest (plotly_hover/unhover + Plotly.restyle on the edge traces);
+    * animated transitions between algorithm steps (Plotly.animate on a
+      trace layout that stays structurally identical across steps -- the
+      trace count must not change, so per-step differences are expressed
+      purely as style: color/width/opacity/dash);
+    * a step player (prev / next / autoplay, keyboard arrows) that builds its
+      own controls, and a path tracer that grows a highlighted polyline along
+      a vertex sequence over time (Hamiltonian paths, tours, Euler walks).
+
+  Draw order inside `data`: edges (one trace each) -> edge midpoints (hover
+  only) -> halo -> vertices -> optional path trace. Trace indices are
+  returned in `built.meta` so callers never hard-code them.
+-->
+<script>
+(function () {
+  if (window.fpmiGraph) return;
+  var G = {};
+
+  // Every UI string this helper generates itself (default edge-weight hover
+  // text, the step-player's button labels) is project-agnostic: it reads
+  // `document.documentElement.lang` (set by each project's own `_quarto.yml`
+  // `lang:` field) and falls back to Russian, the language every existing
+  // call site (mnedoshivin, math-notes_CU_2, math-notes_FPMI_2) was written
+  // for -- so this stays a silent no-op everywhere except an `lang="en"`
+  // project such as mnedoshivin_en.
+  var IS_EN = (document.documentElement.lang || "").toLowerCase().indexOf("en") === 0;
+  var WEIGHT_WORD = IS_EN ? "weight" : "вес";
+
+  G.colors = {
+    vert: "#eaf2fb", vertLine: "#1e3a8a", vertText: "#0b0b0b",
+    sel: "#2a78d6", selText: "#ffffff",
+    accent: "#f5a623", accentLine: "#8a5a00",
+    done: "#a8a29e", edge: "#78716c", edgeFaded: "#d6d3d1",
+    red: "#b91c1c", redSoft: "#fca5a5", green: "#556B2F", greenSoft: "#bbf7d0",
+    bg: "#fcfcfb"
+  };
+
+  // Plotly may arrive through RequireJS (course pages, see
+  // plotly-require-config.html), through the homepage's own
+  // fpmiWithPlotly loader, or already be a global -- accept all three.
+  G.withPlotly = function (cb) {
+    if (window.Plotly && window.Plotly.newPlot) { cb(window.Plotly); return; }
+    if (window.fpmiWithPlotly) { window.fpmiWithPlotly(cb); return; }
+    if (window.require) { window.require(["plotly"], cb); return; }
+    console.warn("fpmiGraph: no Plotly loader available on this page");
+  };
+  // MathJax must exist BEFORE Plotly builds any $...$ annotation (Plotly
+  // stamps data-math="N" at build time and never retries), hence the order.
+  G.ready = function (cb) {
+    var run = function () { G.withPlotly(cb); };
+    if (window.fpmiWithMathJax) { window.fpmiWithMathJax(run); } else { run(); }
+  };
+
+  // ── geometry ───────────────────────────────────────────────────────────────
+  // Quadratic curve from p0 to p1 bulging `bend` data units to the left of
+  // the p0->p1 direction (negative bends right). n+1 points.
+  G.curve = function (p0, p1, bend, n) {
+    n = n || 16;
+    var dx = p1[0] - p0[0], dy = p1[1] - p0[1];
+    var len = Math.sqrt(dx * dx + dy * dy) || 1;
+    var nx = -dy / len, ny = dx / len;
+    var cx = (p0[0] + p1[0]) / 2 + nx * bend, cy = (p0[1] + p1[1]) / 2 + ny * bend;
+    var pts = [];
+    for (var i = 0; i <= n; i++) {
+      var t = i / n, a = (1 - t) * (1 - t), b = 2 * (1 - t) * t, c = t * t;
+      pts.push([a * p0[0] + b * cx + c * p1[0], a * p0[1] + b * cy + c * p1[1]]);
+    }
+    return pts;
+  };
+  G.circle = function (cx, cy, r, n) {
+    n = n || 64;
+    var x = [], y = [];
+    for (var i = 0; i <= n; i++) { var a = 2 * Math.PI * i / n; x.push(cx + r * Math.cos(a)); y.push(cy + r * Math.sin(a)); }
+    return { x: x, y: y };
+  };
+  // "$v_{1}$" from "v1", "$s'$" from "s'", plain "s" from "s".
+  G.texLabel = function (id) {
+    var m = /^([A-Za-z]+)(\d+)('*)$/.exec(id);
+    if (m) return "$" + m[1] + "_{" + m[2] + "}" + m[3] + "$";
+    return /^[A-Za-z]'*$/.test(id) ? "$" + id + "$" : id;
+  };
+  // Unicode subscript fallback for hover text (Plotly hover can't do MathJax).
+  var SUB = { "0": "₀", "1": "₁", "2": "₂", "3": "₃", "4": "₄", "5": "₅", "6": "₆", "7": "₇", "8": "₈", "9": "₉" };
+  G.plainLabel = function (id) {
+    var m = /^([A-Za-z]+)(\d+)('*)$/.exec(id);
+    if (!m) return id;
+    return m[1] + m[2].split("").map(function (c) { return SUB[c] || c; }).join("") + m[3];
+  };
+
+  function assign(dst) {
+    for (var i = 1; i < arguments.length; i++) { var s = arguments[i]; if (s) for (var k in s) if (Object.prototype.hasOwnProperty.call(s, k)) dst[k] = s[k]; }
+    return dst;
+  }
+  function normEdge(e) {
+    if (Array.isArray(e)) { var o = { u: e[0], v: e[1] }; if (e[2] && typeof e[2] === "object") assign(o, e[2]); else if (e[2] !== undefined) o.weight = e[2]; return o; }
+    return assign({}, e);
+  }
+
+  // ── build ──────────────────────────────────────────────────────────────────
+  // spec = {
+  //   verts: {id: [x, y]},            order: [ids] (optional, defaults to key order)
+  //   edges: [[u, v] | [u, v, weight] | {u, v, color, width, dash, opacity, bend, hover, arrow, weight}]
+  //   directed: bool,                 edge: fn(edgeObj) -> style overrides (per step)
+  //   vert: fn(id) -> {color, line, lineWidth, size, opacity, label, hover, symbol}
+  //   labels: bool|{id: text}         (default: true -> G.texLabel(id))
+  //   size: 24, halo: true, weights: bool (annotate edge weights at midpoints)
+  //   range: {x: [..], y: [..]}       (default: bbox + padding), pad: 0.8
+  //   annotations: [], shapes: []     (extra), pathTrace: bool (reserve a trace for tracePath)
+  //   height/width: layout size override
+  // }
+  G.build = function (spec) {
+    var C = G.colors;
+    var ids = spec.order || Object.keys(spec.verts);
+    var size = spec.size || 24;
+    var edges = (spec.edges || []).map(normEdge);
+    var data = [], annotations = [], meta = { edgeIdx: [], edgeStyles: [], edges: edges, ids: ids, size: size };
+
+    // range
+    var xs = ids.map(function (i) { return spec.verts[i][0]; }), ys = ids.map(function (i) { return spec.verts[i][1]; });
+    var pad = spec.pad !== undefined ? spec.pad : 0.8;
+    var xr = spec.range && spec.range.x || [Math.min.apply(null, xs) - pad, Math.max.apply(null, xs) + pad];
+    var yr = spec.range && spec.range.y || [Math.min.apply(null, ys) - pad, Math.max.apply(null, ys) + pad];
+    // Vertex radius in data units, for arrowhead shortening: estimate from
+    // the plot's pixel width (marker size is in px, the axis range in data).
+    var plotPx = spec.plotWidthPx || 460;
+    var rData = spec.vertRadius !== undefined ? spec.vertRadius : (size / 2) * (xr[1] - xr[0]) / plotPx * 1.15;
+
+    // edges
+    var midX = [], midY = [], midText = [];
+    edges.forEach(function (e, k) {
+      var st = assign({ color: C.edge, width: 1.6, dash: "solid", opacity: 1, bend: 0 }, e, spec.edge ? spec.edge(e, k) : null);
+      var p0 = spec.verts[e.u], p1 = spec.verts[e.v];
+      var pts = st.bend ? G.curve(p0, p1, st.bend) : [p0, p1];
+      var directed = st.arrow !== undefined ? st.arrow : !!spec.directed;
+      if (directed) {
+        // trim the last segment so the arrowhead (drawn separately) ends on
+        // the target vertex rim; the line itself stops there too.
+        var a = pts[pts.length - 2], b = pts[pts.length - 1];
+        var dx = b[0] - a[0], dy = b[1] - a[1], L = Math.sqrt(dx * dx + dy * dy) || 1;
+        var head = [b[0] - dx / L * rData, b[1] - dy / L * rData];
+        var tail = [head[0] - dx / L * Math.min(L, rData * 1.6), head[1] - dy / L * Math.min(L, rData * 1.6)];
+        pts = pts.slice(0, -1).concat([head]);
+        annotations.push({
+          x: head[0], y: head[1], ax: tail[0], ay: tail[1], xref: "x", yref: "y", axref: "x", ayref: "y",
+          showarrow: true, arrowhead: 2, arrowsize: 1.15, arrowwidth: st.width, arrowcolor: st.color,
+          opacity: st.opacity, text: "", standoff: 0
+        });
+      }
+      data.push({
+        x: pts.map(function (p) { return p[0]; }), y: pts.map(function (p) { return p[1]; }),
+        mode: "lines", line: { color: st.color, width: st.width, dash: st.dash }, opacity: st.opacity,
+        hoverinfo: "skip", showlegend: false, name: e.u + "-" + e.v
+      });
+      meta.edgeIdx.push(data.length - 1);
+      meta.edgeStyles.push({ color: st.color, width: st.width, dash: st.dash, opacity: st.opacity });
+      var mid = pts[Math.floor(pts.length / 2)];
+      if (pts.length === 2) mid = [(p0[0] + p1[0]) / 2, (p0[1] + p1[1]) / 2];
+      midX.push(mid[0]); midY.push(mid[1]);
+      var hover = st.hover !== undefined ? st.hover : (G.plainLabel(e.u) + (directed ? " → " : " — ") + G.plainLabel(e.v) + (st.weight !== undefined ? "<br>" + (WEIGHT_WORD) + " " + st.weight : ""));
+      midText.push(hover);
+      // st.weight (not e.weight): a per-step override may hide a faded edge's
+      // label by returning {weight: undefined}
+      if (spec.weights && st.weight !== undefined && st.opacity > 0.05) {
+        annotations.push({ x: mid[0], y: mid[1], text: String(st.weight), showarrow: false,
+          font: { size: 11, color: st.color === C.edgeFaded ? "#a8a29e" : "#44403c" }, bgcolor: "rgba(252,252,251,0.9)", borderpad: 1 });
+      }
+    });
+    // invisible edge midpoints: hover only (per-point hoverinfo so a hidden
+    // edge -- opacity 0, e.g. "not added yet" in a step player -- shows no
+    // empty tooltip)
+    data.push({ x: midX, y: midY, mode: "markers", marker: { size: 14, opacity: 0 }, hovertext: midText,
+      hoverinfo: meta.edgeStyles.map(function (s) { return s.opacity > 0 ? "text" : "skip"; }), showlegend: false, name: "edges" });
+    meta.midIdx = data.length - 1;
+
+    // vertices
+    var vx = [], vy = [], vColor = [], vLine = [], vLineW = [], vSize = [], vOp = [], vHover = [], vSym = [], haloColor = [];
+    ids.forEach(function (id) {
+      var st = assign({ color: C.vert, line: C.vertLine, lineWidth: 1.8, size: size, opacity: 1, symbol: "circle" }, spec.vert ? spec.vert(id) : null);
+      vx.push(spec.verts[id][0]); vy.push(spec.verts[id][1]);
+      vColor.push(st.color); vLine.push(st.line); vLineW.push(st.lineWidth); vSize.push(st.size); vOp.push(st.opacity); vSym.push(st.symbol);
+      vHover.push(st.hover !== undefined ? st.hover : G.plainLabel(id));
+      haloColor.push(st.opacity === 0 ? "rgba(0,0,0,0)" : (st.halo || (st.color === C.vert ? "rgba(42,120,214,0.10)" : G.rgba(st.color, 0.22))));
+      var lbl = st.label !== undefined ? st.label
+        : (spec.labels === false ? null : (spec.labels && typeof spec.labels === "object" ? spec.labels[id] : G.texLabel(id)));
+      if (lbl) {
+        annotations.push({ x: spec.verts[id][0], y: spec.verts[id][1], text: lbl, showarrow: false,
+          font: { size: st.labelSize || 13, color: st.labelColor || (st.color === C.vert || st.color === C.accent ? C.vertText : C.selText) }, opacity: st.opacity });
+      }
+    });
+    if (spec.halo !== false) {
+      data.push({ x: vx, y: vy, mode: "markers", marker: { size: vSize.map(function (s) { return s + 14; }), color: haloColor, line: { width: 0 } },
+        opacity: 1, hoverinfo: "skip", showlegend: false, name: "halo" });
+      meta.haloIdx = data.length - 1;
+    }
+    data.push({ x: vx, y: vy, mode: "markers", marker: { size: vSize, color: vColor, symbol: vSym, opacity: vOp, line: { color: vLine, width: vLineW } },
+      hovertext: vHover, hoverinfo: vOp.map(function (o) { return o > 0 ? "text" : "skip"; }), showlegend: false, name: "vertices",
+      hoverlabel: { bgcolor: "#1c1917", bordercolor: "#1c1917", font: { color: "#fff", size: 12 } } });
+    meta.vertIdx = data.length - 1;
+    if (spec.pathTrace) {
+      data.push({ x: [], y: [], mode: "lines", line: { color: C.red, width: 3.2, shape: "linear" }, hoverinfo: "skip", showlegend: false, name: "path" });
+      meta.pathIdx = data.length - 1;
+    }
+
+    var layout = {
+      xaxis: { visible: false, range: xr, fixedrange: true },
+      yaxis: { visible: false, range: yr, fixedrange: true, scaleanchor: "x" },
+      margin: { t: 8, b: 8, l: 8, r: 8 },
+      plot_bgcolor: C.bg, paper_bgcolor: C.bg, showlegend: false, hovermode: "closest",
+      annotations: annotations.concat(spec.annotations || []), shapes: spec.shapes || [],
+      transition: { duration: 420, easing: "cubic-in-out" }
+    };
+    if (spec.height) layout.height = spec.height;
+    return { data: data, layout: layout, meta: meta };
+  };
+
+  G.rgba = function (hex, a) {
+    var m = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(hex);
+    if (!m) return hex;
+    return "rgba(" + parseInt(m[1], 16) + "," + parseInt(m[2], 16) + "," + parseInt(m[3], 16) + "," + a + ")";
+  };
+
+  // ── draw (with transitions) ────────────────────────────────────────────────
+  G.config = { displayModeBar: false, displaylogo: false, scrollZoom: false, responsive: true };
+  G.draw = function (el, built, opts) {
+    if (typeof el === "string") el = document.getElementById(el);
+    opts = opts || {};
+    G.ready(function (Plotly) {
+      var canAnimate = el.data && el.data.length === built.data.length && !opts.noAnimate;
+      if (canAnimate) {
+        // Same trace structure as the previous step -> tween colors/widths/
+        // positions instead of snapping. Layout (annotations, shapes) is
+        // applied at the start of the frame.
+        Plotly.animate(el, { data: built.data, layout: built.layout },
+          { transition: { duration: opts.duration || 420, easing: "cubic-in-out" },
+            frame: { duration: opts.duration || 420, redraw: false } });
+      } else if (el.data) {
+        Plotly.react(el, built.data, built.layout, G.config);
+      } else {
+        Plotly.newPlot(el, built.data, built.layout, G.config);
+      }
+      el.__fpmiGraph = built;
+      if (!el.__fpmiHoverBound && opts.hover !== false) { G.attachHover(el); el.__fpmiHoverBound = true; }
+      if (opts.then) opts.then(Plotly);
+    });
+  };
+
+  // ── hover-highlight: lift a vertex's incident edges, dim the rest ──────────
+  G.attachHover = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    var restore = function () {
+      var b = el.__fpmiGraph; if (!b || !window.Plotly) return;
+      var s = b.meta.edgeStyles;
+      window.Plotly.restyle(el, {
+        "line.width": s.map(function (x) { return x.width; }),
+        "line.color": s.map(function (x) { return x.color; }),
+        "opacity": s.map(function (x) { return x.opacity; })
+      }, b.meta.edgeIdx);
+    };
+    el.on("plotly_hover", function (ev) {
+      var b = el.__fpmiGraph; if (!b || !ev.points || !ev.points.length) return;
+      var p = ev.points[0];
+      if (p.curveNumber !== b.meta.vertIdx) return;
+      var id = b.meta.ids[p.pointNumber];
+      var widths = [], colors = [], ops = [];
+      b.meta.edges.forEach(function (e, k) {
+        var st = b.meta.edgeStyles[k], inc = (e.u === id || e.v === id);
+        widths.push(inc ? Math.max(st.width * 1.9, 3) : st.width);
+        colors.push(inc ? (st.color === G.colors.edge || st.color === G.colors.edgeFaded ? G.colors.sel : st.color) : st.color);
+        ops.push(inc ? 1 : Math.min(st.opacity, 0.28));
+      });
+      window.Plotly.restyle(el, { "line.width": widths, "line.color": colors, "opacity": ops }, b.meta.edgeIdx);
+    });
+    el.on("plotly_unhover", restore);
+  };
+
+  // ── step player ────────────────────────────────────────────────────────────
+  // G.player({ container, count, render(i), autoplayMs, loop, start })
+  // Builds: [← Back] [Step i / N] [Next →] [▶ Auto]; arrow keys work while
+  // the controls have focus. render(i) is called for every step change.
+  // UI strings use the same IS_EN language switch declared at the top of
+  // this file. `o.label` still overrides the step word directly, same as
+  // before this change, for any call site that wants a custom label.
+  var PLAYER_STR = IS_EN
+    ? { back: "← Back", next: "Next →", auto: "▶ Auto", autoTitle: "Autoplay", pause: "⏸ Pause", step: "Step" }
+    : { back: "← Назад", next: "Вперёд →", auto: "▶ Авто", autoTitle: "Автовоспроизведение", pause: "⏸ Пауза", step: "Шаг" };
+  G.player = function (o) {
+    var box = typeof o.container === "string" ? document.getElementById(o.container) : o.container;
+    box.classList.add("fpmi-graph-controls");
+    box.setAttribute("tabindex", "0");
+    box.innerHTML =
+      '<button type="button" class="fg-prev">' + PLAYER_STR.back + '</button>' +
+      '<span class="fg-step"></span>' +
+      '<button type="button" class="fg-next">' + PLAYER_STR.next + '</button>' +
+      '<button type="button" class="fg-play" title="' + PLAYER_STR.autoTitle + '">' + PLAYER_STR.auto + '</button>';
+    var prev = box.querySelector(".fg-prev"), next = box.querySelector(".fg-next"), play = box.querySelector(".fg-play"), lbl = box.querySelector(".fg-step");
+    var cur = o.start || 0, timer = null, N = o.count;
+    function stop() { if (timer) { clearInterval(timer); timer = null; } play.textContent = PLAYER_STR.auto; play.classList.remove("active"); }
+    function go(i, fromAuto) {
+      if (!fromAuto) stop();
+      cur = Math.max(0, Math.min(N - 1, i));
+      lbl.textContent = (o.label || PLAYER_STR.step) + " " + (cur + 1) + " / " + N;
+      prev.disabled = cur === 0; next.disabled = cur === N - 1;
+      o.render(cur);
+    }
+    prev.addEventListener("click", function () { go(cur - 1); });
+    next.addEventListener("click", function () { go(cur + 1); });
+    play.addEventListener("click", function () {
+      if (timer) { stop(); return; }
+      play.textContent = PLAYER_STR.pause; play.classList.add("active");
+      if (cur === N - 1) go(0, true);
+      timer = setInterval(function () {
+        if (cur < N - 1) go(cur + 1, true);
+        else if (o.loop) go(0, true);
+        else stop();
+      }, o.autoplayMs || 1600);
+    });
+    box.addEventListener("keydown", function (ev) {
+      if (ev.key === "ArrowRight") { go(cur + 1); ev.preventDefault(); }
+      else if (ev.key === "ArrowLeft") { go(cur - 1); ev.preventDefault(); }
+    });
+    go(cur);
+    return { go: go, next: function () { go(cur + 1); }, prev: function () { go(cur - 1); }, current: function () { return cur; }, stop: stop };
+  };
+
+  // ── path tracer ────────────────────────────────────────────────────────────
+  // Grows the reserved path trace (spec.pathTrace) along `ids` over
+  // `duration` ms, with a moving tip. Returns a cancel function.
+  G.tracePath = function (el, verts, ids, opts) {
+    if (typeof el === "string") el = document.getElementById(el);
+    opts = opts || {};
+    var b = el.__fpmiGraph; if (!b || b.meta.pathIdx === undefined || !window.Plotly) return function () {};
+    var pts = ids.map(function (id) { return verts[id]; });
+    var segs = pts.length - 1, dur = opts.duration || 500 * segs, t0 = null, cancelled = false;
+    var style = { "line.color": opts.color || G.colors.red, "line.width": opts.width || 3.2 };
+    window.Plotly.restyle(el, style, [b.meta.pathIdx]);
+    function frame(ts) {
+      if (cancelled) return;
+      if (t0 === null) t0 = ts;
+      var f = Math.min(1, (ts - t0) / dur), pos = f * segs, k = Math.floor(pos), r = pos - k;
+      var x = [], y = [];
+      for (var i = 0; i <= Math.min(k, segs); i++) { x.push(pts[i][0]); y.push(pts[i][1]); }
+      if (k < segs) { x.push(pts[k][0] + (pts[k + 1][0] - pts[k][0]) * r); y.push(pts[k][1] + (pts[k + 1][1] - pts[k][1]) * r); }
+      window.Plotly.restyle(el, { x: [x], y: [y] }, [b.meta.pathIdx]);
+      if (f < 1) requestAnimationFrame(frame); else if (opts.done) opts.done();
+    }
+    requestAnimationFrame(frame);
+    return function () { cancelled = true; };
+  };
+  G.clearPath = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    var b = el.__fpmiGraph; if (!b || b.meta.pathIdx === undefined || !window.Plotly) return;
+    window.Plotly.restyle(el, { x: [[]], y: [[]] }, [b.meta.pathIdx]);
+  };
+
+  // Typeset \(...\) math in a caption/status element (after innerHTML update).
+  G.typeset = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    if (window.fpmiWithMathJax) window.fpmiWithMathJax(function () { if (window.MathJax && window.MathJax.typesetPromise) window.MathJax.typesetPromise([el]); else if (window.MathJax) window.MathJax.typeset([el]); });
+  };
+  G.setCaption = function (id, html) { var el = document.getElementById(id); if (!el) return; el.innerHTML = html; G.typeset(el); };
+
+  window.fpmiGraph = G;
+})();
+</script>
+<style>
+  /* Shared look for every fpmiGraph widget (see graph-helper.html). */
+  .fpmi-graph { padding: 1rem 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .fpmi-graph h2.fg-title { font-size: 16px; font-weight: 500; margin: 0 0 4px; }
+  .fpmi-graph p.fg-sub { font-size: 13px; color: #78716c; margin: 0 0 0.75rem; }
+  .fpmi-graph .fg-plot { width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 6px 18px rgba(0,58,65,0.06); }
+  .fpmi-graph .fg-caption { font-size: 13px; color: #44403c; margin-top: 0.6rem; min-height: 1.4em; line-height: 1.5; }
+  .fpmi-graph .fg-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .fpmi-graph .fg-arrow { font-size: 26px; color: #78716c; }
+  .fpmi-graph-controls, .fpmi-graph .fg-controls { display: flex; align-items: center; gap: 10px; margin: 0.5rem 0 0.9rem; flex-wrap: wrap; outline: none; }
+  .fpmi-graph-controls button, .fpmi-graph button {
+    font-size: 13px; padding: 6px 12px; cursor: pointer; border-radius: 8px;
+    border: 1px solid #d6d3d1; background: #fff; color: #292524; transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  }
+  .fpmi-graph-controls button:hover:not(:disabled), .fpmi-graph button:hover:not(:disabled) { background: #f5f5f4; border-color: #a8a29e; }
+  .fpmi-graph-controls button:disabled, .fpmi-graph button:disabled { opacity: 0.4; cursor: default; }
+  .fpmi-graph-controls button.active, .fpmi-graph button.active { background: #eaf2fb; border-color: #2a78d6; color: #1c4a7a; font-weight: 600; box-shadow: 0 0 0 3px rgba(42,120,214,0.12); }
+  .fpmi-graph-controls .fg-step { font-size: 13px; font-weight: 600; color: #44403c; min-width: 6.5em; text-align: center; }
+  .fpmi-graph-controls:focus-within .fg-step { color: #1c4a7a; }
+  .fpmi-graph label { font-size: 13px; color: #57534e; }
+  .fpmi-graph input[type="range"] { accent-color: #2a78d6; }
+  .fpmi-graph .fg-val { font-size: 13px; font-weight: 600; min-width: 2em; display: inline-block; color: #1c4a7a; }
+  .fpmi-graph .fg-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: #57534e; margin-top: 0.4rem; }
+  .fpmi-graph .fg-legend span::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; background: var(--c, #eaf2fb); border: 1.5px solid var(--b, #1e3a8a); }
+  .fpmi-graph .fg-legend span.line::before { border-radius: 0; height: 3px; width: 18px; border: none; vertical-align: 2px; background: var(--c, #78716c); }
+</style>
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Предисловие. Классы сложности. NP-сложные задачи</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Дата публикации</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">18 октября 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="expl-1" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Рассмотрим языки <span class="math display">\[
+\begin{align}  \mathrm{HAMPATH} &amp; = \left\{ \langle G\rangle \;  : \;  G = (V,E) \text{ -- это орграф с гамильтоновым путем}\right\}  \\ \mathrm{HAMPATH}_{st} &amp; = \left\{ \langle G, s, t\rangle \;  : \;  G = (V,E), \;  s,t \in V, \text{в орграфе $G$ есть гамильтонов путь из $s$ в $t$}\right\}  \\ \mathrm{HAMCYCLE} &amp; = \left\{ \langle G\rangle \;  : \;  G = (V,E) \text{ -- это орграф с гамильтоновым циклом}\right\}  \\ \mathrm{UHAMPATH} &amp; = \left\{ \langle G\rangle \;  : \;  G = (V,E) \text{ -- это неор. граф с гамильтоновым путем}\right\}  \\ \mathrm{UHAMPATH}_{st} &amp; = \left\{ \langle G, s, t\rangle \;  : \;  G = (V,E), \;  s,t \in V, \text{в неор. графе $G$ есть гамильтонов путь из $s$ в $t$}\right\}  \\ \mathrm{UHAMCYCLE} &amp; = \left\{ \langle G\rangle \;  : \;  G = (V,E), \text{в неор. графе $G$ есть гамильтонов цикл}\right\}  \\ \end{align}
+\]</span> Сведите полиномиально эти языки друг к другу.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ul>
+<li><span class="math inline">\(\mathrm{HAMPATH} \stackrel{?}{\leq }_p \mathrm{HAMPATH}_{st}\)</span>.</li>
+</ul>
+<div id="h2s" class="fpmi-graph">
+  <h2 class="fg-title anchored">Сведение \(\mathrm{HAMPATH}\) к \(\mathrm{HAMPATH}_{st}\)</h2>
+  <p class="fg-sub">Добавляем вершины \(s'\) и \(t'\), соединённые со всеми вершинами графа (красные дуги из \(s'\), зелёные — в \(t'\)), и концы \(s\to s'\), \(t'\to t\). Шаги показывают построение; наведите курсор на вершину, чтобы подсветить её дуги.</p>
+  <div id="h2s-ctl"></div>
+  <div class="fg-row">
+    <div id="h2s-left" class="fg-plot" style="max-width:270px;height:310px;"></div>
+    <span class="fg-arrow">⟶</span>
+    <div id="h2s-right" class="fg-plot" style="max-width:270px;height:310px;"></div>
+  </div>
+  <div id="h2s-cap" class="fg-caption"></div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, C = G.colors;
+  var V = { "1":[0,0], "2":[2,0], "3":[0,-2], "4":[2,-2], "5":[4,-2], "6":[0,-4], "7":[2,-4] };
+  var BASE = [[1,2],[1,3],[1,4],[2,4],[2,5],[3,4],[3,6],[4,5],[4,6],[4,7],[5,7],[6,7]]
+    .map(function(e){ return { u: String(e[0]), v: String(e[1]) }; });
+  var ids = Object.keys(V);
+  function degHover(id, edges) {
+    var i = 0, o = 0;
+    edges.forEach(function(e){ if (e.v === id) i++; if (e.u === id) o++; });
+    return "вершина " + id + " исходного графа<br>входящих дуг: " + i + ", исходящих: " + o;
+  }
+
+  var V2 = Object.assign({}, V, { "s'":[4,0], "t'":[4,-4], "s":[6,0], "t":[6,-4] });
+  var HOOKS = [];
+  ids.forEach(function(v){ HOOKS.push({ u: "s'", v: v, color: C.red, width: 1.2, bend: 0.28, hover: "s′ → " + v }); });
+  ids.forEach(function(v){ HOOKS.push({ u: v, v: "t'", color: C.green, width: 1.2, bend: 0.28, hover: v + " → t′" }); });
+  var ENDS = [{ u: "s", v: "s'", color: "#1c1917", width: 2.6, hover: "s → s′ (единственная дуга из s)" },
+              { u: "t'", v: "t", color: "#1c1917", width: 2.6, hover: "t′ → t (единственная дуга в t)" }];
+  var SPECIAL = {
+    "s'": { label: "$s'$", hover: "s′: дуги во все вершины исходного графа" },
+    "t'": { label: "$t'$", hover: "t′: дуги из всех вершин исходного графа" },
+    "s":  { label: "$s$",  hover: "s: начало искомого пути" },
+    "t":  { label: "$t$",  hover: "t: конец искомого пути" }
+  };
+  var CAPS = [
+    "Исходный орграф \\(G\\) — вход задачи \\(\\mathrm{HAMPATH}\\): есть ли в нём гамильтонов путь с произвольными концами?",
+    "Добавляем \\(s'\\) и \\(t'\\): дуги \\(s'\\to v\\) (красные) и \\(v\\to t'\\) (зелёные) для всех вершин \\(v\\) исходного графа.",
+    "Добавляем концы \\(s\\to s'\\) и \\(t'\\to t\\). Гамильтонов путь \\(v_1,\\ldots,v_n\\) в \\(G\\) даёт путь \\(s,s',v_1,\\ldots,v_n,t',t\\); обратно, любой гамильтонов \\(s\\)–\\(t\\)-путь обязан начинаться с \\(s,s'\\) и заканчиваться на \\(t',t\\), а его середина \\(v_1,\\ldots,v_n\\) — гамильтонов путь в \\(G\\)."
+  ];
+
+  function shownAt(id, step) {
+    if (id === "s" || id === "t") return step >= 2;
+    if (id === "s'" || id === "t'") return step >= 1;
+    return true;
+  }
+  function build(step) {
+    return G.build({
+      verts: V2, edges: BASE.concat(HOOKS, ENDS), directed: true, labels: false, size: 24, plotWidthPx: 255,
+      range: { x: [-0.9, 6.9], y: [-4.9, 0.9] },
+      edge: function(e){ return { opacity: (shownAt(e.u, step) && shownAt(e.v, step)) ? 1 : 0 }; },
+      vert: function(id){
+        if (!shownAt(id, step)) return { opacity: 0 };
+        if (SPECIAL[id]) return { color: C.accent, line: C.accentLine, label: SPECIAL[id].label, hover: SPECIAL[id].hover };
+        return { hover: degHover(id, BASE) };
+      }
+    });
+  }
+
+  G.draw("h2s-left", G.build({
+    verts: V, edges: BASE, directed: true, labels: false, size: 24, plotWidthPx: 255,
+    range: { x: [-0.9, 4.9], y: [-4.9, 0.9] },
+    vert: function(id){ return { hover: degHover(id, BASE) }; }
+  }));
+  G.player({ container: "h2s-ctl", count: 3, autoplayMs: 2400,
+    render: function(i){ G.draw("h2s-right", build(i)); G.setCaption("h2s-cap", CAPS[i]); } });
+})();
+</script>
+<ul>
+<li><span class="math inline">\(\mathrm{HAMPATH}_{st} \stackrel{?}{\leq }_p \mathrm{HAMPATH}\)</span>.</li>
+</ul>
+<div id="hs2h" class="fpmi-graph">
+  <h2 class="fg-title anchored">Сведение \(\mathrm{HAMPATH}_{st}\) к \(\mathrm{HAMPATH}\)</h2>
+  <p class="fg-sub">Добавляем вершину \(s'\) с единственной дугой \(s'\to s\) и вершину \(t'\) с единственной дугой \(t\to t'\). Наведите курсор на вершину, чтобы увидеть её степени и подсветить дуги.</p>
+  <div id="hs2h-ctl"></div>
+  <div class="fg-row">
+    <div id="hs2h-left" class="fg-plot" style="max-width:270px;height:310px;"></div>
+    <span class="fg-arrow">⟶</span>
+    <div id="hs2h-right" class="fg-plot" style="max-width:270px;height:310px;"></div>
+  </div>
+  <div id="hs2h-cap" class="fg-caption"></div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, C = G.colors;
+  var V = { "1":[0,0], "s":[2,0], "3":[0,-2], "4":[2,-2], "5":[4,-2], "6":[0,-4], "t":[2,-4] };
+  var BASE = [["1","s"],["1","3"],["1","4"],["s","4"],["s","5"],["3","4"],["3","6"],["4","5"],["4","6"],["4","t"],["5","t"],["6","t"]]
+    .map(function(e){ return { u: e[0], v: e[1] }; });
+  var V2 = Object.assign({}, V, { "s'":[4,0], "t'":[4,-4] });
+  var NEW = [{ u: "s'", v: "s", color: "#166534", width: 2.6, hover: "s′ → s: единственная дуга из s′" },
+             { u: "t", v: "t'", color: "#166534", width: 2.6, hover: "t → t′: единственная дуга в t′" }];
+  function degHover(id, edges) {
+    var i = 0, o = 0;
+    edges.forEach(function(e){ if (e.v === id) i++; if (e.u === id) o++; });
+    return "вершина " + G.plainLabel(id) + "<br>входящих: " + i + ", исходящих: " + o;
+  }
+  var CAPS = [
+    "Вход задачи \\(\\mathrm{HAMPATH}_{st}\\): орграф с выделенными концами \\(s\\) и \\(t\\). Есть ли гамильтонов путь из \\(s\\) в \\(t\\)?",
+    "Добавили \\(s'\\to s\\) и \\(t\\to t'\\). У \\(s'\\) нет входящих дуг, у \\(t'\\) — исходящих, поэтому любой гамильтонов путь нового графа обязан начинаться в \\(s'\\) и заканчиваться в \\(t'\\): он имеет вид \\(s',s,v_1,\\ldots,v_{n-2},t,t'\\), а значит, \\(s,v_1,\\ldots,v_{n-2},t\\) — гамильтонов \\(s\\)–\\(t\\)-путь исходного графа. Обратное очевидно."
+  ];
+  function vertStyle(step) {
+    return function(id){
+      if (id === "s'" || id === "t'") return step >= 1
+        ? { color: C.greenSoft, line: "#166534", label: id === "s'" ? "$s'$" : "$t'$", hover: id === "s'" ? "s′: новое начало (входящих дуг нет)" : "t′: новый конец (исходящих дуг нет)" }
+        : { opacity: 0 };
+      if (id === "s" || id === "t") return { color: C.accent, line: C.accentLine, label: "$" + id + "$", hover: (id === "s" ? "s: заданное начало" : "t: заданный конец") + "<br>" + degHover(id, BASE.concat(NEW)).split("<br>")[1] };
+      return { hover: degHover(id, BASE) };
+    };
+  }
+  G.draw("hs2h-left", G.build({
+    verts: V, edges: BASE, directed: true, labels: false, size: 24, plotWidthPx: 255,
+    range: { x: [-0.9, 4.9], y: [-4.9, 0.9] }, vert: vertStyle(0)
+  }));
+  G.player({ container: "hs2h-ctl", count: 2, autoplayMs: 2600,
+    render: function(i){
+      G.draw("hs2h-right", G.build({
+        verts: V2, edges: BASE.concat(NEW), directed: true, labels: false, size: 24, plotWidthPx: 255,
+        range: { x: [-0.9, 4.9], y: [-4.9, 0.9] },
+        edge: function(e){ return { opacity: (e.u === "s'" || e.v === "t'") && i < 1 ? 0 : 1 }; },
+        vert: vertStyle(i)
+      }));
+      G.setCaption("hs2h-cap", CAPS[i]);
+    } });
+})();
+</script>
+<ul>
+<li><span class="math inline">\(\mathrm{HAMPATH} \stackrel{?}{\leq }_p \mathrm{HAMCYCLE}\)</span> (и аналогично <span class="math inline">\(\mathrm{UHAMPATH} \leq_p \mathrm{UHAMCYCLE}\)</span>).</li>
+</ul>
+<div id="h2c" class="fpmi-graph">
+  <h2 class="fg-title anchored">Сведение \(\mathrm{HAMPATH}\) к \(\mathrm{HAMCYCLE}\)</h2>
+  <p class="fg-sub">Добавляем новую вершину \(s\), соединённую дугами в обе стороны со всеми вершинами графа: \(s\to v\) (красные) и \(v\to s\) (зелёные). Наведите курсор на \(s\), чтобы подсветить все её дуги.</p>
+  <div id="h2c-ctl"></div>
+  <div class="fg-row">
+    <div id="h2c-left" class="fg-plot" style="max-width:270px;height:310px;"></div>
+    <span class="fg-arrow">⟶</span>
+    <div id="h2c-right" class="fg-plot" style="max-width:270px;height:310px;"></div>
+  </div>
+  <div id="h2c-cap" class="fg-caption"></div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, C = G.colors;
+  var V = { "1":[0,0], "2":[2,0], "3":[0,-2], "4":[2,-2], "5":[4,-2], "6":[0,-4], "7":[2,-4] };
+  var BASE = [[1,2],[1,3],[1,4],[2,4],[2,5],[3,4],[3,6],[4,5],[4,6],[4,7],[5,7],[6,7]]
+    .map(function(e){ return { u: String(e[0]), v: String(e[1]) }; });
+  var ids = Object.keys(V);
+  var V2 = Object.assign({}, V, { "s":[4,0] });
+  var OUT = ids.map(function(v){ return { u: "s", v: v, color: C.red, width: 1.2, bend: 0.26, hover: "s → " + v }; });
+  var IN  = ids.map(function(v){ return { u: v, v: "s", color: C.green, width: 1.2, bend: 0.26, hover: v + " → s" }; });
+  function degHover(id, edges) {
+    var i = 0, o = 0;
+    edges.forEach(function(e){ if (e.v === id) i++; if (e.u === id) o++; });
+    return "вершина " + id + "<br>входящих: " + i + ", исходящих: " + o;
+  }
+  var CAPS = [
+    "Исходный орграф \\(G\\): есть ли в нём гамильтонов путь?",
+    "Добавляем \\(s\\) и дуги \\(s\\to v\\) во все вершины (красные).",
+    "Добавляем обратные дуги \\(v\\to s\\) (зелёные). Гамильтонов путь \\(v_1,\\ldots,v_n\\) в \\(G\\) замыкается в цикл \\(s,v_1,\\ldots,v_n,s\\); обратно, вырезав \\(s\\) из любого гамильтонова цикла, получаем гамильтонов путь в \\(G\\). Та же конструкция без ориентации даёт \\(\\mathrm{UHAMPATH}\\le_p\\mathrm{UHAMCYCLE}\\)."
+  ];
+  G.draw("h2c-left", G.build({
+    verts: V, edges: BASE, directed: true, labels: false, size: 24, plotWidthPx: 255,
+    range: { x: [-0.9, 4.9], y: [-4.9, 0.9] }, vert: function(id){ return { hover: degHover(id, BASE) }; }
+  }));
+  G.player({ container: "h2c-ctl", count: 3, autoplayMs: 2400,
+    render: function(step){
+      G.draw("h2c-right", G.build({
+        verts: V2, edges: BASE.concat(OUT, IN), directed: true, labels: false, size: 24, plotWidthPx: 255,
+        range: { x: [-0.9, 4.9], y: [-4.9, 0.9] },
+        edge: function(e){
+          if (e.u === "s") return { opacity: step >= 1 ? 1 : 0 };
+          if (e.v === "s") return { opacity: step >= 2 ? 1 : 0 };
+          return {};
+        },
+        vert: function(id){
+          if (id === "s") return step >= 1 ? { color: C.accent, line: C.accentLine, label: "$s$", hover: "s: дуги в обе стороны со всеми вершинами" } : { opacity: 0 };
+          return { hover: degHover(id, BASE) };
+        }
+      }));
+      G.setCaption("h2c-cap", CAPS[step]);
+    } });
+})();
+</script>
+<ul>
+<li><span class="math inline">\(\mathrm{HAMCYCLE} \stackrel{?}{\leq }_p \mathrm{HAMPATH}_{st}\)</span> (та же конструкция дает и <span class="math inline">\(\mathrm{HAMCYCLE} \leq_p \mathrm{HAMPATH}\)</span>).</li>
+</ul>
+<div id="hc2h" class="fpmi-graph">
+  <h2 class="fg-title anchored">Сведение \(\mathrm{HAMCYCLE}\) к \(\mathrm{HAMPATH}_{st}\)</h2>
+  <p class="fg-sub">Берём произвольную вершину \(v_1\) и копируем её: новая вершина \(v_1'\) получает те же дуги (красные). Затем добавляем \(s\) и \(t\) с дугами \(s\to v_1'\) и \(v_1\to t\) (зелёные). Наведите курсор на \(v_1\) и \(v_1'\), чтобы сравнить их дуги.</p>
+  <div id="hc2h-ctl"></div>
+  <div class="fg-row">
+    <div id="hc2h-left" class="fg-plot" style="max-width:270px;height:310px;"></div>
+    <span class="fg-arrow">⟶</span>
+    <div id="hc2h-right" class="fg-plot" style="max-width:270px;height:310px;"></div>
+  </div>
+  <div id="hc2h-cap" class="fg-caption"></div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, C = G.colors;
+  // vertex "5" of the layout plays the role of v_1 (as in the original figure)
+  var V = { "1":[0,0], "2":[2,0], "3":[0,-2], "4":[2,-2], "5":[4,-2], "6":[0,-4], "7":[2,-4] };
+  var BASE = [[1,2],[1,3],[1,4],[2,4],[2,5],[3,4],[3,6],[4,5],[4,6],[4,7],[5,7],[6,7]]
+    .map(function(e){ return { u: String(e[0]), v: String(e[1]) }; });
+  var V2 = Object.assign({}, V, { "5'":[4,0], "s":[6,0], "t":[6,-2] });
+  var COPY = [{ u: "4", v: "5'", color: C.red, width: 1.6, hover: "4 → v₁′ (копия дуги 4 → v₁)" },
+              { u: "2", v: "5'", color: C.red, width: 1.6, hover: "2 → v₁′ (копия дуги 2 → v₁)" },
+              { u: "5'", v: "7", color: C.red, width: 1.6, hover: "v₁′ → 7 (копия дуги v₁ → 7)" }];
+  var ENDS = [{ u: "s", v: "5'", color: "#166534", width: 2.6, hover: "s → v₁′ (единственная дуга из s)" },
+              { u: "5", v: "t", color: "#166534", width: 2.6, hover: "v₁ → t (единственная дуга в t)" }];
+  function degHover(id, edges, name) {
+    var i = 0, o = 0;
+    edges.forEach(function(e){ if (e.v === id) i++; if (e.u === id) o++; });
+    return "вершина " + (name || id) + "<br>входящих: " + i + ", исходящих: " + o;
+  }
+  var CAPS = [
+    "Исходный орграф \\(G\\) (вход \\(\\mathrm{HAMCYCLE}\\)) с выбранной вершиной \\(v_1\\).",
+    "Копируем \\(v_1\\): вершина \\(v_1'\\) получает те же входящие и исходящие дуги (красные).",
+    "Добавляем \\(s\\to v_1'\\) и \\(v_1\\to t\\). Гамильтонов цикл \\(v_1,v_2,\\ldots,v_n,v_1\\) превращается в путь \\(s,v_1',v_2,\\ldots,v_n,v_1,t\\); обратно, любой гамильтонов \\(s\\)–\\(t\\)-путь имеет вид \\(s,v_1',\\ldots,v_1,t\\) (единственные дуги из \\(s\\) и в \\(t\\)), и замена \\(v_1'\\) на \\(v_1\\) даёт гамильтонов цикл в \\(G\\)."
+  ];
+  function shownAt(id, step) {
+    if (id === "s" || id === "t") return step >= 2;
+    if (id === "5'") return step >= 1;
+    return true;
+  }
+  G.draw("hc2h-left", G.build({
+    verts: V, edges: BASE, directed: true, labels: false, size: 24, plotWidthPx: 255,
+    range: { x: [-0.9, 4.9], y: [-4.9, 0.9] },
+    vert: function(id){ return id === "5" ? { color: C.accent, line: C.accentLine, label: "$v_1$", hover: degHover(id, BASE, "v₁") } : { hover: degHover(id, BASE) }; }
+  }));
+  G.player({ container: "hc2h-ctl", count: 3, autoplayMs: 2400,
+    render: function(step){
+      G.draw("hc2h-right", G.build({
+        verts: V2, edges: BASE.concat(COPY, ENDS), directed: true, labels: false, size: 24, plotWidthPx: 255,
+        range: { x: [-0.9, 6.9], y: [-4.9, 0.9] },
+        edge: function(e){ return { opacity: (shownAt(e.u, step) && shownAt(e.v, step)) ? 1 : 0 }; },
+        vert: function(id){
+          if (!shownAt(id, step)) return { opacity: 0 };
+          if (id === "5")  return { color: C.accent, line: C.accentLine, label: "$v_1$", hover: degHover(id, BASE.concat(ENDS), "v₁") };
+          if (id === "5'") return { color: C.accent, line: C.accentLine, label: "$v_1'$", hover: degHover(id, COPY.concat(ENDS), "v₁′ (копия v₁)") };
+          if (id === "s")  return { color: C.greenSoft, line: "#166534", label: "$s$", hover: "s: начало пути, единственная дуга s → v₁′" };
+          if (id === "t")  return { color: C.greenSoft, line: "#166534", label: "$t$", hover: "t: конец пути, единственная дуга v₁ → t" };
+          return { hover: degHover(id, BASE) };
+        }
+      }));
+      G.setCaption("hc2h-cap", CAPS[step]);
+    } });
+})();
+</script>
+<ul>
+<li><span class="math inline">\(\mathrm{HAMPATH}_{st} \stackrel{?}{\leq }_p \mathrm{UHAMPATH}_{st}\)</span>.</li>
+</ul>
+<div id="huh" class="fpmi-graph">
+  <h2 class="fg-title anchored">Сведение \(\mathrm{HAMPATH}_{st}\) (орграф) к \(\mathrm{UHAMPATH}_{st}\) (неориентированный граф)</h2>
+  <p class="fg-sub">Каждую вершину \(v\), кроме \(s\) и \(t\), расщепляем на тройку \(v^{\mathrm{in}}-v^{\mathrm{mid}}-v^{\mathrm{out}}\); для \(s\) оставляем только \(s^{\mathrm{out}}\), для \(t\) — только \(t^{\mathrm{in}}\). Дуга \(u\to v\) становится ребром \(\{u^{\mathrm{out}},v^{\mathrm{in}}\}\). Наведите курсор на вершину нижнего графа, чтобы увидеть, какой вершине исходного орграфа она отвечает.</p>
+  <div id="huh-ctl"></div>
+  <div id="huh-top" class="fg-plot" style="max-width:300px;height:300px;"></div>
+  <div style="height:10px"></div>
+  <div id="huh-bottom" class="fg-plot" style="max-width:640px;height:300px;"></div>
+  <div id="huh-cap" class="fg-caption"></div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, C = G.colors;
+  var V = { v1:[0,0], s:[2,0], v3:[0,-2], v4:[2,-2], v5:[4,-2], v6:[0,-4], t:[2,-4] };
+  var ARCS = [["v1","s"],["v1","v3"],["v1","v4"],["s","v4"],["s","v5"],["v3","v4"],["v3","v6"],["v4","v5"],["v4","v6"],["v4","t"],["t","v5"],["v6","t"]];
+  var SUP = { "in": "ⁱⁿ", "mid": "ᵐⁱᵈ", "out": "ᵒᵘᵗ" };
+
+  G.draw("huh-top", G.build({
+    verts: V, edges: ARCS, directed: true, size: 26, plotWidthPx: 280,
+    range: { x: [-0.9, 4.9], y: [-4.9, 0.9] },
+    vert: function(id){
+      if (id === "s" || id === "t") return { color: C.accent, line: C.accentLine, hover: id + ": " + (id === "s" ? "начало" : "конец") + " пути" };
+      return { hover: G.plainLabel(id) };
+    }
+  }));
+
+  // split graph: v -> vin/vmid/vout at x-0.5 / x / x+0.5 (x scaled ×2.5)
+  var P = {}, ROLE = {};
+  Object.keys(V).forEach(function(id){
+    var x = V[id][0] * 1.25, y = V[id][1];
+    if (id === "s") { P["s_out"] = [x, y]; ROLE["s_out"] = ["s", "out"]; return; }
+    if (id === "t") { P["t_in"] = [x, y]; ROLE["t_in"] = ["t", "in"]; return; }
+    P[id + "_out"] = [x - 0.5, y]; ROLE[id + "_out"] = [id, "out"];
+    P[id + "_mid"] = [x, y];       ROLE[id + "_mid"] = [id, "mid"];
+    P[id + "_in"]  = [x + 0.5, y]; ROLE[id + "_in"]  = [id, "in"];
+  });
+  var SPOKES = [], LINKS = [];
+  Object.keys(V).forEach(function(id){
+    if (id === "s" || id === "t") return;
+    SPOKES.push({ u: id + "_in", v: id + "_mid", color: C.sel, width: 2.2, hover: G.plainLabel(id) + "ⁱⁿ — " + G.plainLabel(id) + "ᵐⁱᵈ" });
+    SPOKES.push({ u: id + "_mid", v: id + "_out", color: C.sel, width: 2.2, hover: G.plainLabel(id) + "ᵐⁱᵈ — " + G.plainLabel(id) + "ᵒᵘᵗ" });
+  });
+  ARCS.forEach(function(e){
+    var u = e[0], v = e[1];
+    if (v === "s" || u === "t") return; // arcs into s / out of t are dropped
+    var a = (u === "s") ? "s_out" : u + "_out", b = (v === "t") ? "t_in" : v + "_in";
+    var bend = (Math.abs(P[a][1] - P[b][1]) < 0.01) ? 0.35 : 0.18;
+    LINKS.push({ u: a, v: b, color: C.edge, width: 1.3, bend: bend, hover: "дуга " + G.plainLabel(u) + " → " + G.plainLabel(v) + " стала ребром {" + G.plainLabel(u) + "ᵒᵘᵗ, " + G.plainLabel(v) + "ⁱⁿ}" });
+  });
+  var CAPS = [
+    "Исходный орграф с концами \\(s\\), \\(t\\). Дуги, входящие в \\(s\\) и выходящие из \\(t\\), гамильтонов \\(s\\)–\\(t\\)-путь всё равно не использует — их можно отбросить.",
+    "Расщепление: каждая вершина \\(v\\ne s,t\\) превращается в цепочку \\(v^{\\mathrm{in}}-v^{\\mathrm{mid}}-v^{\\mathrm{out}}\\) (синие рёбра); от \\(s\\) остаётся \\(s^{\\mathrm{out}}\\), от \\(t\\) — \\(t^{\\mathrm{in}}\\).",
+    "Каждая дуга \\(u\\to v\\) становится ребром \\(\\{u^{\\mathrm{out}},v^{\\mathrm{in}}\\}\\). У \\(v^{\\mathrm{mid}}\\) ровно два соседа, поэтому гамильтонов путь проходит каждую тройку целиком: \\(v^{\\mathrm{in}}\\!-\\!v^{\\mathrm{mid}}\\!-\\!v^{\\mathrm{out}}\\), и блоки соединены рёбрами-бывшими дугами — путь \\(s^{\\mathrm{out}},v_1^{\\mathrm{in}},v_1^{\\mathrm{mid}},v_1^{\\mathrm{out}},\\ldots,t^{\\mathrm{in}}\\) отвечает пути \\(s\\to v_1\\to\\cdots\\to t\\) в орграфе."
+  ];
+  G.player({ container: "huh-ctl", count: 3, autoplayMs: 2600,
+    render: function(step){
+      G.draw("huh-bottom", G.build({
+        verts: P, edges: SPOKES.concat(LINKS), directed: false, labels: false, size: 15, halo: false,
+        range: { x: [-1.2, 5.9], y: [-4.7, 0.9] },
+        edge: function(e){
+          var isSpoke = e.color === C.sel;
+          return { opacity: (isSpoke ? step >= 1 : step >= 2) ? 1 : 0 };
+        },
+        vert: function(id){
+          var r = ROLE[id], base = G.plainLabel(r[0]) + SUP[r[1]];
+          if (id === "s_out" || id === "t_in") return { color: C.accent, line: C.accentLine, size: 20, label: id === "s_out" ? "$s=s^{\\mathrm{out}}$" : "$t=t^{\\mathrm{in}}$", labelSize: 10, hover: base };
+          if (step < 1) return { opacity: 0 };
+          return { hover: base + " — из вершины " + G.plainLabel(r[0]) };
+        }
+      }));
+      G.setCaption("huh-cap", CAPS[step]);
+    } });
+})();
+</script>
+<ul>
+<li><span class="math inline">\(\mathrm{UHAMPATH}_{st} \stackrel{?}{\leq }_p \mathrm{HAMPATH}_{st}\)</span>.</li>
+</ul>
+<div id="uhh" class="fpmi-graph">
+  <h2 class="fg-title anchored">Сведение \(\mathrm{UHAMPATH}_{st}\) к \(\mathrm{HAMPATH}_{st}\)</h2>
+  <p class="fg-sub">Каждое ребро \(\{u,v\}\) заменяем парой встречных дуг \(u\to v\) и \(v\to u\); вершины, включая \(s\) и \(t\), не меняются. Кнопка ниже прокладывает один и тот же гамильтонов \(s\)–\(t\)-путь в обоих графах: слева по рёбрам, справа — по дугам в нужную сторону.</p>
+  <div class="fg-controls"><button type="button" id="uhh-path">Показать гамильтонов путь</button><button type="button" id="uhh-clear">Скрыть</button></div>
+  <div class="fg-row">
+    <div id="uhh-left" class="fg-plot" style="max-width:270px;height:310px;"></div>
+    <span class="fg-arrow">⟶</span>
+    <div id="uhh-right" class="fg-plot" style="max-width:270px;height:310px;"></div>
+  </div>
+  <div id="uhh-cap" class="fg-caption"></div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, C = G.colors;
+  var V = { v1:[0,0], s:[2,0], v3:[0,-2], v4:[2,-2], v5:[4,-2], v6:[0,-4], t:[2,-4] };
+  var E = [["v1","s"],["v1","v3"],["v1","v4"],["s","v4"],["s","v5"],["v3","v4"],["v3","v6"],["v4","v5"],["v4","v6"],["v4","t"],["t","v5"],["v6","t"]];
+  var PATH = ["s","v5","v4","v1","v3","v6","t"];
+  function vert(id){
+    if (id === "s" || id === "t") return { color: C.accent, line: C.accentLine, hover: id + ": " + (id === "s" ? "начало" : "конец") + " пути" };
+    return { hover: G.plainLabel(id) };
+  }
+  var UND = E.map(function(e){ return { u: e[0], v: e[1], hover: "ребро {" + G.plainLabel(e[0]) + ", " + G.plainLabel(e[1]) + "}" }; });
+  var DIR = [];
+  E.forEach(function(e){
+    DIR.push({ u: e[0], v: e[1], bend: 0.2, color: C.red,   width: 1.3, hover: "дуга " + G.plainLabel(e[0]) + " → " + G.plainLabel(e[1]) });
+    DIR.push({ u: e[1], v: e[0], bend: 0.2, color: C.green, width: 1.3, hover: "дуга " + G.plainLabel(e[1]) + " → " + G.plainLabel(e[0]) });
+  });
+  var common = { verts: V, size: 26, plotWidthPx: 255, range: { x: [-0.9, 4.9], y: [-4.9, 0.9] }, vert: vert, pathTrace: true };
+  G.draw("uhh-left",  G.build(Object.assign({ edges: UND, directed: false }, common)));
+  G.draw("uhh-right", G.build(Object.assign({ edges: DIR, directed: true }, common)));
+
+  var cancel = [];
+  document.getElementById("uhh-path").addEventListener("click", function(){
+    cancel.forEach(function(c){ c(); }); cancel = [];
+    G.clearPath("uhh-left"); G.clearPath("uhh-right");
+    G.setCaption("uhh-cap", "Путь \\(s,v_5,v_4,v_1,v_3,v_6,t\\) проходит все 7 вершин: слева — по рёбрам, справа — по дуге, идущей в направлении обхода (каждое ребро используется в одну сторону).");
+    cancel.push(G.tracePath("uhh-left", V, PATH, { duration: 2400, color: C.red, width: 3.6, done: function(){
+      cancel.push(G.tracePath("uhh-right", V, PATH, { duration: 2400, color: C.red, width: 3.6 }));
+    } }));
+  });
+  document.getElementById("uhh-clear").addEventListener("click", function(){
+    cancel.forEach(function(c){ c(); }); cancel = [];
+    G.clearPath("uhh-left"); G.clearPath("uhh-right");
+    G.setCaption("uhh-cap", "");
+  });
+})();
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-2" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Покажите, что определение наличия в графе клики произвольного заданного размера является NP-сложной задачей.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Докажем</p>
+<p><span class="math display">\[
+  \mathrm{3SAT} \leq _p \mathrm{CLIQUE}  
+\]</span></p>
+<p>где</p>
+<p><span class="math display">\[
+  \mathrm{CLIQUE} = \left\{ \langle G,k\rangle \;  : \;  \text{$G$ -- это неор. граф, $k \in \mathbb {N}$, в $G$ есть клика размера $k$}\right\}   
+\]</span></p>
+<p>Пусть <span class="math inline">\(\phi\)</span> – это 3КНФ-формула с <span class="math inline">\(k\)</span> клозами <span class="math inline">\(c_1, \ldots , c_k\)</span>. Построим по ней граф <span class="math inline">\(G\)</span>: для каждого клоза <span class="math inline">\(c_i = (a_i \lor b_i \lor d_i)\)</span> заведем тройку вершин, помеченных литералами <span class="math inline">\(a_i\)</span>, <span class="math inline">\(b_i\)</span>, <span class="math inline">\(d_i\)</span>. Ребром соединим каждую пару вершин из <em>разных</em> троек, кроме пар противоречащих литералов вида <span class="math inline">\(x\)</span> и <span class="math inline">\(\bar{x}\)</span>; внутри тройки ребер нет. Положим <span class="math inline">\(f(\phi ) = \langle G, k \rangle\)</span>; построение выполняется за полиномиальное время.</p>
+<p>Пусть <span class="math inline">\(\phi\)</span> выполнима. Зафиксируем выполняющий набор и выберем в каждом клозе по одной вершине с истинным литералом. Выбранные <span class="math inline">\(k\)</span> вершин лежат в разных тройках и попарно непротиворечивы (все их литералы истинны одновременно), поэтому попарно соединены ребрами – получили клику размера <span class="math inline">\(k\)</span>.</p>
+<p>Обратно, пусть в <span class="math inline">\(G\)</span> есть клика размера <span class="math inline">\(k\)</span>. Внутри троек ребер нет, поэтому клика содержит ровно по одной вершине из каждой тройки. Литералы этих вершин попарно непротиворечивы, значит, существует набор значений переменных, делающий все их истинными (переменным, не встретившимся среди литералов клики, даем произвольные значения). Такой набор делает истинным хотя бы один литерал в каждом клозе, т.е. выполняет <span class="math inline">\(\phi\)</span>.</p>
+<div id="s2c" class="fpmi-graph">
+  <h2 class="fg-title anchored">Сведение \(\mathrm{3SAT}\) к \(\mathrm{CLIQUE}\)</h2>
+  <p class="fg-sub">Граф для формулы \(\phi=(x_1\lor x_1\lor x_2)\land(\bar x_1\lor\bar x_2\lor\bar x_2)\land(\bar x_1\lor x_2\lor x_2)\), \(k=3\): по тройке вершин на клоз, рёбра — между непротиворечивыми литералами разных троек (внутри клоза рёбер нет). Выберите набор значений: истинные литералы подсвечиваются, и если каждый клоз выполнен, из них складывается клика размера \(3\).</p>
+  <div class="fg-controls">
+    <label>\(x_1=\)</label><button type="button" data-x1="0" class="s2c-x1 active">0</button><button type="button" data-x1="1" class="s2c-x1">1</button>
+    <label style="margin-left:10px">\(x_2=\)</label><button type="button" data-x2="0" class="s2c-x2">0</button><button type="button" data-x2="1" class="s2c-x2 active">1</button>
+    <button type="button" id="s2c-none" style="margin-left:10px">Без набора</button>
+  </div>
+  <div id="s2c-plot" class="fg-plot" style="max-width:560px;height:460px;"></div>
+  <div id="s2c-cap" class="fg-caption"></div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, C = G.colors;
+  var V = { a:[-1.6,2.2], b:[0,2.2], c:[1.6,2.2], d:[-3,0.2], e:[-3,-1.2], f:[-3,-2.6], g:[3,0.2], h:[3,-1.2], i:[3,-2.6] };
+  // literal = [variable, sign]; clause index per vertex
+  var LIT = { a:["x1",1], b:["x1",1], c:["x2",1], d:["x1",0], e:["x2",0], f:["x2",0], g:["x1",0], h:["x2",1], i:["x2",1] };
+  var CLAUSE = { a:1, b:1, c:1, d:2, e:2, f:2, g:3, h:3, i:3 };
+  var TEX = { a:"x_1", b:"x_1", c:"x_2", d:"\\bar{x}_1", e:"\\bar{x}_2", f:"\\bar{x}_2", g:"\\bar{x}_1", h:"x_2", i:"x_2" };
+  var PLAIN = { a:"x₁", b:"x₁", c:"x₂", d:"¬x₁", e:"¬x₂", f:"¬x₂", g:"¬x₁", h:"x₂", i:"x₂" };
+  var ids = Object.keys(V), E = [];
+  ids.forEach(function(p, k){ ids.slice(k + 1).forEach(function(q){
+    if (CLAUSE[p] === CLAUSE[q]) return;
+    if (LIT[p][0] === LIT[q][0] && LIT[p][1] !== LIT[q][1]) return; // contradictory
+    E.push({ u: p, v: q, hover: PLAIN[p] + " (c" + CLAUSE[p] + ") — " + PLAIN[q] + " (c" + CLAUSE[q] + "): совместимы" });
+  }); });
+  var assign = { x1: 0, x2: 1 }, useAssign = true;
+
+  function isTrue(v){ return assign[LIT[v][0]] === LIT[v][1]; }
+  function draw(){
+    var clique = null, unsat = null;
+    if (useAssign) {
+      clique = [];
+      [1, 2, 3].forEach(function(cl){
+        var pick = ids.filter(function(v){ return CLAUSE[v] === cl && isTrue(v); })[0];
+        if (pick) clique.push(pick); else if (unsat === null) unsat = cl;
+      });
+      if (unsat !== null) clique = null;
+    }
+    G.draw("s2c-plot", G.build({
+      verts: V, edges: E, size: 36, plotWidthPx: 540, labels: { a:"$x_1$", b:"$x_1$", c:"$x_2$", d:"$\\bar x_1$", e:"$\\bar x_2$", f:"$\\bar x_2$", g:"$\\bar x_1$", h:"$x_2$", i:"$x_2$" },
+      range: { x: [-4.4, 4.4], y: [-3.4, 3.4] },
+      edge: function(e){
+        if (clique && clique.indexOf(e.u) >= 0 && clique.indexOf(e.v) >= 0) return { color: C.red, width: 3.4 };
+        return { color: "#a8a29e", width: 1, dash: "dot", opacity: useAssign ? 0.45 : 0.9 };
+      },
+      vert: function(v){
+        var base = PLAIN[v] + " — литерал клоза c" + CLAUSE[v];
+        if (!useAssign) return { hover: base };
+        if (clique && clique.indexOf(v) >= 0) return { color: C.redSoft, line: "#7f1d1d", hover: base + "<br>истинен, выбран в клику" };
+        if (isTrue(v)) return { color: C.greenSoft, line: "#166534", hover: base + "<br>истинен" };
+        return { color: "#f5f5f4", line: "#a8a29e", labelColor: "#a8a29e", hover: base + "<br>ложен" };
+      },
+      annotations: [
+        { x: 0, y: 2.95, text: "$c_1 = x_1\\lor x_1\\lor x_2$", showarrow: false, font: { size: 11, color: "#57534e" } },
+        { x: -3.85, y: -1.2, text: "$c_2$", showarrow: false, font: { size: 12, color: "#57534e" } },
+        { x: 3.85, y: -1.2, text: "$c_3$", showarrow: false, font: { size: 12, color: "#57534e" } }
+      ]
+    }));
+    if (!useAssign) {
+      G.setCaption("s2c-cap", "Формула выполнима тогда и только тогда, когда в графе есть клика размера \\(k=3\\) (по числу клозов): вершины клики лежат в разных клозах и попарно совместимы.");
+    } else if (clique) {
+      G.setCaption("s2c-cap", "Набор \\(x_1=" + assign.x1 + ",\\ x_2=" + assign.x2 + "\\) выполняет все клозы; по одному истинному литералу из каждого — \\(\\{" + clique.map(function(v){ return TEX[v]; }).join(",\\ ") + "\\}\\) — образуют клику (красные рёбра).");
+    } else {
+      G.setCaption("s2c-cap", "Набор \\(x_1=" + assign.x1 + ",\\ x_2=" + assign.x2 + "\\) не выполняет клоз \\(c_" + unsat + "\\): в нём нет истинного литерала, и клики из истинных литералов не получается.");
+    }
+    document.querySelectorAll(".s2c-x1").forEach(function(b){ b.classList.toggle("active", useAssign && +b.dataset.x1 === assign.x1); });
+    document.querySelectorAll(".s2c-x2").forEach(function(b){ b.classList.toggle("active", useAssign && +b.dataset.x2 === assign.x2); });
+    document.getElementById("s2c-none").classList.toggle("active", !useAssign);
+  }
+  document.querySelectorAll(".s2c-x1").forEach(function(b){ b.addEventListener("click", function(){ useAssign = true; assign.x1 = +this.dataset.x1; draw(); }); });
+  document.querySelectorAll(".s2c-x2").forEach(function(b){ b.addEventListener("click", function(){ useAssign = true; assign.x2 = +this.dataset.x2; draw(); }); });
+  document.getElementById("s2c-none").addEventListener("click", function(){ useAssign = false; draw(); });
+  draw();
+})();
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-3" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Пример 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Покажите, что определение гамильтонова пути в орграфе является NP-сложной задачей.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Решение
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Докажем</p>
+<p><span class="math display">\[
+  \mathrm{3SAT} \leq _p \mathrm{HAMPATH}_{st}  
+\]</span></p>
+<p>Допустим, есть формула</p>
+<p><span class="math display">\[
+  \phi = \underbrace{\left(x_1 \lor \bar{x}_2 \lor x_3 \right)}_{c_1} \land \underbrace{\left(\bar{x}_1 \lor x_2 \lor x_4\right)}_{c_2} \land \underbrace{\left(\bar{x}_1 \lor x_3 \lor x_5\right)}_{c_3} \land \underbrace{\left(x_1 \lor \bar{x}_4 \lor \bar{x}_5\right)}_{c_4}  
+\]</span></p>
+<p>Необходимо построить <span class="math inline">\(f(\phi ) = (G,s,t)\)</span>. Для каждой переменной <span class="math inline">\(x_i\)</span> заведем &lt;&lt;ромб&gt;&gt; с горизонтальной цепочкой вершин внутри, а для каждого клоза <span class="math inline">\(c_j\)</span> – отдельную вершину. Гамильтонов путь из <span class="math inline">\(s\)</span> в <span class="math inline">\(t\)</span> вынужден проходить ромбы сверху вниз, и в каждом ромбе он проходит цепочку либо слева направо (это отвечает <span class="math inline">\(x_i = 1\)</span>), либо справа налево (<span class="math inline">\(x_i = 0\)</span>). Если литерал <span class="math inline">\(x_i\)</span> входит в клоз <span class="math inline">\(c_j\)</span>, то из цепочки <span class="math inline">\(i\)</span>-го ромба можно сделать &lt;&lt;крюк&gt;&gt; в вершину <span class="math inline">\(c_j\)</span> и вернуться, двигаясь слева направо; для литерала <span class="math inline">\(\bar{x}_i\)</span> – двигаясь справа налево. Тогда гамильтонов путь, посещающий все вершины-клозы, существует в точности тогда, когда есть набор значений переменных, при котором в каждом клозе есть истинный литерал.</p>
+<div id="s2h" class="fpmi-graph">
+  <h2 class="fg-title anchored">Сведение \(\mathrm{3SAT}\) к \(\mathrm{HAMPATH}_{st}\)</h2>
+  <p class="fg-sub">Пять «ромбов» переменных \(x_1,\ldots,x_5\) (\(s\) — верхняя вершина, \(t\) — нижняя) и вершины-клозы \(c_1,\ldots,c_4\) справа. Схема упрощена: показаны только «крюки» из ромба \(x_1\) (красные — для вхождений \(x_1\) в \(c_1\) и \(c_4\), проходятся слева направо; зелёные — для \(\bar x_1\) в \(c_2\) и \(c_3\), справа налево), а цепочка внутри ромба сокращена до трёх вершин (в честной конструкции их \(3k+1\)). Выберите значение \(x_1\), чтобы проложить путь: направление обхода ромба кодирует значение переменной, а заход в клоз возможен только «по ходу».</p>
+  <div class="fg-controls">
+    <label>\(x_1=\)</label><button type="button" id="s2h-x1-1">1 (слева направо)</button><button type="button" id="s2h-x1-0">0 (справа налево)</button><button type="button" id="s2h-clear">Скрыть путь</button>
+  </div>
+  <div id="s2h-plot" class="fg-plot" style="max-width:600px;height:560px;"></div>
+  <div id="s2h-cap" class="fg-caption"></div>
+</div>
+<script>
+(function(){
+  var G = window.fpmiGraph, C = G.colors;
+  var V = {}, E = [], n = 5, LAB = {};
+  function d(i, k){ return "d" + i + k; }
+  V.s = [0, 0]; LAB.s = "$s$";
+  for (var i = 1; i <= n; i++) {
+    var yt = -4 * (i - 1), ym = yt - 2;
+    var top = i === 1 ? "s" : d(i, "t");
+    if (i > 1) V[top] = [0, yt];
+    V[d(i,"l")] = [-2, ym]; V[d(i,"r")] = [2, ym]; V[d(i,"1")] = [-1, ym]; V[d(i,"2")] = [0, ym]; V[d(i,"3")] = [1, ym];
+    var next = i === n ? "t" : d(i + 1, "t");
+    if (i === n) V.t = [0, -4 * n];
+    E.push({ u: top, v: d(i,"l") }, { u: top, v: d(i,"r") }, { u: d(i,"l"), v: next }, { u: d(i,"r"), v: next });
+    var chain = [d(i,"l"), d(i,"1"), d(i,"2"), d(i,"3"), d(i,"r")];
+    for (var k = 0; k + 1 < chain.length; k++) {
+      E.push({ u: chain[k], v: chain[k+1], bend: 0.22, width: 1.2 }, { u: chain[k+1], v: chain[k], bend: 0.22, width: 1.2 });
+    }
+  }
+  LAB.t = "$t$";
+  var CL = { c1: [5,-2], c2: [5,-6], c3: [5,-10], c4: [5,-14] };
+  Object.keys(CL).forEach(function(c){ V[c] = CL[c]; LAB[c] = "$" + c[0] + "_" + c[1] + "$"; });
+  var HOOKS = [
+    { u: "d1l", v: "c1", color: C.red, bend: 0.3, hover: "крюк x₁ ∈ c₁: l → c₁" }, { u: "c1", v: "d11", color: C.red, bend: 0.3, hover: "крюк x₁ ∈ c₁: c₁ → m₁" },
+    { u: "d13", v: "c4", color: C.red, bend: 0.3, hover: "крюк x₁ ∈ c₄: m₃ → c₄" }, { u: "c4", v: "d1r", color: C.red, bend: 0.3, hover: "крюк x₁ ∈ c₄: c₄ → r" },
+    { u: "d12", v: "c2", color: C.green, bend: -0.3, hover: "крюк ¬x₁ ∈ c₂: m₂ → c₂" }, { u: "c2", v: "d11", color: C.green, bend: -0.3, hover: "крюк ¬x₁ ∈ c₂: c₂ → m₁" },
+    { u: "d13", v: "c3", color: C.green, bend: -0.3, hover: "крюк ¬x₁ ∈ c₃: m₃ → c₃" }, { u: "c3", v: "d12", color: C.green, bend: -0.3, hover: "крюк ¬x₁ ∈ c₃: c₃ → m₂" }
+  ];
+  function hover(id){
+    if (id === "s" || id === "t") return id;
+    if (id[0] === "c") return "клоз " + id;
+    var i = id[1], k = id[2];
+    return "ромб x" + G.plainLabel("x" + i).slice(1) + ": " + (k === "t" ? "верхняя вершина" : k === "l" ? "левый вход" : k === "r" ? "правый вход" : "вершина цепочки " + k);
+  }
+  var built = G.build({
+    verts: V, edges: E.concat(HOOKS), directed: true, size: 13, halo: false, labels: LAB, plotWidthPx: 560,
+    range: { x: [-5.2, 6.2], y: [-21, 1.2] }, pathTrace: true,
+    vert: function(id){
+      if (id === "s" || id === "t") return { color: C.accent, line: C.accentLine, size: 20, hover: hover(id) };
+      if (id[0] === "c") return { color: C.accent, line: C.accentLine, size: 22, hover: hover(id) };
+      return { hover: hover(id) };
+    },
+    annotations: [1,2,3,4,5].map(function(i){ return { x: -4.3, y: -4 * i + 2, text: "$x_" + i + "$", showarrow: false, font: { size: 13 } }; })
+  });
+  G.draw("s2h-plot", built);
+
+  function rest(from){ // remaining diamonds left-to-right, then t
+    var p = [];
+    for (var i = from; i <= n; i++) p.push(d(i,"t"), d(i,"l"), d(i,"1"), d(i,"2"), d(i,"3"), d(i,"r"));
+    p.push("t"); return p;
+  }
+  var PATH1 = ["s","d1l","c1","d11","d12","d13","c4","d1r"].concat(rest(2));
+  var PATH0 = ["s","d1r","d13","c3","d12","c2","d11","d1l"].concat(rest(2));
+  var cancel = null;
+  function trace(path, cap){
+    if (cancel) cancel(); G.clearPath("s2h-plot");
+    G.setCaption("s2h-cap", cap);
+    cancel = G.tracePath("s2h-plot", V, path, { duration: 5200, color: C.red, width: 3.4 });
+  }
+  document.getElementById("s2h-x1-1").addEventListener("click", function(){
+    trace(PATH1, "\\(x_1=1\\): ромб \\(x_1\\) проходится слева направо, и по дороге путь «заглядывает» в клозы \\(c_1\\) и \\(c_4\\), где \\(x_1\\) входит положительно (красные крюки). Остальные ромбы для наглядности проходятся слева направо без заходов.");
+  });
+  document.getElementById("s2h-x1-0").addEventListener("click", function(){
+    trace(PATH0, "\\(x_1=0\\): ромб \\(x_1\\) проходится справа налево — теперь по ходу движения доступны зелёные крюки в \\(c_3\\) и \\(c_2\\), где входит \\(\\bar x_1\\). Каждый клоз посещается ровно один раз из ромба одной из своих истинных переменных.");
+  });
+  document.getElementById("s2h-clear").addEventListener("click", function(){ if (cancel) cancel(); G.clearPath("s2h-plot"); G.setCaption("s2h-cap", ""); });
+})();
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Скопировано");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Скопировано");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<!--
+  Hover preview for @expl-... (example) cross-references.
+
+  Quarto's own html format already ships a native crossref-hover-preview
+  script (bundled tippy, no CDN, wired up for every a.quarto-xref link --
+  see site_libs/quarto-html/tippy.umd.min.js and the inline tippyHover/
+  processXRef script Quarto emits near the end of <body>). That native
+  script now covers theorem-family types too, since
+  _extensions/mn-theorems wraps them into real Quarto callouts.
+
+  Examples are the one remaining gap: mn-problems.lua's Pandoc filter
+  intercepts @expl-... citations and emits a raw `<a class="xref-callout"
+  data-tippy-ref="...">` directly, bypassing Quarto's own crossref
+  resolution entirely (needed because examples use the filter's own custom
+  numbering, not Quarto's native one) -- so they never get the
+  a.quarto-xref class Quarto's native script looks for. This file only
+  fills that one gap, reusing the SAME window.tippy Quarto's native script
+  already set up (no separate Popper/Tippy load of our own -- an earlier
+  version of this file loaded Popper+Tippy from unpkg.com via plain
+  <script src>, which registered as an anonymous AMD module on pages with
+  Quarto's RequireJS loader and broke both the popup AND, as collateral
+  damage, quarto's own native tippy setup).
+-->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (!window.tippy) return; // native script didn't run (shouldn't happen on an html-format page)
+
+  document.querySelectorAll("a.xref-callout").forEach(function (anchor) {
+    var targetId = anchor.getAttribute("data-tippy-ref");
+    var inner = targetId && document.getElementById(targetId);
+    if (!inner) return;
+
+    var outer = inner.closest(".callout-style-default") || inner;
+
+    tippy(anchor, {
+      content: function () {
+        var clone = outer.cloneNode(true);
+        var uid = "mn-xref-" + targetId;
+        clone.querySelectorAll("[id]").forEach(function (el) {
+          el.id = uid + "-" + el.id;
+        });
+        clone.querySelectorAll("[data-bs-target]").forEach(function (el) {
+          var orig = el.getAttribute("data-bs-target");
+          el.setAttribute("data-bs-target", "." + uid + "-" + orig.replace(/^\./, ""));
+        });
+        clone.querySelectorAll("[aria-controls]").forEach(function (el) {
+          el.setAttribute("aria-controls", uid + "-" + el.getAttribute("aria-controls"));
+        });
+        if (window.Quarto && window.Quarto.typesetMath) {
+          window.Quarto.typesetMath(clone);
+        }
+        return clone;
+      },
+      allowHTML: true,
+      interactive: true,
+      maxWidth: 500,
+      theme: "quarto",
+      placement: "bottom-start",
+      appendTo: function (el) { return el.parentElement; },
+    });
+  });
+});
+</script>
+
+
+
+
+</body></html>

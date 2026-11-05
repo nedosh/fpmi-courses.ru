@@ -1,0 +1,298 @@
+/* Homepage course cards (index.qmd) */
+
+.fpmi-course-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 2rem;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .fpmi-course-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fpmi-course-card {
+  border: 1px solid #e6e3ec;
+  border-radius: 10px;
+  padding: 1.1rem 1.2rem 0.9rem;
+  background: #fff;
+  margin: 1.4rem 0;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.fpmi-course-card:hover {
+  box-shadow: 0 6px 22px rgba(0, 58, 65, 0.13);
+  transform: translateY(-2px);
+}
+
+/* Title row: course-title link, own paragraph */
+.fpmi-course-card > p:has(> a.fpmi-course-title) {
+  margin-bottom: 0.4rem;
+}
+
+/* Теория вероятностей: a wide, unboxed "flagship" widget that breaks out
+   to .column-page width, so it can't sit inside the padded/bordered
+   .fpmi-course-card box like the other three -- header and footer keep
+   the same title/badge/caption/toc classes and spacing, just without the
+   card wrapper in between. */
+.fpmi-flagship-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.6rem 1rem;
+  flex-wrap: wrap;
+  margin: 1.8rem 0 0.6rem;
+}
+.fpmi-flagship-footer {
+  margin: 0.6rem 0 1.8rem;
+}
+
+a.fpmi-course-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #003a41;
+  text-decoration: none;
+}
+a.fpmi-course-title:hover {
+  color: #ff7500;
+  text-decoration: none;
+}
+
+.fpmi-course-badge {
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 0.25em 0.75em;
+  border-radius: 999px;
+}
+.fpmi-badge-autumn {
+  color: #b35400;
+  background: #fff3e8;
+  border: 1px solid #ffd9b8;
+}
+.fpmi-badge-spring {
+  color: #1e7a43;
+  background: #eaf6ee;
+  border: 1px solid #bfe5cc;
+}
+
+.fpmi-program-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  justify-content: flex-start;
+  margin-bottom: 0.6rem;
+}
+a.fpmi-program-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 0.2em 0.65em;
+  border-radius: 999px;
+  color: #003a41;
+  background: #eef2f4;
+  border: 1px solid #d8dee2;
+  text-decoration: none;
+}
+a.fpmi-program-badge:hover {
+  color: #fff;
+  background: #003a41;
+  border-color: #003a41;
+}
+
+a.fpmi-course-caption {
+  display: block;
+  text-align: center;
+  font-size: 0.92rem;
+  color: #0c5963;
+  text-decoration: none;
+  margin-top: 0.45rem;
+  font-style: italic;
+}
+a.fpmi-course-caption:hover {
+  color: #ff7500;
+}
+
+/* Compact semester course lists (index.qmd "Семестры" section) */
+.fpmi-semester-list {
+  columns: 2;
+  column-gap: 2.2rem;
+  list-style: none;
+  padding-left: 0;
+  margin: 0.6rem 0 1.6rem;
+  font-size: 0.95rem;
+}
+.fpmi-semester-list li {
+  break-inside: avoid;
+  margin: 0.2rem 0;
+  padding-left: 1rem;
+  text-indent: -1rem;
+}
+.fpmi-semester-list li em {
+  color: #7a7873;
+  font-size: 0.86em;
+  font-style: normal;
+}
+.fpmi-plan-full a {
+  color: #1e7a43;
+  font-weight: 700;
+  text-decoration: none;
+}
+.fpmi-plan-full a:hover {
+  color: #ff7500;
+  text-decoration: underline;
+}
+.fpmi-plan-passport a {
+  color: #8a5a00;
+  font-weight: 600;
+  text-decoration: none;
+}
+.fpmi-plan-passport a:hover {
+  color: #ff7500;
+  text-decoration: underline;
+}
+.fpmi-plan-unavailable {
+  color: #7a7873;
+}
+@media (max-width: 576px) {
+  .fpmi-semester-list {
+    columns: 1;
+  }
+}
+
+.fpmi-course-widget {
+  width: 100%;
+  height: 300px;
+}
+
+.fpmi-widget-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.85rem;
+  color: #52514e;
+  margin-top: 0.3rem;
+}
+.fpmi-widget-controls .fpmi-widget-value {
+  min-width: 8em;
+  text-align: right;
+  white-space: nowrap;
+}
+.fpmi-widget-controls input[type="range"] {
+  flex: 1 1 auto;
+  accent-color: #ff7500;
+}
+.fpmi-play-btn {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  background: #003a41;
+  color: #fff;
+  font-size: 10px;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.fpmi-play-btn:hover {
+  background: #ff7500;
+}
+
+.fpmi-course-toc {
+  margin-top: 0.8rem;
+  border-top: 1px solid #eeecf3;
+  padding-top: 0.7rem;
+  font-size: 0.88rem;
+}
+.fpmi-course-toc p {
+  margin: 0.3rem 0 0.35rem;
+  color: #52514e;
+}
+.fpmi-course-toc ul {
+  columns: 2;
+  column-gap: 2.2rem;
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 0.4rem;
+}
+.fpmi-course-toc li {
+  break-inside: avoid;
+  margin: 0.15rem 0;
+  padding-left: 0.9rem;
+  text-indent: -0.9rem;
+}
+.fpmi-course-toc a {
+  color: #0c5963;
+  text-decoration: none;
+}
+.fpmi-course-toc a:hover {
+  color: #ff7500;
+}
+@media (max-width: 576px) {
+  .fpmi-course-toc ul {
+    columns: 1;
+  }
+}
+
+.fpmi-asym-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px 0;
+}
+.fpmi-asym-plot {
+  width: 100%;
+  height: 185px;
+}
+.fpmi-asym-title {
+  text-align: center;
+  font-size: 13px;
+  color: #003a41;
+  margin-bottom: 2px;
+}
+@media (max-width: 700px) {
+  .fpmi-asym-plot {
+    height: 150px;
+  }
+}
+
+/* Roadmap page (roadmap.qmd) */
+.fpmi-roadmap-block {
+  margin: 1.6rem 0 2rem;
+}
+.fpmi-roadmap-block > p:first-child {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #003a41;
+  margin-bottom: 0.5rem;
+}
+.fpmi-roadmap-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  columns: 2;
+  column-gap: 2.2rem;
+}
+.fpmi-roadmap-list li {
+  break-inside: avoid;
+  margin: 0.25rem 0;
+}
+.fpmi-roadmap-done a {
+  color: #003a41;
+  text-decoration: none;
+  font-weight: 600;
+}
+.fpmi-roadmap-done a:hover {
+  color: #ff7500;
+}
+.fpmi-roadmap-soon {
+  color: #7a7873;
+}
+@media (max-width: 576px) {
+  .fpmi-roadmap-list {
+    columns: 1;
+  }
+}
